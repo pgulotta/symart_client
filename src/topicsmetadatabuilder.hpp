@@ -70,16 +70,40 @@ private:
   void build()
   {
     mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::CelluarAutomata,
+      Constants::CelluarAutomataTitle,
+      "qrc:/view/images/celluar-automata.png",
+      "qrc:/view/qml/CelluarAutomata.qml",
+      "Celluar Automata Help...."} );
+    mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Clouds,
       Constants::CloudsTitle,
       "qrc:/view/images/clouds.png",
       "qrc:/view/qml/Clouds.qml",
       "Clouds Help...."} );
     mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::Clusters,
+      Constants::ClustersTitle,
+      "qrc:/view/images/clusters.png",
+      "qrc:/view/qml/Clusters.qml",
+      "Clusters Help...."} );
+    mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::HyperClouds,
+      Constants::HyperCloudsTitle,
+      "qrc:/view/images/hyper-clouds.png",
+      "qrc:/view/qml/HyperClouds.qml",
+      "Hyperbolic Clouds Help"} );
+    mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::HyperLines,
+      Constants::HyperCloudsTitle,
+      "qrc:/view/images/hyper-lines.png",
+      "qrc:/view/qml/HyperLines.qml",
+      "Hyperbolic Lines Help"} );
+    mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Lines,
       Constants::LinesTitle,
       "qrc:/view/images/lines.png",
-      "qrc:/view/qml/OrbitTrap.qml",
+      "qrc:/view/qml/Lines.qml",
       "Lines Help ..."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::OrbitTraps,
@@ -87,6 +111,41 @@ private:
       "qrc:/view/images/orbit-trap.png",
       "qrc:/view/qml/OrbitTrap.qml",
       "Orbit Trap Help"} );
+    mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::QuasiOrbitTraps,
+      Constants::QuasiOrbitTrapsTitle,
+      "qrc:/view/images/quasi-orbit-trap.png",
+      "qrc:/view/qml/QuasiOrbitTraps.qml",
+      "Quasi Orbit Traps Help ..."} );
+    mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::QuasiStripes,
+      Constants::QuasiStripesTitle,
+      "qrc:/view/images/quasi-stripes.png",
+      "qrc:/view/qml/QuasiStripes.qml",
+      "Quasi Stripes Help...."} );
+    mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::Squiggles,
+      Constants::SquigglesTitle,
+      "qrc:/view/images/squiggles.png",
+      "qrc:/view/qml/Squiggles.qml",
+      "Squiggles Help ..."} );
+    mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::Stripes,
+      Constants::StripesTitle,
+      "qrc:/view/images/stripes.png",
+      "qrc:/view/qml/Stripes.qml",
+      "Stripes Help ..."} );
+    mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::Walk,
+      Constants::WalkTitle,
+      "qrc:/view/images/walk.png",
+      "qrc:/view/qml/Walk.qml",
+      "Walk Help ..."} );
+
+
+
+
+
 
   }
 

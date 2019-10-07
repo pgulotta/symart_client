@@ -2,10 +2,10 @@ import QtQuick 2.12
 pragma Singleton
 
 QtObject {
-    readonly property string accentColor: "#FF0000" //  light cyan
-    readonly property string primaryColor: "#000000" // black
-    readonly property string backColor: "#999999" // dark  blue
-    readonly property string foreColor: "#666666" //  light  blue
+    readonly property string accentColor: "#FF0000"
+    readonly property string primaryColor: "#000000"
+    readonly property string backColor: "#545454"
+    readonly property string foreColor: "#666666"
     readonly property string disabledTextColor: "#CCCCCC"
     readonly property string mainPageBackColor: "#262626"
     readonly property string textColor: "#FFFFFF"

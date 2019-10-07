@@ -1,4 +1,5 @@
 import QtQuick 2.12
+import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Material 2.3
 
@@ -14,7 +15,7 @@ GridView {
     property int switchboardColumnCount: isWideWidth ? (isMobileDevice ? 3 : 4) : (isMobileDevice ? 2 : 3)
     property int switchboardCellWidth: windowWidth / switchboardColumnCount * 0.92
     property int switchboardCellHeight: switchboardCellWidth
-    property int imageCellHeight: switchboardCellWidth * .8
+    property int imageCellHeight: switchboardCellWidth * .95
     readonly property int animationDeltaX: rectRadius
 
     cellWidth: switchboardCellWidth + mediumPadding
@@ -49,7 +50,11 @@ GridView {
             height: switchboardCellHeight
             visible: true
             color: cellBackColor
-            radius: rectRadius
+            border {
+                width: 1
+                color: "#545454"
+            }
+
             SequentialAnimation on x {
 
                 id: hoverAnimationId
@@ -94,20 +99,25 @@ GridView {
                 id: columnDelegateId
                 anchors.fill: parent
                 visible: true
+
                 Image {
                     id: selectableImageId
                     source: model.imageSource
-                    height: imageCellHeight
+                    height: imageCellHeight * .8
                     width: height
-                    anchors.centerIn: parent
+                    anchors.topMargin: mediumPadding
+                    anchors.top: parent.top
+                    anchors.horizontalCenter: parent.horizontalCenter
                     fillMode: Image.PreserveAspectFit
                 }
                 Label {
                     text: model.title
-                    font.pointSize: mediumLargeFontPointSize
-                    color: Material.accent
+                    font.pointSize: smallFontPointSize
+                    color: Constants.textColor
                     wrapMode: Label.WordWrap
-                    anchors.centerIn: parent
+                    anchors.bottomMargin: mediumPadding
+                    anchors.bottom: parent.bottom
+                    anchors.horizontalCenter: parent.horizontalCenter
                 }
             }
         }

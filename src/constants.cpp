@@ -11,13 +11,29 @@ static QHash<QString, QString> mServiceRequestsCategoryColors;
 
 const QString Constants::ApplicationCategoryTitle{"Application"  };
 
-const QString Constants::CloudsTitle{"Clouds"   };
+const QString Constants::CelluarAutomataTitle{"Celluar Automata" };
 
-const QString Constants::LinesTitle{"Lines"  };
+const QString Constants::CloudsTitle{"Clouds" };
+
+const QString Constants::ClustersTitle{"Clusters"};
+
+const QString Constants::HyperCloudsTitle{"Hyperbolic Clouds"};
+
+const QString Constants::HyperLinesTitle{"Hyperbolic Lines"};
+
+const QString Constants::LinesTitle{"Lines"};
 
 const QString Constants::OrbitTrapTitle{"Orbit Trap"  };
 
+const QString Constants::QuasiOrbitTrapsTitle{"Quasi Orbit Traps"};
 
+const QString Constants::QuasiStripesTitle{"Quasi Stripes"};
+
+const QString Constants::SquigglesTitle{"Squiggles"};
+
+const QString Constants::StripesTitle{"Stripes"};
+
+const QString Constants::WalkTitle{"Walk"};
 
 const QString Constants::ApplicationUseDefaultDatesSettings{"useDefaultDates"   };
 

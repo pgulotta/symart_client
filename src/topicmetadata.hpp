@@ -31,7 +31,20 @@ public slots:
   }
 
 public:
-  enum class Topic {Clouds, Lines,  OrbitTraps };
+  enum class Topic {
+    CelluarAutomata,
+    Clouds,
+    Clusters,
+    HyperClouds,
+    HyperLines,
+    Lines,
+    OrbitTraps,
+    QuasiOrbitTraps,
+    QuasiStripes,
+    Squiggles,
+    Stripes,
+    Walk
+  };
 
   explicit TopicMetaData( QObject* parent = nullptr ) : QObject( parent ) {}
 
