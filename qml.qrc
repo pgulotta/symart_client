@@ -1,9 +1,14 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>HomeForm.ui.qml</file>
-        <file>Page1Form.ui.qml</file>
-        <file>Page2Form.ui.qml</file>
+        <file>view/qml/MainPage.qml</file>
+        <file>view/qml/Constants.qml</file>
+        <file>view/qml/SwitchboardPage.qml</file>
+        <file>view/images/clouds.png</file>
+        <file>view/images/lines.png</file>
+        <file>view/images/orbit-trap.png</file>
         <file>qtquickcontrols2.conf</file>
+        <file>view/qml/Clouds.qml</file>
+        <file>view/qml/Lines.qml</file>
+        <file>view/qml/OrbitTrap.qml</file>
     </qresource>
 </RCC>
