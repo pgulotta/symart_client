@@ -25,9 +25,9 @@ const QString Constants::LinesTitle{"Lines"};
 
 const QString Constants::OrbitTrapTitle{"Orbit Trap"  };
 
-const QString Constants::QuasiOrbitTrapsTitle{"Quasi Orbit Traps"};
+const QString Constants::QuasiOrbitTrapsTitle{"Quasiperiodic Orbit Traps"};
 
-const QString Constants::QuasiStripesTitle{"Quasi Stripes"};
+const QString Constants::QuasiStripesTitle{"Quasiperiodic Stripes"};
 
 const QString Constants::SquigglesTitle{"Squiggles"};
 

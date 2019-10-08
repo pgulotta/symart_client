@@ -20,7 +20,7 @@ ApplicationWindow {
     readonly property int mediumLargeFontPointSize: 18
     readonly property int largeFontPointSize: 24
     readonly property int exlargeFontPointSize: 30
-    readonly property int smallPadding: 2
+    readonly property int smallPadding: 4
     readonly property int mediumPadding: 8
     readonly property int mediumLargePadding: 12
     readonly property int largePadding: 20

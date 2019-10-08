@@ -14,8 +14,8 @@ GridView {
 
     property int switchboardColumnCount: isWideWidth ? (isMobileDevice ? 3 : 4) : (isMobileDevice ? 2 : 3)
     property int switchboardCellWidth: windowWidth / switchboardColumnCount * 0.92
-    property int switchboardCellHeight: switchboardCellWidth
-    property int imageCellHeight: switchboardCellWidth * .95
+    property int switchboardCellHeight: switchboardCellWidth * 1.15
+    property int imageCellHeight: switchboardCellWidth
     readonly property int animationDeltaX: rectRadius
 
     cellWidth: switchboardCellWidth + mediumPadding
@@ -112,12 +112,13 @@ GridView {
                 }
                 Label {
                     text: model.title
+                    width: columnDelegateId.width
                     font.pointSize: smallFontPointSize
                     color: Constants.textColor
                     wrapMode: Label.WordWrap
-                    anchors.bottomMargin: mediumPadding
+                    horizontalAlignment: Text.AlignHCenter
+                    anchors.margins: smallPadding
                     anchors.bottom: parent.bottom
-                    anchors.horizontalCenter: parent.horizontalCenter
                 }
             }
         }
