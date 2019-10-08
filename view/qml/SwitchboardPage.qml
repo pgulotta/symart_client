@@ -52,7 +52,7 @@ GridView {
             color: cellBackColor
             border {
                 width: 1
-                color: "#545454"
+                color: Constants.backColor
             }
 
             SequentialAnimation on x {

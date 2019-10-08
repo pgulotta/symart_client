@@ -95,7 +95,7 @@ private:
       "Hyperbolic Clouds Help"} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::HyperLines,
-      Constants::HyperCloudsTitle,
+      Constants::HyperLinesTitle,
       "qrc:/view/images/hyper-lines.png",
       "qrc:/view/qml/HyperLines.qml",
       "Hyperbolic Lines Help"} );
