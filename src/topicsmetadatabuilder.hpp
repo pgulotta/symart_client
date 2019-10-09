@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QSettings>
 #include "topicmetadata.hpp"
-#include "constants.hpp"
+
 
 struct TopicsMetaDataSort {
   inline bool operator()( const QObject* lhsObject, const QObject* rhsObject )
@@ -71,75 +71,75 @@ private:
   {
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::CelluarAutomata,
-      Constants::CelluarAutomataTitle,
+      "Celluar Automata",
       "qrc:/view/images/celluar-automata.png",
       "qrc:/view/qml/CelluarAutomata.qml",
       "Celluar Automata Help...."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Clouds,
-      Constants::CloudsTitle,
+      "Clouds",
       "qrc:/view/images/clouds.png",
-      "qrc:/view/qml/Clouds.qml",
+      "qrc:/view/qml/CloudsPage.qml",
       "Clouds Help...."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Clusters,
-      Constants::ClustersTitle,
+      "Clusters",
       "qrc:/view/images/clusters.png",
-      "qrc:/view/qml/Clusters.qml",
+      "qrc:/view/qml/ClustersPage.qml",
       "Clusters Help...."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::HyperClouds,
-      Constants::HyperCloudsTitle,
+      "Hyperbolic Clouds",
       "qrc:/view/images/hyper-clouds.png",
-      "qrc:/view/qml/HyperClouds.qml",
+      "qrc:/view/qml/HyperCloudsPage.qml",
       "Hyperbolic Clouds Help"} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::HyperLines,
-      Constants::HyperLinesTitle,
+      "Hyperbolic Lines",
       "qrc:/view/images/hyper-lines.png",
-      "qrc:/view/qml/HyperLines.qml",
+      "qrc:/view/qml/HyperLinesPage.qml",
       "Hyperbolic Lines Help"} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Lines,
-      Constants::LinesTitle,
+      "Lines",
       "qrc:/view/images/lines.png",
-      "qrc:/view/qml/Lines.qml",
+      "qrc:/view/qml/LinesPage.qml",
       "Lines Help ..."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::OrbitTraps,
-      Constants::OrbitTrapTitle,
-      "qrc:/view/images/orbit-trap.png",
-      "qrc:/view/qml/OrbitTrap.qml",
+      "Orbit Traps",
+      "qrc:/view/images/orbit-traps.png",
+      "qrc:/view/qml/OrbitTrapsPage.qml",
       "Orbit Trap Help"} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::QuasiOrbitTraps,
-      Constants::QuasiOrbitTrapsTitle,
-      "qrc:/view/images/quasi-orbit-trap.png",
-      "qrc:/view/qml/QuasiOrbitTraps.qml",
-      "Quasi Orbit Traps Help ..."} );
+      "Quasiperiodic Orbit Traps",
+      "qrc:/view/images/quasi-orbit-traps.png",
+      "qrc:/view/qml/QuasiOrbitTrapsPage.qml",
+      "Quasiperiodic Orbit Traps Help ..."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::QuasiStripes,
-      Constants::QuasiStripesTitle,
+      "Quasiperiodic Stripes",
       "qrc:/view/images/quasi-stripes.png",
-      "qrc:/view/qml/QuasiStripes.qml",
+      "qrc:/view/qml/QuasiStripesPage.qml",
       "Quasi Stripes Help...."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Squiggles,
-      Constants::SquigglesTitle,
+      "Squiggles",
       "qrc:/view/images/squiggles.png",
-      "qrc:/view/qml/Squiggles.qml",
+      "qrc:/view/qml/SquigglesPage.qml",
       "Squiggles Help ..."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Stripes,
-      Constants::StripesTitle,
+      "Stripes",
       "qrc:/view/images/stripes.png",
-      "qrc:/view/qml/Stripes.qml",
+      "qrc:/view/qml/StripesPage.qml",
       "Stripes Help ..."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Walk,
-      Constants::WalkTitle,
-      "qrc:/view/images/walk.png",
-      "qrc:/view/qml/Walk.qml",
+      "Walks",
+      "qrc:/view/images/walks.png",
+      "qrc:/view/qml/WalksPage.qml",
       "Walk Help ..."} );
 
 

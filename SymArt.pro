@@ -1,6 +1,12 @@
 TEMPLATE = app
 
-QT += quick
+QT += core \
+    qml \
+    quick \
+    quickcontrols2 \
+    network
+QT += widgets
+
 
 CONFIG +=  c++1z
 #CONFIG += qtquickcompiler
@@ -8,8 +14,10 @@ CONFIG +=  c++1z
 DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-HEADERS += $$files(*.hpp, true)
-SOURCES += $$files(*.cpp, true)
+HEADERS += $$files(*.hpp, true) \
+
+SOURCES += $$files(*.cpp, true) \
+
 
 RESOURCES += qml.qrc
 

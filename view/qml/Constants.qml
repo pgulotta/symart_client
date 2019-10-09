@@ -1,5 +1,6 @@
+
+//pragma Singleton
 import QtQuick 2.12
-pragma Singleton
 
 QtObject {
     readonly property string accentColor: "#FF0000"
@@ -8,7 +9,7 @@ QtObject {
     readonly property string foreColor: "#373737"
     readonly property string disabledTextColor: "#CCCCCC"
     readonly property string mainPageBackColor: "#101010"
-    readonly property string textColor: "#3399ff" //"#33ffff"
+    readonly property string textColor: "#3399ff"
     readonly property string hooverTextColor: "Yellow"
     readonly property string linkTextColor: "Gold"
 
