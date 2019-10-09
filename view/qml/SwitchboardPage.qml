@@ -8,7 +8,6 @@ import com.twentysixapps.constants 1.0
 GridView {
     id: switchboardPageId
 
-    property string cellBackColor: Material.primary
     objectName: "SwitchboardPage"
 
     property int switchboardColumnCount: isWideWidth ? (isMobileDevice ? 3 : 4) : (isMobileDevice ? 2 : 3)
@@ -48,7 +47,7 @@ GridView {
             width: switchboardCellWidth
             height: switchboardCellHeight
             visible: true
-            color: cellBackColor
+            color: Constants.foreColor
             border {
                 width: 1
                 color: Constants.backColor
@@ -83,15 +82,14 @@ GridView {
                 width: parent.width
                 hoverEnabled: true
                 onClicked: {
-                    Controller.initialize()
                     var item = pushSource(model.pageSource)
-                    item.topicMetaDataModel = model
+                    item.title = model.title
                 }
                 onHoveredChanged: {
                     if (containsMouse)
                         hoverAnimationId.running = true
                     switchboardDelegateId.color
-                            = containsMouse ? Constants.foreColor : cellBackColor
+                            = containsMouse ? Constants.selectedColor : Constants.primaryColor
                 }
             }
             Item {
@@ -113,7 +111,6 @@ GridView {
                     text: model.title
                     width: columnDelegateId.width
                     font.pointSize: smallFontPointSize
-                    color: Constants.textColor
                     wrapMode: Label.WordWrap
                     horizontalAlignment: Text.AlignHCenter
                     anchors.margins: smallPadding

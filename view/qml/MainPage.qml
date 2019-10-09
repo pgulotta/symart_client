@@ -29,7 +29,6 @@ ApplicationWindow {
     height: windowHeight
 
     /// title: Controller.applicationTitle()
-    Material.background: "#101010"
     Component.onCompleted: {
         pageHeight = windowHeight - headerToolBarId.height
         if (!isMobileDevice) {
@@ -62,13 +61,9 @@ ApplicationWindow {
 
         ToolButton {
             id: toolButtonId
-            text: stackViewId.depth > 1 ? Constants.leftTriangleChar : Constants.menuChar
+            text: Constants.backChar
             font.pointSize: mediumFontPointSize
-            onClicked: {
-                if (stackViewId.depth > 1) {
-                    stackViewId.pop()
-                }
-            }
+            onClicked: popSource()
         }
 
         Label {
@@ -87,5 +82,64 @@ ApplicationWindow {
                 Qt.quit()
             }
         }
+        pushEnter: Transition {
+            PropertyAnimation {
+                property: "y"
+                easing.type: Easing.InOutQuad
+                from: height * 0.35
+                to: 0
+                duration: Constants.animationDuration
+            }
+            PropertyAnimation {
+                property: "opacity"
+                from: 0.0
+                to: 1.0
+                duration: Constants.animationDuration
+            }
+        }
+        pushExit: Transition {
+            PauseAnimation {
+                duration: Constants.shortAnimationDuration
+            }
+        }
+        popEnter: Transition {
+            PauseAnimation {
+                duration: Constants.shortAnimationDuration
+            }
+        }
+        popExit: Transition {
+            PropertyAnimation {
+                property: "y"
+                easing.type: Easing.InOutQuad
+                from: 0
+                to: height * 0.65
+                duration: Constants.animationDuration
+            }
+            SequentialAnimation {
+                PauseAnimation {
+                    duration: Constants.shortAnimationDuration
+                }
+                PropertyAnimation {
+                    id: pp1
+                    property: "opacity"
+                    from: 1.0
+                    to: 0.0
+                    duration: Constants.animationDuration
+                }
+            }
+        }
+        replaceEnter: pushEnter
+        replaceExit: pushExit
+    }
+
+    function pushSource(source) {
+        return stackViewId.push(source)
+    }
+
+    function popSource() {
+        if (stackViewId.depth > 1) {
+            stackViewId.pop()
+        } else
+            Qt.quit()
     }
 }

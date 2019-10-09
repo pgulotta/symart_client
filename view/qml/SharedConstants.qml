@@ -5,13 +5,12 @@ import QtQuick 2.12
 QtObject {
     readonly property string accentColor: "#FF0000"
     readonly property string primaryColor: "#000000"
-    readonly property string backColor: "#545454"
-    readonly property string foreColor: "#373737"
-    readonly property string disabledTextColor: "#CCCCCC"
-    readonly property string mainPageBackColor: "#101010"
-    readonly property string textColor: "#3399ff"
-    readonly property string hooverTextColor: "Yellow"
-    readonly property string linkTextColor: "Gold"
+    readonly property string foreColor: "3399FF"
+    readonly property string backColor: "#141414"
+
+    readonly property string selectedColor: "#292929"
+    readonly property string disabledTextColor: "#a9d4ff"
+    readonly property string linkTextColor: "#FFFF00"
 
     readonly property string leftTriangleChar: "\u25C0"
     readonly property string menuChar: "\u2630"
@@ -32,14 +31,8 @@ QtObject {
     readonly property string plusMinusSignChar: "\u00b1"
     readonly property string horizontalEllipsisChar: "\u2026"
 
-    readonly property string retrievingMessage: "  Working ..."
+    readonly property string workingMessage: "  Working ..."
 
+    readonly property int shortAnimationDuration: 250
     readonly property int animationDuration: 1100
-    readonly property int mediumTimerInterval: 1000
-    readonly property int shortTimerInterval: 1000
-    readonly property int mapFlickDeceleration: 3000
-    readonly property int mapZoomLevel: 12
-    readonly property int enlargedMapZoomLevel: 13
-    readonly property int chartMaxDaysDuration: 7
-    readonly property int refreshInterval: 60000
 }
