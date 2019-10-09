@@ -18,6 +18,8 @@ ApplicationWindow {
     readonly property int mediumFontPointSize: 18
     readonly property int smallPadding: 4
     readonly property int mediumPadding: 8
+    readonly property int largePadding: 16
+    readonly property int exlargePadding: 32
     readonly property int rectRadius: 10
     readonly property int borderWidth: 1
 
