@@ -19,8 +19,9 @@ Initializer::Initializer( QObject* parent )
 void Initializer::initQml()
 {
   QQmlContext* context = mQmlApplicationEngine.rootContext();
-  qmlRegisterSingletonType( QUrl( QStringLiteral( "qrc:/view/qml/Constants.qml" ) ),
-                           "com.twentysixapps.constants", 1, 0, "Constants" );
+
+  qmlRegisterSingletonType( QUrl( QStringLiteral( "qrc:/view/qml/SharedConstants.qml" ) ),
+                            "com.twentysixapps.constants", 1, 0, "Constants" );
 
 
   qmlRegisterType<TopicMetaData>( "TopicMetaDataModel", 1, 0, "TopicMetaData" );

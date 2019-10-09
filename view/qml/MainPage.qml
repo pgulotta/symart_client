@@ -2,6 +2,7 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Window 2.13
 import QtQuick.Controls.Material 2.3
+import com.twentysixapps.constants 1.0
 
 ApplicationWindow {
     id: rootId
