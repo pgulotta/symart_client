@@ -28,6 +28,7 @@
         <file>view/qml/SquigglesPage.qml</file>
         <file>view/qml/StripesPage.qml</file>
         <file>view/qml/SwitchboardPage.qml</file>
+        <file>view/qml/TumblerDelegate.qml</file>
         <file>view/qml/WalksPage.qml</file>
     </qresource>
 </RCC>

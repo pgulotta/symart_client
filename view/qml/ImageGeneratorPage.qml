@@ -7,6 +7,9 @@ Page {
     objectName: "ImageGeneratorPage"
     id: imageGeneratorPageId
 
+    property alias controlsView: controlsViewId.contentData
+    property alias imageView: imageViewId.contentData
+
     header: Label {
         text: title
         horizontalAlignment: Text.AlignHCenter
@@ -14,6 +17,19 @@ Page {
         padding: largePadding
     }
 
+    Flow {
+        anchors.fill: parent
+        ScrollView {
+            id: controlsViewId
+            width: 200
+            height: parent.height
+        }
+        Pane {
+            id: imageViewId
+            width: parent.width - 200
+            height: parent.height
+        }
+    }
     footer: ToolBar {
         id: footerToolBarId
         RowLayout {
