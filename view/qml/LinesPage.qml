@@ -3,5 +3,7 @@ import QtQuick.Controls 2.4
 import QtQuick.Controls.Material 2.3
 
 ImageGeneratorPage {
-
+    objectName: "LinesPage"
+    id: linesPageId
+    imageSource: "qrc:/view/images/lines.png"
 }

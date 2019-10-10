@@ -8,7 +8,8 @@ Page {
     id: imageGeneratorPageId
 
     property alias controlsView: controlsViewId.contentData
-    property alias imageView: imageViewId.contentData
+    property alias imageSource: imageId.source
+    property bool shouldTileImage: true
 
     header: Label {
         text: title
@@ -28,6 +29,13 @@ Page {
             id: imageViewId
             width: parent.width - 200
             height: parent.height
+            contentData: Image {
+                id: imageId
+                fillMode: shouldTileImage ? Image.Tile : Image.PreserveAspectFit
+                anchors.fill: shouldTileImage ? parent : undefined
+                anchors.centerIn: parent
+                smooth: false
+            }
         }
     }
     footer: ToolBar {

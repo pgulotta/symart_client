@@ -73,7 +73,7 @@ private:
       TopicMetaData::Topic::CelluarAutomata,
       "Celluar Automata",
       "qrc:/view/images/celluar-automata.png",
-      "qrc:/view/qml/CelluarAutomata.qml",
+      "qrc:/view/qml/CelluarAutomataPage.qml",
       "Celluar Automata Help...."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Clouds,
