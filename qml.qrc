@@ -17,6 +17,7 @@
         <file>view/qml/CelluarAutomataPage.qml</file>
         <file>view/qml/CloudsPage.qml</file>
         <file>view/qml/ClustersPage.qml</file>
+        <file>view/qml/DimensionControl.qml</file>
         <file>view/qml/HyperCloudsPage.qml</file>
         <file>view/qml/HyperLinesPage.qml</file>
         <file>view/qml/ImageGeneratorPage.qml</file>
