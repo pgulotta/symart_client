@@ -3,7 +3,7 @@ pragma Singleton
 import QtQuick 2.12
 
 QtObject {
-    readonly property string accentColor: "#00FF00"
+    readonly property string accentColor: "#0080ff"
     readonly property string primaryColor: "#000000"
     readonly property string foreColor: "3399FF"
     readonly property string backColor: "#141414"

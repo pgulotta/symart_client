@@ -20,14 +20,19 @@ Page {
 
     Flow {
         anchors.fill: parent
+        anchors.leftMargin: mediumPadding
+        spacing: mediumPadding
         ScrollView {
             id: controlsViewId
             width: 200
             height: parent.height
+            ScrollBar.vertical: ScrollBar {
+                policy: ScrollBar.AsNeeded
+            }
         }
         Pane {
             id: imageViewId
-            width: parent.width - 200
+            width: parent.width - controlsViewId.width - 50
             height: parent.height
             contentData: Image {
                 id: imageId
