@@ -7,7 +7,6 @@ GroupBox {
     id: dimensionLabelId
     title: "Dimension"
     Column {
-
         TextField {
             text: sizeSliderId.value
             horizontalAlignment: Text.AlignHCenter

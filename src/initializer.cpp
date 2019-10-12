@@ -26,6 +26,7 @@ void Initializer::initQml()
 
   qmlRegisterType<TopicMetaData>( "TopicMetaDataModel", 1, 0, "TopicMetaData" );
   context->setContextProperty( "TopicsMetaData", QVariant::fromValue( mTopicsMetaDataBuilder.topicsMetaData() ) );
+  context->setContextProperty( "ImmutableList", &mImmutableList );
 
   mQmlApplicationEngine.load( QUrl( QStringLiteral( "qrc:/view/qml/MainPage.qml" ) ) );
 

@@ -1,8 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include "topicsmetadatabuilder.hpp"
+#include "immutablelist.hpp"
+
 
 class Initializer final : public QObject
 {
@@ -20,7 +22,8 @@ private:
 private:
   TopicsMetaDataBuilder mTopicsMetaDataBuilder;
   QQmlApplicationEngine mQmlApplicationEngine;
-
+  ImmutableList mImmutableList;
 
 };
+
 

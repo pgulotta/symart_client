@@ -10,19 +10,16 @@ ImageGeneratorPage {
         id: controlsViewId
         anchors.centerIn: parent
         Column {
-            spacing: 0
+            spacing: exlargePadding
             leftPadding: largePadding
-            DimensionControl {}
-
-            Tumbler {
-                id: symmetrytumblerId
-                model: 60
-                delegate: TumblerDelegate {
-                    text: modelData
-                }
+            DimensionSelector {
+                id: dimensionSelectorId
+            }
+            SymmetrySelector {
+                width: dimensionSelectorId.width
+                height: width
             }
         }
     }
-
     imageSource: "qrc:/view/images/orbit-traps.png"
 }
