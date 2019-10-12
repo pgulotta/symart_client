@@ -14,10 +14,11 @@ CONFIG +=  c++1z
 DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-HEADERS += $$files(*.hpp, true) \
+HEADERS += $$files(*.hpp, true)
 
-SOURCES += $$files(*.cpp, true) \
+SOURCES += $$files(*.cpp, true)
 
+INCLUDEPATH += $$PWD/../symart_server/src/shared
 
 RESOURCES += qml.qrc
 

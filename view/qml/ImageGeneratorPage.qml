@@ -1,6 +1,7 @@
 import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
+import com.twentysixapps.constants 1.0
 
 Page {
     objectName: "ImageGeneratorPage"
@@ -17,13 +18,14 @@ Page {
         padding: largePadding
     }
 
-    Flow {
+    Row {
         anchors.fill: parent
         anchors.leftMargin: mediumPadding
-        spacing: mediumPadding
+        spacing: 0
         ScrollView {
             id: controlsViewId
             width: 200
+
             height: parent.height
             ScrollBar.vertical: ScrollBar {
                 policy: ScrollBar.AsNeeded
@@ -31,14 +33,21 @@ Page {
         }
         Pane {
             id: imageViewId
-            width: parent.width - controlsViewId.width - 50
+            width: parent.width - controlsViewId.width - exlargePadding
             height: parent.height
-            contentData: Image {
-                id: imageId
-                fillMode: shouldTileImage ? Image.Tile : Image.PreserveAspectFit
-                anchors.fill: shouldTileImage ? parent : undefined
-                anchors.centerIn: parent
-                smooth: false
+            contentData: Rectangle {
+                id: rectangleId
+                width: parent.width
+                height: parent.height
+                color: Constants.primaryColor
+                Image {
+                    id: imageId
+                    width: shouldTileImage ? rectangleId.width - smallPadding : sourceSize.width
+                    height: shouldTileImage ? rectangleId.height - smallPadding : sourceSize.height
+                    fillMode: shouldTileImage ? Image.Tile : Image.PreserveAspectFit
+                    anchors.centerIn: parent
+                    smooth: false
+                }
             }
         }
     }
