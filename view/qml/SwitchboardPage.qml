@@ -9,6 +9,7 @@ GridView {
 
     objectName: "SwitchboardPage"
 
+    readonly property int animationDuration: 100
     property int switchboardColumnCount: isWideWidth ? (isMobileDevice ? 3 : 4) : (isMobileDevice ? 2 : 3)
     property int switchboardCellWidth: windowWidth / switchboardColumnCount * 0.92
     property int switchboardCellHeight: switchboardCellWidth * 1.15
@@ -26,19 +27,6 @@ GridView {
     topMargin: mediumPadding
     bottomMargin: mediumPadding
     model: TopicsMetaData
-
-    transitions: [
-        Transition {
-            NumberAnimation {
-                target: switchboardPageId
-                from: 0
-                to: 1
-                properties: "opacity"
-                duration: longAnimationDuration
-                easing.type: Easing.Linear
-            }
-        }
-    ]
 
     delegate: Component {
         Rectangle {
@@ -60,19 +48,19 @@ GridView {
                 NumberAnimation {
                     from: x
                     to: x + animationDeltaX
-                    duration: 100
+                    duration: animationDuration
                     easing.type: Easing.Linear
                 }
                 NumberAnimation {
                     from: x + animationDeltaX
                     to: x - animationDeltaX
-                    duration: 100
+                    duration: animationDuration
                     easing.type: Easing.Linear
                 }
                 NumberAnimation {
                     from: x - animationDeltaX
                     to: x
-                    duration: 100
+                    duration: animationDuration
                     easing.type: Easing.Linear
                 }
             }

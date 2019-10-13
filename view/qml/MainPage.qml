@@ -88,7 +88,7 @@ ApplicationWindow {
             PropertyAnimation {
                 property: "y"
                 easing.type: Easing.InOutQuad
-                from: height * 0.35
+                from: height * 0.65
                 to: 0
                 duration: Constants.animationDuration
             }
