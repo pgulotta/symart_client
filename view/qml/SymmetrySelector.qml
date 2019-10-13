@@ -4,6 +4,7 @@ import QtQuick.Controls.Material 2.3
 
 GroupBox {
     id: symmetryLabelId
+    property alias symmetryIndex: symmetrytumblerId.currentIndex
     title: "Symmetry"
     Tumbler {
         id: symmetrytumblerId

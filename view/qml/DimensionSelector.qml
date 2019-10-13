@@ -6,6 +6,7 @@ import com.twentysixapps.constants 1.0
 GroupBox {
     id: dimensionLabelId
     title: "Dimension"
+    property alias dimension:  sizeSliderId.value
     Column {
         TextField {
             text: sizeSliderId.value
