@@ -9,8 +9,18 @@ Page {
 
     property alias controlsView: controlsViewId.contentData
     property alias imageSource: imageId.source
+    property alias imageOpacity: imageId.opacity
     property bool shouldTileImage: true
 
+    Connections {
+        target: Controller
+        onMessageGenerated: reportMessage(messageDescription)
+    }
+
+    onVisibleChanged: {
+        imageOpacity = 0
+        imageSource = ""
+    }
     header: Label {
         text: title
         horizontalAlignment: Text.AlignHCenter
@@ -42,11 +52,19 @@ Page {
                 color: Constants.primaryColor
                 Image {
                     id: imageId
+                    //  sourceSize
                     width: shouldTileImage ? rectangleId.width - smallPadding : sourceSize.width
                     height: shouldTileImage ? rectangleId.height - smallPadding : sourceSize.height
                     fillMode: shouldTileImage ? Image.Tile : Image.PreserveAspectFit
                     anchors.centerIn: parent
                     smooth: false
+                    asynchronous: true
+                    onStatusChanged: {
+                        if (imageId.status === Image.Error)
+                            console.log('Error')
+                        else if (imageId.status === Image.Ready)
+                            console.log('Loaded')
+                    }
                 }
             }
         }
@@ -59,7 +77,10 @@ Page {
             ToolButton {
                 text: qsTr("Draw")
                 font.capitalization: Font.MixedCase
-                //onClicked:
+                onClicked: {
+                    imageSource = ""
+                    drawRequested()
+                }
             }
 
             Item {

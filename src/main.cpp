@@ -4,6 +4,9 @@
 #include <QQuickStyle>
 #include "initializer.hpp"
 
+
+
+
 int main( int argc, char* argv[] )
 {
   QCoreApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
@@ -13,6 +16,7 @@ int main( int argc, char* argv[] )
   QApplication::setApplicationVersion( "1.00" );
   QQuickStyle::setStyle( "Material" );
   QApplication app( argc, argv );
+
   Initializer initializer;
 
   return app.exec();

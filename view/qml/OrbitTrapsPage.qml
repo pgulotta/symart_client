@@ -6,6 +6,10 @@ ImageGeneratorPage {
     objectName: "OrbitTrapsPage"
     id: orbitTrapsPageId
 
+    function drawRequested() {
+        imageSource = "http://localhost:60564/get/?trap/id123/144/5"
+    }
+
     controlsView: RowLayout {
         id: controlsViewId
         anchors.centerIn: parent
@@ -21,6 +25,5 @@ ImageGeneratorPage {
             }
         }
     }
-    //imageSource: "qrc:/view/images/orbit-traps.png"
-    imageSource: "http://localhost:60564/test/?trap"
+    shouldTileImage: true
 }

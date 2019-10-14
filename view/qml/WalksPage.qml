@@ -4,5 +4,8 @@ import QtQuick.Controls 2.5
 ImageGeneratorPage {
     objectName: "WalksPage"
     id: walksPageId
-    imageSource: "qrc:/view/images/walks.png"
+
+    function drawRequested() {
+        imageSource = "http://localhost:60564/get/?walk/id123/144/144/true/0"
+    }
 }

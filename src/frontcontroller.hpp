@@ -1,30 +1,32 @@
 #pragma once
 
-#include "networkquerycontroller.hpp"
 #include <QObject>
 #include <QImage>
 
 
 class QQmlApplicationEngine;
 
-class FrontController : public QObject
+class FrontController final : public QObject
 {
   Q_OBJECT
 signals:
+  void messageGenerated( QString messageDescription );
+
 
 public slots:
 
 
 public:
   explicit FrontController( QObject* parent = nullptr );
+  static void appMessageHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
 
   Q_INVOKABLE QString applicationTitle() const;
   Q_INVOKABLE QString applicationVersion() const;
-  Q_INVOKABLE QImage generateTrap( int dimension, int symmetryGroup );
+  Q_INVOKABLE QString generateTrapQuery( int dimension, int symmetryGroup );
 
 private:
-  const QString serviceId;
-  NetworkQueryController mNetworkQueryController;
+  QString mServiceId;
+
 
 
 };

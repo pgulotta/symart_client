@@ -4,5 +4,8 @@ import QtQuick.Controls 2.5
 ImageGeneratorPage {
     objectName: "LinesPage"
     id: linesPageId
-    imageSource: "qrc:/view/images/lines.png"
+
+    function drawRequested() {
+        imageSource = "https://localhost:60564/test/?lines"
+    }
 }

@@ -122,7 +122,6 @@ ApplicationWindow {
                     duration: Constants.shortAnimationDuration
                 }
                 PropertyAnimation {
-                    id: pp1
                     property: "opacity"
                     from: 1.0
                     to: 0.0
@@ -134,6 +133,24 @@ ApplicationWindow {
         replaceExit: pushExit
     }
 
+    Dialog {
+        id: messageDialogId
+        property alias messageDescription: textId.text
+        x: largePadding
+        y: largePadding
+        modal: true
+        implicitWidth: 300
+        parent: ApplicationWindow.overlay
+        title: "Alert ..."
+        standardButtons: Dialog.Ok
+        contentItem: Label {
+            id: textId
+            wrapMode: Label.Wrap
+            anchors.centerIn: parent
+            width: messageDialogId.width * 0.9
+        }
+    }
+
     function pushSource(source) {
         return stackViewId.push(source)
     }
@@ -143,5 +160,12 @@ ApplicationWindow {
             stackViewId.pop()
         } else
             Qt.quit()
+    }
+
+    function reportMessage(messageDescription) {
+        if (messageDescription === undefined || messageDescription === "")
+            return
+        messageDialogId.messageDescription = messageDescription
+        messageDialogId.open()
     }
 }
