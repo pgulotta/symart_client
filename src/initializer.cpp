@@ -1,11 +1,12 @@
 #include "initializer.hpp"
+#include "topicmetadata.hpp"
 #include <QGuiApplication>
 #include <QQmlContext>
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QSettings>
 #include <QVariant>
-#include "topicmetadata.hpp"
+
 
 const QString ApplicationCategoryTitle{"Application"  };
 
@@ -27,7 +28,7 @@ void Initializer::initQml()
   qmlRegisterType<TopicMetaData>( "TopicMetaDataModel", 1, 0, "TopicMetaData" );
   context->setContextProperty( "TopicsMetaData", QVariant::fromValue( mTopicsMetaDataBuilder.topicsMetaData() ) );
   context->setContextProperty( "ImmutableList", &mImmutableList );
-
+  context->setContextProperty( "Controller", &mFrontController );
   mQmlApplicationEngine.load( QUrl( QStringLiteral( "qrc:/view/qml/MainPage.qml" ) ) );
 
 }

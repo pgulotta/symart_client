@@ -4,7 +4,7 @@
 #include <QQmlApplicationEngine>
 #include "topicsmetadatabuilder.hpp"
 #include "immutablelist.hpp"
-
+#include "frontcontroller.hpp"
 
 class Initializer final : public QObject
 {
@@ -20,9 +20,14 @@ private:
   void initQml();
 
 private:
+  FrontController mFrontController;
   TopicsMetaDataBuilder mTopicsMetaDataBuilder;
   QQmlApplicationEngine mQmlApplicationEngine;
   ImmutableList mImmutableList;
+
+
+
+
 
 };
 

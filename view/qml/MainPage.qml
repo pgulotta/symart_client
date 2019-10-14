@@ -30,7 +30,7 @@ ApplicationWindow {
     width: windowWidth
     height: windowHeight
 
-    /// title: Controller.applicationTitle()
+    title: Controller.applicationTitle()
     Component.onCompleted: {
         pageHeight = windowHeight - headerToolBarId.height
         if (!isMobileDevice) {

@@ -21,5 +21,6 @@ ImageGeneratorPage {
             }
         }
     }
-    imageSource: "qrc:/view/images/orbit-traps.png"
+    //imageSource: "qrc:/view/images/orbit-traps.png"
+    imageSource: "http://localhost:60564/test/?trap"
 }

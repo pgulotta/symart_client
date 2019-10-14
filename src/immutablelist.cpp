@@ -1,5 +1,7 @@
 ﻿#include "immutablelist.hpp"
-#include <QDebug>
+
+
+
 ImmutableList::ImmutableList()
 {
 
