@@ -15,9 +15,12 @@ ImageGeneratorPage {
     controlsView: RowLayout {
         id: controlsViewId
         anchors.centerIn: parent
+        width: parent.width
+        height: parent.height
         Column {
             spacing: exlargePadding
             leftPadding: largePadding
+
             DimensionSelector {
                 id: dimensionSelectorId
             }
@@ -28,5 +31,6 @@ ImageGeneratorPage {
             }
         }
     }
+
     shouldTileImage: true
 }
