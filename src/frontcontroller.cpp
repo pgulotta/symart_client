@@ -1,8 +1,12 @@
 #include "frontcontroller.hpp"
 #include <QApplication>
 #include <QUuid>
+#include <QDebug>
 
-FrontController* mInstance;
+
+FrontController* FrontController::FrontControllerInstance{nullptr};
+
+const QString QueryPrefix{"http://localhost:60564/get/?"};
 
 void FrontController::appMessageHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg )
 {
@@ -22,26 +26,26 @@ void FrontController::appMessageHandler( QtMsgType type, const QMessageLogContex
 
   case QtWarningMsg:
     fprintf( stderr, "SymArt Warning: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function );
-    emit mInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
+    emit FrontControllerInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
     break;
 
   case QtCriticalMsg:
     fprintf( stderr, "SymArt Critical: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function );
-    emit mInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
+    emit FrontControllerInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
     break;
 
   case QtFatalMsg:
     fprintf( stderr, "SymArt Fatal: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function );
-    emit mInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
+    emit FrontControllerInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
     break;
   }
 }
 
 FrontController::FrontController( QObject* parent ) :
   QObject( parent ),
-  mServiceId{QUuid::createUuid().toString()}
+  mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )}
 {
-  mInstance = this;
+  FrontControllerInstance = this;
   qInstallMessageHandler( FrontController::appMessageHandler );
 }
 
@@ -55,11 +59,8 @@ QString FrontController::applicationVersion() const
   return QApplication::applicationVersion();
 }
 
-
-QString FrontController::generateTrapQuery( int dimension, int symmetryGroup )
+QString FrontController::getOrbitTrapQuery( int dimension, int symmetryGroup )
 {
-  //  http://localhost:60564/test/?trap
-
-  return QString{};
+  return QString( "%1trap/%2/%3/%4" ).arg( QueryPrefix ).arg( mServiceId ).arg( dimension ).arg( symmetryGroup );
 }
 

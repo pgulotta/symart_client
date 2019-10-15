@@ -7,7 +7,9 @@ ImageGeneratorPage {
     id: orbitTrapsPageId
 
     function drawRequested() {
-        imageSource = "http://localhost:60564/get/?trap/id123/144/5"
+        imageSource = Controller.getOrbitTrapQuery(
+                    dimensionSelectorId.dimension,
+                    symmetrySelectorId.symmetryIndex)
     }
 
     controlsView: RowLayout {
@@ -20,8 +22,9 @@ ImageGeneratorPage {
                 id: dimensionSelectorId
             }
             SymmetrySelector {
+                id: symmetrySelectorId
                 width: dimensionSelectorId.width
-                height: width
+                height: width * 1.2
             }
         }
     }

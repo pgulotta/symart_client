@@ -14,7 +14,6 @@ GroupBox {
         delegate: Text {
             text: modelData
             horizontalAlignment: Text.AlignHCenter
-
             color: Material.foreground
             opacity: 1.0 - Math.abs(
                          Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2.3)

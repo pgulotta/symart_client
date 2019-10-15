@@ -22,11 +22,11 @@ public:
 
   Q_INVOKABLE QString applicationTitle() const;
   Q_INVOKABLE QString applicationVersion() const;
-  Q_INVOKABLE QString generateTrapQuery( int dimension, int symmetryGroup );
+  Q_INVOKABLE QString getOrbitTrapQuery( int dimension, int symmetryGroup );
 
 private:
   QString mServiceId;
-
+  static FrontController* FrontControllerInstance;
 
 
 };

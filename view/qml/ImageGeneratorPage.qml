@@ -58,12 +58,18 @@ Page {
                     fillMode: shouldTileImage ? Image.Tile : Image.PreserveAspectFit
                     anchors.centerIn: parent
                     smooth: false
+                    cache: false
                     asynchronous: true
                     onStatusChanged: {
+
                         if (imageId.status === Image.Error)
                             console.log('Error')
                         else if (imageId.status === Image.Ready)
-                            console.log('Loaded')
+                            console.log('Ready')
+                        else if (imageId.status === Image.Null)
+                            console.log('Null')
+                        else if (imageId.status === Image.Loading)
+                            console.log('Loading')
                     }
                 }
             }
