@@ -5,11 +5,12 @@ import QtQuick.Layouts 1.3
 ImageGeneratorPage {
     objectName: "OrbitTrapsPage"
     id: orbitTrapsPageId
+    shouldTileImage: true
 
     function drawRequested() {
         imageSource = Controller.getOrbitTrapQuery(
                     dimensionSelectorId.dimension,
-                    symmetrySelectorId.symmetryIndex)
+                    symmetrySelectorId.tumblerIndex)
     }
 
     controlsView: RowLayout {
@@ -31,6 +32,4 @@ ImageGeneratorPage {
             }
         }
     }
-
-    shouldTileImage: true
 }

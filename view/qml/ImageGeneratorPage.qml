@@ -1,6 +1,7 @@
-import QtQuick 2.13
+﻿import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
+import Qt.labs.platform 1.1
 import com.twentysixapps.constants 1.0
 
 Page {
@@ -17,11 +18,14 @@ Page {
         onMessageGenerated: reportMessage(messageDescription)
     }
 
+    Component.onCompleted: headerToolBarId.forceActiveFocus()
+
     onVisibleChanged: {
         imageOpacity = 0
         imageSource = ""
     }
     header: Label {
+        id: headerToolBarId
         text: title
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Label.WordWrap
@@ -52,7 +56,6 @@ Page {
                 color: Constants.primaryColor
                 Image {
                     id: imageId
-                    //  sourceSize
                     width: shouldTileImage ? rectangleId.width - smallPadding : sourceSize.width
                     height: shouldTileImage ? rectangleId.height - smallPadding : sourceSize.height
                     fillMode: shouldTileImage ? Image.Tile : Image.PreserveAspectFit
@@ -60,17 +63,16 @@ Page {
                     smooth: false
                     cache: false
                     asynchronous: true
-                    onStatusChanged: {
-
-                        if (imageId.status === Image.Error)
-                            console.log('Error')
-                        else if (imageId.status === Image.Ready)
-                            console.log('Ready')
-                        else if (imageId.status === Image.Null)
-                            console.log('Null')
-                        else if (imageId.status === Image.Loading)
-                            console.log('Loading')
-                    }
+                    //                    onStatusChanged: {
+                    //                        if (imageId.status === Image.Error)
+                    //                            console.log('Error')
+                    //                        else if (imageId.status === Image.Ready)
+                    //                            console.log('Ready')
+                    //                        else if (imageId.status === Image.Null)
+                    //                            console.log('Null')
+                    //                        else if (imageId.status === Image.Loading)
+                    //                            console.log('Loading')
+                    //                    }
                 }
             }
         }
@@ -79,7 +81,11 @@ Page {
         id: footerToolBarId
         RowLayout {
             anchors.centerIn: parent
-
+            spacing: exlargePadding
+            Switch {
+                text: qsTr("Tile")
+                //onClicked:
+            }
             ToolButton {
                 text: qsTr("Draw")
                 font.capitalization: Font.MixedCase
@@ -88,15 +94,24 @@ Page {
                     drawRequested()
                 }
             }
-
-            Item {
-                width: exlargePadding
-            }
-
-            Switch {
-                text: qsTr("Tile")
-                //onClicked:
+            ToolButton {
+                text: qsTr("Save")
+                font.capitalization: Font.MixedCase
+                onClicked: {
+                    fileDialogId.open()
+                }
             }
         }
+    }
+
+    FileDialog {
+        id: fileDialogId
+        modality: Qt.ApplicationModal
+        title: "Please choose a file name"
+        nameFilters: ["PNG Files (*.png)", "BMP Files (*.bmp)", "JPG Files (*.jpg)", "PBM Files (*.pbm)", "PGM Files (*.pgm)", "PPM Files (*.ppm)", "XBM Files (*.xbm)", "XPM Files (*.xpm)", "All Files (*.*)"]
+        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
+        defaultSuffix: "png"
+        fileMode: FileDialog.SaveFile
+        onAccepted: Controller.saveCurrentImage(file)
     }
 }

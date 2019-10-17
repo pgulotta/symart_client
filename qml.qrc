@@ -26,6 +26,7 @@
         <file>view/qml/OrbitTrapsPage.qml</file>
         <file>view/qml/QuasiOrbitTrapsPage.qml</file>
         <file>view/qml/QuasiStripesPage.qml</file>
+        <file>view/qml/SelectorGroupBox.qml</file>
         <file>view/qml/SquigglesPage.qml</file>
         <file>view/qml/StripesPage.qml</file>
         <file>view/qml/SwitchboardPage.qml</file>

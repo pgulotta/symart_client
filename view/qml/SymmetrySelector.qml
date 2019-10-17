@@ -2,20 +2,18 @@ import QtQuick 2.13
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.3
 
-GroupBox {
+SelectorGroupBox {
     id: symmetryLabelId
-    property alias symmetryIndex: symmetrytumblerId.currentIndex
+    property alias tumblerIndex: symmetrytumblerId.currentIndex
     title: "Symmetry"
-    font.bold: activeFocus
-    font.italic: activeFocus
 
     Tumbler {
         id: symmetrytumblerId
         implicitHeight: parent.height
         wrap: true
         model: ImmutableList.symmetryGroups()
+        onModelChanged: currentIndex = model.length / 2
         width: symmetryLabelId.width * .9
-        focusPolicy: Qt.StrongFocus
         delegate: Text {
             text: modelData
             horizontalAlignment: Text.AlignHCenter
@@ -24,6 +22,9 @@ GroupBox {
                          Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2.3)
             verticalAlignment: Text.AlignVCenter
         }
+
+        onCurrentIndexChanged: forceActiveFocus()
+
         Keys.onUpPressed: {
             increaseIndex()
         }

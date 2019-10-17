@@ -1,5 +1,6 @@
 #pragma once
 
+#include "networkquerycontroller.hpp"
 #include <QObject>
 #include <QImage>
 
@@ -10,7 +11,7 @@ class FrontController final : public QObject
 {
   Q_OBJECT
 signals:
-  void messageGenerated( QString messageDescription );
+  void messageGenerated( QString messageDescription ) const;
 
 
 public slots:
@@ -22,10 +23,12 @@ public:
 
   Q_INVOKABLE QString applicationTitle() const;
   Q_INVOKABLE QString applicationVersion() const;
+  Q_INVOKABLE void saveCurrentImage( const QString& filename ) ;
   Q_INVOKABLE QString getOrbitTrapQuery( int dimension, int symmetryGroup );
 
 private:
   QString mServiceId;
+  NetworkQueryController mNetworkQueryController;
   static FrontController* FrontControllerInstance;
 
 

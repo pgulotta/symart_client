@@ -3,10 +3,10 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import com.twentysixapps.constants 1.0
 
-GroupBox {
+SelectorGroupBox {
     id: dimensionLabelId
     title: "Dimension"
-    property alias dimension:  sizeSliderId.value
+    property alias dimension: sizeSliderId.value
     Column {
         TextField {
             text: sizeSliderId.value

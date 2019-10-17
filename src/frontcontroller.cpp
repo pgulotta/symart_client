@@ -1,8 +1,7 @@
-#include "frontcontroller.hpp"
+﻿#include "frontcontroller.hpp"
 #include <QApplication>
 #include <QUuid>
 #include <QDebug>
-
 
 FrontController* FrontController::FrontControllerInstance{nullptr};
 
@@ -43,10 +42,16 @@ void FrontController::appMessageHandler( QtMsgType type, const QMessageLogContex
 
 FrontController::FrontController( QObject* parent ) :
   QObject( parent ),
-  mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )}
+
+  mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )},
+  mNetworkQueryController( parent )
 {
   FrontControllerInstance = this;
   qInstallMessageHandler( FrontController::appMessageHandler );
+  connect( &mNetworkQueryController, &NetworkQueryController::networkQueryFailed, this,
+  []( const QString & messageDescription ) {
+    emit FrontControllerInstance->messageGenerated( messageDescription );
+  } );
 }
 
 QString FrontController::applicationTitle() const
@@ -57,6 +62,13 @@ QString FrontController::applicationTitle() const
 QString FrontController::applicationVersion() const
 {
   return QApplication::applicationVersion();
+}
+
+void FrontController::saveCurrentImage( const QString& filename )
+{
+  QStringList attributes{QString::number( static_cast<int>( QueryType::SaveImage ) ), filename};
+  QString query = QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
+  mNetworkQueryController.runRequest( attributes, query );
 }
 
 QString FrontController::getOrbitTrapQuery( int dimension, int symmetryGroup )
