@@ -66,7 +66,11 @@ QString FrontController::applicationVersion() const
 
 void FrontController::saveCurrentImage( const QString& filename )
 {
-  QStringList attributes{QString::number( static_cast<int>( QueryType::SaveImage ) ), filename};
+  auto formattedFilename{filename.trimmed()};
+  if (formattedFilename.isEmpty())
+      return;
+
+  QStringList attributes{QString::number( static_cast<int>( QueryType::SaveImage ) ), formattedFilename};
   QString query = QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
   mNetworkQueryController.runRequest( attributes, query );
 }
