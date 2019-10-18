@@ -7,7 +7,7 @@ ImageGeneratorPage {
     id: orbitTrapsPageId
     shouldTileImage: true
 
-    function drawRequested() {
+    function drawImage() {
         imageSource = Controller.getOrbitTrapQuery(
                     dimensionSelectorId.dimension,
                     symmetrySelectorId.tumblerIndex)

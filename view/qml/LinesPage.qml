@@ -5,7 +5,7 @@ ImageGeneratorPage {
     objectName: "LinesPage"
     id: linesPageId
 
-    function drawRequested() {
+    function drawImage() {
         imageSource = "https://localhost:60564/test/?lines"
     }
 }

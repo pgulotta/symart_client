@@ -13,6 +13,8 @@ Page {
     property alias imageOpacity: imageId.opacity
     property bool shouldTileImage: true
     property string pageTitle
+    property int footer1Spacing: imageGeneratorPageId.width * 0.10
+    property int footer2Spacing: imageGeneratorPageId.width * 0.01
 
     Connections {
         target: Controller
@@ -85,16 +87,12 @@ Page {
     footer: ToolBar {
         id: footerToolBarId
         implicitWidth: parent.width
-        implicitHeight: 100 //footerFlowId.height
-
         Grid {
             id: footerColumnId
             rows: 2
             anchors.centerIn: parent
             Row {
-                spacing: 100
-                //  anchors.horizontalCenter: parent.horizontalCenter
-                Layout.fillWidth: false
+                spacing: footer1Spacing
                 Switch {
                     text: qsTr("Tile")
                     //onClicked:
@@ -104,7 +102,7 @@ Page {
                     font.capitalization: Font.MixedCase
                     onClicked: {
                         imageSource = ""
-                        drawRequested()
+                        drawImage()
                     }
                 }
                 ToolButton {
@@ -115,15 +113,19 @@ Page {
                 ToolButton {
                     text: qsTr("Restore")
                     font.capitalization: Font.MixedCase
-                    //      onClicked:
+                    onClicked: {
+                        imageSource = ""
+                        restoreImage()
+                    }
                 }
             }
             Row {
-                spacing: largePadding
-                //  anchors.horizontalCenter: parent.horizontalCenter
+                spacing: footer2Spacing
                 Label {
                     text: "Apply to Generated Image:  "
                     anchors.verticalCenter: parent.verticalCenter
+                    visible: footer2Spacing > 5
+                    scale: .8
                 }
 
                 ToolButton {
