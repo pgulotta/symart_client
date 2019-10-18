@@ -75,6 +75,9 @@ Page {
                     //                    }
                 }
             }
+            RandomizeDialog {
+                id: randomizeDialogId
+            }
         }
     }
     footer: ToolBar {
@@ -97,9 +100,12 @@ Page {
             ToolButton {
                 text: qsTr("Save")
                 font.capitalization: Font.MixedCase
-                onClicked: {
-                    fileDialogId.open()
-                }
+                onClicked: fileDialogId.open()
+            }
+            ToolButton {
+                text: qsTr("Randomize")
+                font.capitalization: Font.MixedCase
+                onClicked: randomizeDialogId.openDialog()
             }
         }
     }

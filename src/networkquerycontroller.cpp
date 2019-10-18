@@ -71,7 +71,7 @@ void NetworkQueryController::saveToFile( const QByteArray& source, const QString
 {
   auto filename{destination};
   filename.replace( "file://", "" );
-  qDebug() << Q_FUNC_INFO << destination << " ->  " << filename;
+  //qDebug() << Q_FUNC_INFO << destination << " ->  " << filename;
   QImageWriter writer( filename );
 
   if ( !writer.write( imageFromByteArray( source ) ) ) {

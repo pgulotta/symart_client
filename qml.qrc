@@ -18,6 +18,8 @@
         <file>view/qml/CloudsPage.qml</file>
         <file>view/qml/ClustersPage.qml</file>
         <file>view/qml/DimensionSelector.qml</file>
+        <file>view/qml/EnterTransition.qml</file>
+        <file>view/qml/ExitTransition.qml</file>
         <file>view/qml/HyperCloudsPage.qml</file>
         <file>view/qml/HyperLinesPage.qml</file>
         <file>view/qml/ImageGeneratorPage.qml</file>
@@ -25,6 +27,7 @@
         <file>view/qml/MainPage.qml</file>
         <file>view/qml/OrbitTrapsPage.qml</file>
         <file>view/qml/QuasiOrbitTrapsPage.qml</file>
+        <file>view/qml/RandomizeDialog.qml</file>
         <file>view/qml/QuasiStripesPage.qml</file>
         <file>view/qml/SelectorGroupBox.qml</file>
         <file>view/qml/SquigglesPage.qml</file>
