@@ -12,6 +12,7 @@ Page {
     property alias imageSource: imageId.source
     property alias imageOpacity: imageId.opacity
     property bool shouldTileImage: true
+    property string pageTitle
 
     Connections {
         target: Controller
@@ -26,7 +27,7 @@ Page {
     }
     header: Label {
         id: headerToolBarId
-        text: title
+        text: pageTitle
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Label.WordWrap
         padding: largePadding
@@ -77,35 +78,69 @@ Page {
             }
             RandomizeDialog {
                 id: randomizeDialogId
+                // onAccepted:
             }
         }
     }
     footer: ToolBar {
         id: footerToolBarId
-        RowLayout {
+        implicitWidth: parent.width
+        implicitHeight: 100 //footerFlowId.height
+
+        Grid {
+            id: footerColumnId
+            rows: 2
             anchors.centerIn: parent
-            spacing: exlargePadding
-            Switch {
-                text: qsTr("Tile")
-                //onClicked:
-            }
-            ToolButton {
-                text: qsTr("Draw")
-                font.capitalization: Font.MixedCase
-                onClicked: {
-                    imageSource = ""
-                    drawRequested()
+            Row {
+                spacing: 100
+                //  anchors.horizontalCenter: parent.horizontalCenter
+                Layout.fillWidth: false
+                Switch {
+                    text: qsTr("Tile")
+                    //onClicked:
+                }
+                ToolButton {
+                    text: qsTr("Draw")
+                    font.capitalization: Font.MixedCase
+                    onClicked: {
+                        imageSource = ""
+                        drawRequested()
+                    }
+                }
+                ToolButton {
+                    text: qsTr("Save")
+                    font.capitalization: Font.MixedCase
+                    onClicked: fileDialogId.open()
+                }
+                ToolButton {
+                    text: qsTr("Restore")
+                    font.capitalization: Font.MixedCase
+                    //      onClicked:
                 }
             }
-            ToolButton {
-                text: qsTr("Save")
-                font.capitalization: Font.MixedCase
-                onClicked: fileDialogId.open()
-            }
-            ToolButton {
-                text: qsTr("Randomize")
-                font.capitalization: Font.MixedCase
-                onClicked: randomizeDialogId.openDialog()
+            Row {
+                spacing: largePadding
+                //  anchors.horizontalCenter: parent.horizontalCenter
+                Label {
+                    text: "Apply to Generated Image:  "
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                ToolButton {
+                    text: qsTr("Randomize")
+                    font.capitalization: Font.MixedCase
+                    onClicked: randomizeDialogId.openDialog()
+                }
+                ToolButton {
+                    text: qsTr("Hyperbolic")
+                    font.capitalization: Font.MixedCase
+                    onClicked: randomizeDialogId.openDialog()
+                }
+                ToolButton {
+                    text: qsTr("Hexagonal Stretch ")
+                    font.capitalization: Font.MixedCase
+                    onClicked: randomizeDialogId.openDialog()
+                }
             }
         }
     }

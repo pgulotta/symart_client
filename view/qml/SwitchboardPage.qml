@@ -70,7 +70,7 @@ GridView {
                 hoverEnabled: true
                 onClicked: {
                     var item = pushSource(model.pageSource)
-                    item.title = model.title
+                    item.pageTitle = model.title
                 }
                 onHoveredChanged: {
                     if (containsMouse)

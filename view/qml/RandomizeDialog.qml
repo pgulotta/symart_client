@@ -8,40 +8,39 @@ import QtQuick.Controls 2.4
 import Qt.labs.settings 1.0
 import com.twentysixapps.constants 1.0
 
-Item {
-    visible: false
+Dialog {
+    id: dialogId
+    title: "Randomize"
+    modal: true
+    standardButtons: Dialog.Cancel | Dialog.Ok
+    clip: true
 
-    Dialog {
-        id: dialogId
-        title: "Randomize"
-        modal: true
-        standardButtons: Dialog.Cancel | Dialog.Ok
-        clip: true
-        //onAccepted:
-        enter: EnterTransition {}
+    enter: EnterTransition {}
 
-        exit: ExitTransition {}
+    exit: ExitTransition {}
 
-        RowLayout {
-            id: controlsViewId
-            anchors.centerIn: parent
-            width: parent.width
-            height: parent.height
-            Column {
-                spacing: exlargePadding
-                leftPadding: largePadding
+    RowLayout {
+        id: controlsViewId
+        anchors.centerIn: parent
+        width: parent.width
+        height: parent.height
+        Column {
+            spacing: exlargePadding
+            leftPadding: largePadding
 
-                DimensionSelector {
-                    id: xSelectorId
-                    title: "X"
-                }
-                DimensionSelector {
-                    id: ySelectorId
-                    title: "Y"
-                }
+            DimensionSelector {
+                id: xSelectorId
+                title: "X"
+                dimension: 2
+            }
+            DimensionSelector {
+                id: ySelectorId
+                title: "Y"
+                dimension: 2
             }
         }
     }
+
     function openDialog() {
         dialogId.open()
     }
