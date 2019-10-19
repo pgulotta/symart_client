@@ -5,11 +5,16 @@ import com.twentysixapps.constants 1.0
 
 SelectorGroupBox {
     id: dimensionLabelId
-    title: "Dimension"
+
+    property int fromValue
+    property int toValue
     property alias dimension: sizeSliderId.value
+
+    title: "Dimension"
+
     Column {
         TextField {
-            text: sizeSliderId.value
+            id: sizeTextId
             horizontalAlignment: Text.AlignHCenter
             Layout.leftMargin: mediumPadding
             onTextChanged: {
@@ -20,13 +25,14 @@ SelectorGroupBox {
 
         Slider {
             id: sizeSliderId
-            from: 2
-            to: 1000
-            value: 256
+            from: fromValue
+            to: toValue
+            value: toValue / 4
             live: false
             stepSize: 2
             snapMode: Slider.SnapAlways
             width: parent.width
+            onValueChanged: sizeTextId.text = value
         }
     }
 }

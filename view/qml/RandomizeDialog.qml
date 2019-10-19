@@ -10,6 +10,10 @@ import com.twentysixapps.constants 1.0
 
 Dialog {
     id: dialogId
+
+    property int xSelection: 2
+    property int ySelection: 2
+
     title: "Randomize"
     modal: true
     standardButtons: Dialog.Cancel | Dialog.Ok
@@ -31,12 +35,16 @@ Dialog {
             DimensionSelector {
                 id: xSelectorId
                 title: "X"
-                dimension: 2
+                dimension: xSelection
+                fromValue: 1
+                toValue: 99
             }
             DimensionSelector {
                 id: ySelectorId
                 title: "Y"
-                dimension: 2
+                dimension: ySelection
+                fromValue: 1
+                toValue: 99
             }
         }
     }

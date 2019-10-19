@@ -25,6 +25,8 @@ public:
   Q_INVOKABLE QString applicationVersion() const;
   Q_INVOKABLE void saveCurrentImage( const QString& filename ) ;
   Q_INVOKABLE QString getOrbitTrapQuery( int dimension, int symmetryGroup );
+  Q_INVOKABLE QString getRandomizeQuery( int x, int y );
+  Q_INVOKABLE QString getLastGenerateImageQuery();
 
 private:
   QString mServiceId;

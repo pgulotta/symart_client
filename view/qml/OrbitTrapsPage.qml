@@ -24,6 +24,8 @@ ImageGeneratorPage {
 
             DimensionSelector {
                 id: dimensionSelectorId
+                fromValue: 2
+                toValue: 1000
             }
             SymmetrySelector {
                 id: symmetrySelectorId

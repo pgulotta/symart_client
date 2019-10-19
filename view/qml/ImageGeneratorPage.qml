@@ -80,7 +80,12 @@ Page {
             }
             RandomizeDialog {
                 id: randomizeDialogId
-                // onAccepted:
+                onAccepted: {
+                    imageSource = ""
+                    imageSource = Controller.getRandomizeQuery(
+                                randomizeDialogId.xSelection,
+                                randomizeDialogId.ySelection)
+                }
             }
         }
     }
@@ -115,7 +120,7 @@ Page {
                     font.capitalization: Font.MixedCase
                     onClicked: {
                         imageSource = ""
-                        restoreImage()
+                        imageSource = Controller.getLastGenerateImageQuery()
                     }
                 }
             }
@@ -136,12 +141,12 @@ Page {
                 ToolButton {
                     text: qsTr("Hyperbolic")
                     font.capitalization: Font.MixedCase
-                    onClicked: randomizeDialogId.openDialog()
+                    // onClicked: randomizeDialogId.openDialog()
                 }
                 ToolButton {
                     text: qsTr("Hexagonal Stretch ")
                     font.capitalization: Font.MixedCase
-                    onClicked: randomizeDialogId.openDialog()
+                    // onClicked: randomizeDialogId.openDialog()
                 }
             }
         }
