@@ -11,7 +11,7 @@ Page {
     property alias controlsView: controlsViewId.contentData
     property alias imageSource: imageId.source
     property alias imageOpacity: imageId.opacity
-    property bool shouldTileImage: true
+    property alias shouldTileImage: tileSwitchId.checked
     property string pageTitle
     property int footer1Spacing: imageGeneratorPageId.width * 0.10
     property int footer2Spacing: imageGeneratorPageId.width * 0.01
@@ -108,8 +108,9 @@ Page {
             Row {
                 spacing: footer1Spacing
                 Switch {
+                    id: tileSwitchId
                     text: qsTr("Tile")
-                    //onClicked:
+                    onClicked: imageId.fillMode = shouldTileImage ? Image.Tile : Image.PreserveAspectFit
                 }
                 ToolButton {
                     text: qsTr("Draw")
@@ -139,7 +140,7 @@ Page {
                     text: "Apply to Generated Image:  "
                     anchors.verticalCenter: parent.verticalCenter
                     visible: footer2Spacing > 5
-                    scale: .8
+                    scale: 0.8
                 }
 
                 ToolButton {
