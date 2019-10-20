@@ -61,11 +61,12 @@ Page {
                     id: imageId
                     width: shouldTileImage ? rectangleId.width - smallPadding : sourceSize.width
                     height: shouldTileImage ? rectangleId.height - smallPadding : sourceSize.height
-                    fillMode: shouldTileImage ? Image.Tile : Image.PreserveAspectFit
+                    fillMode: shouldTileImage ? Image.Tile : Image.Pad
                     anchors.centerIn: parent
                     smooth: false
                     cache: false
                     asynchronous: true
+                    source: ""
                     //                    onStatusChanged: {
                     //                        if (imageId.status === Image.Error)
                     //                            console.log('Error')
@@ -96,6 +97,17 @@ Page {
                                 hyperbolicDialogId.projectionSelection)
                 }
             }
+            FileDialog {
+                id: fileDialogId
+                modality: Qt.ApplicationModal
+                title: "Please choose a file name"
+                nameFilters: ["PNG Files (*.png)", "BMP Files (*.bmp)", "JPG Files (*.jpg)", "PBM Files (*.pbm)", "PGM Files (*.pgm)", "PPM Files (*.ppm)", "XBM Files (*.xbm)", "XPM Files (*.xpm)", "All Files (*.*)"]
+                folder: StandardPaths.writableLocation(
+                            StandardPaths.PicturesLocation)
+                defaultSuffix: "png"
+                fileMode: FileDialog.SaveFile
+                onAccepted: Controller.saveCurrentImage(file)
+            }
         }
     }
     footer: ToolBar {
@@ -110,11 +122,17 @@ Page {
                 Switch {
                     id: tileSwitchId
                     text: qsTr("Tile")
-                    onClicked: imageId.fillMode = shouldTileImage ? Image.Tile : Image.PreserveAspectFit
+                    onClicked: {
+                        if (imageSource == "")
+                            return
+                        // imageSource = ""
+                        //imageSource = Controller.getLastGenerateImageQuery()
+                        shouldTileImage = checked
+                    }
                 }
                 ToolButton {
                     text: qsTr("Draw")
-                    font.capitalization: Font.MixedCase
+                    // font.capitalization: Font.MixedCase
                     onClicked: {
                         imageSource = ""
                         drawImage()
@@ -122,13 +140,19 @@ Page {
                 }
                 ToolButton {
                     text: qsTr("Save")
-                    font.capitalization: Font.MixedCase
-                    onClicked: fileDialogId.open()
+                    //font.capitalization: Font.MixedCase
+                    onClicked: {
+                        if (imageSource == "")
+                            return
+                        fileDialogId.open()
+                    }
                 }
                 ToolButton {
                     text: qsTr("Restore")
-                    font.capitalization: Font.MixedCase
+                    //font.capitalization: Font.MixedCase
                     onClicked: {
+                        if (imageSource == "")
+                            return
                         imageSource = ""
                         imageSource = Controller.getLastGenerateImageQuery()
                     }
@@ -145,34 +169,33 @@ Page {
 
                 ToolButton {
                     text: qsTr("Randomize")
-                    font.capitalization: Font.MixedCase
-                    onClicked: randomizeDialogId.openDialog()
+                    //font.capitalization: Font.MixedCase
+                    onClicked: {
+                        if (imageSource == "")
+                            return
+                        randomizeDialogId.openDialog()
+                    }
                 }
                 ToolButton {
                     text: qsTr("Hyperbolic")
-                    font.capitalization: Font.MixedCase
-                    onClicked: hyperbolicDialogId.openDialog()
+                    //font.capitalization: Font.MixedCase
+                    onClicked: {
+                        if (imageSource == "")
+                            return
+                        hyperbolicDialogId.openDialog()
+                    }
                 }
                 ToolButton {
                     text: qsTr("Hexagonal Stretch ")
-                    font.capitalization: Font.MixedCase
+                    //font.capitalization: Font.MixedCase
                     onClicked: {
+                        if (imageSource == "")
+                            return
                         imageSource = ""
                         imageSource = Controller.getHexagonalStretchImageQuery()
                     }
                 }
             }
         }
-    }
-
-    FileDialog {
-        id: fileDialogId
-        modality: Qt.ApplicationModal
-        title: "Please choose a file name"
-        nameFilters: ["PNG Files (*.png)", "BMP Files (*.bmp)", "JPG Files (*.jpg)", "PBM Files (*.pbm)", "PGM Files (*.pgm)", "PPM Files (*.ppm)", "XBM Files (*.xbm)", "XPM Files (*.xpm)", "All Files (*.*)"]
-        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
-        defaultSuffix: "png"
-        fileMode: FileDialog.SaveFile
-        onAccepted: Controller.saveCurrentImage(file)
     }
 }

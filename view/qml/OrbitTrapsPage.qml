@@ -8,6 +8,7 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
+        console.log("drawImage ===============================")
         imageSource = Controller.getOrbitTrapQuery(
                     dimensionSelectorId.dimension,
                     symmetrySelectorId.tumblerIndex)
