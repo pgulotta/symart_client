@@ -25,10 +25,12 @@ ImageGeneratorPage {
             DimensionSelector {
                 id: dimensionSelectorId
                 fromValue: 2
-                toValue: 1000
+                toValue: 1024
             }
-            SymmetrySelector {
+            TumblerSelector {
                 id: symmetrySelectorId
+                title: "Symmetry"
+                tumblerModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
                 height: width * 1.2
             }

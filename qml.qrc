@@ -20,6 +20,7 @@
         <file>view/qml/DimensionSelector.qml</file>
         <file>view/qml/EnterTransition.qml</file>
         <file>view/qml/ExitTransition.qml</file>
+        <file>view/qml/HyperbolicDialog.qml</file>
         <file>view/qml/HyperCloudsPage.qml</file>
         <file>view/qml/HyperLinesPage.qml</file>
         <file>view/qml/ImageGeneratorPage.qml</file>
@@ -33,7 +34,7 @@
         <file>view/qml/SquigglesPage.qml</file>
         <file>view/qml/StripesPage.qml</file>
         <file>view/qml/SwitchboardPage.qml</file>
-        <file>view/qml/SymmetrySelector.qml</file>
+        <file>view/qml/TumblerSelector.qml</file>
         <file>view/qml/WalksPage.qml</file>
     </qresource>
 </RCC>

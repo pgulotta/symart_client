@@ -1,4 +1,4 @@
-﻿#include "frontcontroller.hpp"
+#include "frontcontroller.hpp"
 #include <QApplication>
 #include <QUuid>
 #include <QDebug>
@@ -87,8 +87,18 @@ QString FrontController::getRandomizeQuery( int x, int y )
   return QString( "%1randomizeTiles/%2/%3/%4" ).arg( QueryPrefix ).arg( mServiceId ).arg( x ).arg( y );
 }
 
+QString FrontController::getHyperbolicImageQuery( int size, int projectionType )
+{
+  return QString( "%1hyperbolicImage/%2/%3/%4" ).arg( QueryPrefix ).arg( mServiceId ).arg( size ).arg( projectionType );
+}
+
 QString FrontController::getLastGenerateImageQuery()
 {
   return QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
+}
+
+QString FrontController::getHexagonalStretchImageQuery()
+{
+  return QString( "%1hexagonalStretch/%2" ).arg( QueryPrefix ).arg( mServiceId );
 }
 

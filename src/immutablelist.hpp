@@ -13,9 +13,9 @@ signals:
 public:
   ImmutableList();
   Q_INVOKABLE  QStringList symmetryGroups();
-  Q_INVOKABLE const QStringList& flipTypes();
-  Q_INVOKABLE const QStringList& projectionTypes();
-  Q_INVOKABLE const QStringList& walkFillTypes();
+  Q_INVOKABLE  QStringList flipTypes();
+  Q_INVOKABLE  QStringList projectionTypes();
+  Q_INVOKABLE  QStringList walkFillTypes();
 
 
 private slots:

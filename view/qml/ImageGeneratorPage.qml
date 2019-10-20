@@ -87,6 +87,15 @@ Page {
                                 randomizeDialogId.ySelection)
                 }
             }
+            HyperbolicDialog {
+                id: hyperbolicDialogId
+                onAccepted: {
+                    imageSource = ""
+                    imageSource = Controller.getHyperbolicImageQuery(
+                                hyperbolicDialogId.sizeSelection,
+                                hyperbolicDialogId.projectionSelection)
+                }
+            }
         }
     }
     footer: ToolBar {
@@ -141,12 +150,15 @@ Page {
                 ToolButton {
                     text: qsTr("Hyperbolic")
                     font.capitalization: Font.MixedCase
-                    // onClicked: randomizeDialogId.openDialog()
+                    onClicked: hyperbolicDialogId.openDialog()
                 }
                 ToolButton {
                     text: qsTr("Hexagonal Stretch ")
                     font.capitalization: Font.MixedCase
-                    // onClicked: randomizeDialogId.openDialog()
+                    onClicked: {
+                        imageSource = ""
+                        imageSource = Controller.getHexagonalStretchImageQuery()
+                    }
                 }
             }
         }

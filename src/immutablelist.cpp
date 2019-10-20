@@ -4,7 +4,6 @@
 
 ImmutableList::ImmutableList()
 {
-
 }
 
 QStringList ImmutableList::symmetryGroups()
@@ -33,7 +32,7 @@ QStringList ImmutableList::symmetryGroups()
   return mSymmetryGroups;
 }
 
-const QStringList& ImmutableList::flipTypes()
+QStringList ImmutableList::flipTypes()
 {
   if ( mFlipTypes.isEmpty() ) {
     mFlipTypes.append( "All" );
@@ -44,7 +43,7 @@ const QStringList& ImmutableList::flipTypes()
   return mFlipTypes;
 }
 
-const QStringList& ImmutableList::projectionTypes()
+QStringList ImmutableList::projectionTypes()
 {
   if ( mProjectionTypes.isEmpty() ) {
     mProjectionTypes.append( "Poincare" );
@@ -54,7 +53,7 @@ const QStringList& ImmutableList::projectionTypes()
   return mProjectionTypes;
 }
 
-const QStringList& ImmutableList::walkFillTypes()
+QStringList ImmutableList::walkFillTypes()
 {
   if ( mWalkFillTypes.empty() ) {
     mWalkFillTypes.append( "Area" );
