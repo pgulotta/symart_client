@@ -11,6 +11,7 @@ Page {
     property alias controlsView: controlsViewId.contentData
     property alias imageSource: imageId.source
     property alias imageOpacity: imageId.opacity
+    property alias imageSourceSize: imageId.sourceSize
     property alias shouldTileImage: tileSwitchId.checked
     property string pageTitle
     property int footer1Spacing: imageGeneratorPageId.width * 0.10
@@ -27,6 +28,7 @@ Page {
         imageOpacity = 0
         imageSource = ""
     }
+
     header: Label {
         id: headerToolBarId
         text: pageTitle
@@ -82,7 +84,7 @@ Page {
             RandomizeDialog {
                 id: randomizeDialogId
                 onAccepted: {
-                    imageSource = ""
+                    //  imageSource = ""
                     imageSource = Controller.getRandomizeQuery(
                                 randomizeDialogId.xSelection,
                                 randomizeDialogId.ySelection)
@@ -91,7 +93,7 @@ Page {
             HyperbolicDialog {
                 id: hyperbolicDialogId
                 onAccepted: {
-                    imageSource = ""
+                    //  imageSource = ""
                     imageSource = Controller.getHyperbolicImageQuery(
                                 hyperbolicDialogId.sizeSelection,
                                 hyperbolicDialogId.projectionSelection)
@@ -125,14 +127,11 @@ Page {
                     onClicked: {
                         if (imageSource == "")
                             return
-                        // imageSource = ""
-                        //imageSource = Controller.getLastGenerateImageQuery()
                         shouldTileImage = checked
                     }
                 }
                 ToolButton {
                     text: qsTr("Draw")
-                    // font.capitalization: Font.MixedCase
                     onClicked: {
                         imageSource = ""
                         drawImage()
@@ -140,7 +139,6 @@ Page {
                 }
                 ToolButton {
                     text: qsTr("Save")
-                    //font.capitalization: Font.MixedCase
                     onClicked: {
                         if (imageSource == "")
                             return
@@ -149,17 +147,40 @@ Page {
                 }
                 ToolButton {
                     text: qsTr("Restore")
-                    //font.capitalization: Font.MixedCase
                     onClicked: {
-                        if (imageSource == "")
+                        if (imageSource === "")
                             return
-                        imageSource = ""
+                        //  imageSource = ""
                         imageSource = Controller.getLastGenerateImageQuery()
                     }
                 }
             }
             Row {
+                id: footerRowTwoId
+                visible: false
                 spacing: footer2Spacing
+                scale: 0.1
+                opacity: 0.1
+                states: State {
+                    name: "shown"
+                    when: imageSourceSize.width > 0
+                    PropertyChanges {
+                        target: footerRowTwoId
+                        visible: true
+                        scale: 1
+                        opacity: 1
+                    }
+                }
+                transitions: Transition {
+                    PropertyAction {
+                        property: "visible"
+                    }
+                    NumberAnimation {
+                        properties: "opacity,scale"
+                        duration: Constants.animationDuration
+                        easing.type: Easing.OutElastic
+                    }
+                }
                 Label {
                     text: "Apply to Generated Image:  "
                     anchors.verticalCenter: parent.verticalCenter
@@ -169,7 +190,6 @@ Page {
 
                 ToolButton {
                     text: qsTr("Randomize")
-                    //font.capitalization: Font.MixedCase
                     onClicked: {
                         if (imageSource == "")
                             return
@@ -178,7 +198,6 @@ Page {
                 }
                 ToolButton {
                     text: qsTr("Hyperbolic")
-                    //font.capitalization: Font.MixedCase
                     onClicked: {
                         if (imageSource == "")
                             return
@@ -187,11 +206,10 @@ Page {
                 }
                 ToolButton {
                     text: qsTr("Hexagonal Stretch ")
-                    //font.capitalization: Font.MixedCase
                     onClicked: {
                         if (imageSource == "")
                             return
-                        imageSource = ""
+                        // imageSource = ""
                         imageSource = Controller.getHexagonalStretchImageQuery()
                     }
                 }

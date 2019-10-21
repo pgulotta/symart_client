@@ -16,6 +16,7 @@ SelectorGroupBox {
         width: selectorGroupBoxlId.width * .9
         delegate: Text {
             text: modelData
+            font.pointSize: smallFontPointSize
             horizontalAlignment: Text.AlignHCenter
             color: Material.foreground
             opacity: 1.0 - Math.abs(
