@@ -4,9 +4,9 @@ import com.twentysixapps.constants 1.0
 Transition {
     NumberAnimation {
         property: "scale"
-        from: 0.9
+        from: 0.0
         to: 1.0
-        easing.type: Easing.OutQuint
+        easing.type: Easing.OutCubic
         duration: Constants.animationDuration
     }
     NumberAnimation {

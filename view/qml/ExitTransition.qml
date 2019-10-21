@@ -5,8 +5,8 @@ Transition {
     NumberAnimation {
         property: "scale"
         from: 1.0
-        to: 0.9
-        easing.type: Easing.OutQuint
+        to: 0.0
+        easing.type: Easing.OutCubic
         duration: Constants.animationDuration
     }
     NumberAnimation {
