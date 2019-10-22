@@ -18,6 +18,7 @@ Page {
     property int footer1Spacing: imageGeneratorPageId.width * 0.10
     property int footer2Spacing: imageGeneratorPageId.width * 0.01
     property bool isImageGenerated: false
+    property bool isImageModified: false
 
     Connections {
         target: Controller
@@ -121,9 +122,12 @@ Page {
                     onStatusChanged: {
                         if (imageId.status === Image.Error) {
                             isImageGenerated = false
+                            isImageModified = false
+                            pageDescription = ""
                         } else if (imageId.status === Image.Ready) {
                             isImageGenerated = true
                             pageDescription = selectionDescription()
+                            imageViewId.forceActiveFocus()
                         }
                     }
                 }
@@ -131,6 +135,7 @@ Page {
             RandomizeDialog {
                 id: randomizeDialogId
                 onAccepted: {
+                    isImageModified = true
                     imageSource = Controller.getRandomizeQuery(
                                 randomizeDialogId.xSelection,
                                 randomizeDialogId.ySelection)
@@ -139,6 +144,7 @@ Page {
             HyperbolicDialog {
                 id: hyperbolicDialogId
                 onAccepted: {
+                    isImageModified = true
                     shouldTileImage = false
                     imageSource = Controller.getHyperbolicImageQuery(
                                 hyperbolicDialogId.sizeSelection,
@@ -177,6 +183,7 @@ Page {
                     }
                 }
                 ToolButton {
+                    id: drawButtonId
                     text: qsTr("Draw")
                     onClicked: {
                         imageSource = ""
@@ -185,6 +192,7 @@ Page {
                 }
                 ToolButton {
                     text: qsTr("Save")
+                    enabled: isImageGenerated
                     onClicked: {
                         if (imageSource == "")
                             return
@@ -193,9 +201,11 @@ Page {
                 }
                 ToolButton {
                     text: qsTr("Restore")
+                    enabled: isImageModified
                     onClicked: {
                         if (imageSource === "")
                             return
+                        isImageModified = false
                         imageSource = Controller.getLastGenerateImageQuery()
                     }
                 }
@@ -254,6 +264,7 @@ Page {
                     onClicked: {
                         if (imageSource == "")
                             return
+                        isImageModified = true
                         imageSource = Controller.getHexagonalStretchImageQuery()
                     }
                 }
