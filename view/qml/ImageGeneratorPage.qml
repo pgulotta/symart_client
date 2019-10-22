@@ -13,8 +13,8 @@ Page {
     property alias imageStatus: imageId.status
     property alias imageVisible: imageId.visible
     property alias shouldTileImage: tileSwitchId.checked
-    property alias headerTitle: headerToolBarId.text
     property string pageTitle
+    property string pageDescription
     property int footer1Spacing: imageGeneratorPageId.width * 0.10
     property int footer2Spacing: imageGeneratorPageId.width * 0.01
     property bool isImageGenerated: false
@@ -26,19 +26,44 @@ Page {
 
     Component.onCompleted: headerToolBarId.forceActiveFocus()
 
-    header: Label {
-        id: headerToolBarId
-        text: pageTitle
-        horizontalAlignment: Text.AlignHCenter
-        wrapMode: Label.WordWrap
-        padding: largePadding
-        OpacityAnimator on opacity {
-            from: 0
-            to: 1
-            duration: 2000
+    header: Column {
+        topPadding: largePadding
+        spacing: 0
+        Label {
+            id: headerToolBarId
+            text: pageTitle
+            anchors.left: parent.left
+            anchors.right: parent.right
+            horizontalAlignment: Label.AlignHCenter
+            font.pointSize: smallFontPointSize
+            wrapMode: Label.WordWrap
+        }
+        Label {
+            id: descriptionId
+            text: pageDescription
+            anchors.left: parent.left
+            anchors.right: parent.right
+            horizontalAlignment: Label.AlignHCenter
+            wrapMode: Label.WordWrap
+            opacity: 0.0
+            OpacityAnimator on opacity {
+                id: visibilityEnabledId
+                from: 0.0
+                to: 1.0
+                running: false
+                duration: Constants.animationDuration
+            }
+            OpacityAnimator on opacity {
+                id: visibilityDisabledId
+                from: 1.0
+                to: 0.0
+                running: false
+                duration: Constants.animationDuration
+            }
+            onTextChanged: imageSource === "" ? visibilityDisabledId.start(
+                                                    ) : visibilityEnabledId.start()
         }
     }
-
     Row {
         anchors.fill: parent
         anchors.leftMargin: mediumPadding
@@ -69,6 +94,7 @@ Page {
                     anchors.centerIn: parent
                     smooth: false
                     cache: false
+
                     asynchronous: true
                     source: ""
                     scale: 0
@@ -97,7 +123,7 @@ Page {
                             isImageGenerated = false
                         } else if (imageId.status === Image.Ready) {
                             isImageGenerated = true
-                            headerTitle = pageTitle + "\nwhere " + selectionDescription()
+                            pageDescription = selectionDescription()
                         }
                     }
                 }
