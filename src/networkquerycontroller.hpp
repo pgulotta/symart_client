@@ -11,8 +11,7 @@ class NetworkQueryController final : public QObject
 {
   Q_OBJECT
 signals:
-  void networkQueryFailed( QString messageDescription );
-
+  void networkQueryMessage( QString messageDescription ) const;
 
 public:
   explicit NetworkQueryController( QObject* parent = nullptr );

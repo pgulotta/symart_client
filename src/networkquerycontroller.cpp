@@ -5,79 +5,82 @@
 #include <QImage>
 #include <QDebug>
 
-QImage imageFromByteArray(const QByteArray &ba)
+QImage imageFromByteArray( const QByteArray& ba )
 {
-    QImage image;
-    image.loadFromData(ba, "PNG");
-    return image;
+  QImage image;
+  image.loadFromData( ba, "PNG" );
+  return image;
 }
 
-NetworkQueryController::NetworkQueryController(QObject *parent)
-    : QObject(parent)
+NetworkQueryController::NetworkQueryController( QObject* parent )
+  : QObject( parent )
 {
-    connect(&mNetworkAccessManager,
-            &QNetworkAccessManager::finished,
-            this,
-            &NetworkQueryController::onNetworkReply);
+  connect( &mNetworkAccessManager,
+           &QNetworkAccessManager::finished,
+           this,
+           &NetworkQueryController::onNetworkReply );
 }
 
 int NetworkQueryController::getNextResponseId()
 {
-    return mResponseId++;
+  return mResponseId++;
 }
 
-QueryType NetworkQueryController::extractQueryType(const QStringList &attributes)
+QueryType NetworkQueryController::extractQueryType( const QStringList& attributes )
 {
-    return static_cast<QueryType>(attributes[0].toInt());
+  return static_cast<QueryType>( attributes[0].toInt() );
 }
 
-void NetworkQueryController::runRequest(const QStringList &attributes, const QString &query)
+void NetworkQueryController::runRequest( const QStringList& attributes, const QString& query )
 {
-    qDebug() << Q_FUNC_INFO << query;
+  qDebug() << Q_FUNC_INFO << query;
 
-    try {
-        auto request = QNetworkRequest(query);
-        request.setAttribute(QNetworkRequest::Attribute::User, QVariant(attributes));
-        mNetworkAccessManager.get(request);
-    } catch (std::exception const &e) {
-        qWarning() << Q_FUNC_INFO << e.what();
-        emit networkQueryFailed(QString{e.what()});
-    }
+  try {
+    auto request = QNetworkRequest( query );
+    request.setAttribute( QNetworkRequest::Attribute::User, QVariant( attributes ) );
+    mNetworkAccessManager.get( request );
+  } catch ( std::exception const& e ) {
+    qWarning() << Q_FUNC_INFO << e.what();
+    emit networkQueryMessage( QString{e.what()} );
+  }
 }
 
-void NetworkQueryController::onNetworkReply(QNetworkReply *networkReply)
+void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 {
-    try {
-        if (networkReply->error()) {
-            throw std::runtime_error(networkReply->errorString().toStdString().data());
-        }
-
-        QStringList attributes
-            = networkReply->request().attribute(QNetworkRequest::Attribute::User).toStringList();
-
-        switch (extractQueryType(attributes)) {
-        case QueryType::SaveImage:
-            saveToFile(networkReply->readAll(), attributes[1]);
-        }
-
-    } catch (std::exception const &e) {
-        qWarning() << Q_FUNC_INFO << e.what();
-        emit networkQueryFailed(e.what());
+  try {
+    if ( networkReply->error() ) {
+      throw std::runtime_error( networkReply->errorString().toStdString().data() );
     }
 
-    networkReply->deleteLater();
+    QStringList attributes
+      = networkReply->request().attribute( QNetworkRequest::Attribute::User ).toStringList();
+
+    switch ( extractQueryType( attributes ) ) {
+    case QueryType::SaveImage:
+      saveToFile( networkReply->readAll(), attributes[1] );
+    }
+
+  } catch ( std::exception const& e ) {
+    qWarning() << Q_FUNC_INFO << e.what();
+    emit networkQueryMessage( e.what() );
+  }
+
+  networkReply->deleteLater();
 }
 
-void NetworkQueryController::saveToFile(const QByteArray &source, const QString &destination) const
+void NetworkQueryController::saveToFile( const QByteArray& source, const QString& destination ) const
 {
-    auto filename{destination};
-    filename.replace("file:///", "");
-    filename.replace("file://", "");
-    //qDebug() << Q_FUNC_INFO << destination << " ->  " << filename;
-    QImageWriter writer(filename);
+  auto filename = QUrl::fromUserInput( destination ).toLocalFile();
+  qInfo() << Q_FUNC_INFO <<  "Local filename = " << filename;
+  QImageWriter writer( filename );
 
-    if (!writer.write(imageFromByteArray(source))) {
-        QString message("Unable to save as " + filename);
-        throw std::runtime_error(message.toStdString());
-    }
+  QString message;
+
+  if ( writer.write( imageFromByteArray( source ) ) ) {
+    message = ( "Saved image as " + filename );
+  } else {
+    message = "Unable to save image as " + filename ;
+  }
+
+  emit networkQueryMessage( message );
 }

@@ -159,6 +159,7 @@ Page {
                 folder: StandardPaths.writableLocation(
                             StandardPaths.PicturesLocation)
                 defaultSuffix: "png"
+                file: "image.png"
                 fileMode: FileDialog.SaveFile
                 onAccepted: Controller.saveCurrentImage(file)
             }
