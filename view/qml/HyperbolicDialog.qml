@@ -12,7 +12,7 @@ Dialog {
     id: dialogId
 
     property alias sizeSelection: sizeSelectorId.dimension
-    property alias projectionSelection: projectionSelectorId.tumblerIndex
+    property alias projectionSelection: projectionSelectorId.selectorIndex
 
     title: "Hyperbolic Image"
     modal: true
@@ -41,7 +41,7 @@ Dialog {
             TumblerSelector {
                 id: projectionSelectorId
                 title: "Projection"
-                tumblerModel: ImmutableList.projectionTypes()
+                selectorModel: ImmutableList.projectionTypes()
                 width: sizeSelectorId.width
                 height: width
             }

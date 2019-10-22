@@ -5,8 +5,8 @@ import QtQuick.Controls.Material 2.3
 SelectorGroupBox {
     id: selectorGroupBoxlId
 
-    property alias tumblerModel: tumblerId.model
-    property alias tumblerIndex: tumblerId.currentIndex
+    property alias selectorModel: tumblerId.model
+    property alias selectorIndex: tumblerId.currentIndex
 
     Tumbler {
         id: tumblerId

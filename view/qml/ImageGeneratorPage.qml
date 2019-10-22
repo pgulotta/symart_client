@@ -11,10 +11,13 @@ Page {
     property alias controlsView: controlsViewId.contentData
     property alias imageSource: imageId.source
     property alias imageStatus: imageId.status
+    property alias imageVisible: imageId.visible
     property alias shouldTileImage: tileSwitchId.checked
+    property alias headerTitle: headerToolBarId.text
     property string pageTitle
     property int footer1Spacing: imageGeneratorPageId.width * 0.10
     property int footer2Spacing: imageGeneratorPageId.width * 0.01
+    property bool isImageGenerated: false
 
     Connections {
         target: Controller
@@ -23,16 +26,17 @@ Page {
 
     Component.onCompleted: headerToolBarId.forceActiveFocus()
 
-    onVisibleChanged: {
-        imageSource = ""
-    }
-
     header: Label {
         id: headerToolBarId
         text: pageTitle
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Label.WordWrap
         padding: largePadding
+        OpacityAnimator on opacity {
+            from: 0
+            to: 1
+            duration: 2000
+        }
     }
 
     Row {
@@ -67,7 +71,6 @@ Page {
                     cache: false
                     asynchronous: true
                     source: ""
-                    visible: false
                     scale: 0
                     opacity: 0
 
@@ -75,14 +78,13 @@ Page {
                         when: imageStatus === Image.Ready
                         PropertyChanges {
                             target: imageId
-                            visible: true
                             scale: 1
                             opacity: 1
                         }
                     }
                     transitions: Transition {
                         PropertyAction {
-                            property: "visible"
+                            property: "imageStatus"
                         }
                         NumberAnimation {
                             properties: "opacity,scale"
@@ -91,21 +93,18 @@ Page {
                         }
                     }
                     onStatusChanged: {
-                        if (imageId.status === Image.Error)
-                            console.log('Error')
-                        else if (imageId.status === Image.Ready)
-                            console.log('Ready')
-                        else if (imageId.status === Image.Null)
-                            console.log('Null')
-                        else if (imageId.status === Image.Loading)
-                            console.log('Loading')
+                        if (imageId.status === Image.Error) {
+                            isImageGenerated = false
+                        } else if (imageId.status === Image.Ready) {
+                            isImageGenerated = true
+                            headerTitle = pageTitle + "\nwhere " + selectionDescription()
+                        }
                     }
                 }
             }
             RandomizeDialog {
                 id: randomizeDialogId
                 onAccepted: {
-                    //  imageSource = ""
                     imageSource = Controller.getRandomizeQuery(
                                 randomizeDialogId.xSelection,
                                 randomizeDialogId.ySelection)
@@ -183,7 +182,7 @@ Page {
                 opacity: 0
 
                 states: State {
-                    when: imageStatus === Image.Ready
+                    when: isImageGenerated
                     PropertyChanges {
                         target: footerRowTwoId
                         visible: true
@@ -229,7 +228,6 @@ Page {
                     onClicked: {
                         if (imageSource == "")
                             return
-                        // imageSource = ""
                         imageSource = Controller.getHexagonalStretchImageQuery()
                     }
                 }

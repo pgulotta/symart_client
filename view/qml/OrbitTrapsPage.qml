@@ -10,7 +10,13 @@ ImageGeneratorPage {
     function drawImage() {
         imageSource = Controller.getOrbitTrapQuery(
                     dimensionSelectorId.dimension,
-                    symmetrySelectorId.tumblerIndex)
+                    symmetrySelectorId.selectorIndex)
+    }
+
+    function selectionDescription() {
+        return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension + ", "
+                + symmetrySelectorId.title + "=" + ImmutableList.symmetryGroups(
+                    )[symmetrySelectorId.selectorIndex]
     }
 
     controlsView: RowLayout {
@@ -30,7 +36,7 @@ ImageGeneratorPage {
             TumblerSelector {
                 id: symmetrySelectorId
                 title: "Symmetry"
-                tumblerModel: ImmutableList.symmetryGroups()
+                selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
                 height: width * 1.2
             }
