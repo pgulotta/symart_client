@@ -3,11 +3,14 @@ import com.twentysixapps.constants 1.0
 
 Transition {
     NumberAnimation {
-        property: "scale"
-        from: 1.0
+        properties: "height"
         to: 0.0
-        easing.type: Easing.OutCubic
-        duration: Constants.animationDuration
+        duration: Constants.shortAnimationDuration
+    }
+    NumberAnimation {
+        properties: "width"
+        to: 0.0
+        duration: Constants.shortAnimationDuration
     }
     NumberAnimation {
         property: "opacity"

@@ -226,6 +226,7 @@ Page {
                 }
 
                 ToolButton {
+                    id: randomizeButtonId
                     text: qsTr("Randomize")
                     onClicked: {
                         if (imageSource == "")
@@ -234,7 +235,8 @@ Page {
                     }
                     RandomizeDialog {
                         id: randomizeDialogId
-                        y: -height
+                        x: exlargePadding
+                        y: -height + randomizeButtonId.height / 2
                         onAccepted: {
                             isImageModified = true
                             imageSource = Controller.getRandomizeQuery(
@@ -244,6 +246,7 @@ Page {
                     }
                 }
                 ToolButton {
+                    id: hyperbolicButtonId
                     text: qsTr("Hyperbolic")
                     onClicked: {
                         if (imageSource == "")
@@ -252,7 +255,8 @@ Page {
                     }
                     HyperbolicDialog {
                         id: hyperbolicDialogId
-                        y: -height
+                        x: exlargePadding
+                        y: -height + hyperbolicButtonId.height / 2
                         onAccepted: {
                             isImageModified = true
                             shouldTileImage = false
@@ -274,4 +278,5 @@ Page {
             }
         }
     }
+
 }

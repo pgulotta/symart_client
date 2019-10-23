@@ -17,7 +17,6 @@ Dialog {
     title: "Randomize"
     modal: true
     standardButtons: Dialog.Cancel | Dialog.Ok
-    clip: true
 
     enter: EnterTransition {}
 
@@ -30,8 +29,7 @@ Dialog {
         height: parent.height
         Column {
             spacing: exlargePadding
-            leftPadding: largePadding
-
+            Layout.alignment: Qt.AlignHCenter
             DimensionSelector {
                 id: xSelectorId
                 title: "X"

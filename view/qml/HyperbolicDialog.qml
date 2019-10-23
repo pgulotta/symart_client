@@ -30,8 +30,7 @@ Dialog {
         height: parent.height
         Column {
             spacing: exlargePadding
-            leftPadding: largePadding
-
+            Layout.alignment: Qt.AlignHCenter
             DimensionSelector {
                 id: sizeSelectorId
                 title: "Size"
