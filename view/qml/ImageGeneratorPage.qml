@@ -132,37 +132,6 @@ Page {
                     }
                 }
             }
-            RandomizeDialog {
-                id: randomizeDialogId
-                onAccepted: {
-                    isImageModified = true
-                    imageSource = Controller.getRandomizeQuery(
-                                randomizeDialogId.xSelection,
-                                randomizeDialogId.ySelection)
-                }
-            }
-            HyperbolicDialog {
-                id: hyperbolicDialogId
-                onAccepted: {
-                    isImageModified = true
-                    shouldTileImage = false
-                    imageSource = Controller.getHyperbolicImageQuery(
-                                hyperbolicDialogId.sizeSelection,
-                                hyperbolicDialogId.projectionSelection)
-                }
-            }
-            FileDialog {
-                id: fileDialogId
-                modality: Qt.ApplicationModal
-                title: "Please choose a file name"
-                nameFilters: ["PNG Files (*.png)", "BMP Files (*.bmp)", "JPG Files (*.jpg)", "PBM Files (*.pbm)", "PGM Files (*.pgm)", "PPM Files (*.ppm)", "XBM Files (*.xbm)", "XPM Files (*.xpm)", "All Files (*.*)"]
-                folder: StandardPaths.writableLocation(
-                            StandardPaths.PicturesLocation)
-                defaultSuffix: "png"
-                file: "image.png"
-                fileMode: FileDialog.SaveFile
-                onAccepted: Controller.saveCurrentImage(file)
-            }
         }
     }
     footer: ToolBar {
@@ -198,6 +167,18 @@ Page {
                         if (imageSource == "")
                             return
                         fileDialogId.open()
+                    }
+                    FileDialog {
+                        id: fileDialogId
+                        modality: Qt.ApplicationModal
+                        title: "Please choose a file name"
+                        nameFilters: ["PNG Files (*.png)", "BMP Files (*.bmp)", "JPG Files (*.jpg)", "PBM Files (*.pbm)", "PGM Files (*.pgm)", "PPM Files (*.ppm)", "XBM Files (*.xbm)", "XPM Files (*.xpm)", "All Files (*.*)"]
+                        folder: StandardPaths.writableLocation(
+                                    StandardPaths.PicturesLocation)
+                        defaultSuffix: "png"
+                        file: "image.png"
+                        fileMode: FileDialog.SaveFile
+                        onAccepted: Controller.saveCurrentImage(file)
                     }
                 }
                 ToolButton {
@@ -251,6 +232,16 @@ Page {
                             return
                         randomizeDialogId.openDialog()
                     }
+                    RandomizeDialog {
+                        id: randomizeDialogId
+                        y: -height
+                        onAccepted: {
+                            isImageModified = true
+                            imageSource = Controller.getRandomizeQuery(
+                                        randomizeDialogId.xSelection,
+                                        randomizeDialogId.ySelection)
+                        }
+                    }
                 }
                 ToolButton {
                     text: qsTr("Hyperbolic")
@@ -258,6 +249,17 @@ Page {
                         if (imageSource == "")
                             return
                         hyperbolicDialogId.openDialog()
+                    }
+                    HyperbolicDialog {
+                        id: hyperbolicDialogId
+                        y: -height
+                        onAccepted: {
+                            isImageModified = true
+                            shouldTileImage = false
+                            imageSource = Controller.getHyperbolicImageQuery(
+                                        hyperbolicDialogId.sizeSelection,
+                                        hyperbolicDialogId.projectionSelection)
+                        }
                     }
                 }
                 ToolButton {
