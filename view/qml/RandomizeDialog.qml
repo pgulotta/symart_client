@@ -16,6 +16,7 @@ Dialog {
 
     title: "Randomize"
     modal: true
+    focus: true
     standardButtons: Dialog.Cancel | Dialog.Ok
 
     enter: EnterTransition {}

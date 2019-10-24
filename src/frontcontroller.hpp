@@ -24,7 +24,7 @@ public:
   Q_INVOKABLE QString applicationTitle() const;
   Q_INVOKABLE QString applicationVersion() const;
 
-  Q_INVOKABLE void saveCurrentImage( const QString& filename ) ;
+  Q_INVOKABLE void saveCurrentImage( const QString& filenamePrefix, const QString& imageFileExtension ) ;
 
   Q_INVOKABLE QString getLastGenerateImageQuery();
   Q_INVOKABLE QString getHexagonalStretchImageQuery();
@@ -39,5 +39,10 @@ private:
 
 
 };
+
+
+
+
+
 
 

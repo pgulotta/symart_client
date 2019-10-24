@@ -139,6 +139,7 @@ ApplicationWindow {
         x: largePadding
         y: largePadding
         modal: true
+        focus: true
         implicitWidth: 300
         parent: ApplicationWindow.overlay
         title: "Alert ..."

@@ -1,7 +1,10 @@
 #include "frontcontroller.hpp"
 #include <QApplication>
 #include <QUuid>
+#include <QStandardPaths>
+#include <QDir>
 #include <QDebug>
+
 
 FrontController* FrontController::FrontControllerInstance{nullptr};
 
@@ -96,16 +99,21 @@ QString FrontController::applicationVersion() const
   return QApplication::applicationVersion();
 }
 
-void FrontController::saveCurrentImage( const QString& filename )
+void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QString& imageFileExtension )
 {
-  auto formattedFilename{filename.trimmed()};
+  auto formattedPrefix{filenamePrefix.simplified()};
+  formattedPrefix.replace( " ", "" );
+  const QDir dir = QStandardPaths::writableLocation( QStandardPaths::DownloadLocation );
 
-  if ( formattedFilename.isEmpty() ) {
-    return;
-  }
+  auto saveFilename =  QString( "%1%2%3_%4.%5" )
+                       .arg( dir.path() )
+                       .arg( QDir::separator() )
+                       .arg( formattedPrefix )
+                       .arg( QUuid::createUuid().toString( QUuid::WithoutBraces ) )
+                       .arg( imageFileExtension ) ;
 
   QStringList attributes{QString::number( static_cast<int>( QueryType::SaveImage ) ),
-                         formattedFilename};
+                         saveFilename};
   QString query = QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
   mNetworkQueryController.runRequest( attributes, query );
 }

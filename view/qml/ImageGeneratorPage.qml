@@ -95,7 +95,6 @@ Page {
                     anchors.centerIn: parent
                     smooth: false
                     cache: false
-
                     asynchronous: true
                     source: ""
                     scale: 0
@@ -161,24 +160,21 @@ Page {
                     }
                 }
                 ToolButton {
+                    id: saveDialogId
                     text: qsTr("Save")
                     enabled: isImageGenerated
                     onClicked: {
                         if (imageSource == "")
                             return
-                        fileDialogId.open()
+                        extensionDialogId.open()
                     }
-                    FileDialog {
-                        id: fileDialogId
-                        modality: Qt.ApplicationModal
-                        title: "Please choose a file name"
-                        nameFilters: ["PNG Files (*.png)", "BMP Files (*.bmp)", "JPG Files (*.jpg)", "PBM Files (*.pbm)", "PGM Files (*.pgm)", "PPM Files (*.ppm)", "XBM Files (*.xbm)", "XPM Files (*.xpm)", "All Files (*.*)"]
-                        folder: StandardPaths.writableLocation(
-                                    StandardPaths.PicturesLocation)
-                        defaultSuffix: "png"
-                        file: "image.png"
-                        fileMode: FileDialog.SaveFile
-                        onAccepted: Controller.saveCurrentImage(file)
+                    ImageFileExtensionDialog {
+                        id: extensionDialogId
+                        x: exlargePadding
+                        y: -height + saveDialogId.height / 2
+                        onAccepted: Controller.saveCurrentImage(
+                                        pageTitle,
+                                        extensionDialogId.selectedExtension())
                     }
                 }
                 ToolButton {
@@ -278,5 +274,4 @@ Page {
             }
         }
     }
-
 }
