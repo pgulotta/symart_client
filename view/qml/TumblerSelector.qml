@@ -4,6 +4,7 @@ import QtQuick.Controls.Material 2.3
 
 SelectorGroupBox {
     id: selectorGroupBoxlId
+    focus: true
 
     property alias selectorModel: tumblerId.model
     property alias selectorIndex: tumblerId.currentIndex
@@ -15,19 +16,18 @@ SelectorGroupBox {
         onModelChanged: currentIndex = model.length / 2
         width: selectorGroupBoxlId.width * .9
         delegate: Text {
+            id: delegateId
             text: modelData
             font.pointSize: smallFontPointSize
+            verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             color: Material.foreground
-            opacity: 1.0 - Math.abs(
-                         Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount * 0.5)
-            verticalAlignment: Text.AlignVCenter
+            opacity: (tumblerId.count < 3) ? 1.0 : 1.0 - Math.abs(
+                                                 Tumbler.displacement)
+                                             / (Tumbler.tumbler.visibleItemCount * 0.25)
         }
 
-        onCurrentIndexChanged: {
-            currentItem.opacity = 1.0
-            forceActiveFocus()
-        }
+        onCurrentIndexChanged: forceActiveFocus()
 
         Keys.onUpPressed: {
             increaseIndex()
