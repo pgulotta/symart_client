@@ -32,7 +32,7 @@ Dialog {
         Column {
             spacing: exlargePadding
             Layout.alignment: Qt.AlignHCenter
-            DimensionSelector {
+            SliderSelector {
                 id: sizeSelectorId
                 title: "Size"
                 fromValue: 2

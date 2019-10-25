@@ -1,7 +1,6 @@
 ﻿import QtQuick 2.13
 import QtQuick.Layouts 1.3
 
-// Alpha:  .01 - 2.0
 ImageGeneratorPage {
     objectName: "ClustersPage"
     id: clustersPageId
@@ -29,7 +28,7 @@ ImageGeneratorPage {
             spacing: exlargePadding
             leftPadding: largePadding
 
-            DimensionSelector {
+            SliderSelector {
                 id: dimensionSelectorId
                 fromValue: 2
                 toValue: 1024
@@ -45,7 +44,7 @@ ImageGeneratorPage {
                 height: width * 1.2
             }
 
-            DimensionSelector {
+            SliderSelector {
                 id: alphaSelectorId
                 title: "Alpha"
                 fromValue: 0.01
@@ -53,6 +52,7 @@ ImageGeneratorPage {
                 stepValue: 0.01
                 initialValue: 1.5
                 isAlwaysEven: false
+                decimals: 2
             }
         }
     }

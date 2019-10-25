@@ -27,7 +27,7 @@ ImageGeneratorPage {
             spacing: exlargePadding
             leftPadding: largePadding
 
-            DimensionSelector {
+            SliderSelector {
                 id: dimensionSelectorId
                 fromValue: 2
                 toValue: 1024

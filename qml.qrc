@@ -13,11 +13,9 @@
         <file>view/images/squiggles.png</file>
         <file>view/images/stripes.png</file>
         <file>view/images/walks.png</file>
-        <file>view/qml/SharedConstants.qml</file>
         <file>view/qml/CelluarAutomataPage.qml</file>
         <file>view/qml/CloudsPage.qml</file>
         <file>view/qml/ClustersPage.qml</file>
-        <file>view/qml/DimensionSelector.qml</file>
         <file>view/qml/EnterTransition.qml</file>
         <file>view/qml/ExitTransition.qml</file>
         <file>view/qml/HyperbolicDialog.qml</file>
@@ -32,6 +30,8 @@
         <file>view/qml/RandomizeDialog.qml</file>
         <file>view/qml/QuasiStripesPage.qml</file>
         <file>view/qml/SelectorGroupBox.qml</file>
+        <file>view/qml/SharedConstants.qml</file>
+        <file>view/qml/SliderSelector.qml</file>
         <file>view/qml/SquigglesPage.qml</file>
         <file>view/qml/StripesPage.qml</file>
         <file>view/qml/SwitchboardPage.qml</file>

@@ -31,7 +31,7 @@ Dialog {
         Column {
             spacing: exlargePadding
             Layout.alignment: Qt.AlignHCenter
-            DimensionSelector {
+            SliderSelector {
                 id: xSelectorId
                 title: "X"
                 dimension: xSelection
@@ -40,7 +40,7 @@ Dialog {
                 initialValue: 50
                 isAlwaysEven: false
             }
-            DimensionSelector {
+            SliderSelector {
                 id: ySelectorId
                 title: "Y"
                 dimension: ySelection
