@@ -127,6 +127,26 @@ QString FrontController::getOrbitTrapQuery( int dimension, int symmetryGroup )
          .arg( symmetryGroup );
 }
 
+QString FrontController::getClustersQuery( int dimension, int symmetryGroup, double alpha )
+{
+  return QString( "%1clusters/%2/%3/%4/%5" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( dimension )
+         .arg( symmetryGroup )
+         .arg( alpha );
+}
+
+QString FrontController::getStripesQuery( int dimension, int symmetryGroup, double alpha )
+{
+  return QString( "%1stripes/%2/%3/%4/%5" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( dimension )
+         .arg( symmetryGroup )
+         .arg( alpha );
+}
+
 QString FrontController::getRandomizeQuery( int x, int y )
 {
   return QString( "%1randomizeTiles/%2/%3/%4" ).arg( QueryPrefix ).arg( mServiceId ).arg( x ).arg( y );

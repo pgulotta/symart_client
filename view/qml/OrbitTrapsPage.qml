@@ -1,5 +1,4 @@
 ﻿import QtQuick 2.13
-import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 
 ImageGeneratorPage {
@@ -32,6 +31,9 @@ ImageGeneratorPage {
                 id: dimensionSelectorId
                 fromValue: 2
                 toValue: 1024
+                stepValue: 2
+                initialValue: 256
+                isAlwaysEven: true
             }
             TumblerSelector {
                 id: symmetrySelectorId

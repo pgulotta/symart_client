@@ -37,6 +37,8 @@ Dialog {
                 dimension: xSelection
                 fromValue: 1
                 toValue: 99
+                initialValue: 50
+                isAlwaysEven: false
             }
             DimensionSelector {
                 id: ySelectorId
@@ -44,6 +46,8 @@ Dialog {
                 dimension: ySelection
                 fromValue: 1
                 toValue: 99
+                initialValue: 50
+                isAlwaysEven: false
             }
         }
     }

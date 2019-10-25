@@ -1,4 +1,4 @@
-﻿import QtQuick 2.12
+import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import com.twentysixapps.constants 1.0
@@ -6,8 +6,12 @@ import com.twentysixapps.constants 1.0
 SelectorGroupBox {
     id: dimensionLabelId
 
-    property int fromValue
-    property int toValue
+    property real fromValue
+    property real toValue
+    property real stepValue
+    property real initialValue
+    property bool isAlwaysEven
+
     property alias dimension: sizeSliderId.value
 
     title: "Dimension"
@@ -18,8 +22,10 @@ SelectorGroupBox {
             horizontalAlignment: Text.AlignHCenter
             Layout.leftMargin: mediumPadding
             onTextChanged: {
-                var v = parseInt(text)
-                sizeSliderId.value = v + (v % 2)
+                if (isAlwaysEven) {
+                    var v = parseInt(text)
+                    sizeSliderId.value = v + (v % 2)
+                }
             }
         }
 
@@ -27,9 +33,9 @@ SelectorGroupBox {
             id: sizeSliderId
             from: fromValue
             to: toValue
-            value: toValue / 4
+            value: initialValue
             live: false
-            stepSize: 2
+            stepSize: stepValue
             snapMode: Slider.SnapAlways
             width: parent.width
             onValueChanged: sizeTextId.text = value

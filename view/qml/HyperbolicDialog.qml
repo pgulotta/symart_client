@@ -37,6 +37,8 @@ Dialog {
                 title: "Size"
                 fromValue: 2
                 toValue: 1024
+                initialValue: 256
+                isAlwaysEven: true
             }
             TumblerSelector {
                 id: projectionSelectorId
