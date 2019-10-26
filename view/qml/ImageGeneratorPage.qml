@@ -85,12 +85,15 @@ Page {
         anchors.leftMargin: mediumPadding
         spacing: 0
         ScrollView {
-            id: controlsViewId
-            width: 200
-
-            height: parent.height
+            //   width: imageControlsWidth
+            Layout.fillWidth: true
+            clip: true
+            height: imageViewId.height
             ScrollBar.vertical: ScrollBar {
-                policy: ScrollBar.AsNeeded
+                policy: ScrollBar.AlwaysOff
+            }
+            Pane {
+                id: controlsViewId
             }
         }
         Pane {

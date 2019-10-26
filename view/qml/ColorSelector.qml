@@ -10,12 +10,16 @@ SelectorGroupBox {
 
     title: "Color Selection"
 
-    Column {
-        spacing: largePadding
+    RowLayout {
+        id: controlsViewId
+        spacing: 0
+        anchors.centerIn: parent
+        width: parent.width
         Rectangle {
             id: selectedColorId
-            width: colorSelectorId.width * 0.8
-            height: colorDialogSelectorButtonId.height * 0.5
+            Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
+            height: colorDialogSelectorButtonId.height
             border {
                 width: 1
                 color: Constants.disabledTextColor
@@ -24,8 +28,8 @@ SelectorGroupBox {
 
         ToolButton {
             id: colorDialogSelectorButtonId
-            width: parent.width
-            text: "..."
+            Layout.fillWidth: false
+            text: " ..."
             onClicked: {
                 colorDialogId.currentColor = selectedColor
                 colorDialogId.open()

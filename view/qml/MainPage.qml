@@ -9,11 +9,14 @@ ApplicationWindow {
 
     readonly property bool isMobileDevice: Qt.platform.os === "android"
                                            || Qt.platform.os === "ios"
-    property int windowHeight: isMobileDevice ? Screen.desktopAvailableHeight : Screen.desktopAvailableHeight * 1
+    property int windowHeight: isMobileDevice ? Screen.desktopAvailableHeight : Screen.desktopAvailableHeight * 0.8
     property int windowWidth: isMobileDevice ? Screen.width : Screen.width * .33
     property bool isPortraitMode: windowHeight > windowWidth
     property bool isWideWidth: windowHeight < windowWidth
 
+    readonly property int imageControlsWidth: 180
+    readonly property int dialogHeight: 450
+    readonly property int dialogWidth: 350
     readonly property int smallFontPointSize: 14
     readonly property int mediumFontPointSize: 18
     readonly property int smallPadding: 4

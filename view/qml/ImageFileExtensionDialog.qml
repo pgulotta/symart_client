@@ -12,8 +12,8 @@ Dialog {
     id: dialogId
 
     title: "Save Image As"
-    height: 450
-    width: 350
+    height: dialogHeight
+    width: dialogWidth
     modal: true
     focus: true
 
