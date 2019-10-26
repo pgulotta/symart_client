@@ -180,3 +180,23 @@ QString FrontController::getHexagonalStretchImageQuery()
 {
   return QString( "%1hexagonalStretch/%2" ).arg( QueryPrefix ).arg( mServiceId );
 }
+
+QString FrontController::getCloudsQuery( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
+                                         int distributionIndex )
+{
+  return QString( "%1clouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( dimension )
+         .arg( symmetryGroup )
+         .arg( color1.red() )
+         .arg( color1.green() )
+         .arg( color1.blue() )
+         .arg( color2.red() )
+         .arg( color2.green() )
+         .arg( color2.blue() )
+         .arg( color3.red() )
+         .arg( color3.green() )
+         .arg( color3.blue() )
+         .arg( distributionIndex );
+}

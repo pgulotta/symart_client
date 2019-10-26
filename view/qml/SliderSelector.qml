@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 import com.twentysixapps.constants 1.0
 
 SelectorGroupBox {
-    id: dimensionLabelId
+    id: sliderSelectorId
 
     property real fromValue
     property real toValue

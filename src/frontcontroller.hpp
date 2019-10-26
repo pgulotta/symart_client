@@ -28,12 +28,15 @@ public:
 
   Q_INVOKABLE QString getLastGenerateImageQuery();
   Q_INVOKABLE QString getHexagonalStretchImageQuery();
+  Q_INVOKABLE QString getCloudsQuery( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
+                                      int distributionIndex );
   Q_INVOKABLE QString getOrbitTrapQuery( int dimension, int symmetryGroup );
   Q_INVOKABLE QString getClustersQuery( int dimension, int symmetryGroup, double alpha );
   Q_INVOKABLE QString getStripesQuery( int dimension, int symmetryGroup, double alpha );
   Q_INVOKABLE QString getQuasiperiodicStripesQuery( int dimension, int quasiperiod, double alpha );
   Q_INVOKABLE QString getRandomizeQuery( int x, int y );
   Q_INVOKABLE QString getHyperbolicImageQuery( int size,  int projectionType );
+
 
 private:
   QString mServiceId;
