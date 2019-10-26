@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 ImageGeneratorPage {
     objectName: "QuasiperiodicStripesPage"
     id: quasiperiodicStripesPageId
-    shouldTileImage: false
+    isImageTileable: false
 
     function drawImage() {
         imageSource = Controller.getQuasiperiodicStripesQuery(

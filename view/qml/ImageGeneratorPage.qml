@@ -21,6 +21,7 @@ Page {
     property int footer2Spacing: imageGeneratorPageId.width * 0.01
     property bool isImageGenerated: false
     property bool isImageModified: false
+    property bool isImageTileable: true
 
     Connections {
         target: Controller
@@ -158,6 +159,7 @@ Page {
                 Switch {
                     id: tileSwitchId
                     text: qsTr("Tile")
+                    visible: isImageTileable
                     onClicked: {
                         if (imageSource == "")
                             return
@@ -169,6 +171,7 @@ Page {
                     text: qsTr("Draw")
                     onClicked: {
                         imageSource = ""
+                        pageDescription = "Working . . ."
                         drawImage()
                     }
                 }
