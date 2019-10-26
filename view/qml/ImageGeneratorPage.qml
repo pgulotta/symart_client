@@ -22,6 +22,7 @@ Page {
     property bool isImageGenerated: false
     property bool isImageModified: false
     property bool isImageTileable: true
+    property bool canAugmentImage: true
 
     Connections {
         target: Controller
@@ -158,16 +159,6 @@ Page {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: false
                 width: 100
-                Switch {
-                    id: tileSwitchId
-                    text: qsTr("Tile")
-                    visible: isImageTileable
-                    onClicked: {
-                        if (imageSource == "")
-                            return
-                        shouldTileImage = checked
-                    }
-                }
                 ToolButton {
                     id: drawButtonId
                     text: qsTr("Draw")
@@ -205,9 +196,19 @@ Page {
                         imageSource = Controller.getLastGenerateImageQuery()
                     }
                 }
+                Switch {
+                    id: tileSwitchId
+                    text: qsTr("Tile")
+                    visible: isImageTileable
+                    onClicked: {
+                        if (imageSource == "")
+                            return
+                        shouldTileImage = checked
+                    }
+                }
             }
             Row {
-                id: footerRowTwoId
+                id: augmentImageRowId
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: false
                 spacing: footer2Spacing
@@ -216,9 +217,9 @@ Page {
                 opacity: 0
 
                 states: State {
-                    when: isImageGenerated
+                    when: isImageGenerated & canAugmentImage
                     PropertyChanges {
-                        target: footerRowTwoId
+                        target: augmentImageRowId
                         visible: true
                         scale: 1
                         opacity: 1

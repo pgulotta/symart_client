@@ -5,6 +5,7 @@ ImageGeneratorPage {
     objectName: "QuasiperiodicStripesPage"
     id: quasiperiodicStripesPageId
     isImageTileable: false
+    canAugmentImage: false
 
     function drawImage() {
         imageSource = Controller.getQuasiperiodicStripesQuery(

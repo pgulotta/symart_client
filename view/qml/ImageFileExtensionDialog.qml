@@ -20,8 +20,8 @@ Dialog {
     standardButtons: Dialog.Cancel | Dialog.Ok
 
     enter: EnterTransition {
-        itemHeight: 450
-        itemWidth: 350
+        itemHeight: 425
+        itemWidth: 325
     }
 
     exit: ExitTransition {}
@@ -69,7 +69,7 @@ Dialog {
             keyNavigationWraps: true
             anchors.fill: parent
             anchors.margins: smallPadding
-            anchors.topMargin: mediumPadding
+            anchors.topMargin: smallPadding
             spacing: mediumPadding
             model: fileExtensionModelId
             clip: true
@@ -82,7 +82,7 @@ Dialog {
                 anchors.margins: smallPadding
                 color: Constants.accentColor
                 padding: smallPadding
-                bottomPadding: mediumPadding
+                bottomPadding: smallPadding
                 TapHandler {
                     onTapped: listViewId.currentIndex = index
                 }
