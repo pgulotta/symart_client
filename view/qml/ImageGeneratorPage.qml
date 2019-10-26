@@ -150,12 +150,14 @@ Page {
     footer: ToolBar {
         id: footerToolBarId
         implicitWidth: parent.width
-        Grid {
+        ColumnLayout {
             id: footerColumnId
-            rows: 2
             anchors.centerIn: parent
             Row {
                 spacing: footer1Spacing
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: false
+                width: 100
                 Switch {
                     id: tileSwitchId
                     text: qsTr("Tile")
@@ -206,6 +208,8 @@ Page {
             }
             Row {
                 id: footerRowTwoId
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: false
                 spacing: footer2Spacing
                 visible: false
                 scale: 0
