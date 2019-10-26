@@ -27,8 +27,8 @@
         <file>view/qml/MainPage.qml</file>
         <file>view/qml/OrbitTrapsPage.qml</file>
         <file>view/qml/QuasiOrbitTrapsPage.qml</file>
+        <file>view/qml/QuasiperiodicStripesPage.qml</file>
         <file>view/qml/RandomizeDialog.qml</file>
-        <file>view/qml/QuasiStripesPage.qml</file>
         <file>view/qml/SelectorGroupBox.qml</file>
         <file>view/qml/SharedConstants.qml</file>
         <file>view/qml/SliderSelector.qml</file>

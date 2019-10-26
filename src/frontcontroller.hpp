@@ -31,6 +31,7 @@ public:
   Q_INVOKABLE QString getOrbitTrapQuery( int dimension, int symmetryGroup );
   Q_INVOKABLE QString getClustersQuery( int dimension, int symmetryGroup, double alpha );
   Q_INVOKABLE QString getStripesQuery( int dimension, int symmetryGroup, double alpha );
+  Q_INVOKABLE QString getQuasiperiodicStripesQuery( int dimension, int quasiperiod, double alpha );
   Q_INVOKABLE QString getRandomizeQuery( int x, int y );
   Q_INVOKABLE QString getHyperbolicImageQuery( int size,  int projectionType );
 

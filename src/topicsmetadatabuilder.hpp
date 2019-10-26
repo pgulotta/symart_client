@@ -121,7 +121,7 @@ private:
       TopicMetaData::Topic::QuasiStripes,
       "Quasiperiodic Stripes",
       "qrc:/view/images/quasi-stripes.png",
-      "qrc:/view/qml/QuasiStripesPage.qml",
+      "qrc:/view/qml/QuasiperiodicStripesPage.qml",
       "Quasi Stripes Help...."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Squiggles,

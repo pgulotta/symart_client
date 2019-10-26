@@ -9,8 +9,8 @@ ApplicationWindow {
 
     readonly property bool isMobileDevice: Qt.platform.os === "android"
                                            || Qt.platform.os === "ios"
-    property int windowHeight: isMobileDevice ? Screen.desktopAvailableHeight : Screen.desktopAvailableHeight * .8
-    property int windowWidth: isMobileDevice ? Screen.width : Screen.width * .5
+    property int windowHeight: isMobileDevice ? Screen.desktopAvailableHeight : Screen.desktopAvailableHeight * .9
+    property int windowWidth: isMobileDevice ? Screen.width : Screen.width * .33
     property bool isPortraitMode: windowHeight > windowWidth
     property bool isWideWidth: windowHeight < windowWidth
 

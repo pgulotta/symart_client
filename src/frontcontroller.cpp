@@ -147,6 +147,16 @@ QString FrontController::getStripesQuery( int dimension, int symmetryGroup, doub
          .arg( alpha );
 }
 
+QString FrontController::getQuasiperiodicStripesQuery( int dimension, int quasiperiod, double alpha )
+{
+  return QString( "%1quasiPeriodicStripes/%2/%3/%4/%5" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( dimension )
+         .arg( quasiperiod )
+         .arg( alpha );
+}
+
 QString FrontController::getRandomizeQuery( int x, int y )
 {
   return QString( "%1randomizeTiles/%2/%3/%4" ).arg( QueryPrefix ).arg( mServiceId ).arg( x ).arg( y );
