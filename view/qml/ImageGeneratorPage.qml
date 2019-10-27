@@ -89,7 +89,7 @@ Page {
             clip: true
             height: imageViewId.height
             ScrollBar.vertical: ScrollBar {
-                policy: ScrollBar.AlwaysOff
+                policy: ScrollBar.AlwaysOn
             }
             Pane {
                 id: controlsViewId
