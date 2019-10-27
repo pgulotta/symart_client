@@ -82,10 +82,9 @@ Page {
 
     Row {
         anchors.fill: parent
-        anchors.leftMargin: mediumPadding
+        anchors.leftMargin: smallPadding
         spacing: 0
         ScrollView {
-            //   width: imageControlsWidth
             Layout.fillWidth: true
             clip: true
             height: imageViewId.height
@@ -98,7 +97,7 @@ Page {
         }
         Pane {
             id: imageViewId
-            width: parent.width - controlsViewId.width - exlargePadding
+            width: parent.width - controlsViewId.width - largePadding
             height: parent.height
             contentData: Rectangle {
                 id: rectangleId
