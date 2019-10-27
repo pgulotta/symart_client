@@ -88,9 +88,7 @@ Page {
             Layout.fillWidth: true
             clip: true
             height: imageViewId.height
-            ScrollBar.vertical: ScrollBar {
-                policy: ScrollBar.AlwaysOn
-            }
+            rightPadding: largePadding
             Pane {
                 id: controlsViewId
             }
@@ -160,13 +158,12 @@ Page {
                 spacing: footer1Spacing
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: false
-                width: 100
                 ToolButton {
                     id: drawButtonId
                     text: qsTr("Draw")
                     onClicked: {
                         imageSource = ""
-                        pageDescription = "Working . . ."
+                        pageDescription = qsTr("Working . . .")
                         drawImage()
                     }
                 }
