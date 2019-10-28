@@ -59,6 +59,9 @@ ImageGeneratorPage {
                 id: colorSelector1Id
                 width: dimensionSelectorId.width
                 height: symmetrySelectorId.height * 1.34
+                selectedColor1: "#FFFF00"
+                selectedColor2: "#FF00FF"
+                selectedColor3: "#00FFFF"
             }
         }
     }

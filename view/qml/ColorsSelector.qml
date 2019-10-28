@@ -7,9 +7,9 @@ import com.twentysixapps.constants 1.0
 SelectorGroupBox {
     id: colorSelectorId
 
-    property string selectedColor1: "#FFFF00"
-    property string selectedColor2: "#FF00FF"
-    property string selectedColor3: "#00FFFF"
+    property alias selectedColor1: colorSelector1Id.selectedColor
+    property string selectedColor2: colorSelector1Id.selectedColor
+    property string selectedColor3: colorSelector1Id.selectedColor
 
     title: "Colors"
 
@@ -19,22 +19,23 @@ SelectorGroupBox {
         Loader {
             id: colorSelector1Id
             sourceComponent: sourceComponentId
-            property string selectedColor: selectedColor1
+            sourceComponentId.selectedColor: selectedColor1
         }
         Loader {
             id: colorSelector2Id
             sourceComponent: sourceComponentId
-            property string selectedColor: selectedColor2
+            selectedColor: selectedColor2
         }
         Loader {
             id: colorSelector3Id
             sourceComponent: sourceComponentId
-            property string selectedColor: selectedColor3
+            selectedColor: selectedColor3
         }
     }
 
     Component {
         id: sourceComponentId
+        property alias selectedColor: selectedColorId.color
         RowLayout {
             id: controlsViewId
             spacing: 0
@@ -45,7 +46,6 @@ SelectorGroupBox {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: false
                 width: 50
-                color: selectedColor
                 height: 25
                 border {
                     width: 1
