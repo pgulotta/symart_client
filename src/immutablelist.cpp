@@ -62,3 +62,15 @@ QStringList ImmutableList::walkFillTypes()
 
   return mWalkFillTypes;
 }
+
+QStringList ImmutableList::distributionNames()
+{
+  if ( mDistributionNames.empty() ) {
+    mDistributionNames.append( "Cauchy" );
+    mDistributionNames.append( "Normal" );
+    mDistributionNames.append( "Pseudo-Exp." );
+    mDistributionNames.append( "Sech^2" );
+  }
+
+  return mDistributionNames;
+}

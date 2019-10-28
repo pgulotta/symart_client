@@ -16,6 +16,7 @@ public:
   Q_INVOKABLE  QStringList flipTypes();
   Q_INVOKABLE  QStringList projectionTypes();
   Q_INVOKABLE  QStringList walkFillTypes();
+  Q_INVOKABLE  QStringList distributionNames();
 
 
 private slots:
@@ -26,6 +27,7 @@ private:
   QStringList mFlipTypes;
   QStringList mProjectionTypes;
   QStringList mWalkFillTypes;
+  QStringList mDistributionNames;
 
 };
 

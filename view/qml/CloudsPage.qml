@@ -9,13 +9,19 @@ ImageGeneratorPage {
     function drawImage() {
         imageSource = Controller.getCloudsQuery(
                     dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex)
+                    symmetrySelectorId.selectorIndex,
+                    colorSelector1Id.selectedColor1,
+                    colorSelector1Id.selectedColor2,
+                    colorSelector1Id.selectedColor3,
+                    distributionSelectorId.selectorIndex)
     }
 
     function selectionDescription() {
         return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension + ", "
                 + symmetrySelectorId.title + "=" + ImmutableList.symmetryGroups(
-                    )[symmetrySelectorId.selectorIndex]
+                    )[symmetrySelectorId.selectorIndex] + ", "
+                + distributionSelectorId.title + "=" + ImmutableList.distributionNames(
+                    )[distributionSelectorId.selectorIndex]
     }
 
     controlsView: RowLayout {
@@ -40,29 +46,19 @@ ImageGeneratorPage {
                 title: "Symmetry"
                 selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
-                height: width * 1.2
+                height: dimensionSelectorId.height
             }
-
-            ColorSelector {
-                id: colorSelecto1rId
-                title: "Color 1"
+            TumblerSelector {
+                id: distributionSelectorId
+                title: "Distribution"
+                selectorModel: ImmutableList.distributionNames()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
-                selectedColor: "#FFFF00"
             }
-            ColorSelector {
-                id: colorSelector2Id
-                title: "Color 2"
+            ColorsSelector {
+                id: colorSelector1Id
                 width: dimensionSelectorId.width
-                height: dimensionSelectorId.height
-                selectedColor: "#FF00FF"
-            }
-            ColorSelector {
-                id: colorSelector3Id
-                title: "Color 3"
-                width: dimensionSelectorId.width
-                height: dimensionSelectorId.height
-                selectedColor: "#00FFFF"
+                height: symmetrySelectorId.height * 1.34
             }
         }
     }
