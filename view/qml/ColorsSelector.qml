@@ -46,7 +46,7 @@ SelectorGroupBox {
                 Layout.fillWidth: false
                 width: 50
                 color: selectedColor
-                height: 20 // colorDialogSelectorButtonId.height
+                height: 25
                 border {
                     width: 1
                     color: Constants.disabledTextColor
