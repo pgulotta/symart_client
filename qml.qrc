@@ -16,7 +16,8 @@
         <file>view/qml/CelluarAutomataPage.qml</file>
         <file>view/qml/CloudsPage.qml</file>
         <file>view/qml/ClustersPage.qml</file>
-        <file>view/qml/ColorsSelector.qml</file>
+        <file>view/qml/ColorSelector.qml</file>
+        <file>view/qml/ColorsSelector.qml</file>		
         <file>view/qml/EnterTransition.qml</file>
         <file>view/qml/ExitTransition.qml</file>
         <file>view/qml/HyperbolicDialog.qml</file>
