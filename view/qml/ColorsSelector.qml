@@ -17,18 +17,23 @@ SelectorGroupBox {
     Column {
         id: colorsColumnId
         spacing: mediumPadding
-        topPadding: exlargePadding
 
         ColorSelector {
             id: colorSelector1Id
+            width: 80
+            height: 40
         }
 
         ColorSelector {
             id: colorSelector2Id
+            width: 80
+            height: 40
         }
 
         ColorSelector {
             id: colorSelector3Id
+            width: 80
+            height: 40
         }
     }
 }

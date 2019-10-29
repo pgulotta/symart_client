@@ -45,9 +45,9 @@ ImageGeneratorPage {
                 id: colorSelector1Id
                 width: dimensionSelectorId.width
                 height: 200
-                selectedColor1: "red" // "#FFFF00"
-                selectedColor2: "blue" //"#FF00FF"
-                selectedColor3: "green" //"#00FFFF"
+                selectedColor1: "#FFFF00"
+                selectedColor2: "#FF00FF"
+                selectedColor3: "#00FFFF"
             }
             TumblerSelector {
                 id: symmetrySelectorId

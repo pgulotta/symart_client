@@ -7,18 +7,17 @@ import com.twentysixapps.constants 1.0
 RowLayout {
     id: colorSelectorId
 
-    //property string selectedColor
     property alias selectedColor: selectedColorId.color
 
-    spacing: 0
-    anchors.centerIn: parent
-    width: parent.width
     height: 50
+    width: parent.width
+    spacing: 0
+
     Rectangle {
         id: selectedColorId
         Layout.alignment: Qt.AlignHCenter
         Layout.fillWidth: false
-        width: 80
+        width: parent.width
         height: 20
         border {
             width: 1
@@ -34,11 +33,11 @@ RowLayout {
             colorDialogId.currentColor = selectedColor
             colorDialogId.open()
         }
-        ColorDialog {
-            id: colorDialogId
-            modality: Qt.ApplicationModal
-            title: "Please choose a color"
-            onAccepted: selectedColor = currentColor
-        }
+    }
+    ColorDialog {
+        id: colorDialogId
+        modality: Qt.ApplicationModal
+        title: "Please choose a color"
+        onAccepted: selectedColor = currentColor
     }
 }
