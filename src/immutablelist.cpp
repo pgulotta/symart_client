@@ -53,14 +53,14 @@ QStringList ImmutableList::projectionTypes()
   return mProjectionTypes;
 }
 
-QStringList ImmutableList::walkFillTypes()
+QStringList ImmutableList::walkFillModes()
 {
-  if ( mWalkFillTypes.empty() ) {
-    mWalkFillTypes.append( "Area" );
-    mWalkFillTypes.append( "Length" );
+  if ( mWalkFillModes.empty() ) {
+    mWalkFillModes.append( "Area" );
+    mWalkFillModes.append( "Length" );
   }
 
-  return mWalkFillTypes;
+  return mWalkFillModes;
 }
 
 QStringList ImmutableList::distributionNames()

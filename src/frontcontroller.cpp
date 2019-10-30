@@ -170,6 +170,26 @@ QString FrontController::getHyperbolicImageQuery( int size, int projectionType )
          .arg( projectionType );
 }
 
+QString FrontController::getWalkImageQuery( int width, int height, int mode, bool isBalanced, bool isTileable )
+{
+  if ( isTileable )
+    return QString( "%1walk/%2/%3/%4/%5/%6" )
+           .arg( QueryPrefix )
+           .arg( mServiceId )
+           .arg( width )
+           .arg( height )
+           .arg( isBalanced )
+           .arg( mode );
+  else
+    return QString( "%1walk2/%2/%3/%4/%5/%6" )
+           .arg( QueryPrefix )
+           .arg( mServiceId )
+           .arg( width )
+           .arg( height )
+           .arg( isBalanced )
+           .arg( mode );
+}
+
 QString FrontController::getLastGenerateImageQuery()
 {
   return QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );

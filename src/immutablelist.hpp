@@ -15,7 +15,7 @@ public:
   Q_INVOKABLE  QStringList symmetryGroups();
   Q_INVOKABLE  QStringList flipTypes();
   Q_INVOKABLE  QStringList projectionTypes();
-  Q_INVOKABLE  QStringList walkFillTypes();
+  Q_INVOKABLE  QStringList walkFillModes();
   Q_INVOKABLE  QStringList distributionNames();
 
 
@@ -26,7 +26,7 @@ private:
   QStringList mSymmetryGroups;
   QStringList mFlipTypes;
   QStringList mProjectionTypes;
-  QStringList mWalkFillTypes;
+  QStringList mWalkFillModes;
   QStringList mDistributionNames;
 
 };
