@@ -3,7 +3,6 @@
 #include <QUuid>
 #include <QStandardPaths>
 #include <QDir>
-#include <QDebug>
 
 
 FrontController* FrontController::FrontControllerInstance{nullptr};
@@ -184,7 +183,6 @@ QString FrontController::getHexagonalStretchImageQuery()
 QString FrontController::getCloudsQuery( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
                                          int distributionIndex )
 {
-  qDebug() << Q_FUNC_INFO << color1 << "  " << color2 << "  "  << color3;
   return QString( "%1clouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
          .arg( QueryPrefix )
          .arg( mServiceId )

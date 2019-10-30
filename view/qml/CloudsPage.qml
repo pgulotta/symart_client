@@ -41,14 +41,6 @@ ImageGeneratorPage {
                 initialValue: 256
                 isAlwaysEven: true
             }
-            ColorsSelector {
-                id: colorSelector1Id
-                width: dimensionSelectorId.width
-                height: 200
-                selectedColor1: "#FFFF00"
-                selectedColor2: "#FF00FF"
-                selectedColor3: "#00FFFF"
-            }
             TumblerSelector {
                 id: symmetrySelectorId
                 title: "Symmetry"
@@ -62,6 +54,14 @@ ImageGeneratorPage {
                 selectorModel: ImmutableList.distributionNames()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
+            }
+            ColorsSelector {
+                id: colorSelector1Id
+                width: dimensionSelectorId.width
+                height: 200
+                selectedColor1: "#FFFF00"
+                selectedColor2: "#FF00FF"
+                selectedColor3: "#00FFFF"
             }
         }
     }

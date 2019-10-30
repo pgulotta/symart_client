@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Dialogs 1.3
@@ -30,6 +30,7 @@ RowLayout {
         Layout.fillWidth: false
         text: "..."
         onClicked: {
+            colorDialogId.color = selectedColor
             colorDialogId.currentColor = selectedColor
             colorDialogId.open()
         }
@@ -37,7 +38,7 @@ RowLayout {
     ColorDialog {
         id: colorDialogId
         modality: Qt.ApplicationModal
-        title: "Please choose a color"
+        title: "Please select a color"
         onAccepted: selectedColor = currentColor
     }
 }
