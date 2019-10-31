@@ -23,22 +23,28 @@ RowLayout {
             width: 1
             color: Constants.disabledTextColor
         }
+        TapHandler {
+            onTapped: showColorDialog()
+        }
     }
 
     ToolButton {
         id: colorDialogSelectorButtonId
         Layout.fillWidth: false
         text: "..."
-        onClicked: {
-            colorDialogId.color = selectedColor
-            colorDialogId.currentColor = selectedColor
-            colorDialogId.open()
-        }
+        onClicked: showColorDialog()
     }
+
     ColorDialog {
         id: colorDialogId
         modality: Qt.ApplicationModal
         title: "Please select a color"
         onAccepted: selectedColor = currentColor
+    }
+
+    function showColorDialog() {
+        colorDialogId.color = selectedColor
+        colorDialogId.currentColor = selectedColor
+        colorDialogId.open()
     }
 }

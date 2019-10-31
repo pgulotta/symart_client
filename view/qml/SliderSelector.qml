@@ -15,7 +15,7 @@ SelectorGroupBox {
 
     property alias dimension: sizeTextId.text
 
-    title: "Dimension"
+    title: "Size"
 
     Column {
         TextField {

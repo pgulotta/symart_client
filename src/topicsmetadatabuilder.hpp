@@ -107,13 +107,13 @@ private:
       "Lines Help ..."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::OrbitTraps,
-      "Orbit Traps",
+      "Orbit Trap",
       "qrc:/view/images/orbit-traps.png",
       "qrc:/view/qml/OrbitTrapsPage.qml",
       "Orbit Trap Help"} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::QuasiOrbitTraps,
-      "Quasiperiodic Orbit Traps",
+      "Quasiperiodic Orbit Trap",
       "qrc:/view/images/quasi-orbit-traps.png",
       "qrc:/view/qml/QuasiOrbitTrapsPage.qml",
       "Quasiperiodic Orbit Traps Help ..."} );
@@ -137,7 +137,7 @@ private:
       "Stripes Help ..."} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Walk,
-      "Walks",
+      "Walk",
       "qrc:/view/images/walks.png",
       "qrc:/view/qml/WalksPage.qml",
       "Walk Help ..."} );

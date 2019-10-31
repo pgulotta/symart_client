@@ -190,6 +190,41 @@ QString FrontController::getWalkImageQuery( int width, int height, int mode, boo
            .arg( mode );
 }
 
+QString FrontController::getSquigglesQuery( const QString& colorImagePath, int colorCount, double saturationBoost,
+                                            bool useHue, bool useSaturation, bool useLightness, int dimension, int symmetryGroup,
+                                            double alpha, double exponent, double thickness, double sharpness )
+{
+  return QString(  "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( colorImagePath )
+         .arg( saturationBoost )
+         .arg( useHue )
+         .arg( useSaturation )
+         .arg( useLightness )
+         .arg( colorCount )
+         .arg( dimension )
+         .arg( symmetryGroup )
+         .arg( alpha )
+         .arg( exponent )
+         .arg( thickness )
+         .arg( sharpness );
+}
+
+QString FrontController::getSquigglesQuery( int colorCount, int dimension,   int symmetryGroup, double alpha,
+                                            double exponent, double thickness, double sharpness )
+{
+  return QString( "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( colorCount )
+         .arg( dimension )
+         .arg( symmetryGroup )
+         .arg( alpha )
+         .arg( exponent )
+         .arg( thickness )
+         .arg( sharpness );
+}
 QString FrontController::getLastGenerateImageQuery()
 {
   return QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
