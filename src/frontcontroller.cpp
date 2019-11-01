@@ -1,4 +1,4 @@
-#include "frontcontroller.hpp"
+﻿#include "frontcontroller.hpp"
 #include <QApplication>
 #include <QUuid>
 #include <QStandardPaths>
@@ -96,6 +96,11 @@ QString FrontController::applicationTitle() const
 QString FrontController::applicationVersion() const
 {
   return QApplication::applicationVersion();
+}
+
+QString FrontController::toLocalFile( const QString& fileURL ) const
+{
+  return QUrl::fromUserInput( fileURL ).toLocalFile();
 }
 
 void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QString& imageFileExtension )

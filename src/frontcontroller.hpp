@@ -23,6 +23,7 @@ public:
 
   Q_INVOKABLE QString applicationTitle() const;
   Q_INVOKABLE QString applicationVersion() const;
+  Q_INVOKABLE QString toLocalFile( const QString& fileURL ) const;
 
   Q_INVOKABLE void saveCurrentImage( const QString& filenamePrefix, const QString& imageFileExtension ) ;
 
