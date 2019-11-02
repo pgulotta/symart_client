@@ -9,24 +9,18 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     property alias imagePaletteName: imagePaletteNameId.text
-    property string imagePaletteUrl
+    property string imagePaletteUrl: ""
 
     function drawImage() {
-        imageSource = Controller.getCloudsQuery(
-                    dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex,
-                    colorSelector1Id.selectedColor1,
-                    colorSelector1Id.selectedColor2,
-                    colorSelector1Id.selectedColor3,
-                    distributionSelectorId.selectorIndex)
+        imageSource = imagePaletteUrl === "" ? Controller.getSquigglesQuery(
+                                                   colorCountSelectorId.dimension, dimensionSelectorId.dimension, symmetrySelectorId.selectorIndex, alphaSelectorId.dimension, exponentelectorId.dimension, thicknessSelectorId.dimension, sharpnessSelectorId.dimension) : Controller.getSquigglesQuery(imagePaletteName, colorCountSelectorId.dimension, saturationBoostSelectorId.dimension, useHueSwitchId.checked, useSaturationSwitchId.checked, useBrightnessSwitchId.checked, dimensionSelectorId.dimension, symmetrySelectorId.selectorIndex, alphaSelectorId.dimension, exponentelectorId.dimension, thicknessSelectorId.dimension, sharpnessSelectorId.dimension)
     }
 
     function selectionDescription() {
         return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension + ", "
                 + symmetrySelectorId.title + "=" + ImmutableList.symmetryGroups(
                     )[symmetrySelectorId.selectorIndex] + ", "
-                + distributionSelectorId.title + "=" + ImmutableList.distributionNames(
-                    )[distributionSelectorId.selectorIndex]
+                + colorCountSelectorId.title + "=" + colorCountSelectorId.dimension
     }
 
     controlsView: RowLayout {
@@ -59,7 +53,7 @@ ImageGeneratorPage {
                 fromValue: 0.01
                 toValue: 2.0
                 stepValue: 0.01
-                initialValue: 1.5
+                initialValue: 2
                 isAlwaysEven: false
                 decimals: 2
             }
@@ -69,7 +63,7 @@ ImageGeneratorPage {
                 fromValue: 0.0
                 toValue: 99.99
                 stepValue: 0.01
-                initialValue: 50
+                initialValue: 2
                 isAlwaysEven: false
                 decimals: 2
             }
@@ -79,7 +73,7 @@ ImageGeneratorPage {
                 fromValue: 0.0
                 toValue: 99.99
                 stepValue: 0.01
-                initialValue: 50
+                initialValue: 1
                 isAlwaysEven: false
                 decimals: 2
             }
@@ -89,7 +83,7 @@ ImageGeneratorPage {
                 fromValue: 0.0
                 toValue: 99.99
                 stepValue: 0.01
-                initialValue: 50
+                initialValue: 2
                 isAlwaysEven: false
                 decimals: 2
             }
@@ -109,6 +103,7 @@ ImageGeneratorPage {
                 checked: false
                 onCheckedChanged: if (checked === false) {
                                       imagePaletteName = ""
+                                      imagePaletteUrl = ""
                                   }
             }
             RowLayout {
@@ -130,24 +125,24 @@ ImageGeneratorPage {
                 }
             }
             Switch {
-                id: useLightnrddSwitchId
+                id: useBrightnessSwitchId
                 text: qsTr("Use Color Brightness")
                 enabled: useImageColorsSwitchId.checked
-                         && imagePaletteNameId.text !== ""
+                         && imagePaletteUrl !== ""
                 checked: false
             }
             Switch {
                 id: useHueSwitchId
                 text: qsTr("Use Color Hue")
                 enabled: useImageColorsSwitchId.checked
-                         && imagePaletteNameId.text !== ""
+                         && imagePaletteUrl !== ""
                 checked: false
             }
             Switch {
                 id: useSaturationSwitchId
                 text: qsTr("Use Color Saturation")
                 enabled: useImageColorsSwitchId.checked
-                         && imagePaletteNameId.text !== ""
+                         && imagePaletteUrl !== ""
                 checked: false
             }
             SliderSelector {
@@ -159,8 +154,7 @@ ImageGeneratorPage {
                 initialValue: 0
                 isAlwaysEven: false
                 decimals: 2
-                enabled: useSaturationSwitchId.checked
-                         && imagePaletteNameId.text !== ""
+                enabled: useSaturationSwitchId.checked && imagePaletteUrl !== ""
             }
         }
     }

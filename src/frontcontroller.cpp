@@ -100,7 +100,7 @@ QString FrontController::applicationVersion() const
 
 QString FrontController::toLocalFile( const QString& fileURL ) const
 {
-  return QUrl::fromUserInput( fileURL ).toLocalFile();
+  return  QUrl::fromUserInput( fileURL ).toLocalFile();
 }
 
 void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QString& imageFileExtension )
@@ -219,16 +219,18 @@ QString FrontController::getSquigglesQuery( const QString& colorImagePath, int c
 QString FrontController::getSquigglesQuery( int colorCount, int dimension,   int symmetryGroup, double alpha,
                                             double exponent, double thickness, double sharpness )
 {
-  return QString( "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
-         .arg( colorCount )
-         .arg( dimension )
-         .arg( symmetryGroup )
-         .arg( alpha )
-         .arg( exponent )
-         .arg( thickness )
-         .arg( sharpness );
+  auto s = QString( "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9" )
+           .arg( QueryPrefix )
+           .arg( mServiceId )
+           .arg( colorCount )
+           .arg( dimension )
+           .arg( symmetryGroup )
+           .arg( alpha )
+           .arg( exponent )
+           .arg( thickness )
+           .arg( sharpness );
+  qDebug() << Q_FUNC_INFO << s;
+  return s;
 }
 QString FrontController::getLastGenerateImageQuery()
 {
