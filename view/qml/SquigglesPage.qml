@@ -1,4 +1,4 @@
-﻿import QtQuick 2.13
+import QtQuick 2.13
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.13
 import Qt.labs.platform 1.1 as Labs
@@ -12,8 +12,27 @@ ImageGeneratorPage {
     property string imagePaletteUrl: ""
 
     function drawImage() {
-        imageSource = imagePaletteUrl === "" ? Controller.getSquigglesQuery(
-                                                   colorCountSelectorId.dimension, dimensionSelectorId.dimension, symmetrySelectorId.selectorIndex, alphaSelectorId.dimension, exponentelectorId.dimension, thicknessSelectorId.dimension, sharpnessSelectorId.dimension) : Controller.getSquigglesQuery(imagePaletteName, colorCountSelectorId.dimension, saturationBoostSelectorId.dimension, useHueSwitchId.checked, useSaturationSwitchId.checked, useBrightnessSwitchId.checked, dimensionSelectorId.dimension, symmetrySelectorId.selectorIndex, alphaSelectorId.dimension, exponentelectorId.dimension, thicknessSelectorId.dimension, sharpnessSelectorId.dimension)
+        if (imagePaletteUrl === "") {
+            imageSource = Controller.getSquigglesQuery(
+                        colorCountSelectorId.dimension,
+                        dimensionSelectorId.dimension,
+                        symmetrySelectorId.selectorIndex,
+                        alphaSelectorId.dimension, exponentelectorId.dimension,
+                        thicknessSelectorId.dimension,
+                        sharpnessSelectorId.dimension)
+        } else {
+            Controller.loadColorsImage(imagePaletteName)
+            imageSource = Controller.getSquigglesQuery(
+                        colorCountSelectorId.dimension,
+                        saturationBoostSelectorId.dimension,
+                        useHueSwitchId.checked, useSaturationSwitchId.checked,
+                        useBrightnessSwitchId.checked,
+                        dimensionSelectorId.dimension,
+                        symmetrySelectorId.selectorIndex,
+                        alphaSelectorId.dimension, exponentelectorId.dimension,
+                        thicknessSelectorId.dimension,
+                        sharpnessSelectorId.dimension)
+        }
     }
 
     function selectionDescription() {
@@ -116,11 +135,15 @@ ImageGeneratorPage {
                     Layout.preferredWidth: dimensionSelectorId.width
                     readOnly: true
                     selectByMouse: false
+                    onTextChanged: if (text !== "") {
+                                       useBrightnessSwitchId.checked = true
+                                       useHueSwitchId.checked = true
+                                       useSaturationSwitchId.checked = true
+                                   }
                 }
                 ToolButton {
                     Layout.fillWidth: true
                     text: "..."
-                    enabled: useImageColorsSwitchId.checked
                     onClicked: showFileDialog()
                 }
             }
@@ -151,7 +174,7 @@ ImageGeneratorPage {
                 fromValue: 0.01
                 toValue: 3.0
                 stepValue: 0.01
-                initialValue: 0
+                initialValue: 1.5
                 isAlwaysEven: false
                 decimals: 2
                 enabled: useSaturationSwitchId.checked && imagePaletteUrl !== ""
@@ -165,6 +188,9 @@ ImageGeneratorPage {
         onAccepted: {
             imagePaletteUrl = file
             imagePaletteName = Controller.toLocalFile(file)
+            useImageColorsSwitchId.checked = true
+            useHueSwitchId.checked = true
+            useSaturationSwitchId.checked = true
         }
     }
 

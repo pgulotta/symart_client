@@ -26,7 +26,7 @@ public:
   Q_INVOKABLE QString toLocalFile( const QString& fileURL ) const;
 
   Q_INVOKABLE void saveCurrentImage( const QString& filenamePrefix, const QString& imageFileExtension ) ;
-
+  Q_INVOKABLE void loadColorsImage( const QString& colorImagePath );
   Q_INVOKABLE QString getLastGenerateImageQuery();
   Q_INVOKABLE QString getHexagonalStretchImageQuery();
   Q_INVOKABLE QString getCloudsQuery( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
@@ -40,7 +40,7 @@ public:
   Q_INVOKABLE QString getWalkImageQuery( int width, int height, int mode,  bool isBalanced,  bool isTileable );
   Q_INVOKABLE QString getSquigglesQuery( int colorCount, int dimension, int symmetryGroup, double alpha, double exponent,
                                          double thickness, double sharpness );
-  Q_INVOKABLE QString getSquigglesQuery( const QString& colorImagePath, int colorCount, double saturationBoost,
+  Q_INVOKABLE QString getSquigglesQuery( int colorCount, double saturationBoost,
                                          bool useHue, bool useSaturation, bool useLightness,
                                          int dimension, int symmetryGroup, double alpha, double exponent,
                                          double thickness, double sharpness );

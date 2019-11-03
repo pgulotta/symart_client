@@ -1,4 +1,4 @@
-﻿#include "networkquerycontroller.hpp"
+#include "networkquerycontroller.hpp"
 #include <stdexcept>
 #include <QNetworkReply>
 #include <QImageWriter>
@@ -58,6 +58,11 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
     switch ( extractQueryType( attributes ) ) {
     case QueryType::SaveImage:
       saveToFile( networkReply->readAll(), attributes[1] );
+      break;
+
+    case QueryType::ImageColors:
+      qDebug() << Q_FUNC_INFO << networkReply->readAll();
+      break;
     }
 
   } catch ( std::exception const& e ) {

@@ -97,6 +97,7 @@ Page {
             id: imageViewId
             width: parent.width - controlsViewId.width - largePadding
             height: parent.height
+            z: -1
             contentData: Rectangle {
                 id: rectangleId
                 width: parent.width
@@ -114,7 +115,6 @@ Page {
                     source: ""
                     scale: 0
                     opacity: 0
-
                     states: State {
                         when: imageStatus === Image.Ready
                         PropertyChanges {

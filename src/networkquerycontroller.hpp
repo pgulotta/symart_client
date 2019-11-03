@@ -4,7 +4,8 @@
 #include <QNetworkAccessManager>
 
 enum class QueryType {
-  SaveImage
+  SaveImage,
+  ImageColors
 };
 
 class NetworkQueryController final : public QObject

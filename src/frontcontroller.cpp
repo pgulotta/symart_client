@@ -3,13 +3,12 @@
 #include <QUuid>
 #include <QStandardPaths>
 #include <QDir>
-
+#include <QBuffer>
 
 FrontController* FrontController::FrontControllerInstance{nullptr};
 
 const QString QueryPrefix{"http://192.168.1.119:60564/get/?"};
-
-//  const QString QueryPrefix{"http://192.168.1.119:60564/get/?"};
+const QString ImageColorsPrefix{"http://192.168.1.119:60564/imageColors/?"};
 
 void FrontController::appMessageHandler( QtMsgType type,
                                          const QMessageLogContext& context,
@@ -96,6 +95,28 @@ QString FrontController::applicationTitle() const
 QString FrontController::applicationVersion() const
 {
   return QApplication::applicationVersion();
+}
+
+QByteArray toByteArray( const QString& colorImagePath )
+{
+  QByteArray ba;
+  QImage image{colorImagePath};
+
+  if ( image.sizeInBytes() > 0 ) {
+    QBuffer buffer( &ba );
+    buffer.open( QIODevice::WriteOnly );
+    image.save( &buffer, "PNG" );
+  }
+
+  return ba;
+}
+
+void FrontController::loadColorsImage( const QString& colorImagePath )
+{
+  QStringList attributes{QString::number( static_cast<int>( QueryType::ImageColors ) )};
+  auto query = QString( ImageColorsPrefix );
+  query.append(  toByteArray( colorImagePath ) );
+  mNetworkQueryController.runRequest( attributes, query );
 }
 
 QString FrontController::toLocalFile( const QString& fileURL ) const
@@ -195,14 +216,13 @@ QString FrontController::getWalkImageQuery( int width, int height, int mode, boo
            .arg( mode );
 }
 
-QString FrontController::getSquigglesQuery( const QString& colorImagePath, int colorCount, double saturationBoost,
+QString FrontController::getSquigglesQuery( int colorCount, double saturationBoost,
                                             bool useHue, bool useSaturation, bool useLightness, int dimension, int symmetryGroup,
                                             double alpha, double exponent, double thickness, double sharpness )
 {
-  return QString(  "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
+  return QString(  "%1squigglesImageColors/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13" )
          .arg( QueryPrefix )
          .arg( mServiceId )
-         .arg( colorImagePath )
          .arg( saturationBoost )
          .arg( useHue )
          .arg( useSaturation )
@@ -219,19 +239,18 @@ QString FrontController::getSquigglesQuery( const QString& colorImagePath, int c
 QString FrontController::getSquigglesQuery( int colorCount, int dimension,   int symmetryGroup, double alpha,
                                             double exponent, double thickness, double sharpness )
 {
-  auto s = QString( "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9" )
-           .arg( QueryPrefix )
-           .arg( mServiceId )
-           .arg( colorCount )
-           .arg( dimension )
-           .arg( symmetryGroup )
-           .arg( alpha )
-           .arg( exponent )
-           .arg( thickness )
-           .arg( sharpness );
-  qDebug() << Q_FUNC_INFO << s;
-  return s;
+  return QString( "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( colorCount )
+         .arg( dimension )
+         .arg( symmetryGroup )
+         .arg( alpha )
+         .arg( exponent )
+         .arg( thickness )
+         .arg( sharpness );
 }
+
 QString FrontController::getLastGenerateImageQuery()
 {
   return QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
