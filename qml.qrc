@@ -25,6 +25,7 @@
         <file>view/qml/HyperLinesPage.qml</file>
         <file>view/qml/ImageFileExtensionDialog.qml</file>
         <file>view/qml/ImageGeneratorPage.qml</file>
+        <file>view/qml/ImageSelector.qml</file>
         <file>view/qml/LinesPage.qml</file>
         <file>view/qml/MainPage.qml</file>
         <file>view/qml/OrbitTrapsPage.qml</file>

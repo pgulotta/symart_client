@@ -8,11 +8,8 @@ ImageGeneratorPage {
     id: squigglesPageId
     shouldTileImage: true
 
-    property alias imagePaletteName: imagePaletteNameId.text
-    property string imagePaletteUrl: ""
-
     function drawImage() {
-        if (imagePaletteUrl === "") {
+        if (imageSelectorId.imagePaletteUrl === "") {
             imageSource = Controller.getSquigglesQuery(
                         colorCountSelectorId.dimension,
                         dimensionSelectorId.dimension,
@@ -21,12 +18,12 @@ ImageGeneratorPage {
                         thicknessSelectorId.dimension,
                         sharpnessSelectorId.dimension)
         } else {
-            Controller.loadColorsImage(imagePaletteName)
+            Controller.loadColorsImage(imageSelectorId.imagePaletteName)
             imageSource = Controller.getSquigglesQuery(
                         colorCountSelectorId.dimension,
-                        saturationBoostSelectorId.dimension,
-                        useHueSwitchId.checked, useSaturationSwitchId.checked,
-                        useBrightnessSwitchId.checked,
+                        imageSelectorId.saturationBoost,
+                        imageSelectorId.useHue, imageSelectorId.useSaturation,
+                        imageSelectorId.useBrightness,
                         dimensionSelectorId.dimension,
                         symmetrySelectorId.selectorIndex,
                         alphaSelectorId.dimension, exponentelectorId.dimension,
@@ -80,7 +77,7 @@ ImageGeneratorPage {
                 id: exponentelectorId
                 title: "Exponent"
                 fromValue: 0.0
-                toValue: 99.99
+                toValue: 16.00
                 stepValue: 0.01
                 initialValue: 2
                 isAlwaysEven: false
@@ -90,7 +87,7 @@ ImageGeneratorPage {
                 id: thicknessSelectorId
                 title: "Thickness"
                 fromValue: 0.0
-                toValue: 99.99
+                toValue: 20.00
                 stepValue: 0.01
                 initialValue: 1
                 isAlwaysEven: false
@@ -100,8 +97,8 @@ ImageGeneratorPage {
                 id: sharpnessSelectorId
                 title: "Sharpness"
                 fromValue: 0.0
-                toValue: 99.99
-                stepValue: 0.01
+                toValue: 1000
+                stepValue: 1
                 initialValue: 2
                 isAlwaysEven: false
                 decimals: 2
@@ -116,68 +113,8 @@ ImageGeneratorPage {
                 isAlwaysEven: false
                 decimals: 0
             }
-            Switch {
-                id: useImageColorsSwitchId
-                text: qsTr("Use Image Palette")
-                checked: false
-                onCheckedChanged: if (checked === false) {
-                                      imagePaletteName = ""
-                                      imagePaletteUrl = ""
-                                  }
-            }
-            RowLayout {
-                spacing: 0
-                TextArea {
-                    id: imagePaletteNameId
-                    placeholderText: "Select Image"
-                    wrapMode: Label.WordWrap
-                    Layout.fillWidth: true
-                    Layout.preferredWidth: dimensionSelectorId.width
-                    readOnly: true
-                    selectByMouse: false
-                    onTextChanged: if (text !== "") {
-                                       useBrightnessSwitchId.checked = true
-                                       useHueSwitchId.checked = true
-                                       useSaturationSwitchId.checked = true
-                                   }
-                }
-                ToolButton {
-                    Layout.fillWidth: true
-                    text: "..."
-                    onClicked: showFileDialog()
-                }
-            }
-            Switch {
-                id: useBrightnessSwitchId
-                text: qsTr("Use Color Brightness")
-                enabled: useImageColorsSwitchId.checked
-                         && imagePaletteUrl !== ""
-                checked: false
-            }
-            Switch {
-                id: useHueSwitchId
-                text: qsTr("Use Color Hue")
-                enabled: useImageColorsSwitchId.checked
-                         && imagePaletteUrl !== ""
-                checked: false
-            }
-            Switch {
-                id: useSaturationSwitchId
-                text: qsTr("Use Color Saturation")
-                enabled: useImageColorsSwitchId.checked
-                         && imagePaletteUrl !== ""
-                checked: false
-            }
-            SliderSelector {
-                id: saturationBoostSelectorId
-                title: "Saturation Boost"
-                fromValue: 0.01
-                toValue: 3.0
-                stepValue: 0.01
-                initialValue: 1.5
-                isAlwaysEven: false
-                decimals: 2
-                enabled: useSaturationSwitchId.checked && imagePaletteUrl !== ""
+            ImageSelector {
+                id: imageSelectorId
             }
         }
     }
