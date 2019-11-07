@@ -1,4 +1,4 @@
-﻿#include "frontcontroller.hpp"
+#include "frontcontroller.hpp"
 #include <QApplication>
 #include <QUuid>
 #include <QStandardPaths>
@@ -9,6 +9,7 @@ FrontController* FrontController::FrontControllerInstance{nullptr};
 
 const QString QueryPrefix{"http://192.168.1.119:60564/get/?"};
 const QString ImageColorsPrefix{"http://192.168.1.119:60564/imageColors/?"};
+
 
 void FrontController::appMessageHandler( QtMsgType type,
                                          const QMessageLogContext& context,
@@ -111,12 +112,27 @@ QByteArray toByteArray( const QString& colorImagePath )
   return ba;
 }
 
+#include <QTextCodec>
+QImage fromByteArray( const QByteArray& ba  )
+{
+  QImage image;
+  image.loadFromData( ba, "PNG" );
+  return image;
+}
+
+
 void FrontController::loadColorsImage( const QString& colorImagePath )
 {
   QStringList attributes{QString::number( static_cast<int>( QueryType::ImageColors ) )};
-  auto query = QString( ImageColorsPrefix );
-  query.append(  toByteArray( colorImagePath ) );
-  mNetworkQueryController.runRequest( attributes, query );
+  QByteArray byteArray = toByteArray( colorImagePath  );
+  QString query = QString( "%1%2" ).arg( ImageColorsPrefix ).arg( QTextCodec::codecForMib( 2259 )->toUnicode(
+                                                                    byteArray ) );
+  mNetworkQueryController.runGetRequest( attributes, query );
+
+  //QString payload =  QTextCodec::codecForMib( 2259 )->toUnicode( byteArray );
+  //qDebug() << "&&&&&&&&&&&&&&&  payload=" << payload;
+// QImage image{fromByteArray( QTextCodec::codecForMib( 2259 )->fromUnicode( payload ) )};
+  //qDebug() << "************** image.isNull()=" << image.isNull();
 }
 
 QString FrontController::toLocalFile( const QString& fileURL ) const
@@ -140,7 +156,7 @@ void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QS
   QStringList attributes{QString::number( static_cast<int>( QueryType::SaveImage ) ),
                          saveFilename};
   QString query = QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
-  mNetworkQueryController.runRequest( attributes, query );
+  mNetworkQueryController.runGetRequest( attributes, query );
 }
 
 QString FrontController::getOrbitTrapQuery( int dimension, int symmetryGroup )

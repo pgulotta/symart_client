@@ -16,7 +16,7 @@ signals:
 
 public:
   explicit NetworkQueryController( QObject* parent = nullptr );
-  void runRequest( const QStringList& attributes, const QString& query ) ;
+  void runGetRequest( const QStringList& attributes, const QString& query ) ;
 
 private slots:
   void onNetworkReply( QNetworkReply* networkReply );

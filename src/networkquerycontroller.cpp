@@ -31,9 +31,9 @@ QueryType NetworkQueryController::extractQueryType( const QStringList& attribute
   return static_cast<QueryType>( attributes[0].toInt() );
 }
 
-void NetworkQueryController::runRequest( const QStringList& attributes, const QString& query )
+void NetworkQueryController::runGetRequest( const QStringList& attributes, const QString& query )
 {
-  qDebug() << Q_FUNC_INFO << query;
+// qDebug() << Q_FUNC_INFO << query;
 
   try {
     auto request = QNetworkRequest( query );
