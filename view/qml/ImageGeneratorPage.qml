@@ -255,6 +255,7 @@ Page {
                         y: -height + randomizeButtonId.height / 2
                         onAccepted: {
                             isImageModified = true
+                            imageSource = ""
                             imageSource = Controller.getRandomizeQuery(
                                         randomizeDialogId.xSelection,
                                         randomizeDialogId.ySelection)
