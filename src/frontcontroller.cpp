@@ -267,6 +267,15 @@ QString FrontController::getSquigglesQuery( int colorCount, int dimension,   int
          .arg( sharpness );
 }
 
+QString FrontController::getSquigglesUpdateQuery( int dimension, int symmetryGroup )
+{
+  return QString( "%1updateSquiggles/%2/%3/%4" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( dimension )
+         .arg( symmetryGroup );
+}
+
 QString FrontController::getLastGenerateImageQuery()
 {
   return QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );

@@ -20,7 +20,8 @@ ImageGeneratorPage {
         return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension + ", "
                 + symmetrySelectorId.title + "=" + ImmutableList.symmetryGroups(
                     )[symmetrySelectorId.selectorIndex] + ", "
-                + colorCountSelectorId.title + "=" + colorCountSelectorId.dimension
+                + distributionSelectorId.title + "=" + ImmutableList.distributionNames(
+                    )[distributionSelectorId.selectorIndex]
     }
 
     controlsView: RowLayout {

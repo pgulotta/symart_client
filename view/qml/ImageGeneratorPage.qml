@@ -200,7 +200,7 @@ Page {
                     text: qsTr("Tile")
                     visible: isImageTileable
                     onClicked: {
-                        if (imageSource == "")
+                        if (imageSource === "")
                             return
                         shouldTileImage = checked
                     }

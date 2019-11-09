@@ -44,6 +44,8 @@ public:
                                          bool useHue, bool useSaturation, bool useLightness,
                                          int dimension, int symmetryGroup, double alpha, double exponent,
                                          double thickness, double sharpness );
+  Q_INVOKABLE QString getSquigglesUpdateQuery( int dimension, int symmetryGroup );
+
 
 private:
   QString mServiceId;

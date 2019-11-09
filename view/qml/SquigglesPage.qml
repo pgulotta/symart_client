@@ -39,6 +39,13 @@ ImageGeneratorPage {
                 + colorCountSelectorId.title + "=" + colorCountSelectorId.dimension
     }
 
+    function updateImage() {
+        imageSource = ""
+        imageSource = Controller.getSquigglesUpdateQuery(
+                    dimensionSelectorId.dimension,
+                    symmetrySelectorId.selectorIndex)
+    }
+
     controlsView: RowLayout {
         anchors.centerIn: parent
         width: parent.width
@@ -66,7 +73,7 @@ ImageGeneratorPage {
             SliderSelector {
                 id: alphaSelectorId
                 title: "Alpha"
-                fromValue: 0.01
+                fromValue: 0.02
                 toValue: 2.0
                 stepValue: 0.01
                 initialValue: 2
@@ -113,6 +120,12 @@ ImageGeneratorPage {
                 isAlwaysEven: false
                 decimals: 0
             }
+            ToolButton {
+                text: "Change Colors"
+                enabled: pageDescription !== ""
+                onClicked: updateImage()
+            }
+
             ImageSelector {
                 id: imageSelectorId
             }
