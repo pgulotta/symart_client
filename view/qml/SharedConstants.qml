@@ -33,6 +33,6 @@ QtObject {
 
     readonly property string workingMessage: "  Working ..."
 
-    readonly property int shortAnimationDuration: 500
-    readonly property int animationDuration: 1500
+    readonly property int shortAnimationDuration: 350
+    readonly property int animationDuration: 1200
 }
