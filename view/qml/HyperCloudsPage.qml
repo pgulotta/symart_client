@@ -42,7 +42,8 @@ ImageGeneratorPage {
                 isAlwaysEven: true
             }
             HyperbolicSymmetryGroupSelector {
-                selectorWidth: dimensionSelectorId.width
+                width: dimensionSelectorId.width
+                height: 150
             }
             TumblerSelector {
                 id: distributionSelectorId

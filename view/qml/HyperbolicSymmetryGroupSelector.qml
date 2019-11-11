@@ -4,13 +4,15 @@ import QtQuick.Controls.Material 2.3
 
 SelectorGroupBox {
     id: selectorGroupBoxlId
-    focus: true
 
     property alias selectorIndex: tumblerId.currentIndex
-    property alias selectorWidth: tumblerId.width
+
+    focus: true
+    title: "Symmetry"
+
     Tumbler {
         id: tumblerId
-        implicitHeight: 100
+        height: parent.width * 0.5
         wrap: true
         model: modelId
         onModelChanged: currentIndex = model.length / 2
