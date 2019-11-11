@@ -41,6 +41,9 @@ ImageGeneratorPage {
                 initialValue: 256
                 isAlwaysEven: true
             }
+            HyperbolicSymmetryGroupSelector {
+                selectorWidth: dimensionSelectorId.width
+            }
             TumblerSelector {
                 id: distributionSelectorId
                 title: "Distribution"
