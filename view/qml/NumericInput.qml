@@ -3,10 +3,12 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.3
 import com.twentysixapps.constants 1.0
 
-TextInput {
+TextField {
     property bool canEdit: false
-
+    property string defaultText: ""
     width: 16
+    focus: true
+
     color: canEdit ? Material.foreground : Constants.disabledTextColor
     selectedTextColor: Constants.linkTextColor
     horizontalAlignment: Text.AlignHCenter
@@ -17,6 +19,14 @@ TextInput {
     overwriteMode: true
     selectByMouse: true
     visible: text !== ""
-    inputMask: canEdit ? "9" : ""
-    readOnly: canEdit ? false : true
+    enabled: canEdit ? true : false
+    inputMethodHints: Qt.ImhDigitsOnly
+
+    onTextEdited: {
+        if (canEdit) {
+            if (text === "0" || text === "") {
+                text = defaultText
+            }
+        }
+    }
 }

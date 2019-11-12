@@ -1,4 +1,4 @@
-﻿import QtQuick 2.13
+import QtQuick 2.13
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.3
@@ -34,7 +34,9 @@ SelectorGroupBox {
                                                  / (Tumbler.tumbler.visibleItemCount * 0.25)
             }
 
-            onCurrentIndexChanged: forceActiveFocus()
+            onCurrentIndexChanged: {
+                forceActiveFocus()
+            }
 
             Keys.onUpPressed: {
                 increaseIndex()
@@ -57,37 +59,87 @@ SelectorGroupBox {
             NumericInput {
                 id: rotation0Id
                 focus: true
-                text: getSelectedItem().rotation0
-                canEdit: getSelectedItem().canEdit0
+                text: getSelectedRotaton0()
+                defaultText: getSelectedRotaton0()
+                canEdit: getSelectedCanEdit0()
             }
             NumericInput {
                 id: rotation1Id
-                text: getSelectedItem().rotation1
-                canEdit: getSelectedItem().canEdit1
+                text: getSelectedRotaton1()
+                defaultText: getSelectedRotaton1()
+                canEdit: getSelectedCanEdit1()
             }
             NumericInput {
                 id: rotation2Id
-                text: getSelectedItem().rotation2
-                canEdit: getSelectedItem().canEdit2
+                text: getSelectedRotaton2()
+                defaultText: getSelectedRotaton2()
+                canEdit: getSelectedCanEdit2()
             }
             NumericInput {
                 id: rotation3Id
-                text: getSelectedItem().rotation3
-                canEdit: getSelectedItem().canEdit3
+                text: getSelectedRotaton3()
+                defaultText: getSelectedRotaton3()
+                canEdit: getSelectedCanEdit3()
             }
             NumericInput {
                 id: rotation4Id
-                text: getSelectedItem().rotation4
-                canEdit: getSelectedItem().canEdit4
+                text: getSelectedRotaton4()
+                defaultText: getSelectedRotaton4()
+                canEdit: getSelectedCanEdit4()
             }
         }
     }
 
-    function getSelectedItem() {
+    function getSelectedRotaton0() {
         if (selectedIndex < 0)
-            console.log(" ============  selectedIndex < 0")
+            return ""
+        return symmetryModelId.get(selectedIndex).rotation0
+    }
+    function getSelectedRotaton1() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).rotation1
+    }
+    function getSelectedRotaton2() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).rotation2
+    }
+    function getSelectedRotaton3() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).rotation3
+    }
+    function getSelectedRotaton4() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).rotation4
+    }
 
-        return symmetryModelId.get(selectedIndex)
+    function getSelectedCanEdit0() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).canEdit0
+    }
+    function getSelectedCanEdit1() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).canEdit1
+    }
+    function getSelectedCanEdit2() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).canEdit2
+    }
+    function getSelectedCanEdit3() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).canEdit3
+    }
+    function getSelectedCanEdit4() {
+        if (selectedIndex < 0)
+            return ""
+        return symmetryModelId.get(selectedIndex).canEdit4
     }
 
     ListModel {
