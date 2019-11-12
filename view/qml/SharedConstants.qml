@@ -10,7 +10,7 @@ QtObject {
 
     readonly property string selectedColor: "#292929"
     readonly property string disabledTextColor: "#808080"
-    readonly property string linkTextColor: "#FFFF00"
+    readonly property string linkTextColor: "#FFFFFF"
 
     readonly property string leftTriangleChar: "\u25C0"
     readonly property string menuChar: "\u2630"

@@ -6,11 +6,7 @@ import QtQuick.Controls.Material 2.3
 SelectorGroupBox {
     id: selectorGroupBoxlId
 
-    property alias selectorIndex: tumblerId.currentIndex
-
-    function getSelectedItem() {
-        return symmetryModelId.get(selectorIndex)
-    }
+    property alias selectedIndex: tumblerId.currentIndex
 
     focus: true
     title: "Symmetry"
@@ -23,6 +19,7 @@ SelectorGroupBox {
             height: selectorGroupBoxlId.height * 0.5
             wrap: true
             model: symmetryModelId
+            currentIndex: 10
             onModelChanged: currentIndex = model.length / 2
             width: selectorGroupBoxlId.width * .9
             delegate: Text {
@@ -54,35 +51,43 @@ SelectorGroupBox {
             }
         }
         Row {
-            spacing: mediumPadding
             focus: true
+            spacing: mediumPadding
+            leftPadding: smallPadding
             NumericInput {
                 id: rotation0Id
                 focus: true
                 text: getSelectedItem().rotation0
-                state: getSelectedItem().state0
+                canEdit: getSelectedItem().canEdit0
             }
             NumericInput {
                 id: rotation1Id
                 text: getSelectedItem().rotation1
-                state: getSelectedItem().state1
+                canEdit: getSelectedItem().canEdit1
             }
             NumericInput {
                 id: rotation2Id
                 text: getSelectedItem().rotation2
-                state: getSelectedItem().state2
+                canEdit: getSelectedItem().canEdit2
             }
             NumericInput {
                 id: rotation3Id
                 text: getSelectedItem().rotation3
-                state: getSelectedItem().state3
+                canEdit: getSelectedItem().canEdit3
             }
             NumericInput {
                 id: rotation4Id
                 text: getSelectedItem().rotation4
-                state: getSelectedItem().state4
+                canEdit: getSelectedItem().canEdit4
             }
         }
+    }
+
+    function getSelectedItem() {
+        if (selectedIndex < 0)
+            console.log(" ============  selectedIndex < 0")
+
+        return symmetryModelId.get(selectedIndex)
     }
 
     ListModel {
@@ -94,11 +99,11 @@ SelectorGroupBox {
             rotation2: "x"
             rotation3: ""
             rotation4: ""
-            state0: "noEdit"
-            state1: "edit"
-            state2: "noEdit"
-            state3: "hide"
-            state4: "hide"
+            canEdit0: false
+            canEdit1: true
+            canEdit2: false
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "2*ab"
@@ -107,11 +112,11 @@ SelectorGroupBox {
             rotation2: "3"
             rotation3: "2"
             rotation4: ""
-            state0: "noEdit"
-            state1: "noEdit"
-            state2: "edit"
-            state3: "edit"
-            state4: "hide"
+            canEdit0: false
+            canEdit1: false
+            canEdit2: true
+            canEdit3: true
+            canEdit4: false
         }
         ListElement {
             groupName: "a222"
@@ -120,11 +125,11 @@ SelectorGroupBox {
             rotation2: "2"
             rotation3: "2"
             rotation4: ""
-            state0: "edit"
-            state1: "noEdit"
-            state2: "noEdit"
-            state3: "noEdit"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: false
+            canEdit2: false
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "ab2"
@@ -133,11 +138,11 @@ SelectorGroupBox {
             rotation2: "2"
             rotation3: ""
             rotation4: ""
-            state0: "edit"
-            state1: "edit"
-            state2: "noEdit"
-            state3: "hide"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: true
+            canEdit2: false
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "a*b"
@@ -146,11 +151,11 @@ SelectorGroupBox {
             rotation2: "2"
             rotation3: ""
             rotation4: ""
-            state0: "edit"
-            state1: "noEdit"
-            state2: "edit"
-            state3: "hide"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: false
+            canEdit2: true
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "*abc"
@@ -159,11 +164,11 @@ SelectorGroupBox {
             rotation2: "4"
             rotation3: "2"
             rotation4: ""
-            state0: "noEdit"
-            state1: "edit"
-            state2: "edit"
-            state3: "edit"
-            state4: "hide"
+            canEdit0: false
+            canEdit1: true
+            canEdit2: true
+            canEdit3: true
+            canEdit4: false
         }
         ListElement {
             groupName: "a2x"
@@ -172,11 +177,11 @@ SelectorGroupBox {
             rotation2: "x"
             rotation3: ""
             rotation4: ""
-            state0: "edit"
-            state1: "noEdit"
-            state2: "noEdit"
-            state3: "hide"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: false
+            canEdit2: false
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "22*a"
@@ -185,11 +190,11 @@ SelectorGroupBox {
             rotation2: "*"
             rotation3: "2"
             rotation4: ""
-            state0: "noEdit"
-            state1: "noEdit"
-            state2: "noEdit"
-            state3: "edit"
-            state4: "hide"
+            canEdit0: false
+            canEdit1: false
+            canEdit2: false
+            canEdit3: true
+            canEdit4: false
         }
         ListElement {
             groupName: "a*bc"
@@ -198,11 +203,11 @@ SelectorGroupBox {
             rotation2: "2"
             rotation3: "2"
             rotation4: ""
-            state0: "edit"
-            state1: "noEdit"
-            state2: "edit"
-            state3: "edit"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: false
+            canEdit2: true
+            canEdit3: true
+            canEdit4: false
         }
         ListElement {
             groupName: "*abcd"
@@ -211,11 +216,11 @@ SelectorGroupBox {
             rotation2: "2"
             rotation3: "2"
             rotation4: "2"
-            state0: "noEdit"
-            state1: "edit"
-            state2: "edit"
-            state3: "edit"
-            state4: "edit"
+            canEdit0: false
+            canEdit1: true
+            canEdit2: true
+            canEdit3: true
+            canEdit4: true
         }
         ListElement {
             groupName: "a2*b"
@@ -224,11 +229,11 @@ SelectorGroupBox {
             rotation2: "*"
             rotation3: "1"
             rotation4: ""
-            state0: "edit"
-            state1: "noEdit"
-            state2: "noEdit"
-            state3: "edit"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: false
+            canEdit2: false
+            canEdit3: true
+            canEdit4: false
         }
         ListElement {
             groupName: "*a*b"
@@ -237,11 +242,11 @@ SelectorGroupBox {
             rotation2: "*"
             rotation3: "1"
             rotation4: ""
-            state0: "noEdit"
-            state1: "edit"
-            state2: "noEdit"
-            state3: "edit"
-            state4: "hide"
+            canEdit0: false
+            canEdit1: true
+            canEdit2: false
+            canEdit3: true
+            canEdit4: false
         }
         ListElement {
             groupName: "ao"
@@ -250,11 +255,11 @@ SelectorGroupBox {
             rotation2: ""
             rotation3: ""
             rotation4: ""
-            state0: "edit"
-            state1: "noEdit"
-            state2: "hide"
-            state3: "hide"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: false
+            canEdit2: false
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "abc"
@@ -263,11 +268,11 @@ SelectorGroupBox {
             rotation2: "4"
             rotation3: ""
             rotation4: ""
-            state0: "edit"
-            state1: "edit"
-            state2: "edit"
-            state3: "hide"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: true
+            canEdit2: true
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "axx"
@@ -276,11 +281,11 @@ SelectorGroupBox {
             rotation2: "x"
             rotation3: ""
             rotation4: ""
-            state0: "edit"
-            state1: "noEdit"
-            state2: "noEdit"
-            state3: "hide"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: false
+            canEdit2: false
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "2*abc"
@@ -289,11 +294,11 @@ SelectorGroupBox {
             rotation2: "2"
             rotation3: "2"
             rotation4: "2"
-            state0: "noEdit"
-            state1: "noEdit"
-            state2: "edit"
-            state3: "edit"
-            state4: "edit"
+            canEdit0: false
+            canEdit1: false
+            canEdit2: true
+            canEdit3: true
+            canEdit4: true
         }
         ListElement {
             groupName: "abx"
@@ -302,11 +307,11 @@ SelectorGroupBox {
             rotation2: "x"
             rotation3: ""
             rotation4: ""
-            state0: "edit"
-            state1: "edit"
-            state2: "noEdit"
-            state3: "hide"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: true
+            canEdit2: false
+            canEdit3: false
+            canEdit4: false
         }
         ListElement {
             groupName: "ab22"
@@ -315,11 +320,11 @@ SelectorGroupBox {
             rotation2: "2"
             rotation3: "2"
             rotation4: ""
-            state0: "edit"
-            state1: "edit"
-            state2: "noEdit"
-            state3: "noEdit"
-            state4: "hide"
+            canEdit0: true
+            canEdit1: true
+            canEdit2: false
+            canEdit3: false
+            canEdit4: false
         }
     }
 }
