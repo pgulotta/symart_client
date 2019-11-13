@@ -31,6 +31,9 @@ public:
   Q_INVOKABLE QString getHexagonalStretchImageQuery();
   Q_INVOKABLE QString getCloudsQuery( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
                                       int distributionIndex );
+  Q_INVOKABLE QString getHyperbolicCloudsQuery( int dimension, int symmetryGroup, int projType, int distributionIndex,
+                                                int rotation0, int rotation1, int rotation2, int rotation3,
+                                                QColor color1, QColor color2, QColor color3 );
   Q_INVOKABLE QString getOrbitTrapQuery( int dimension, int symmetryGroup );
   Q_INVOKABLE QString getClustersQuery( int dimension, int symmetryGroup, double alpha );
   Q_INVOKABLE QString getStripesQuery( int dimension, int symmetryGroup, double alpha );

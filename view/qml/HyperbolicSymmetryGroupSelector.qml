@@ -8,6 +8,12 @@ SelectorGroupBox {
 
     property alias selectedIndex: tumblerId.currentIndex
 
+    property alias rotation0: rotation0Id.text
+    property alias rotation1: rotation1Id.text
+    property alias rotation2: rotation2Id.text
+    property alias rotation3: rotation3Id.text
+    property alias rotation4: rotation4Id.text
+
     focus: true
     title: "Symmetry"
 
@@ -90,6 +96,10 @@ SelectorGroupBox {
                 id: rotation4Id
             }
         }
+    }
+
+    function selectedGroupName() {
+        return symmetryModelId.get(selectedIndex).groupName
     }
 
     function getSelectedRotaton0() {

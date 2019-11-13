@@ -305,3 +305,29 @@ QString FrontController::getCloudsQuery( int dimension, int symmetryGroup, QColo
          .arg( color3.blue() )
          .arg( distributionIndex );
 }
+
+QString FrontController::getHyperbolicCloudsQuery( int dimension, int symmetryGroup, int projType,
+                                                   int distributionIndex, int rotation0, int rotation1, int rotation2, int rotation3,
+                                                   QColor color1, QColor color2, QColor color3 )
+{
+  return QString( "%1hyperbolicClouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14/%15/%16/%17/%18/%19" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( dimension )
+         .arg( symmetryGroup )
+         .arg( rotation0 )
+         .arg( rotation1 )
+         .arg( rotation2 )
+         .arg( rotation3 )
+         .arg( projType )
+         .arg( color1.red() )
+         .arg( color1.green() )
+         .arg( color1.blue() )
+         .arg( color2.red() )
+         .arg( color2.green() )
+         .arg( color2.blue() )
+         .arg( color3.red() )
+         .arg( color3.green() )
+         .arg( color3.blue() )
+         .arg( distributionIndex  );
+}

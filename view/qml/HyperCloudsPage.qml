@@ -1,4 +1,4 @@
-import QtQuick 2.13
+﻿import QtQuick 2.13
 import QtQuick.Layouts 1.3
 
 ImageGeneratorPage {
@@ -6,22 +6,44 @@ ImageGeneratorPage {
     id: hyperCloudsPageId
     shouldTileImage: false
 
+    readonly property int invalidValue: -1
+
     function drawImage() {
-        imageSource = Controller.getCloudsQuery(
+        var rotationsList = assignRotations()
+        imageSource = Controller.getHyperbolicCloudsQuery(
                     dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex,
+                    groupSelectorId.selectorIndex,
+                    projectionSelectorId.selectedIndex,
+                    distributionSelectorId.selectorIndex, rotationsList[0],
+                    rotationsList[1], rotationsList[2], rotationsList[3],
                     colorSelector1Id.selectedColor1,
                     colorSelector1Id.selectedColor2,
-                    colorSelector1Id.selectedColor3,
-                    distributionSelectorId.selectorIndex)
+                    colorSelector1Id.selectedColor3)
     }
 
     function selectionDescription() {
         return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension + ", "
-                + symmetrySelectorId.title + "=" + ImmutableList.symmetryGroups(
-                    )[symmetrySelectorId.selectorIndex] + ", "
-                + distributionSelectorId.title + "=" + ImmutableList.distributionNames(
+                + groupSelectorId.title + "=" + groupSelectorId.selectedGroupName(
+                    ) + ", " + distributionSelectorId.title + "=" + ImmutableList.distributionNames(
                     )[distributionSelectorId.selectorIndex]
+    }
+
+    function assignRotations() {
+        var rotationsList = new Array
+        if (groupSelectorId.rotation0 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation0))
+        if (groupSelectorId.rotation1 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation1))
+        if (groupSelectorId.rotation2 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation2))
+        if (groupSelectorId.rotation3 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation3))
+        if (groupSelectorId.rotation4 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation4))
+        while (rotationsList.length < 4)
+            rotationsList.push(invalidValue)
+
+        return rotationsList
     }
 
     controlsView: RowLayout {
@@ -51,6 +73,7 @@ ImageGeneratorPage {
                 selectedColor3: "#00FFFF"
             }
             HyperbolicSymmetryGroupSelector {
+                id: groupSelectorId
                 width: dimensionSelectorId.width
                 height: 150
             }
