@@ -45,7 +45,7 @@ Dialog {
                 title: "Projection"
                 selectorModel: ImmutableList.projectionTypes()
                 width: sizeSelectorId.width
-                height: width
+                height: width * 0.8
             }
         }
     }

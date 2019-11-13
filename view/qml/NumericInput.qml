@@ -22,6 +22,11 @@ TextField {
     enabled: canEdit ? true : false
     inputMethodHints: Qt.ImhDigitsOnly
 
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            selectAll()
+        }
+    }
     onTextEdited: {
         if (canEdit) {
             if (text === "0" || text === "") {

@@ -17,7 +17,7 @@ ApplicationWindow {
     readonly property int imageControlsWidth: 180
     readonly property int dialogHeight: 450
     readonly property int dialogWidth: 350
-    readonly property int smallFontPointSize: 14
+    readonly property int smallFontPointSize: 12
     readonly property int mediumFontPointSize: 18
     readonly property int smallPadding: 4
     readonly property int mediumPadding: 8
