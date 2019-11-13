@@ -1,4 +1,4 @@
-import QtQuick 2.13
+﻿import QtQuick 2.13
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.3
@@ -35,6 +35,22 @@ SelectorGroupBox {
             }
 
             onCurrentIndexChanged: {
+                rotation0Id.text = getSelectedRotaton0()
+                rotation1Id.text = getSelectedRotaton1()
+                rotation2Id.text = getSelectedRotaton2()
+                rotation3Id.text = getSelectedRotaton3()
+                rotation4Id.text = getSelectedRotaton4()
+                rotation0Id.defaultText = rotation0Id.text
+                rotation1Id.defaultText = rotation1Id.text
+                rotation2Id.defaultText = rotation2Id.text
+                rotation3Id.defaultText = rotation3Id.text
+                rotation4Id.defaultText = rotation4Id.text
+                rotation0Id.canEdit = getSelectedCanEdit0()
+                rotation1Id.canEdit = getSelectedCanEdit1()
+                rotation2Id.canEdit = getSelectedCanEdit2()
+                rotation3Id.canEdit = getSelectedCanEdit3()
+                rotation4Id.canEdit = getSelectedCanEdit4()
+
                 forceActiveFocus()
             }
 
@@ -53,39 +69,25 @@ SelectorGroupBox {
             }
         }
         Row {
+            id: rowId
             focus: true
             spacing: mediumPadding
             leftPadding: smallPadding
             NumericInput {
                 id: rotation0Id
                 focus: true
-                text: getSelectedRotaton0()
-                defaultText: getSelectedRotaton0()
-                canEdit: getSelectedCanEdit0()
             }
             NumericInput {
                 id: rotation1Id
-                text: getSelectedRotaton1()
-                defaultText: getSelectedRotaton1()
-                canEdit: getSelectedCanEdit1()
             }
             NumericInput {
                 id: rotation2Id
-                text: getSelectedRotaton2()
-                defaultText: getSelectedRotaton2()
-                canEdit: getSelectedCanEdit2()
             }
             NumericInput {
                 id: rotation3Id
-                text: getSelectedRotaton3()
-                defaultText: getSelectedRotaton3()
-                canEdit: getSelectedCanEdit3()
             }
             NumericInput {
                 id: rotation4Id
-                text: getSelectedRotaton4()
-                defaultText: getSelectedRotaton4()
-                canEdit: getSelectedCanEdit4()
             }
         }
     }
