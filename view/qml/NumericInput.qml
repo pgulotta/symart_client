@@ -30,7 +30,7 @@ TextField {
     onTextChanged: {
         if (canEdit) {
             var input = parseInt(text)
-            text = (isNaN(input)) ? defaultText : input
+            text = (isNaN(input) || input <= 0) ? defaultText : input
         }
     }
 }
