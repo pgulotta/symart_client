@@ -13,6 +13,11 @@ SelectorGroupBox {
     property alias rotation2: rotation2Id.text
     property alias rotation3: rotation3Id.text
     property alias rotation4: rotation4Id.text
+    property alias canEdit0: rotation0Id.canEdit
+    property alias canEdit1: rotation1Id.canEdit
+    property alias canEdit2: rotation2Id.canEdit
+    property alias canEdit3: rotation3Id.canEdit
+    property alias canEdit4: rotation4Id.canEdit
 
     focus: true
     title: "Symmetry"
@@ -77,7 +82,7 @@ SelectorGroupBox {
         Row {
             id: rowId
             focus: true
-            spacing: mediumPadding
+            spacing: smallPadding
             leftPadding: smallPadding
             NumericInput {
                 id: rotation0Id

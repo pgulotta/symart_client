@@ -10,35 +10,39 @@ ImageGeneratorPage {
 
     function drawImage() {
         var rotationsList = assignRotations()
-        imageSource = Controller.getHyperbolicCloudsQuery(
+        var query = Controller.getHyperbolicCloudsQuery(
                     dimensionSelectorId.dimension,
                     groupSelectorId.selectorIndex,
-                    projectionSelectorId.selectedIndex,
+                    projectionSelectorId.selectorIndex,
                     distributionSelectorId.selectorIndex, rotationsList[0],
                     rotationsList[1], rotationsList[2], rotationsList[3],
                     colorSelector1Id.selectedColor1,
                     colorSelector1Id.selectedColor2,
                     colorSelector1Id.selectedColor3)
+        console.log(query)
+        imageSource = query
     }
 
     function selectionDescription() {
-        return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension + ", "
-                + groupSelectorId.title + "=" + groupSelectorId.selectedGroupName(
-                    ) + ", " + distributionSelectorId.title + "=" + ImmutableList.distributionNames(
-                    )[distributionSelectorId.selectorIndex]
+        return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension
+                + ", " + groupSelectorId.title + "=" + groupSelectorId.selectedGroupName(
+                    ) + ", " + distributionSelectorId.title + "="
+                + ImmutableList.distributionNames()[distributionSelectorId.selectorIndex]
+                + ", " + projectionSelectorId.title + "=" + ImmutableList.projectionTypes(
+                    )[projectionSelectorId.selectorIndex]
     }
 
     function assignRotations() {
         var rotationsList = new Array
-        if (groupSelectorId.rotation0 !== "")
+        if (groupSelectorId.canEdit0 && groupSelectorId.rotation0 !== "")
             rotationsList.push(parseInt(groupSelectorId.rotation0))
-        if (groupSelectorId.rotation1 !== "")
+        if (groupSelectorId.canEdit1 && groupSelectorId.rotation1 !== "")
             rotationsList.push(parseInt(groupSelectorId.rotation1))
-        if (groupSelectorId.rotation2 !== "")
+        if (groupSelectorId.canEdit2 && groupSelectorId.rotation2 !== "")
             rotationsList.push(parseInt(groupSelectorId.rotation2))
-        if (groupSelectorId.rotation3 !== "")
+        if (groupSelectorId.canEdit3 && groupSelectorId.rotation3 !== "")
             rotationsList.push(parseInt(groupSelectorId.rotation3))
-        if (groupSelectorId.rotation4 !== "")
+        if (groupSelectorId.canEdit4 && groupSelectorId.rotation4 !== "")
             rotationsList.push(parseInt(groupSelectorId.rotation4))
         while (rotationsList.length < 4)
             rotationsList.push(invalidValue)

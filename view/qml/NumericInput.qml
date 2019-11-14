@@ -6,7 +6,7 @@ import com.twentysixapps.constants 1.0
 TextField {
     property bool canEdit: false
     property string defaultText: ""
-    width: 16
+    width: 20
     focus: true
 
     color: canEdit ? Material.foreground : Constants.disabledTextColor
@@ -15,7 +15,7 @@ TextField {
     font.pointSize: smallFontPointSize
     anchors.bottom: parent.bottom
     anchors.bottomMargin: mediumPadding
-    maximumLength: 1
+    maximumLength: 2
     overwriteMode: true
     selectByMouse: true
     visible: text !== ""
