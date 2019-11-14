@@ -87,6 +87,7 @@ ImageGeneratorPage {
                 selectorModel: ImmutableList.distributionNames()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
+                onSelectorModelChanged: selectorIndex = 1
             }
             TumblerSelector {
                 id: projectionSelectorId
@@ -94,6 +95,7 @@ ImageGeneratorPage {
                 selectorModel: ImmutableList.projectionTypes()
                 width: distributionSelectorId.width
                 height: width * 0.8
+                onSelectorModelChanged: selectorIndex = 0
             }
         }
     }
