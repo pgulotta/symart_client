@@ -27,11 +27,10 @@ TextField {
             selectAll()
         }
     }
-    onTextEdited: {
+    onTextChanged: {
         if (canEdit) {
-            if (text === "0" || text === "") {
-                text = defaultText
-            }
+            var input = parseInt(text)
+            text = (isNaN(input)) ? defaultText : input
         }
     }
 }
