@@ -6,7 +6,7 @@ import QtQuick.Controls.Material 2.3
 SelectorGroupBox {
     id: selectorGroupBoxlId
 
-    property alias selectedIndex: tumblerId.currentIndex
+    property alias selectorIndex: tumblerId.currentIndex
 
     property alias rotation0: rotation0Id.text
     property alias rotation1: rotation1Id.text
@@ -104,59 +104,59 @@ SelectorGroupBox {
     }
 
     function selectedGroupName() {
-        return symmetryModelId.get(selectedIndex).groupName
+        return symmetryModelId.get(selectorIndex).groupName
     }
 
     function getSelectedRotaton0() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).rotation0
+        return symmetryModelId.get(selectorIndex).rotation0
     }
     function getSelectedRotaton1() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).rotation1
+        return symmetryModelId.get(selectorIndex).rotation1
     }
     function getSelectedRotaton2() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).rotation2
+        return symmetryModelId.get(selectorIndex).rotation2
     }
     function getSelectedRotaton3() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).rotation3
+        return symmetryModelId.get(selectorIndex).rotation3
     }
     function getSelectedRotaton4() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).rotation4
+        return symmetryModelId.get(selectorIndex).rotation4
     }
 
     function getSelectedCanEdit0() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).canEdit0
+        return symmetryModelId.get(selectorIndex).canEdit0
     }
     function getSelectedCanEdit1() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).canEdit1
+        return symmetryModelId.get(selectorIndex).canEdit1
     }
     function getSelectedCanEdit2() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).canEdit2
+        return symmetryModelId.get(selectorIndex).canEdit2
     }
     function getSelectedCanEdit3() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).canEdit3
+        return symmetryModelId.get(selectorIndex).canEdit3
     }
     function getSelectedCanEdit4() {
-        if (selectedIndex < 0)
+        if (selectorIndex < 0)
             return ""
-        return symmetryModelId.get(selectedIndex).canEdit4
+        return symmetryModelId.get(selectorIndex).canEdit4
     }
 
     ListModel {
