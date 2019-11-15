@@ -5,6 +5,7 @@ ImageGeneratorPage {
     objectName: "HyperCloudsPage"
     id: hyperCloudsPageId
     shouldTileImage: false
+    canAugmentImage: false
 
     readonly property int invalidValue: -1
 
