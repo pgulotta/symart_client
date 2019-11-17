@@ -37,6 +37,8 @@ void FrontController::appMessageHandler( QtMsgType type,
              file,
              context.line,
              function );
+    emit FrontControllerInstance->messageGenerated( localMsg.constData() );
+    //emit FrontControllerInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
     break;
 
   case QtWarningMsg:
@@ -46,7 +48,8 @@ void FrontController::appMessageHandler( QtMsgType type,
              file,
              context.line,
              function );
-    emit FrontControllerInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
+    emit FrontControllerInstance->messageGenerated( localMsg.constData() );
+    //emit FrontControllerInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
     break;
 
   case QtCriticalMsg:
@@ -56,7 +59,8 @@ void FrontController::appMessageHandler( QtMsgType type,
              file,
              context.line,
              function );
-    emit FrontControllerInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
+    emit FrontControllerInstance->messageGenerated( localMsg.constData() );
+    //emit FrontControllerInstance->messageGenerated( displayMsg[displayMsg.count() - 1] );
     break;
 
   case QtFatalMsg:
