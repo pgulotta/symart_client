@@ -34,6 +34,7 @@
         <file>view/qml/QuasiOrbitTrapsPage.qml</file>
         <file>view/qml/QuasiperiodicStripesPage.qml</file>
         <file>view/qml/RandomizeDialog.qml</file>
+        <file>view/qml/RuleTypeSelector.qml</file>
         <file>view/qml/SelectorGroupBox.qml</file>
         <file>view/qml/SharedConstants.qml</file>
         <file>view/qml/SliderSelector.qml</file>

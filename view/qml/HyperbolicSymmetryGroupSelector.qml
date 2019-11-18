@@ -24,7 +24,6 @@ SelectorGroupBox {
 
     Column {
         id: columnId
-
         Tumbler {
             id: tumblerId
             height: selectorGroupBoxlId.height * 0.5
@@ -83,7 +82,6 @@ SelectorGroupBox {
             id: rowId
             focus: true
             spacing: smallPadding
-            leftPadding: smallPadding
             NumericInput {
                 id: rotation0Id
                 focus: true

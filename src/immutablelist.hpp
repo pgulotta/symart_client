@@ -17,7 +17,7 @@ public:
   Q_INVOKABLE  QStringList projectionTypes();
   Q_INVOKABLE  QStringList walkFillModes();
   Q_INVOKABLE  QStringList distributionNames();
-
+  Q_INVOKABLE  QStringList ruleTypes();
 
 private slots:
 
@@ -28,6 +28,7 @@ private:
   QStringList mProjectionTypes;
   QStringList mWalkFillModes;
   QStringList mDistributionNames;
+  QStringList mRuleTypes;
 
 };
 

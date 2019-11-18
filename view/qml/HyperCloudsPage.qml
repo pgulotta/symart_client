@@ -11,7 +11,7 @@ ImageGeneratorPage {
 
     function drawImage() {
         var rotationsList = assignRotations()
-        var query = Controller.getHyperbolicCloudsQuery(
+        imageSource = Controller.getHyperbolicCloudsQuery(
                     dimensionSelectorId.dimension,
                     groupSelectorId.selectorIndex,
                     projectionSelectorId.selectorIndex,
@@ -20,8 +20,6 @@ ImageGeneratorPage {
                     colorSelector1Id.selectedColor1,
                     colorSelector1Id.selectedColor2,
                     colorSelector1Id.selectedColor3)
-        console.log(query)
-        imageSource = query
     }
 
     function selectionDescription() {

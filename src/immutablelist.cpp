@@ -74,3 +74,25 @@ QStringList ImmutableList::distributionNames()
 
   return mDistributionNames;
 }
+
+QStringList ImmutableList::ruleTypes()
+{
+  if ( mRuleTypes.empty() ) {
+    mRuleTypes.append( "Cauchy" );
+    mRuleTypes.append( "Beads" );
+    mRuleTypes.append( "Cluster" );
+    mRuleTypes.append( "Curl" );
+    mRuleTypes.append( "Flower" );
+    mRuleTypes.append( "Fractal" );
+    mRuleTypes.append( "Granules" );
+    mRuleTypes.append( "Line" );
+    mRuleTypes.append( "Loop" );
+    mRuleTypes.append( "Orbit" );
+    mRuleTypes.append( "Star" );
+    mRuleTypes.append( "String" );
+    mRuleTypes.append( "Swirl" );
+    mRuleTypes.append( "Tree" );
+  }
+
+  return mRuleTypes;
+}
