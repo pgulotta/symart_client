@@ -335,3 +335,26 @@ QString FrontController::getHyperbolicCloudsQuery( int dimension, int symmetryGr
          .arg( color3.blue() )
          .arg( distributionIndex  );
 }
+
+QString FrontController::getLinessQuery( int dimension, int symmetryGroup, int colorCount,
+                                         const QString& ruleName1, int ruleWeight1, bool usePastelColors1,
+                                         const QString& ruleName2, int ruleWeight2, bool usePastelColors2,
+                                         const QString& ruleName3, int ruleWeight3, bool usePastelColors3 )
+{
+  return QString( "%1lines/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( dimension )
+         .arg( symmetryGroup )
+         .arg( colorCount )
+         .arg( ruleName1 )
+         .arg( ruleWeight1 )
+         .arg( usePastelColors1 )
+         .arg( ruleName2 )
+         .arg( ruleWeight2 )
+         .arg( usePastelColors2 )
+         .arg( ruleName3 )
+         .arg( ruleWeight3 )
+         .arg( usePastelColors3 );
+
+}

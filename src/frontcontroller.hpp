@@ -49,6 +49,10 @@ public:
                                          double thickness, double sharpness );
   Q_INVOKABLE QString getSquigglesUpdateQuery( int dimension, int symmetryGroup );
 
+  Q_INVOKABLE QString getLinessQuery( int dimension, int symmetryGroup, int colorCount,
+                                      const QString& ruleName1, int ruleWeight1, bool usePastelColors1,
+                                      const QString& ruleName2, int ruleWeight2, bool usePastelColors2,
+                                      const QString& ruleName3, int ruleWeight3, bool usePastelColors3 );
 
 private:
   QString mServiceId;

@@ -7,6 +7,8 @@ import com.twentysixapps.constants 1.0
 TextField {
     property bool canEdit: false
     property string defaultText: ""
+    property int minumumValue: 1
+
     implicitWidth: 20
     implicitHeight: 40
     focus: true
@@ -29,7 +31,7 @@ TextField {
     onTextEdited: {
         if (canEdit) {
             var input = parseInt(text)
-            text = (isNaN(input) || input <= 0) ? defaultText : input
+            text = (isNaN(input) || input < minumumValue) ? defaultText : input
         }
     }
 }

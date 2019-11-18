@@ -9,27 +9,15 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-        if (imageSelectorId.imagePaletteUrl === "") {
-            imageSource = Controller.getLinessQuery(
-                        colorCountSelectorId.dimension,
-                        dimensionSelectorId.dimension,
-                        symmetrySelectorId.selectorIndex,
-                        alphaSelectorId.dimension, exponentelectorId.dimension,
-                        thicknessSelectorId.dimension,
-                        sharpnessSelectorId.dimension)
-        } else {
-            Controller.loadColorsImage(imageSelectorId.imagePaletteName)
-            imageSource = Controller.getLinessQuery(
-                        colorCountSelectorId.dimension,
-                        imageSelectorId.saturationBoost,
-                        imageSelectorId.useHue, imageSelectorId.useSaturation,
-                        imageSelectorId.useBrightness,
-                        dimensionSelectorId.dimension,
-                        symmetrySelectorId.selectorIndex,
-                        alphaSelectorId.dimension, exponentelectorId.dimension,
-                        thicknessSelectorId.dimension,
-                        sharpnessSelectorId.dimension)
-        }
+        var query = Controller.getLinessQuery(
+                    dimensionSelectorId.dimension, symmetrySelectorId.selectorIndex,
+                    colorCountSelectorId.dimension, rule1Id.getRuleName(
+                        ), parseInt(rule1Id.weight), rule1Id.usePastelColors,
+                    rule2Id.getRuleName(), parseInt(rule2Id.weight),
+                    rule2Id.usePastelColors, rule3Id.getRuleName(), parseInt(
+                        rule3Id.weight), rule3Id.usePastelColors)
+        console.log(query)
+        imageSource = query
     }
 
     function selectionDescription() {
@@ -37,13 +25,6 @@ ImageGeneratorPage {
                 + symmetrySelectorId.title + "=" + ImmutableList.symmetryGroups(
                     )[symmetrySelectorId.selectorIndex] + ", "
                 + colorCountSelectorId.title + "=" + colorCountSelectorId.dimension
-    }
-
-    function updateImage() {
-        imageSource = ""
-        imageSource = Controller.getLinesUpdateQuery(
-                    dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex)
     }
 
     controlsView: RowLayout {
@@ -81,16 +62,16 @@ ImageGeneratorPage {
                 decimals: 0
             }
             RuleTypeSelector {
-                id: ruleType1Id
-                title: "Rule Type 1"
+                id: rule1Id
+                title: "Rule 1"
             }
             RuleTypeSelector {
-                id: ruleType2Id
-                title: "Rule Type 2"
+                id: rule2Id
+                title: "Rule 2"
             }
             RuleTypeSelector {
-                id: ruleType3Id
-                title: "Rule Type 3"
+                id: rule3Id
+                title: "Rule 3"
             }
 
             ImageSelector {

@@ -1,4 +1,4 @@
-﻿import QtQuick 2.13
+import QtQuick 2.13
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.3
@@ -8,6 +8,8 @@ SelectorGroupBox {
     id: selectorGroupBoxlId
 
     property alias selectorIndex: tumblerId.selectorIndex
+    property alias weight: weightId.text
+    property alias usePastelColors: usePastelColorsId.checked
 
     focus: true
     title: "Rule Type"
@@ -19,7 +21,7 @@ SelectorGroupBox {
             focus: true
             TumblerSelector {
                 id: tumblerId
-                title: "Rule"
+                title: "Type"
                 selectorModel: ImmutableList.ruleTypes()
                 height: 110
                 width: selectorGroupBoxlId.width * .5
@@ -32,16 +34,21 @@ SelectorGroupBox {
                 NumericInput {
                     id: weightId
                     canEdit: true
-                    text: "10"
-                    defaultText: "10"
+                    text: "1"
+                    defaultText: "1"
+                    minumumValue: 0
                 }
             }
         }
         Switch {
-            id: usePastelColorsSwitchId
+            id: usePastelColorsId
             width: 200
             text: qsTr("Use Pastel Colors")
             checked: false
         }
+    }
+
+    function getRuleName() {
+        return ImmutableList.ruleTypes()[selectorIndex]
     }
 }
