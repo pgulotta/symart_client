@@ -17,13 +17,12 @@ SelectorGroupBox {
         Row {
             id: rowId
             focus: true
-            spacing: smallPadding
-            leftPadding: smallPadding
             TumblerSelector {
                 id: tumblerId
                 title: "Rule"
                 selectorModel: ImmutableList.ruleTypes()
                 height: 110
+                width: selectorGroupBoxlId.width * .5
             }
             Column {
                 leftPadding: exlargePadding
