@@ -333,7 +333,7 @@ QString FrontController::getHyperbolicCloudsQuery( int dimension, int symmetryGr
          .arg( color3.red() )
          .arg( color3.green() )
          .arg( color3.blue() )
-         .arg( distributionIndex  );
+         .arg( distributionIndex );
 }
 
 QString FrontController::getLinessQuery( int dimension, int symmetryGroup, int colorCount,
@@ -359,7 +359,22 @@ QString FrontController::getLinessQuery( int dimension, int symmetryGroup, int c
 
 }
 
-QString FrontController::getHyperbolicLines(int dimension, int fdfIndex, int rotation0, int rotation1, int rotation2, int rotation3, int projType, int flipType, float thickness, float sharpness, int ncolors)
+QString FrontController::getHyperbolicLines( int dimension, int fdfIndex, int rotation0, int rotation1, int rotation2,
+                                             int rotation3, int projType, int flipType, double thickness, double sharpness, int colorCount )
 {
-
+  return QString( "%1hyperbolicLines/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13" )
+         .arg( QueryPrefix )
+         .arg( mServiceId )
+         .arg( dimension )
+         .arg( fdfIndex )
+         .arg( rotation0 )
+         .arg( rotation1 )
+         .arg( rotation2 )
+         .arg( rotation3 )
+         .arg( projType )
+         .arg( flipType )
+         .arg( thickness )
+         .arg( sharpness )
+         .arg( colorCount );
 }
+

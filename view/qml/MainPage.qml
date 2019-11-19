@@ -25,6 +25,7 @@ ApplicationWindow {
     readonly property int exlargePadding: 32
     readonly property int rectRadius: 10
     readonly property int borderWidth: 1
+    readonly property int invalidValue: -1
 
     property int pageHeight
 

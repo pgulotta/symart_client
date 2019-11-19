@@ -7,8 +7,6 @@ ImageGeneratorPage {
     shouldTileImage: false
     canAugmentImage: false
 
-    readonly property int invalidValue: -1
-
     function drawImage() {
         var rotationsList = assignRotations()
         imageSource = Controller.getHyperbolicCloudsQuery(
@@ -93,5 +91,22 @@ ImageGeneratorPage {
                 height: 150
             }
         }
+    }
+    function assignRotations() {
+        var rotationsList = new Array
+        if (groupSelectorId.canEdit0 && groupSelectorId.rotation0 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation0))
+        if (groupSelectorId.canEdit1 && groupSelectorId.rotation1 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation1))
+        if (groupSelectorId.canEdit2 && groupSelectorId.rotation2 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation2))
+        if (groupSelectorId.canEdit3 && groupSelectorId.rotation3 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation3))
+        if (groupSelectorId.canEdit4 && groupSelectorId.rotation4 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation4))
+        while (rotationsList.length < 4)
+            rotationsList.push(invalidValue)
+
+        return rotationsList
     }
 }

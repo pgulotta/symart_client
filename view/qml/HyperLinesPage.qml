@@ -6,18 +6,20 @@ import Qt.labs.platform 1.1 as Labs
 ImageGeneratorPage {
     objectName: "HyperLinesPage"
     id: hyperLinesPageId
-    imageSource: "qrc:/view/images/hyper-lines.png"
     shouldTileImage: false
+    canAugmentImage: false
 
     function drawImage() {
-
-        imageSource = Controller.getSquigglesQuery(
-                    colorCountSelectorId.dimension,
+        var rotationsList = assignRotations()
+        imageSource = Controller.getHyperbolicLines(
                     dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex,
-                    alphaSelectorId.dimension, exponentelectorId.dimension,
+                    groupSelectorId.selectorIndex, rotationsList[0],
+                    rotationsList[1], rotationsList[2], rotationsList[3],
+                    projectionSelectorId.selectorIndex,
+                    flipSelectorId.selectorIndex,
                     thicknessSelectorId.dimension,
-                    sharpnessSelectorId.dimension)
+                    sharpnessSelectorId.dimension,
+                    colorCountSelectorId.dimension)
     }
     function selectionDescription() {
         return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension + ", "
@@ -97,5 +99,22 @@ ImageGeneratorPage {
                 decimals: 2
             }
         }
+    }
+    function assignRotations() {
+        var rotationsList = new Array
+        if (groupSelectorId.canEdit0 && groupSelectorId.rotation0 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation0))
+        if (groupSelectorId.canEdit1 && groupSelectorId.rotation1 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation1))
+        if (groupSelectorId.canEdit2 && groupSelectorId.rotation2 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation2))
+        if (groupSelectorId.canEdit3 && groupSelectorId.rotation3 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation3))
+        if (groupSelectorId.canEdit4 && groupSelectorId.rotation4 !== "")
+            rotationsList.push(parseInt(groupSelectorId.rotation4))
+        while (rotationsList.length < 4)
+            rotationsList.push(invalidValue)
+
+        return rotationsList
     }
 }
