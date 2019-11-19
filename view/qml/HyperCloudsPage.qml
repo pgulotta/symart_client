@@ -1,4 +1,4 @@
-﻿import QtQuick 2.13
+import QtQuick 2.13
 import QtQuick.Layouts 1.3
 
 ImageGeneratorPage {
@@ -66,7 +66,6 @@ ImageGeneratorPage {
                 initialValue: 256
                 isAlwaysEven: true
             }
-
             HyperbolicSymmetryGroupSelector {
                 id: groupSelectorId
                 width: dimensionSelectorId.width
@@ -77,14 +76,14 @@ ImageGeneratorPage {
                 title: "Distribution"
                 selectorModel: ImmutableList.distributionNames()
                 width: dimensionSelectorId.width
-                height: colorSelector1Id.height
+                height: dimensionSelectorId.height
                 onSelectorModelChanged: selectorIndex = 1
             }
             TumblerSelector {
                 id: projectionSelectorId
                 title: "Projection"
                 selectorModel: ImmutableList.projectionTypes()
-                width: distributionSelectorId.width
+                width: dimensionSelectorId.width
                 height: dimensionSelectorId.height * 0.8
                 onSelectorModelChanged: selectorIndex = 0
             }
