@@ -358,3 +358,8 @@ QString FrontController::getLinessQuery( int dimension, int symmetryGroup, int c
          .arg( usePastelColors3 );
 
 }
+
+QString FrontController::getHyperbolicLines(int dimension, int fdfIndex, int rotation0, int rotation1, int rotation2, int rotation3, int projType, int flipType, float thickness, float sharpness, int ncolors)
+{
+
+}

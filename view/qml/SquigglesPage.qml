@@ -70,6 +70,11 @@ ImageGeneratorPage {
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
             }
+            ToolButton {
+                text: "Change Colors"
+                enabled: pageDescription !== ""
+                onClicked: updateImage()
+            }
             SliderSelector {
                 id: alphaSelectorId
                 title: "Alpha"
@@ -119,11 +124,6 @@ ImageGeneratorPage {
                 initialValue: 25
                 isAlwaysEven: false
                 decimals: 0
-            }
-            ToolButton {
-                text: "Change Colors"
-                enabled: pageDescription !== ""
-                onClicked: updateImage()
             }
 
             ImageSelector {

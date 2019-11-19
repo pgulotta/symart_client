@@ -56,7 +56,7 @@ ImageGeneratorPage {
                 title: "Fill Mode"
                 selectorModel: ImmutableList.walkFillModes()
                 width: widthSelectorId.width
-                height: width
+                height: heightSelectorId.height * 0.8
             }
             Switch {
                 id: balancedSwitchId

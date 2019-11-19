@@ -41,7 +41,7 @@ ImageGeneratorPage {
                 title: "Symmetry"
                 selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
-                height: width * 1.2
+                height: dimensionSelectorId.height
             }
 
             SliderSelector {

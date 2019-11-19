@@ -67,14 +67,6 @@ ImageGeneratorPage {
                 isAlwaysEven: true
             }
 
-            ColorsSelector {
-                id: colorSelector1Id
-                width: dimensionSelectorId.width
-                height: 200
-                selectedColor1: "#FFFF00"
-                selectedColor2: "#FF00FF"
-                selectedColor3: "#00FFFF"
-            }
             HyperbolicSymmetryGroupSelector {
                 id: groupSelectorId
                 width: dimensionSelectorId.width
@@ -85,7 +77,7 @@ ImageGeneratorPage {
                 title: "Distribution"
                 selectorModel: ImmutableList.distributionNames()
                 width: dimensionSelectorId.width
-                height: dimensionSelectorId.height
+                height: colorSelector1Id.height
                 onSelectorModelChanged: selectorIndex = 1
             }
             TumblerSelector {
@@ -93,8 +85,13 @@ ImageGeneratorPage {
                 title: "Projection"
                 selectorModel: ImmutableList.projectionTypes()
                 width: distributionSelectorId.width
-                height: width * 0.8
+                height: dimensionSelectorId.height * 0.8
                 onSelectorModelChanged: selectorIndex = 0
+            }
+            ColorsSelector {
+                id: colorSelector1Id
+                width: dimensionSelectorId.width
+                height: 150
             }
         }
     }

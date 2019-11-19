@@ -54,6 +54,9 @@ public:
                                       const QString& ruleName2, int ruleWeight2, bool usePastelColors2,
                                       const QString& ruleName3, int ruleWeight3, bool usePastelColors3 );
 
+  Q_INVOKABLE QString getHyperbolicLines( int dimension, int fdfIndex, int rotation0, int rotation1,
+                                          int rotation2, int rotation3, int projType, int flipType, float thickness, float sharpness, int ncolors );
+
 private:
   QString mServiceId;
   NetworkQueryController mNetworkQueryController;

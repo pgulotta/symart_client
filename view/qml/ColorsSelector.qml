@@ -16,24 +16,27 @@ SelectorGroupBox {
 
     Column {
         id: colorsColumnId
-        spacing: mediumPadding
+        spacing: 0
 
         ColorSelector {
             id: colorSelector1Id
             width: 80
-            height: 40
+            height: 32
+            selectedColor: "#FFFF00"
         }
 
         ColorSelector {
             id: colorSelector2Id
             width: 80
-            height: 40
+            height: 32
+            selectedColor: "#FF00FF"
         }
 
         ColorSelector {
             id: colorSelector3Id
             width: 80
-            height: 40
+            height: 32
+            selectedColor: "#00FFFF"
         }
     }
 }
