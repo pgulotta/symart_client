@@ -9,15 +9,16 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-        var query = Controller.getLinessQuery(
-                    dimensionSelectorId.dimension, symmetrySelectorId.selectorIndex,
-                    colorCountSelectorId.dimension, rule1Id.getRuleName(
-                        ), parseInt(rule1Id.weight), rule1Id.usePastelColors,
-                    rule2Id.getRuleName(), parseInt(rule2Id.weight),
-                    rule2Id.usePastelColors, rule3Id.getRuleName(), parseInt(
-                        rule3Id.weight), rule3Id.usePastelColors)
-        console.log(query)
-        imageSource = query
+        imageSource = Controller.getLinessQuery(dimensionSelectorId.dimension,
+                                                symmetrySelectorId.selectorIndex, colorCountSelectorId.dimension,
+                                                rule1Id.getRuleName(),
+                                                parseInt(rule1Id.weight),
+                                                rule1Id.usePastelColors, rule2Id.getRuleName(
+                                                    ), parseInt(
+                                                    rule2Id.weight), rule2Id.usePastelColors,
+                                                rule3Id.getRuleName(),
+                                                parseInt(rule3Id.weight),
+                                                rule3Id.usePastelColors)
     }
 
     function selectionDescription() {

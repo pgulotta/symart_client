@@ -21,6 +21,8 @@ SelectorGroupBox {
     Column {
         TextField {
             id: sizeTextId
+            overwriteMode: true
+            selectByMouse: true
             horizontalAlignment: Text.AlignHCenter
             Layout.leftMargin: mediumPadding
             onTextChanged: sizeSliderId.value = formatValue(text)
