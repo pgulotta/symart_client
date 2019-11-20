@@ -1,4 +1,5 @@
 #include "frontcontroller.hpp"
+#include "immutablelist.hpp"
 #include <QApplication>
 #include <QUuid>
 #include <QStandardPaths>
@@ -377,4 +378,32 @@ QString FrontController::getHyperbolicLines( int dimension, int fdfIndex, int ro
          .arg( sharpness )
          .arg( colorCount );
 }
+
+QString FrontController::getQuasiTrapQuery( int functionIndex, int width, int height, int symmetryValueIndex,
+                                            double quasiperiod )
+{
+  QString query;
+
+  if (  ImmutableList::isPolynomialFunction( functionIndex ) ) {
+    query = QString( "%1quasiTrapPoly/%2/%3/%4/%5/%6" )
+            .arg( QueryPrefix )
+            .arg( mServiceId )
+            .arg( width )
+            .arg( height )
+            .arg( symmetryValueIndex )
+            .arg( quasiperiod );
+  } else {
+    query = QString( "%1quasiTrap/%2/%3/%4/%5/%6" )
+            .arg( QueryPrefix )
+            .arg( mServiceId )
+            .arg( width )
+            .arg( height )
+            .arg( symmetryValueIndex )
+            .arg( quasiperiod );
+  }
+
+  qDebug() << query;
+  return query;
+}
+
 

@@ -58,6 +58,9 @@ public:
                                           int rotation2, int rotation3, int projType, int flipType,
                                           double thickness, double sharpness, int colorCount );
 
+  Q_INVOKABLE QString getQuasiTrapQuery( int functionIndex,  int width, int height, int symmetryValueIndex,
+                                         double quasiperiod );
+
 private:
   QString mServiceId;
   NetworkQueryController mNetworkQueryController;

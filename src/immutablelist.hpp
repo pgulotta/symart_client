@@ -21,6 +21,8 @@ public:
   Q_INVOKABLE  QStringList quasiSymmetry();
   Q_INVOKABLE  QStringList formTypes();
 
+  static bool isPolynomialFunction( int functionIndex );
+
 private:
   QStringList mSymmetryGroups;
   QStringList mFlipTypes;

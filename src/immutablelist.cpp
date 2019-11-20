@@ -119,5 +119,10 @@ QStringList ImmutableList::formTypes()
   return mFormTypes;
 }
 
+bool ImmutableList::isPolynomialFunction( int functionIndex )
+{
+  return functionIndex != 0 ;
+}
+
 
 
