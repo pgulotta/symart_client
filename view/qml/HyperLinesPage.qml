@@ -92,7 +92,7 @@ ImageGeneratorPage {
                 width: colorCountSelectorId.width
                 title: "Sharpness"
                 fromValue: 0.0
-                toValue: 1000
+                toValue: 99
                 stepValue: 1
                 initialValue: 2
                 isAlwaysEven: false
