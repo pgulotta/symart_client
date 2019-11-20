@@ -18,9 +18,8 @@ public:
   Q_INVOKABLE  QStringList walkFillModes();
   Q_INVOKABLE  QStringList distributionNames();
   Q_INVOKABLE  QStringList ruleTypes();
-
-private slots:
-
+  Q_INVOKABLE  QStringList quasiSymmetry();
+  Q_INVOKABLE  QStringList formTypes();
 
 private:
   QStringList mSymmetryGroups;
@@ -29,6 +28,9 @@ private:
   QStringList mWalkFillModes;
   QStringList mDistributionNames;
   QStringList mRuleTypes;
+  QStringList mQuasiSymmetry;
+  QStringList mFormTypes;
+
 
 };
 

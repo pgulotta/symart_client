@@ -96,3 +96,28 @@ QStringList ImmutableList::ruleTypes()
 
   return mRuleTypes;
 }
+
+QStringList ImmutableList::quasiSymmetry()
+{
+  if ( mQuasiSymmetry.empty() ) {
+    mQuasiSymmetry.append( "5" );
+    mQuasiSymmetry.append( "8" );
+    mQuasiSymmetry.append( "10" );
+    mQuasiSymmetry.append( "12" );
+  }
+
+  return mQuasiSymmetry;
+}
+
+QStringList ImmutableList::formTypes()
+{
+  if ( mFormTypes.empty() ) {
+    mFormTypes.append( "Trigonometric" );
+    mFormTypes.append( "Polynomial" );
+  }
+
+  return mFormTypes;
+}
+
+
+
