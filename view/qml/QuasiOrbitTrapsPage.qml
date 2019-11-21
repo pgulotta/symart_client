@@ -40,7 +40,7 @@ ImageGeneratorPage {
                 fromValue: 2
                 toValue: 2048
                 stepValue: 1
-                initialValue: 256
+                initialValue: 512
                 isAlwaysEven: false
             }
             SliderSelector {
@@ -49,7 +49,7 @@ ImageGeneratorPage {
                 fromValue: 2
                 toValue: 2048
                 stepValue: 1
-                initialValue: 256
+                initialValue: 512
                 isAlwaysEven: false
             }
             SliderSelector {
@@ -57,8 +57,8 @@ ImageGeneratorPage {
                 title: "Quasiperiod"
                 fromValue: 1.00
                 toValue: 1024.00
-                stepValue:1
-                initialValue: 100.00
+                stepValue: 1
+                initialValue: 128.00
                 isAlwaysEven: false
                 decimals: 2
             }
