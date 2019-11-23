@@ -56,7 +56,7 @@ ImageGeneratorPage {
                 id: quasiperiodSelectorId
                 title: "Quasiperiod"
                 fromValue: 1.00
-                toValue: 1024.00
+                toValue: maxImageDimension
                 stepValue: 1
                 initialValue: 128.00
                 isAlwaysEven: false

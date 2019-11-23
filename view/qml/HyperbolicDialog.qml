@@ -36,7 +36,7 @@ Dialog {
                 id: sizeSelectorId
                 title: "Size"
                 fromValue: 2
-                toValue: 1024
+                toValue: maxImageDimension
                 initialValue: 256
                 isAlwaysEven: true
             }
@@ -46,6 +46,7 @@ Dialog {
                 selectorModel: ImmutableList.projectionTypes()
                 width: sizeSelectorId.width
                 height: width * 0.8
+                onSelectorModelChanged: selectorIndex = 0
             }
         }
     }

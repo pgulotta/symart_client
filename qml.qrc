@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>qtquickcontrols2.conf</file>
-        <file>view/images/celluar-automata.png</file>
         <file>view/images/clouds.png</file>
         <file>view/images/clusters.png</file>
         <file>view/images/hyper-clouds.png</file>
         <file>view/images/hyper-lines.png</file>
+        <file>view/images/info.png</file>
         <file>view/images/lines.png</file>
         <file>view/images/orbit-traps.png</file>
         <file>view/images/quasi-orbit-traps.png</file>
@@ -13,7 +13,6 @@
         <file>view/images/squiggles.png</file>
         <file>view/images/stripes.png</file>
         <file>view/images/walks.png</file>
-        <file>view/qml/CelluarAutomataPage.qml</file>
         <file>view/qml/CloudsPage.qml</file>
         <file>view/qml/ClustersPage.qml</file>
         <file>view/qml/ColorSelector.qml</file>
@@ -27,6 +26,7 @@
         <file>view/qml/ImageFileExtensionDialog.qml</file>
         <file>view/qml/ImageGeneratorPage.qml</file>
         <file>view/qml/ImageSelector.qml</file>
+        <file>view/qml/InfoPage.qml</file>
         <file>view/qml/LinesPage.qml</file>
         <file>view/qml/MainPage.qml</file>
         <file>view/qml/NumericInput.qml</file>

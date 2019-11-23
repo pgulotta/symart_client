@@ -32,11 +32,11 @@ public slots:
 
 public:
   enum class Topic {
-    CelluarAutomata,
     Clouds,
     Clusters,
     HyperClouds,
     HyperLines,
+    Info,
     Lines,
     OrbitTraps,
     QuasiOrbitTraps,

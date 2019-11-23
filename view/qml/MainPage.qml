@@ -14,6 +14,7 @@ ApplicationWindow {
     property bool isPortraitMode: windowHeight > windowWidth
     property bool isWideWidth: windowHeight < windowWidth
 
+    readonly property int maxImageDimension: 2048
     readonly property int imageControlsWidth: 180
     readonly property int dialogHeight: 450
     readonly property int dialogWidth: 350

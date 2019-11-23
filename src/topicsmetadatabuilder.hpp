@@ -70,12 +70,6 @@ private:
   void build()
   {
     mTopicsMetaData.append( new TopicMetaData{
-      TopicMetaData::Topic::CelluarAutomata,
-      "Celluar Automata",
-      "qrc:/view/images/celluar-automata.png",
-      "qrc:/view/qml/CelluarAutomataPage.qml",
-      "Celluar Automata Help...."} );
-    mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Clouds,
       "Clouds",
       "qrc:/view/images/clouds.png",
@@ -141,12 +135,12 @@ private:
       "qrc:/view/images/walks.png",
       "qrc:/view/qml/WalksPage.qml",
       "Walk Help ..."} );
-
-
-
-
-
-
+    mTopicsMetaData.append( new TopicMetaData{
+      TopicMetaData::Topic::Info,
+      "App Info",
+      "qrc:/view/images/info.png",
+      "qrc:/view/qml/InfoPage.qml",
+      "Application Info ..."} );
   }
 
   QList<QObject*> mTopicsMetaData;

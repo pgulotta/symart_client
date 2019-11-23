@@ -37,7 +37,7 @@ ImageGeneratorPage {
                 id: widthSelectorId
                 title: "Width"
                 fromValue: 2
-                toValue: 1024
+                toValue: maxImageDimension
                 stepValue: 2
                 initialValue: 256
                 isAlwaysEven: false
@@ -46,7 +46,7 @@ ImageGeneratorPage {
                 id: heightSelectorId
                 title: "Height"
                 fromValue: 2
-                toValue: 1024
+                toValue: maxImageDimension
                 stepValue: 2
                 initialValue: 256
                 isAlwaysEven: false

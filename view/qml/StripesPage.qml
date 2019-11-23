@@ -31,7 +31,7 @@ ImageGeneratorPage {
             SliderSelector {
                 id: dimensionSelectorId
                 fromValue: 2
-                toValue: 1024
+                toValue: maxImageDimension
                 stepValue: 2
                 initialValue: 256
             }
@@ -46,10 +46,10 @@ ImageGeneratorPage {
 
             SliderSelector {
                 id: alphaSelectorId
-                title: "Alpha"
-                fromValue: 0.01
+                title: "Alpha Blending"
+                fromValue: 0.04
                 toValue: 2.0
-                stepValue: 0.01
+                stepValue: 0.1
                 initialValue: 1.5
                 isAlwaysEven: false
                 decimals: 2

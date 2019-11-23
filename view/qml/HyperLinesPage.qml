@@ -40,7 +40,7 @@ ImageGeneratorPage {
                 id: dimensionSelectorId
                 width: colorCountSelectorId.width
                 fromValue: 2
-                toValue: 1024
+                toValue: maxImageDimension
                 stepValue: 2
                 initialValue: 256
                 isAlwaysEven: true
