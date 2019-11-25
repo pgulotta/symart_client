@@ -15,9 +15,9 @@ ImageGeneratorPage {
                     projectionSelectorId.selectorIndex,
                     distributionSelectorId.selectorIndex, rotationsList[0],
                     rotationsList[1], rotationsList[2], rotationsList[3],
-                    colorSelector1Id.selectedColor1,
-                    colorSelector1Id.selectedColor2,
-                    colorSelector1Id.selectedColor3)
+                    colorSelectorId.selectedColor1,
+                    colorSelectorId.selectedColor2,
+                    colorSelectorId.selectedColor3)
     }
 
     function selectionDescription() {
@@ -86,7 +86,7 @@ ImageGeneratorPage {
                 onSelectorModelChanged: selectorIndex = 0
             }
             ColorsSelector {
-                id: colorSelector1Id
+                id: colorSelectorId
                 width: dimensionSelectorId.width
                 height: 150
             }

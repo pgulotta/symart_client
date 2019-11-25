@@ -164,11 +164,14 @@ void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QS
   mNetworkQueryController.runGetRequest( attributes, query );
 }
 
-QString FrontController::getOrbitTrapQuery( int dimension, int symmetryGroup )
+QString FrontController::getOrbitTrapQuery( QColor color, int dimension, int symmetryGroup )
 {
-  return QString( "%1trap/%2/%3/%4" )
+  return QString( "%1trap/%2/%3/%4/%5/%6/%7" )
          .arg( QueryPrefix )
          .arg( mServiceId )
+         .arg( color.red() )
+         .arg( color.green() )
+         .arg( color.blue() )
          .arg( dimension )
          .arg( symmetryGroup );
 }
@@ -193,11 +196,14 @@ QString FrontController::getStripesQuery( int dimension, int symmetryGroup, doub
          .arg( alpha );
 }
 
-QString FrontController::getQuasiperiodicStripesQuery( int dimension, int quasiperiod, double alpha )
+QString FrontController::getQuasiperiodicStripesQuery( QColor color, int dimension, int quasiperiod, double alpha )
 {
-  return QString( "%1quasiPeriodicStripes/%2/%3/%4/%5" )
+  return QString( "%1quasiPeriodicStripes/%2/%3/%4/%5%6/%7/%8" )
          .arg( QueryPrefix )
          .arg( mServiceId )
+         .arg( color.red() )
+         .arg( color.green() )
+         .arg( color.blue() )
          .arg( dimension )
          .arg( quasiperiod )
          .arg( alpha );
@@ -379,23 +385,30 @@ QString FrontController::getHyperbolicLines( int dimension, int fdfIndex, int ro
          .arg( colorCount );
 }
 
-QString FrontController::getQuasiTrapQuery( int functionIndex, int width, int height, int symmetryValueIndex,
+QString FrontController::getQuasiTrapQuery( QColor color, int functionIndex, int width, int height,
+                                            int symmetryValueIndex,
                                             double quasiperiod )
 {
   QString query;
 
   if (  ImmutableList::isPolynomialFunction( functionIndex ) ) {
-    query = QString( "%1quasiTrapPoly/%2/%3/%4/%5/%6" )
+    query = QString( "%1quasiTrapPoly/%2/%3/%4/%5/%6/%7/%8/%9" )
             .arg( QueryPrefix )
             .arg( mServiceId )
+            .arg( color.red() )
+            .arg( color.green() )
+            .arg( color.blue() )
             .arg( width )
             .arg( height )
             .arg( symmetryValueIndex )
             .arg( quasiperiod );
   } else {
-    query = QString( "%1quasiTrap/%2/%3/%4/%5/%6" )
+    query = QString( "%1quasiTrap/%2/%3/%4/%5/%6/%7/%8/%9" )
             .arg( QueryPrefix )
             .arg( mServiceId )
+            .arg( color.red() )
+            .arg( color.green() )
+            .arg( color.blue() )
             .arg( width )
             .arg( height )
             .arg( symmetryValueIndex )

@@ -11,6 +11,7 @@ ImageGeneratorPage {
 
     function drawImage() {
         imageSource = Controller.getQuasiTrapQuery(
+                    colorSelectorId.selectedColor,
                     functionSelectorId.selectorIndex,
                     widthSelectorId.dimension, heightSelectorId.dimension,
                     symmetrySelectorId.selectorIndex,
@@ -52,6 +53,11 @@ ImageGeneratorPage {
                 initialValue: 512
                 isAlwaysEven: false
             }
+            ColorSelector {
+                id: colorSelectorId
+                selectedColor: "white"
+                width: 100
+            }
             SliderSelector {
                 id: quasiperiodSelectorId
                 title: "Quasiperiod"
@@ -68,6 +74,7 @@ ImageGeneratorPage {
                 selectorModel: ImmutableList.quasiSymmetry()
                 width: quasiperiodSelectorId.width
                 height: quasiperiodSelectorId.height * 0.8
+                onSelectorModelChanged: selectorIndex = 0
             }
             TumblerSelector {
                 id: functionSelectorId

@@ -8,6 +8,7 @@ ImageGeneratorPage {
 
     function drawImage() {
         imageSource = Controller.getOrbitTrapQuery(
+                    colorSelectorId.selectedColor,
                     dimensionSelectorId.dimension,
                     symmetrySelectorId.selectorIndex)
     }
@@ -24,6 +25,7 @@ ImageGeneratorPage {
         width: parent.width
         height: parent.height
         Column {
+            id: columnId
             spacing: exlargePadding
             leftPadding: largePadding
 
@@ -41,6 +43,11 @@ ImageGeneratorPage {
                 selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
+            }
+            ColorSelector {
+                id: colorSelectorId
+                selectedColor: "white"
+                width: 100
             }
         }
     }

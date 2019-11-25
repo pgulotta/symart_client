@@ -34,10 +34,10 @@ public:
   Q_INVOKABLE QString getHyperbolicCloudsQuery( int dimension, int symmetryGroup, int projType, int distributionIndex,
                                                 int rotation0, int rotation1, int rotation2, int rotation3,
                                                 QColor color1, QColor color2, QColor color3 );
-  Q_INVOKABLE QString getOrbitTrapQuery( int dimension, int symmetryGroup );
+  Q_INVOKABLE QString getOrbitTrapQuery( QColor color, int dimension, int symmetryGroup );
   Q_INVOKABLE QString getClustersQuery( int dimension, int symmetryGroup, double alpha );
   Q_INVOKABLE QString getStripesQuery( int dimension, int symmetryGroup, double alpha );
-  Q_INVOKABLE QString getQuasiperiodicStripesQuery( int dimension, int quasiperiod, double alpha );
+  Q_INVOKABLE QString getQuasiperiodicStripesQuery( QColor color, int dimension, int quasiperiod, double alpha );
   Q_INVOKABLE QString getRandomizeQuery( int x, int y );
   Q_INVOKABLE QString getHyperbolicImageQuery( int size,  int projectionType );
   Q_INVOKABLE QString getWalkImageQuery( int width, int height, int mode,  bool isBalanced,  bool isTileable );
@@ -58,7 +58,7 @@ public:
                                           int rotation2, int rotation3, int projType, int flipType,
                                           double thickness, double sharpness, int colorCount );
 
-  Q_INVOKABLE QString getQuasiTrapQuery( int functionIndex,  int width, int height, int symmetryValueIndex,
+  Q_INVOKABLE QString getQuasiTrapQuery( QColor color, int functionIndex,  int width, int height, int symmetryValueIndex,
                                          double quasiperiod );
 
 private:

@@ -9,7 +9,7 @@ RowLayout {
 
     property alias selectedColor: selectedColorId.color
 
-    height: 50
+    height: 32
     width: parent.width
     spacing: 0
 
