@@ -60,7 +60,7 @@ ImageGeneratorPage {
                 id: dimensionSelectorId
                 fromValue: 2
                 toValue: maxImageDimension
-                stepValue: 2
+                stepValue: 1
                 initialValue: 256
                 isAlwaysEven: true
             }

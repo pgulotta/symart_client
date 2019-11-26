@@ -32,7 +32,7 @@ ImageGeneratorPage {
                 id: dimensionSelectorId
                 fromValue: 2
                 toValue: maxImageDimension
-                stepValue: 2
+                stepValue: 1
                 initialValue: 256
             }
 
@@ -40,7 +40,7 @@ ImageGeneratorPage {
                 id: quasiperiodId
                 title: "Quasiperiod"
                 fromValue: 2
-                toValue: 256
+                toValue: 64
                 stepValue: 1
                 initialValue: 16
                 isAlwaysEven: false

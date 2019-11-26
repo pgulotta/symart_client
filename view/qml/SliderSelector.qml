@@ -25,7 +25,7 @@ SelectorGroupBox {
             selectByMouse: true
             horizontalAlignment: Text.AlignHCenter
             Layout.leftMargin: mediumPadding
-            onTextChanged: sizeSliderId.value = formatValue(text)
+            onActiveFocusChanged: sizeSliderId.value = formatValue(text)
         }
 
         Slider {

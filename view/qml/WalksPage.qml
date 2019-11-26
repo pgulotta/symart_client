@@ -38,7 +38,7 @@ ImageGeneratorPage {
                 title: "Width"
                 fromValue: 2
                 toValue: maxImageDimension
-                stepValue: 2
+                stepValue: 1
                 initialValue: 256
                 isAlwaysEven: false
             }
@@ -47,7 +47,7 @@ ImageGeneratorPage {
                 title: "Height"
                 fromValue: 2
                 toValue: maxImageDimension
-                stepValue: 2
+                stepValue: 1
                 initialValue: 256
                 isAlwaysEven: false
             }

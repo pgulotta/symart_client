@@ -196,14 +196,11 @@ QString FrontController::getStripesQuery( int dimension, int symmetryGroup, doub
          .arg( alpha );
 }
 
-QString FrontController::getQuasiperiodicStripesQuery( QColor color, int dimension, int quasiperiod, double alpha )
+QString FrontController::getQuasiperiodicStripesQuery( int dimension, int quasiperiod, double alpha )
 {
-  return QString( "%1quasiPeriodicStripes/%2/%3/%4/%5%6/%7/%8" )
+  return QString( "%1quasiPeriodicStripes/%2/%3/%4/%5" )
          .arg( QueryPrefix )
          .arg( mServiceId )
-         .arg( color.red() )
-         .arg( color.green() )
-         .arg( color.blue() )
          .arg( dimension )
          .arg( quasiperiod )
          .arg( alpha );

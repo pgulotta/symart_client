@@ -69,7 +69,7 @@ Column {
         title: "Saturation Boost"
         fromValue: 0.01
         toValue: 3.0
-        stepValue: 0.01
+        stepValue: 0.1
         initialValue: 1.5
         isAlwaysEven: false
         decimals: 2
