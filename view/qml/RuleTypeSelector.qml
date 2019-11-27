@@ -7,6 +7,7 @@ import com.twentysixapps.constants 1.0
 SelectorGroupBox {
     id: selectorGroupBoxlId
 
+    property int initialIndex: 0
     property alias selectorIndex: tumblerId.selectorIndex
     property alias weight: weightId.text
     property alias usePastelColors: usePastelColorsId.checked
@@ -25,6 +26,7 @@ SelectorGroupBox {
                 selectorModel: ImmutableList.ruleTypes()
                 height: 110
                 width: selectorGroupBoxlId.width * .5
+                onSelectorModelChanged: selectorIndex = initialIndex
             }
             Column {
                 leftPadding: exlargePadding

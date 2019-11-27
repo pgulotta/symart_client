@@ -65,14 +65,17 @@ ImageGeneratorPage {
             RuleTypeSelector {
                 id: rule1Id
                 title: "Rule 1"
+                initialIndex: 1
             }
             RuleTypeSelector {
                 id: rule2Id
                 title: "Rule 2"
+                initialIndex: 3
             }
             RuleTypeSelector {
                 id: rule3Id
                 title: "Rule 3"
+                initialIndex: 5
             }
 
             ImageSelector {

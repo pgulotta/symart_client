@@ -4,8 +4,6 @@ QT += gui \
     quickcontrols2 \
     network
 
-
-
 CONFIG +=  c++1z
 #CONFIG += qtquickcompiler
 
@@ -19,12 +17,6 @@ SOURCES += $$files(*.cpp, true)
 RESOURCES += qml.qrc
 
 QML_IMPORT_PATH += $$PWD`
-QML_DESIGNER_IMPORT_PATH =
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
 message(****  SymArt.Pro  ****)
 message(Qt version: $$[QT_VERSION])
