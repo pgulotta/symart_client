@@ -3,7 +3,7 @@
 #include <QNetworkReply>
 #include <QImageWriter>
 #include <QImage>
-#include <QDebug>
+
 
 QImage imageFromByteArray( const QByteArray& ba )
 {
@@ -40,7 +40,7 @@ void NetworkQueryController::runGetRequest( const QStringList& attributes, const
     request.setAttribute( QNetworkRequest::Attribute::User, QVariant( attributes ) );
     mNetworkAccessManager.get( request );
   } catch ( std::exception const& e ) {
-    qWarning() << Q_FUNC_INFO << e.what();
+    //qWarning() << Q_FUNC_INFO << e.what();
     emit networkQueryMessage( QString{e.what()} );
   }
 }
@@ -61,12 +61,12 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
       break;
 
     case QueryType::ImageColors:
-      qDebug() << Q_FUNC_INFO << networkReply->readAll();
+      //  qDebug() << Q_FUNC_INFO << networkReply->readAll();
       break;
     }
 
   } catch ( std::exception const& e ) {
-    qWarning() << Q_FUNC_INFO << e.what();
+    //qWarning() << Q_FUNC_INFO << e.what();
     emit networkQueryMessage( e.what() );
   }
 
@@ -76,7 +76,7 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 void NetworkQueryController::saveToFile( const QByteArray& source, const QString& destination ) const
 {
   auto filename = QUrl::fromUserInput( destination ).toLocalFile();
-  qInfo() << Q_FUNC_INFO <<  "Local filename = " << filename;
+  //qInfo() << Q_FUNC_INFO <<  "Local filename = " << filename;
   QImageWriter writer( filename );
 
   QString message;

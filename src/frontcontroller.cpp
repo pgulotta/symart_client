@@ -1,6 +1,6 @@
 #include "frontcontroller.hpp"
 #include "immutablelist.hpp"
-#include <QApplication>
+#include <QGuiApplication>
 #include <QUuid>
 #include <QStandardPaths>
 #include <QDir>
@@ -95,12 +95,12 @@ FrontController::FrontController( QObject* parent )
 
 QString FrontController::applicationTitle() const
 {
-  return QApplication::applicationName();
+  return QGuiApplication::applicationName();
 }
 
 QString FrontController::applicationVersion() const
 {
-  return QApplication::applicationVersion();
+  return QGuiApplication::applicationVersion();
 }
 
 QByteArray toByteArray( const QString& colorImagePath )

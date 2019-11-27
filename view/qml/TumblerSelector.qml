@@ -13,7 +13,7 @@ SelectorGroupBox {
         id: tumblerId
         implicitHeight: parent.height
         wrap: true
-        onModelChanged: currentIndex = model.length / 2
+        onModelChanged: currentIndex = model.length / 3
         width: selectorGroupBoxlId.width * .9
         delegate: Text {
             id: delegateId

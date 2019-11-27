@@ -1,11 +1,12 @@
 TEMPLATE = app
 
 QT += core \
+    gui \
     qml \
     quick \
     quickcontrols2 \
     network
-QT += widgets
+
 
 
 CONFIG +=  c++1z
