@@ -3,7 +3,6 @@
 #include <QGuiApplication>
 #include <QQmlContext>
 #include <QQmlApplicationEngine>
-#include <QDebug>
 #include <QSettings>
 #include <QVariant>
 

@@ -412,7 +412,6 @@ QString FrontController::getQuasiTrapQuery( QColor color, int functionIndex, int
             .arg( quasiperiod );
   }
 
-  qDebug() << query;
   return query;
 }
 
