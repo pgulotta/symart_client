@@ -18,8 +18,6 @@ HEADERS += $$files(*.hpp, true)
 
 SOURCES += $$files(*.cpp, true)
 
-INCLUDEPATH += $$PWD/../symart_server/src/shared
-
 RESOURCES += qml.qrc
 
 QML_IMPORT_PATH += $$PWD`
