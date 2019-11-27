@@ -1,9 +1,6 @@
 TEMPLATE = app
 
-QT += core \
-    gui \
-    qml \
-    quick \
+QT += gui \
     quickcontrols2 \
     network
 
