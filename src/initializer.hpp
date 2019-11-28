@@ -16,7 +16,7 @@ public:
 
 
 private:
-  void initSettings();
+  //void initSettings();
   void initQml();
 
 private:
