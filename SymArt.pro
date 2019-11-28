@@ -18,6 +18,12 @@ RESOURCES += qml.qrc
 
 QML_IMPORT_PATH += $$PWD`
 
+wasm {
+QMAKE_LFLAGS += --emrun
+}
+
+#QMAKE_WASM_TOTAL_MEMORY=65536000
+
 message(****  SymArt.Pro  ****)
 message(Qt version: $$[QT_VERSION])
 message(Qt is installed in $$[QT_INSTALL_PREFIX])
@@ -32,6 +38,7 @@ message(Translation files: $$[QT_INSTALL_TRANSLATIONS])
 message(Settings: $$[QT_INSTALL_CONFIGURATION])
 message(PWD = $$PWD)
 message(INCLUDEPATH = $$INCLUDEPATH)
+message(QMAKE_WASM_TOTAL_MEMORY = $$QMAKE_WASM_TOTAL_MEMORY)
 message(TEST_SOURCE_DIR = $$TEST_SOURCE_DIR)
 message(GOOGLETEST_DIR = $$GOOGLETEST_DIR)
 message(ANDROID_EXTRA_LIBS = $$ANDROID_EXTRA_LIBS)
