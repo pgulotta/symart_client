@@ -27,15 +27,15 @@ public:
     : QObject( parent )
   {
     build();
-    load();
+    //load();
   }
 
   ~TopicsMetaDataBuilder() { qDeleteAll( mTopicsMetaData ); }
 
   const QList<QObject*>& topicsMetaData() const { return mTopicsMetaData; }
 
-  void load()
-  {
+// void load()
+// {
 //    QSettings settings;
 //    settings.beginGroup( Constants::TopicsMetaDataTitle );
 
@@ -46,10 +46,10 @@ public:
 
 //    settings.endGroup();
 //    std::sort( mTopicsMetaData.begin(), mTopicsMetaData.end(), TopicsMetaDataSort() );
-  }
+// }
 
-  void store( const QStringList& data )
-  {
+// void store( const QStringList& data )
+// {
 //    QSettings settings;
 //    settings.beginGroup( Constants::TopicsMetaDataTitle );
 //    int index = 0;
@@ -60,7 +60,7 @@ public:
 
 //    settings.endGroup();
 //    load();
-  }
+// }
 
 signals:
 
