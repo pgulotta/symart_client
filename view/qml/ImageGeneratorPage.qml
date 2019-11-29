@@ -1,9 +1,7 @@
 ﻿import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.13
 import QtQuick.Window 2.13
-import Qt.labs.platform 1.1
 import com.twentysixapps.constants 1.0
 
 Page {
@@ -44,13 +42,6 @@ Page {
             horizontalAlignment: Label.AlignHCenter
             font.pointSize: smallFontPointSize
             wrapMode: Label.WordWrap
-            layer.enabled: true
-            layer.effect: DropShadow {
-                verticalOffset: 2
-                color: Constants.backColor
-                radius: 1
-                samples: 3
-            }
         }
 
         Label {
