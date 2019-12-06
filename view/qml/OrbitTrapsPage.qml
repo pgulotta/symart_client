@@ -7,10 +7,9 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-        imageSource = Controller.getOrbitTrapQuery(
-                    colorSelectorId.selectedColor,
-                    dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex)
+        Controller.generateOrbitTrapImage(colorSelectorId.selectedColor,
+                                          dimensionSelectorId.dimension,
+                                          symmetrySelectorId.selectorIndex)
     }
 
     function selectionDescription() {

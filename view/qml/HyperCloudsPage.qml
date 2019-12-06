@@ -9,7 +9,7 @@ ImageGeneratorPage {
 
     function drawImage() {
         var rotationsList = assignRotations()
-        imageSource = Controller.getHyperbolicCloudsQuery(
+        Controller.generateHyperbolicCloudsImage(
                     dimensionSelectorId.dimension,
                     groupSelectorId.selectorIndex,
                     projectionSelectorId.selectorIndex,

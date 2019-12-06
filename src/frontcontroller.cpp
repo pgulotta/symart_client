@@ -144,16 +144,17 @@ void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QS
   mNetworkQueryController.runSaveImageRequest( filenamePrefix, imageFileExtension );
 }
 
-QString FrontController::getOrbitTrapQuery( QColor color, int dimension, int symmetryGroup )
+void FrontController::generateOrbitTrapImage( QColor color, int dimension, int symmetryGroup )
 {
-  return QString( "%1trap/%2/%3/%4/%5/%6/%7" )
-         .arg( mNetworkQueryController.queryPrefix() )
-         .arg( mNetworkQueryController.serviceId() )
-         .arg( color.red() )
-         .arg( color.green() )
-         .arg( color.blue() )
-         .arg( dimension )
-         .arg( symmetryGroup );
+  auto query = QString( "%1trap/%2/%3/%4/%5/%6/%7" )
+               .arg( mNetworkQueryController.queryPrefix() )
+               .arg( mNetworkQueryController.serviceId() )
+               .arg( color.red() )
+               .arg( color.green() )
+               .arg( color.blue() )
+               .arg( dimension )
+               .arg( symmetryGroup );
+  mNetworkQueryController.runGenerateImageRequest( query );
 }
 
 QString FrontController::getClustersQuery( int dimension, int symmetryGroup, double alpha )
@@ -300,34 +301,34 @@ void FrontController::generateCloudsImage( int dimension, int symmetryGroup, QCo
                   .arg( color3.green() )
                   .arg( color3.blue() )
                   .arg( distributionIndex );
-  QStringList attributes{QString::number( static_cast<int>( QueryType::GenerateImage ) )};
   mNetworkQueryController.runGenerateImageRequest( query );
 }
 
-QString FrontController::getHyperbolicCloudsQuery( int dimension, int symmetryGroup, int projType,
-                                                   int distributionIndex, int rotation0, int rotation1, int rotation2, int rotation3,
-                                                   QColor color1, QColor color2, QColor color3 )
+void FrontController::generateHyperbolicCloudsImage( int dimension, int symmetryGroup, int projType,
+                                                     int distributionIndex, int rotation0, int rotation1, int rotation2, int rotation3,
+                                                     QColor color1, QColor color2, QColor color3 )
 {
-  return QString( "%1hyperbolicClouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14/%15/%16/%17/%18/%19" )
-         .arg( mNetworkQueryController.queryPrefix() )
-         .arg( mNetworkQueryController.serviceId() )
-         .arg( dimension )
-         .arg( symmetryGroup )
-         .arg( rotation0 )
-         .arg( rotation1 )
-         .arg( rotation2 )
-         .arg( rotation3 )
-         .arg( projType )
-         .arg( color1.red() )
-         .arg( color1.green() )
-         .arg( color1.blue() )
-         .arg( color2.red() )
-         .arg( color2.green() )
-         .arg( color2.blue() )
-         .arg( color3.red() )
-         .arg( color3.green() )
-         .arg( color3.blue() )
-         .arg( distributionIndex );
+  QString query =  QString( "%1hyperbolicClouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14/%15/%16/%17/%18/%19" )
+                   .arg( mNetworkQueryController.queryPrefix() )
+                   .arg( mNetworkQueryController.serviceId() )
+                   .arg( dimension )
+                   .arg( symmetryGroup )
+                   .arg( rotation0 )
+                   .arg( rotation1 )
+                   .arg( rotation2 )
+                   .arg( rotation3 )
+                   .arg( projType )
+                   .arg( color1.red() )
+                   .arg( color1.green() )
+                   .arg( color1.blue() )
+                   .arg( color2.red() )
+                   .arg( color2.green() )
+                   .arg( color2.blue() )
+                   .arg( color3.red() )
+                   .arg( color3.green() )
+                   .arg( color3.blue() )
+                   .arg( distributionIndex );
+  mNetworkQueryController.runGenerateImageRequest( query );
 }
 
 QString FrontController::getLinessQuery( int dimension, int symmetryGroup, int colorCount,
