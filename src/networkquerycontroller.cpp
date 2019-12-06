@@ -28,6 +28,18 @@ NetworkQueryController::NetworkQueryController( QObject* parent )
            &NetworkQueryController::onNetworkReply );
 }
 
+//NetworkQueryController::NetworkQueryController( QObject* parent )
+//  : QObject( parent ),
+//    mQueryPrefix{"http://65.60.187.8:60564/get/?"},
+//    mImageColorsPrefix{"http://65.60.187.8:60564/imageColors/?"},
+//    mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )}
+//{
+//  connect( &mNetworkAccessManager,
+//           &QNetworkAccessManager::finished,
+//           this,
+//           &NetworkQueryController::onNetworkReply );
+//}
+
 int NetworkQueryController::getNextResponseId()
 {
   return mResponseId++;

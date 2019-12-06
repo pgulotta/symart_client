@@ -3,7 +3,7 @@
 #include <QGuiApplication>
 #include <QBuffer>
 #include <QTextCodec>
-#include <QUuid>
+
 
 FrontController* FrontController::FrontControllerInstance{nullptr};
 
@@ -157,34 +157,37 @@ void FrontController::generateOrbitTrapImage( QColor color, int dimension, int s
   mNetworkQueryController.runGenerateImageRequest( query );
 }
 
-QString FrontController::getClustersQuery( int dimension, int symmetryGroup, double alpha )
+void FrontController::generateClustersImage( int dimension, int symmetryGroup, double alpha )
 {
-  return QString( "%1clusters/%2/%3/%4/%5" )
+  auto query= QString( "%1clusters/%2/%3/%4/%5" )
          .arg( mNetworkQueryController.queryPrefix() )
          .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( symmetryGroup )
          .arg( alpha );
+  mNetworkQueryController.runGenerateImageRequest( query );
 }
 
-QString FrontController::getStripesQuery( int dimension, int symmetryGroup, double alpha )
+void FrontController::generateStripesImage( int dimension, int symmetryGroup, double alpha )
 {
-  return QString( "%1stripes/%2/%3/%4/%5" )
+    auto query= QString( "%1stripes/%2/%3/%4/%5" )
          .arg( mNetworkQueryController.queryPrefix() )
          .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( symmetryGroup )
          .arg( alpha );
+      mNetworkQueryController.runGenerateImageRequest( query );
 }
 
-QString FrontController::getQuasiperiodicStripesQuery( int dimension, int quasiperiod, double alpha )
+void FrontController::generateQuasiperiodicStripesImage( int dimension, int quasiperiod, double alpha )
 {
-  return QString( "%1quasiPeriodicStripes/%2/%3/%4/%5" )
+  auto query= QString( "%1quasiPeriodicStripes/%2/%3/%4/%5" )
          .arg( mNetworkQueryController.queryPrefix() )
          .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( quasiperiod )
          .arg( alpha );
+       mNetworkQueryController.runGenerateImageRequest( query );
 }
 
 QString FrontController::getRandomizeQuery( int x, int y )

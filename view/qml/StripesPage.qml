@@ -7,7 +7,7 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-        imageSource = Controller.getStripesQuery(
+         Controller.generateStripesImage(
                     dimensionSelectorId.dimension,
                     symmetrySelectorId.selectorIndex, alphaSelectorId.dimension)
     }

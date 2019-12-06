@@ -7,7 +7,7 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-        imageSource = Controller.getClustersQuery(
+        Controller.generateClustersImage(
                     dimensionSelectorId.dimension,
                     symmetrySelectorId.selectorIndex, alphaSelectorId.dimension)
     }

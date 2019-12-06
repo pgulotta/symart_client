@@ -8,7 +8,7 @@ ImageGeneratorPage {
     canAugmentImage: false
 
     function drawImage() {
-        imageSource = Controller.getQuasiperiodicStripesQuery(
+         Controller.generateQuasiperiodicStripesImage(
                     dimensionSelectorId.dimension, quasiperiodId.dimension,
                     alphaSelectorId.dimension)
     }
