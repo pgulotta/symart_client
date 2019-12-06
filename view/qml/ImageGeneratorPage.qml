@@ -25,7 +25,7 @@ Page {
     Connections {
         target: Controller
         onMessageGenerated: reportMessage(messageDescription)
-        onImageGenerated: imageSource = "image://generatedImage/CloudsPage"
+        onImageGenerated: imageSource = "image://generatedImage"
     }
 
     Component.onCompleted: headerToolBarId.forceActiveFocus()
@@ -184,7 +184,8 @@ Page {
                         if (imageSource === "")
                             return
                         isImageModified = false
-                        imageSource = Controller.getLastGenerateImageQuery()
+                        imageSource=""
+                        Controller.getLastGenerateImage()
                     }
                 }
                 Switch {
@@ -248,7 +249,7 @@ Page {
                         onAccepted: {
                             isImageModified = true
                             imageSource = ""
-                            imageSource = Controller.getRandomizeQuery(
+                            imageSource = Controller.getRandomizeImage(
                                         randomizeDialogId.xSelection,
                                         randomizeDialogId.ySelection)
                         }
@@ -281,7 +282,8 @@ Page {
                         if (imageSource == "")
                             return
                         isImageModified = true
-                        imageSource = Controller.getHexagonalStretchImageQuery()
+                        imageSource=""
+                        Controller.getHexagonalStretchImage()
                     }
                 }
             }

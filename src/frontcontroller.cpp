@@ -190,7 +190,7 @@ void FrontController::generateQuasiperiodicStripesImage( int dimension, int quas
        mNetworkQueryController.runGenerateImageRequest( query );
 }
 
-QString FrontController::getRandomizeQuery( int x, int y )
+QString FrontController::getRandomizeImage( int x, int y )
 {
   return QString( "%1randomizeTiles/%2/%3/%4" )
          .arg( mNetworkQueryController.queryPrefix() )
@@ -271,18 +271,20 @@ QString FrontController::getSquigglesUpdateQuery( int dimension, int symmetryGro
          .arg( symmetryGroup );
 }
 
-QString FrontController::getLastGenerateImageQuery()
+ void FrontController::getLastGenerateImage()
 {
-  return QString( "%1lastImage/%2" )
+  auto query = QString( "%1lastImage/%2" )
          .arg( mNetworkQueryController.queryPrefix() )
          .arg( mNetworkQueryController.serviceId() );
+   mNetworkQueryController.runGenerateImageRequest( query );
 }
 
-QString FrontController::getHexagonalStretchImageQuery()
+void FrontController::getHexagonalStretchImage()
 {
-  return QString( "%1hexagonalStretch/%2" )
+    auto query =QString( "%1hexagonalStretch/%2" )
          .arg( mNetworkQueryController.queryPrefix() )
          .arg( mNetworkQueryController.serviceId() );
+    mNetworkQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateCloudsImage( int dimension, int symmetryGroup, QColor color1, QColor color2,
