@@ -184,7 +184,7 @@ Page {
                         if (imageSource === "")
                             return
                         isImageModified = false
-                        imageSource=""
+                        imageSource = ""
                         Controller.getLastGenerateImage()
                     }
                 }
@@ -249,7 +249,7 @@ Page {
                         onAccepted: {
                             isImageModified = true
                             imageSource = ""
-                            imageSource = Controller.getRandomizeImage(
+                            Controller.generateRandomizeImage(
                                         randomizeDialogId.xSelection,
                                         randomizeDialogId.ySelection)
                         }
@@ -270,7 +270,8 @@ Page {
                         onAccepted: {
                             isImageModified = true
                             shouldTileImage = false
-                            imageSource = Controller.getHyperbolicImageQuery(
+                            imageSource = ""
+                            Controller.generateHyperbolicImage(
                                         hyperbolicDialogId.sizeSelection,
                                         hyperbolicDialogId.projectionSelection)
                         }
@@ -282,8 +283,8 @@ Page {
                         if (imageSource == "")
                             return
                         isImageModified = true
-                        imageSource=""
-                        Controller.getHexagonalStretchImage()
+                        imageSource = ""
+                        Controller.generateHexagonalStretchImage()
                     }
                 }
             }

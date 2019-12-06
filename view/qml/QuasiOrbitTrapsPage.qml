@@ -10,12 +10,12 @@ ImageGeneratorPage {
     isImageTileable: false
 
     function drawImage() {
-        imageSource = Controller.getQuasiTrapQuery(
-                    colorSelectorId.selectedColor,
-                    functionSelectorId.selectorIndex,
-                    widthSelectorId.dimension, heightSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex,
-                    quasiperiodSelectorId.dimension)
+        Controller.generateQuasiTrapImage(colorSelectorId.selectedColor,
+                                          functionSelectorId.selectorIndex,
+                                          widthSelectorId.dimension,
+                                          heightSelectorId.dimension,
+                                          symmetrySelectorId.selectorIndex,
+                                          quasiperiodSelectorId.dimension)
     }
 
     function selectionDescription() {

@@ -10,25 +10,26 @@ ImageGeneratorPage {
 
     function drawImage() {
         if (imageSelectorId.imagePaletteUrl === "") {
-            imageSource = Controller.getSquigglesQuery(
-                        colorCountSelectorId.dimension,
-                        dimensionSelectorId.dimension,
-                        symmetrySelectorId.selectorIndex,
-                        alphaSelectorId.dimension, exponentelectorId.dimension,
-                        thicknessSelectorId.dimension,
-                        sharpnessSelectorId.dimension)
+            Controller.generateSquigglesImage(colorCountSelectorId.dimension,
+                                              dimensionSelectorId.dimension,
+                                              symmetrySelectorId.selectorIndex,
+                                              alphaSelectorId.dimension,
+                                              exponentelectorId.dimension,
+                                              thicknessSelectorId.dimension,
+                                              sharpnessSelectorId.dimension)
         } else {
             Controller.loadColorsImage(imageSelectorId.imagePaletteName)
-            imageSource = Controller.getSquigglesQuery(
-                        colorCountSelectorId.dimension,
-                        imageSelectorId.saturationBoost,
-                        imageSelectorId.useHue, imageSelectorId.useSaturation,
-                        imageSelectorId.useBrightness,
-                        dimensionSelectorId.dimension,
-                        symmetrySelectorId.selectorIndex,
-                        alphaSelectorId.dimension, exponentelectorId.dimension,
-                        thicknessSelectorId.dimension,
-                        sharpnessSelectorId.dimension)
+            Controller.generateSquigglesImage(colorCountSelectorId.dimension,
+                                              imageSelectorId.saturationBoost,
+                                              imageSelectorId.useHue,
+                                              imageSelectorId.useSaturation,
+                                              imageSelectorId.useBrightness,
+                                              dimensionSelectorId.dimension,
+                                              symmetrySelectorId.selectorIndex,
+                                              alphaSelectorId.dimension,
+                                              exponentelectorId.dimension,
+                                              thicknessSelectorId.dimension,
+                                              sharpnessSelectorId.dimension)
         }
     }
 
@@ -41,9 +42,8 @@ ImageGeneratorPage {
 
     function updateImage() {
         imageSource = ""
-        imageSource = Controller.getSquigglesUpdateQuery(
-                    dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex)
+        Controller.updateSquigglesImage(dimensionSelectorId.dimension,
+                                        symmetrySelectorId.selectorIndex)
     }
 
     controlsView: RowLayout {

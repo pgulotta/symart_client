@@ -11,7 +11,7 @@ ImageGeneratorPage {
 
     function drawImage() {
         var rotationsList = assignRotations()
-        imageSource = Controller.getHyperbolicLines(
+        Controller.generateHyperbolicLinesImage(
                     dimensionSelectorId.dimension,
                     groupSelectorId.selectorIndex, rotationsList[0],
                     rotationsList[1], rotationsList[2], rotationsList[3],
@@ -41,7 +41,7 @@ ImageGeneratorPage {
                 width: colorCountSelectorId.width
                 fromValue: 2
                 toValue: maxImageDimension
-                stepValue:1
+                stepValue: 1
                 initialValue: 256
                 isAlwaysEven: true
             }

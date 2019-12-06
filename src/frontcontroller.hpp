@@ -30,7 +30,7 @@ public:
   Q_INVOKABLE void saveCurrentImage( const QString& filenamePrefix, const QString& imageFileExtension ) ;
   Q_INVOKABLE void loadColorsImage( const QString& colorImagePath );
   Q_INVOKABLE void getLastGenerateImage();
-  Q_INVOKABLE void getHexagonalStretchImage();
+  Q_INVOKABLE void generateHexagonalStretchImage();
   Q_INVOKABLE void generateCloudsImage( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
                                         int distributionIndex );
   Q_INVOKABLE void generateHyperbolicCloudsImage( int dimension, int symmetryGroup, int projType,
@@ -41,28 +41,28 @@ public:
   Q_INVOKABLE void generateClustersImage( int dimension, int symmetryGroup, double alpha );
   Q_INVOKABLE void generateStripesImage( int dimension, int symmetryGroup, double alpha );
   Q_INVOKABLE void generateQuasiperiodicStripesImage( int dimension, int quasiperiod, double alpha );
-  Q_INVOKABLE QString getRandomizeImage( int x, int y );
-  Q_INVOKABLE QString getHyperbolicImageQuery( int size,  int projectionType );
-  Q_INVOKABLE QString getWalkImageQuery( int width, int height, int mode,  bool isBalanced,  bool isTileable );
-  Q_INVOKABLE QString getSquigglesQuery( int colorCount, int dimension, int symmetryGroup, double alpha, double exponent,
-                                         double thickness, double sharpness );
-  Q_INVOKABLE QString getSquigglesQuery( int colorCount, double saturationBoost,
-                                         bool useHue, bool useSaturation, bool useLightness,
-                                         int dimension, int symmetryGroup, double alpha, double exponent,
-                                         double thickness, double sharpness );
-  Q_INVOKABLE QString getSquigglesUpdateQuery( int dimension, int symmetryGroup );
+  Q_INVOKABLE void generateRandomizeImage( int x, int y );
+  Q_INVOKABLE void generateHyperbolicImage( int size,  int projectionType );
+  Q_INVOKABLE void generateWalkImage( int width, int height, int mode,  bool isBalanced,  bool isTileable );
+  Q_INVOKABLE void generateSquigglesImage( int colorCount, int dimension, int symmetryGroup, double alpha,
+                                           double exponent, double thickness, double sharpness );
+  Q_INVOKABLE void generateSquigglesImage( int colorCount, double saturationBoost,
+                                           bool useHue, bool useSaturation, bool useLightness,
+                                           int dimension, int symmetryGroup, double alpha, double exponent,
+                                           double thickness, double sharpness );
+  Q_INVOKABLE void updateSquigglesImage( int dimension, int symmetryGroup );
 
-  Q_INVOKABLE QString getLinessQuery( int dimension, int symmetryGroup, int colorCount,
-                                      const QString& ruleName1, int ruleWeight1, bool usePastelColors1,
-                                      const QString& ruleName2, int ruleWeight2, bool usePastelColors2,
-                                      const QString& ruleName3, int ruleWeight3, bool usePastelColors3 );
+  Q_INVOKABLE void generateLinessImage( int dimension, int symmetryGroup, int colorCount,
+                                        const QString& ruleName1, int ruleWeight1, bool usePastelColors1,
+                                        const QString& ruleName2, int ruleWeight2, bool usePastelColors2,
+                                        const QString& ruleName3, int ruleWeight3, bool usePastelColors3 );
 
-  Q_INVOKABLE QString getHyperbolicLines( int dimension, int fdfIndex, int rotation0, int rotation1,
-                                          int rotation2, int rotation3, int projType, int flipType,
-                                          double thickness, double sharpness, int colorCount );
+  Q_INVOKABLE void generateHyperbolicLinesImage( int dimension, int fdfIndex, int rotation0, int rotation1,
+                                                 int rotation2, int rotation3, int projType, int flipType,
+                                                 double thickness, double sharpness, int colorCount );
 
-  Q_INVOKABLE QString getQuasiTrapQuery( QColor color, int functionIndex,  int width, int height, int symmetryValueIndex,
-                                         double quasiperiod );
+  Q_INVOKABLE void generateQuasiTrapImage( QColor color, int functionIndex,  int width, int height,
+                                           int symmetryValueIndex, double quasiperiod );
 
 private:
 

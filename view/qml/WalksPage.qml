@@ -9,10 +9,11 @@ ImageGeneratorPage {
     canAugmentImage: false
 
     function drawImage() {
-        imageSource = Controller.getWalkImageQuery(
-                    widthSelectorId.dimension, heightSelectorId.dimension,
-                    fillModeSelectorId.selectorIndex, balancedSwitchId.checked,
-                    tileableSwitchId.checked)
+        Controller.generateWalkImage(widthSelectorId.dimension,
+                                     heightSelectorId.dimension,
+                                     fillModeSelectorId.selectorIndex,
+                                     balancedSwitchId.checked,
+                                     tileableSwitchId.checked)
     }
 
     function selectionDescription() {
