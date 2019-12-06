@@ -1,4 +1,5 @@
 #include "initializer.hpp"
+#include "imageprovider.hpp"
 #include "topicmetadata.hpp"
 #include <QGuiApplication>
 #include <QQmlContext>
@@ -27,11 +28,10 @@ void Initializer::initQml()
   context->setContextProperty( "ImmutableList", &mImmutableList );
   context->setContextProperty( "Controller", &mFrontController );
   context->setContextProperty( "TopicsMetaData", QVariant::fromValue( mTopicsMetaDataBuilder.topicsMetaData() ) );
-
+  mQmlApplicationEngine.addImageProvider( "generatedImage", &mFrontController.imageProvider() );
   mQmlApplicationEngine.load( QUrl( QStringLiteral( "qrc:/view/qml/MainPage.qml" ) ) );
-//  mQmlApplicationEngine.load( QUrl( QStringLiteral( "qrc:/view/qml/main.qml" ) ) );
-
 }
+
 /*
 void Initializer::initSettings()
 {

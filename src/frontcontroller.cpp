@@ -1,15 +1,11 @@
 #include "frontcontroller.hpp"
 #include "immutablelist.hpp"
 #include <QGuiApplication>
-#include <QUuid>
-#include <QStandardPaths>
-#include <QDir>
 #include <QBuffer>
+#include <QTextCodec>
+#include <QUuid>
 
 FrontController* FrontController::FrontControllerInstance{nullptr};
-
-const QString QueryPrefix{"http://192.168.1.119:60564/get/?"};
-const QString ImageColorsPrefix{"http://192.168.1.119:60564/imageColors/?"};
 
 
 void FrontController::appMessageHandler( QtMsgType type,
@@ -77,20 +73,27 @@ void FrontController::appMessageHandler( QtMsgType type,
 }
 
 FrontController::FrontController( QObject* parent )
-  : QObject( parent )
-  ,
-
-    mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )}
-  , mNetworkQueryController( parent )
+  : QObject( parent ), mNetworkQueryController( parent )
 {
   FrontControllerInstance = this;
   qInstallMessageHandler( FrontController::appMessageHandler );
+
+  connect( &mNetworkQueryController,
+           &NetworkQueryController::newImageGenerated,
+           this,
+  [this]( const QImage * newImage  ) {
+    mImageProvider.setImage( newImage );
+    emit imageGenerated();
+  } );
+
   connect( &mNetworkQueryController,
            &NetworkQueryController::networkQueryMessage,
            this,
   []( const QString & messageDescription ) {
     emit FrontControllerInstance->messageGenerated( messageDescription );
   } );
+
+
 }
 
 QString FrontController::applicationTitle() const
@@ -117,22 +120,13 @@ QByteArray toByteArray( const QString& colorImagePath )
   return ba;
 }
 
-#include <QTextCodec>
-QImage fromByteArray( const QByteArray& ba  )
-{
-  QImage image;
-  image.loadFromData( ba, "PNG" );
-  return image;
-}
-
-
 void FrontController::loadColorsImage( const QString& colorImagePath )
 {
-  QStringList attributes{QString::number( static_cast<int>( QueryType::ImageColors ) )};
   QByteArray byteArray = toByteArray( colorImagePath  );
-  QString query = QString( "%1%2" ).arg( ImageColorsPrefix ).arg( QTextCodec::codecForMib( 2259 )->toUnicode(
-                                                                    byteArray ) );
-  mNetworkQueryController.runGetRequest( attributes, query );
+  QString query = QString( "%1%2" )
+                  .arg( mNetworkQueryController.imageColorsPrefix() )
+                  .arg( QTextCodec::codecForMib( 2259 )->toUnicode( byteArray ) );
+  mNetworkQueryController.runLoadImageColorsRequest( query );
 
   //QString payload =  QTextCodec::codecForMib( 2259 )->toUnicode( byteArray );
   //qDebug() << "&&&&&&&&&&&&&&&  payload=" << payload;
@@ -147,28 +141,14 @@ QString FrontController::toLocalFile( const QString& fileURL ) const
 
 void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QString& imageFileExtension )
 {
-  auto formattedPrefix{filenamePrefix.simplified()};
-  formattedPrefix.replace( " ", "" );
-  const QDir dir = QStandardPaths::writableLocation( QStandardPaths::DownloadLocation );
-
-  auto saveFilename =  QString( "%1%2%3_%4.%5" )
-                       .arg( dir.path() )
-                       .arg( QDir::separator() )
-                       .arg( formattedPrefix )
-                       .arg( QUuid::createUuid().toString( QUuid::WithoutBraces ) )
-                       .arg( imageFileExtension ) ;
-
-  QStringList attributes{QString::number( static_cast<int>( QueryType::SaveImage ) ),
-                         saveFilename};
-  QString query = QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
-  mNetworkQueryController.runGetRequest( attributes, query );
+  mNetworkQueryController.runSaveImageRequest( filenamePrefix, imageFileExtension );
 }
 
 QString FrontController::getOrbitTrapQuery( QColor color, int dimension, int symmetryGroup )
 {
   return QString( "%1trap/%2/%3/%4/%5/%6/%7" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( color.red() )
          .arg( color.green() )
          .arg( color.blue() )
@@ -179,8 +159,8 @@ QString FrontController::getOrbitTrapQuery( QColor color, int dimension, int sym
 QString FrontController::getClustersQuery( int dimension, int symmetryGroup, double alpha )
 {
   return QString( "%1clusters/%2/%3/%4/%5" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( symmetryGroup )
          .arg( alpha );
@@ -189,8 +169,8 @@ QString FrontController::getClustersQuery( int dimension, int symmetryGroup, dou
 QString FrontController::getStripesQuery( int dimension, int symmetryGroup, double alpha )
 {
   return QString( "%1stripes/%2/%3/%4/%5" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( symmetryGroup )
          .arg( alpha );
@@ -199,8 +179,8 @@ QString FrontController::getStripesQuery( int dimension, int symmetryGroup, doub
 QString FrontController::getQuasiperiodicStripesQuery( int dimension, int quasiperiod, double alpha )
 {
   return QString( "%1quasiPeriodicStripes/%2/%3/%4/%5" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( quasiperiod )
          .arg( alpha );
@@ -208,14 +188,17 @@ QString FrontController::getQuasiperiodicStripesQuery( int dimension, int quasip
 
 QString FrontController::getRandomizeQuery( int x, int y )
 {
-  return QString( "%1randomizeTiles/%2/%3/%4" ).arg( QueryPrefix ).arg( mServiceId ).arg( x ).arg( y );
+  return QString( "%1randomizeTiles/%2/%3/%4" )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
+         .arg( x ).arg( y );
 }
 
 QString FrontController::getHyperbolicImageQuery( int size, int projectionType )
 {
   return QString( "%1hyperbolicImage/%2/%3/%4" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( size )
          .arg( projectionType );
 }
@@ -224,16 +207,16 @@ QString FrontController::getWalkImageQuery( int width, int height, int mode, boo
 {
   if ( isTileable )
     return QString( "%1walk/%2/%3/%4/%5/%6" )
-           .arg( QueryPrefix )
-           .arg( mServiceId )
+           .arg( mNetworkQueryController.queryPrefix() )
+           .arg( mNetworkQueryController.serviceId() )
            .arg( width )
            .arg( height )
            .arg( isBalanced )
            .arg( mode );
   else
     return QString( "%1walk2/%2/%3/%4/%5/%6" )
-           .arg( QueryPrefix )
-           .arg( mServiceId )
+           .arg( mNetworkQueryController.queryPrefix() )
+           .arg( mNetworkQueryController.serviceId() )
            .arg( width )
            .arg( height )
            .arg( isBalanced )
@@ -245,8 +228,8 @@ QString FrontController::getSquigglesQuery( int colorCount, double saturationBoo
                                             double alpha, double exponent, double thickness, double sharpness )
 {
   return QString(  "%1squigglesImageColors/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( saturationBoost )
          .arg( useHue )
          .arg( useSaturation )
@@ -264,8 +247,8 @@ QString FrontController::getSquigglesQuery( int colorCount, int dimension,   int
                                             double exponent, double thickness, double sharpness )
 {
   return QString( "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( colorCount )
          .arg( dimension )
          .arg( symmetryGroup )
@@ -278,40 +261,47 @@ QString FrontController::getSquigglesQuery( int colorCount, int dimension,   int
 QString FrontController::getSquigglesUpdateQuery( int dimension, int symmetryGroup )
 {
   return QString( "%1updateSquiggles/%2/%3/%4" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( symmetryGroup );
 }
 
 QString FrontController::getLastGenerateImageQuery()
 {
-  return QString( "%1lastImage/%2" ).arg( QueryPrefix ).arg( mServiceId );
+  return QString( "%1lastImage/%2" )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() );
 }
 
 QString FrontController::getHexagonalStretchImageQuery()
 {
-  return QString( "%1hexagonalStretch/%2" ).arg( QueryPrefix ).arg( mServiceId );
+  return QString( "%1hexagonalStretch/%2" )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() );
 }
 
-QString FrontController::getCloudsQuery( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
-                                         int distributionIndex )
+void FrontController::generateCloudsImage( int dimension, int symmetryGroup, QColor color1, QColor color2,
+                                           QColor color3,
+                                           int distributionIndex )
 {
-  return QString( "%1clouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
-         .arg( dimension )
-         .arg( symmetryGroup )
-         .arg( color1.red() )
-         .arg( color1.green() )
-         .arg( color1.blue() )
-         .arg( color2.red() )
-         .arg( color2.green() )
-         .arg( color2.blue() )
-         .arg( color3.red() )
-         .arg( color3.green() )
-         .arg( color3.blue() )
-         .arg( distributionIndex );
+  QString query = QString( "%1clouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
+                  .arg( mNetworkQueryController.queryPrefix() )
+                  .arg( mNetworkQueryController.serviceId() )
+                  .arg( dimension )
+                  .arg( symmetryGroup )
+                  .arg( color1.red() )
+                  .arg( color1.green() )
+                  .arg( color1.blue() )
+                  .arg( color2.red() )
+                  .arg( color2.green() )
+                  .arg( color2.blue() )
+                  .arg( color3.red() )
+                  .arg( color3.green() )
+                  .arg( color3.blue() )
+                  .arg( distributionIndex );
+  QStringList attributes{QString::number( static_cast<int>( QueryType::GenerateImage ) )};
+  mNetworkQueryController.runGenerateImageRequest( query );
 }
 
 QString FrontController::getHyperbolicCloudsQuery( int dimension, int symmetryGroup, int projType,
@@ -319,8 +309,8 @@ QString FrontController::getHyperbolicCloudsQuery( int dimension, int symmetryGr
                                                    QColor color1, QColor color2, QColor color3 )
 {
   return QString( "%1hyperbolicClouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14/%15/%16/%17/%18/%19" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( symmetryGroup )
          .arg( rotation0 )
@@ -346,8 +336,8 @@ QString FrontController::getLinessQuery( int dimension, int symmetryGroup, int c
                                          const QString& ruleName3, int ruleWeight3, bool usePastelColors3 )
 {
   return QString( "%1lines/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( symmetryGroup )
          .arg( colorCount )
@@ -367,8 +357,8 @@ QString FrontController::getHyperbolicLines( int dimension, int fdfIndex, int ro
                                              int rotation3, int projType, int flipType, double thickness, double sharpness, int colorCount )
 {
   return QString( "%1hyperbolicLines/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13" )
-         .arg( QueryPrefix )
-         .arg( mServiceId )
+         .arg( mNetworkQueryController.queryPrefix() )
+         .arg( mNetworkQueryController.serviceId() )
          .arg( dimension )
          .arg( fdfIndex )
          .arg( rotation0 )
@@ -390,8 +380,8 @@ QString FrontController::getQuasiTrapQuery( QColor color, int functionIndex, int
 
   if (  ImmutableList::isPolynomialFunction( functionIndex ) ) {
     query = QString( "%1quasiTrapPoly/%2/%3/%4/%5/%6/%7/%8/%9" )
-            .arg( QueryPrefix )
-            .arg( mServiceId )
+            .arg( mNetworkQueryController.queryPrefix() )
+            .arg( mNetworkQueryController.serviceId() )
             .arg( color.red() )
             .arg( color.green() )
             .arg( color.blue() )
@@ -401,8 +391,8 @@ QString FrontController::getQuasiTrapQuery( QColor color, int functionIndex, int
             .arg( quasiperiod );
   } else {
     query = QString( "%1quasiTrap/%2/%3/%4/%5/%6/%7/%8/%9" )
-            .arg( QueryPrefix )
-            .arg( mServiceId )
+            .arg( mNetworkQueryController.queryPrefix() )
+            .arg( mNetworkQueryController.serviceId() )
             .arg( color.red() )
             .arg( color.green() )
             .arg( color.blue() )

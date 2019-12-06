@@ -1,5 +1,5 @@
 #pragma once
-
+#include "imageprovider.hpp"
 #include "networkquerycontroller.hpp"
 #include <QObject>
 #include <QImage>
@@ -12,7 +12,7 @@ class FrontController final : public QObject
   Q_OBJECT
 signals:
   void messageGenerated( QString messageDescription ) const;
-
+  void imageGenerated();
 
 public slots:
 
@@ -20,6 +20,8 @@ public slots:
 public:
   explicit FrontController( QObject* parent = nullptr );
   static void appMessageHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
+  ImageProvider& imageProvider() { return  mImageProvider;}
+
 
   Q_INVOKABLE QString applicationTitle() const;
   Q_INVOKABLE QString applicationVersion() const;
@@ -29,8 +31,8 @@ public:
   Q_INVOKABLE void loadColorsImage( const QString& colorImagePath );
   Q_INVOKABLE QString getLastGenerateImageQuery();
   Q_INVOKABLE QString getHexagonalStretchImageQuery();
-  Q_INVOKABLE QString getCloudsQuery( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
-                                      int distributionIndex );
+  Q_INVOKABLE void generateCloudsImage( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
+                                        int distributionIndex );
   Q_INVOKABLE QString getHyperbolicCloudsQuery( int dimension, int symmetryGroup, int projType, int distributionIndex,
                                                 int rotation0, int rotation1, int rotation2, int rotation3,
                                                 QColor color1, QColor color2, QColor color3 );
@@ -62,8 +64,9 @@ public:
                                          double quasiperiod );
 
 private:
-  QString mServiceId;
+
   NetworkQueryController mNetworkQueryController;
+  ImageProvider mImageProvider;
   static FrontController* FrontControllerInstance;
 
 

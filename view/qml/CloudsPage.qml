@@ -7,13 +7,12 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-        imageSource = Controller.getCloudsQuery(
-                    dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex,
-                    colorSelector1Id.selectedColor1,
-                    colorSelector1Id.selectedColor2,
-                    colorSelector1Id.selectedColor3,
-                    distributionSelectorId.selectorIndex)
+        Controller.generateCloudsImage(dimensionSelectorId.dimension,
+                                      symmetrySelectorId.selectorIndex,
+                                      colorSelector1Id.selectedColor1,
+                                      colorSelector1Id.selectedColor2,
+                                      colorSelector1Id.selectedColor3,
+                                      distributionSelectorId.selectorIndex)
     }
 
     function selectionDescription() {

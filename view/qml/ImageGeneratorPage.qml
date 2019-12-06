@@ -25,6 +25,7 @@ Page {
     Connections {
         target: Controller
         onMessageGenerated: reportMessage(messageDescription)
+        onImageGenerated: imageSource = "image://generatedImage/CloudsPage"
     }
 
     Component.onCompleted: headerToolBarId.forceActiveFocus()
