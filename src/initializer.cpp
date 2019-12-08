@@ -10,8 +10,12 @@
 
 const QString ApplicationCategoryTitle{"Application"  };
 
-Initializer::Initializer( QObject* parent )
-  : QObject{parent}
+Initializer::Initializer( FrontController& frontController, QObject* parent ):
+  QObject{parent},
+  mFrontController{frontController},
+  mTopicsMetaDataBuilder{parent},
+  mImmutableList{parent},
+  mQmlApplicationEngine{parent}
 {
 // initSettings();
   initQml();

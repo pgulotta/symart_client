@@ -1,7 +1,7 @@
 #include <QGuiApplication>
 #include <QQuickStyle>
 #include "initializer.hpp"
-
+#include "frontcontroller.hpp"
 
 int main( int argc, char* argv[] )
 {
@@ -12,8 +12,8 @@ int main( int argc, char* argv[] )
   QGuiApplication::setApplicationVersion( "1.00" );
   QQuickStyle::setStyle( "Material" );
   QGuiApplication app( argc, argv );
-
-  Initializer initializer;
+  FrontController frontController{&app};
+  Initializer initializer{frontController, &app};
 
   return app.exec();
 }

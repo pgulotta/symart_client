@@ -11,7 +11,7 @@ class ImmutableList final : public QObject
 signals:
 
 public:
-  ImmutableList();
+  ImmutableList( QObject* parent = nullptr );
   Q_INVOKABLE  QStringList symmetryGroups();
   Q_INVOKABLE  QStringList flipTypes();
   Q_INVOKABLE  QStringList projectionTypes();

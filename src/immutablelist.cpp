@@ -2,7 +2,7 @@
 
 
 
-ImmutableList::ImmutableList()
+ImmutableList::ImmutableList( QObject* parent ): QObject{parent}
 {
 }
 

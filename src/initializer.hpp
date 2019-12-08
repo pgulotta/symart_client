@@ -12,7 +12,7 @@ public:
   Q_OBJECT
 
 public:
-  explicit Initializer( QObject* parent = nullptr );
+  explicit Initializer( FrontController& frontController, QObject* parent = nullptr );
 
 
 private:
@@ -20,10 +20,11 @@ private:
   void initQml();
 
 private:
-  FrontController mFrontController;
+  FrontController& mFrontController;
   TopicsMetaDataBuilder mTopicsMetaDataBuilder;
-  QQmlApplicationEngine mQmlApplicationEngine;
   ImmutableList mImmutableList;
+  QQmlApplicationEngine mQmlApplicationEngine;
+
 
 
 
