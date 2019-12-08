@@ -16,15 +16,33 @@ SOURCES += $$files(*.cpp, true)
 
 RESOURCES += qml.qrc
 
-QML_IMPORT_PATH += $$PWD`
-
 wasm {
 QMAKE_LFLAGS += -s SAFE_HEAP=1
-QMAKE_LFLAGS += --emrun
 QMAKE_LFLAGS += -s BINARYEN_TRAP_MODE='clamp'
+QMAKE_LFLAGS += --emrun
+#QMAKE_WASM_TOTAL_MEMORY=65536000
 }
 
-#QMAKE_WASM_TOTAL_MEMORY=65536000
+
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
+    android/gradlew.bat \
+    android/res/values/libs.xml
+
+QML_IMPORT_PATH += $$PWD
+QML_DESIGNER_IMPORT_PATH =
+
+android {
+    QT += androidextras
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+}
+
+unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target
 
 message(****  SymArt.Pro  ****)
 message(Qt version: $$[QT_VERSION])
@@ -45,3 +63,8 @@ message(TEST_SOURCE_DIR = $$TEST_SOURCE_DIR)
 message(GOOGLETEST_DIR = $$GOOGLETEST_DIR)
 message(ANDROID_EXTRA_LIBS = $$ANDROID_EXTRA_LIBS)
 message(****  SymArt.Pro  ****)
+
+
+
+
+
