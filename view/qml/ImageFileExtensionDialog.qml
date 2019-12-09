@@ -1,61 +1,48 @@
-import QtQuick 2.12
-import QtQuick.Window 2.11
-import QtQuick.Controls.Material 2.3
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
+import QtQuick 2.13
 import QtQuick.Controls 2.4
-import Qt.labs.settings 1.0
 import com.twentysixapps.constants 1.0
 
-Dialog {
-    id: dialogId
+MovableDialog {
+    id: imageFileExtensionDialogId
 
-    title: "Save Image As"
-    height: 450
-    width: 350
-    modal: true
-    focus: true
-
-    standardButtons: Dialog.Cancel | Dialog.Ok
+    title: qsTr("Save Image As")
+    height: 400
+    width: 300
 
     enter: EnterTransition {
-        itemHeight: 400
-        itemWidth: 300
+        itemHeight: imageFileExtensionDialogId.height
+        itemWidth: imageFileExtensionDialogId.width
     }
-
-    exit: ExitTransition {}
-
     Component.onCompleted: listViewId.forceActiveFocus()
 
     ListModel {
         id: fileExtensionModelId
         ListElement {
-            name: "BMP: Windows Bitmap"
+            name: qsTr("BMP: Windows Bitmap")
             extension: "bmp"
         }
         ListElement {
-            name: "JPG: Joint Photographic Experts Group"
+            name: qsTr("JPG: Joint Photographic Experts Group")
             extension: "jpg"
         }
         ListElement {
-            name: "JPEG: Joint Photographic Experts Group"
+            name: qsTr("JPEG: Joint Photographic Experts Group")
             extension: "jpeg"
         }
         ListElement {
-            name: "PNG :Portable Network Graphics"
+            name: qsTr("PNG :Portable Network Graphics")
             extension: "png"
         }
         ListElement {
-            name: "PPM: Portable Pixmap"
+            name: qsTr("PPM: Portable Pixmap")
             extension: "ppm"
         }
         ListElement {
-            name: "XBM: X11 Bitmap"
+            name: qsTr("XBM: X11 Bitmap")
             extension: "xbm"
         }
         ListElement {
-            name: "XPM: X11 Pixmap"
+            name: qsTr("XPM: X11 Pixmap")
             extension: "xpm"
         }
     }
@@ -97,10 +84,6 @@ Dialog {
             interactive: true
             snapMode: ListView.SnapOneItem
         }
-    }
-
-    function openDialog() {
-        dialogId.open()
     }
 
     function selectedExtension() {

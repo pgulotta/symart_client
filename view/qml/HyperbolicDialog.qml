@@ -1,28 +1,13 @@
 ﻿import QtQuick 2.12
-import QtQuick.Window 2.11
-import QtQuick.Controls.Material 2.3
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
-import QtQuick.Controls 2.4
-import Qt.labs.settings 1.0
-import com.twentysixapps.constants 1.0
 
-Dialog {
-    id: dialogId
+MovableDialog {
+    id: hyperbolicDialogId
 
     property alias sizeSelection: sizeSelectorId.dimension
     property alias projectionSelection: projectionSelectorId.selectorIndex
 
-    title: "Hyperbolic Image"
-    modal: true
-    focus: true
-    clip: true
-    standardButtons: Dialog.Cancel | Dialog.Ok
-
-    enter: EnterTransition {}
-
-    exit: ExitTransition {}
+    title: qsTr("Hyperbolic Image")
 
     RowLayout {
         id: controlsViewId
@@ -34,7 +19,7 @@ Dialog {
             Layout.alignment: Qt.AlignHCenter
             SliderSelector {
                 id: sizeSelectorId
-                title: "Size"
+                title: qsTr("Size")
                 fromValue: 2
                 toValue: maxImageDimension
                 initialValue: 256
@@ -42,27 +27,12 @@ Dialog {
             }
             TumblerSelector {
                 id: projectionSelectorId
-                title: "Projection"
+                title: qsTr("Projection")
                 selectorModel: ImmutableList.projectionTypes()
                 width: sizeSelectorId.width
                 height: width * 0.8
                 onSelectorModelChanged: selectorIndex = 0
             }
         }
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        property real lastMouseX: 0
-        property real lastMouseY: 0
-        onPressed: {
-            lastMouseX = mouseX
-            lastMouseY = mouseY
-        }
-        onMouseXChanged: dialogId.x += (mouseX - lastMouseX)
-        onMouseYChanged: dialogId.y += (mouseY - lastMouseY)
-    }
-    function openDialog() {
-        dialogId.open()
     }
 }

@@ -72,7 +72,7 @@ ApplicationWindow {
         }
 
         Label {
-            text: "SymArt"
+            text: Controller.applicationTitle()
             anchors.centerIn: parent
         }
     }
@@ -144,7 +144,7 @@ ApplicationWindow {
         focus: true
         implicitWidth: 300
         parent: ApplicationWindow.overlay
-        title: "Alert ..."
+        title: qsTr("Alert ...")
         standardButtons: Dialog.Ok
         contentItem: Label {
             id: textId
