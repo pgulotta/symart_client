@@ -173,8 +173,8 @@ Page {
                     }
                     ImageFileExtensionDialog {
                         id: extensionDialogId
-                        x: saveButtonId.x - width
-                        y: saveButtonId.y + largePadding - height
+                        x: saveButtonId.width / 2
+                        y: saveButtonId.height / 2 - height
                         onAccepted: Controller.saveCurrentImage(
                                         pageTitle,
                                         extensionDialogId.selectedExtension())
