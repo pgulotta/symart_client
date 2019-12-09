@@ -24,7 +24,10 @@ Page {
 
     Connections {
         target: Controller
-        onMessageGenerated: reportMessage(messageDescription)
+        onMessageGenerated: {
+            pageDescription = ""
+            reportMessage(messageDescription)
+        }
         onImageGenerated: imageSource = "image://generatedImage"
     }
 
@@ -160,7 +163,7 @@ Page {
                     }
                 }
                 ToolButton {
-                    id: saveDialogId
+                    id: saveButtonId
                     text: qsTr("Save")
                     enabled: isImageGenerated
                     onClicked: {
@@ -170,8 +173,8 @@ Page {
                     }
                     ImageFileExtensionDialog {
                         id: extensionDialogId
-                        x: exlargePadding
-                        y: -height + saveDialogId.height / 2
+                        x: saveButtonId.x - width
+                        y: saveButtonId.y + largePadding - height
                         onAccepted: Controller.saveCurrentImage(
                                         pageTitle,
                                         extensionDialogId.selectedExtension())
@@ -228,7 +231,7 @@ Page {
                     }
                 }
                 Label {
-                    text: "Apply to Generated Image:  "
+                    text: qsTr("Apply to Generated Image:  ")
                     anchors.verticalCenter: parent.verticalCenter
                     visible: footer2Spacing > 5
                     scale: 0.8
@@ -265,8 +268,8 @@ Page {
                     }
                     HyperbolicDialog {
                         id: hyperbolicDialogId
-                        x: exlargePadding
-                        y: -height + hyperbolicButtonId.height / 2
+                        x: hyperbolicButtonId.x - 1.8 * width
+                        y: hyperbolicButtonId.y + largePadding - height
                         onAccepted: {
                             isImageModified = true
                             shouldTileImage = false

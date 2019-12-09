@@ -2,7 +2,11 @@ TEMPLATE = app
 
 QT += gui \
     quickcontrols2 \
-    network
+    network \
+    widgets
+# using widgets for the QML Qt.labs.platform QolorDialog
+
+
 
 CONFIG +=  c++1z
 #CONFIG += qtquickcompiler

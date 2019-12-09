@@ -12,16 +12,16 @@ Dialog {
     id: dialogId
 
     title: "Save Image As"
-    height: dialogHeight
-    width: dialogWidth
+    height: 450
+    width: 350
     modal: true
     focus: true
 
     standardButtons: Dialog.Cancel | Dialog.Ok
 
     enter: EnterTransition {
-        itemHeight: 425
-        itemWidth: 325
+        itemHeight: 400
+        itemWidth: 300
     }
 
     exit: ExitTransition {}

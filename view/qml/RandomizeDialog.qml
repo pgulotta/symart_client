@@ -42,6 +42,8 @@ Dialog {
             }
             SliderSelector {
                 id: ySelectorId
+                width: xSelectorId.width
+                height: xSelectorId.height
                 title: "Y"
                 dimension: ySelection
                 fromValue: 1

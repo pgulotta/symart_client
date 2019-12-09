@@ -1,4 +1,4 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQuickStyle>
 #include "initializer.hpp"
 #include "frontcontroller.hpp"
@@ -11,7 +11,7 @@ int main( int argc, char* argv[] )
   QGuiApplication::setOrganizationName( QLatin1String( "26Apps" ) );
   QGuiApplication::setApplicationVersion( "1.00" );
   QQuickStyle::setStyle( "Material" );
-  QGuiApplication app( argc, argv );
+  QApplication app( argc, argv );
   FrontController frontController{&app};
   Initializer initializer{frontController, &app};
 

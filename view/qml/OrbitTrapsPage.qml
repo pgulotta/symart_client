@@ -45,7 +45,6 @@ ImageGeneratorPage {
             }
             ColorSelector {
                 id: colorSelectorId
-                selectedColor: "white"
                 width: 100
             }
         }
