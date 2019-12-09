@@ -1,7 +1,6 @@
 ﻿import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
-import QtQuick.Window 2.13
 import com.twentysixapps.constants 1.0
 
 Page {

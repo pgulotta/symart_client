@@ -1,6 +1,5 @@
 ﻿import QtQuick 2.13
 import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.3
 
 SelectorGroupBox {
@@ -20,7 +19,7 @@ SelectorGroupBox {
     property alias canEdit4: rotation4Id.canEdit
 
     focus: true
-    title: "Symmetry"
+    title: qsTr("Symmetry")
 
     Column {
         id: columnId

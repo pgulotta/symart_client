@@ -1,7 +1,6 @@
 import QtQuick 2.13
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.13
-import Qt.labs.platform 1.1 as Labs
 
 ImageGeneratorPage {
     objectName: "HyperLinesPage"
@@ -52,7 +51,7 @@ ImageGeneratorPage {
             }
             SliderSelector {
                 id: colorCountSelectorId
-                title: "Number of Colors"
+                title: qsTr("Number of Colors")
                 fromValue: 1
                 toValue: 99
                 stepValue: 1
@@ -62,7 +61,7 @@ ImageGeneratorPage {
             }
             TumblerSelector {
                 id: flipSelectorId
-                title: "Subset"
+                title: qsTr("Subset")
                 selectorModel: ImmutableList.flipTypes()
                 width: colorCountSelectorId.width
                 height: projectionSelectorId.height
@@ -70,7 +69,7 @@ ImageGeneratorPage {
             }
             TumblerSelector {
                 id: projectionSelectorId
-                title: "Projection"
+                title: qsTr("Projection")
                 selectorModel: ImmutableList.projectionTypes()
                 width: colorCountSelectorId.width
                 height: dimensionSelectorId.height * 0.8
@@ -79,8 +78,8 @@ ImageGeneratorPage {
             SliderSelector {
                 id: thicknessSelectorId
                 width: colorCountSelectorId.width
-                title: "Thickness"
-                fromValue: 0.0
+                title: qsTr("Thickness")
+                fromValue: 0.01
                 toValue: 20.00
                 stepValue: 0.01
                 initialValue: 1
@@ -90,7 +89,7 @@ ImageGeneratorPage {
             SliderSelector {
                 id: sharpnessSelectorId
                 width: colorCountSelectorId.width
-                title: "Sharpness"
+                title: qsTr("Sharpness")
                 fromValue: 0.0
                 toValue: 99
                 stepValue: 1

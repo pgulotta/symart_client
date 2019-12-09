@@ -27,7 +27,7 @@ Page {
         contentHeight: windowHeight * 1.5
         Label {
             id: aboutTitleId
-            text: "About"
+            text: qsTr("About")
             font.pointSize: mediumLargeFontPointSize
             color: Constants.foreColor
             width: parent.width * 0.80

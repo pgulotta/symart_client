@@ -1,4 +1,4 @@
-import QtQuick 2.12
+import QtQuick 2.13
 import com.twentysixapps.constants 1.0
 
 Transition {

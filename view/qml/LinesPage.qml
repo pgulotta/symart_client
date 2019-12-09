@@ -4,8 +4,8 @@ import QtQuick.Controls 2.13
 import Qt.labs.platform 1.1 as Labs
 
 ImageGeneratorPage {
-    objectName: "LinesPage"
     id: linesPageId
+    objectName: "LinesPage"
     shouldTileImage: true
 
     function drawImage() {
@@ -44,14 +44,14 @@ ImageGeneratorPage {
             }
             TumblerSelector {
                 id: symmetrySelectorId
-                title: "Symmetry"
+                title: qsTr("Symmetry")
                 selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
             }
             SliderSelector {
                 id: colorCountSelectorId
-                title: "Number of Colors"
+                title: qsTr("Number of Colors")
                 fromValue: 1
                 toValue: 99
                 stepValue: 1
@@ -61,18 +61,19 @@ ImageGeneratorPage {
             }
             RuleTypeSelector {
                 id: rule1Id
-                title: "Rule 1"
+                title: qsTr("Rule 1")
                 initialIndex: 1
             }
             RuleTypeSelector {
                 id: rule2Id
-                title: "Rule 2"
-                initialIndex: 3
+                title: qsTr("Rule 2")
+                initialIndex: 4
+                usePastelColors: true
             }
             RuleTypeSelector {
                 id: rule3Id
-                title: "Rule 3"
-                initialIndex: 5
+                title: qsTr("Rule 3")
+                initialIndex: 7
             }
 
             ImageSelector {

@@ -28,7 +28,7 @@ Column {
         spacing: 0
         TextArea {
             id: imagePaletteNameId
-            placeholderText: "Select Image"
+            placeholderText: qsTr("Select Image")
             wrapMode: Label.WordWrap
             Layout.fillWidth: true
             Layout.preferredWidth: dimensionSelectorId.width
@@ -66,7 +66,7 @@ Column {
     }
     SliderSelector {
         id: saturationBoostSelectorId
-        title: "Saturation Boost"
+        title: qsTr("Saturation Boost")
         fromValue: 0.01
         toValue: 3.0
         stepValue: 0.1

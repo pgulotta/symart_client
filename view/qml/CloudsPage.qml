@@ -8,11 +8,11 @@ ImageGeneratorPage {
 
     function drawImage() {
         Controller.generateCloudsImage(dimensionSelectorId.dimension,
-                                      symmetrySelectorId.selectorIndex,
-                                      colorSelector1Id.selectedColor1,
-                                      colorSelector1Id.selectedColor2,
-                                      colorSelector1Id.selectedColor3,
-                                      distributionSelectorId.selectorIndex)
+                                       symmetrySelectorId.selectorIndex,
+                                       colorSelector1Id.selectedColor1,
+                                       colorSelector1Id.selectedColor2,
+                                       colorSelector1Id.selectedColor3,
+                                       distributionSelectorId.selectorIndex)
     }
 
     function selectionDescription() {
@@ -42,14 +42,14 @@ ImageGeneratorPage {
             }
             TumblerSelector {
                 id: distributionSelectorId
-                title: "Distribution"
+                title: qsTr("Distribution")
                 selectorModel: ImmutableList.distributionNames()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
             }
             TumblerSelector {
                 id: symmetrySelectorId
-                title: "Symmetry"
+                title: qsTr("Symmetry")
                 selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
