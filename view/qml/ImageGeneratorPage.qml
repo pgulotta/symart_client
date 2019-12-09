@@ -247,8 +247,8 @@ Page {
                     }
                     RandomizeDialog {
                         id: randomizeDialogId
-                        x: exlargePadding
-                        y: -height + randomizeButtonId.height / 2
+                        x: randomizeButtonId.width / 2
+                        y: randomizeButtonId.height / 2 - height
                         onAccepted: {
                             isImageModified = true
                             imageSource = ""
@@ -268,8 +268,8 @@ Page {
                     }
                     HyperbolicDialog {
                         id: hyperbolicDialogId
-                        x: hyperbolicButtonId.x - 1.8 * width
-                        y: hyperbolicButtonId.y + largePadding - height
+                        x: hyperbolicButtonId.width / 2
+                        y: hyperbolicButtonId.height / 2 - height
                         onAccepted: {
                             isImageModified = true
                             shouldTileImage = false

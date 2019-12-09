@@ -19,6 +19,7 @@
         <file>view/qml/ColorsSelector.qml</file>		
         <file>view/qml/EnterTransition.qml</file>
         <file>view/qml/ExitTransition.qml</file>
+        <file>view/qml/HtmlText.qml</file>
         <file>view/qml/HyperbolicDialog.qml</file>
         <file>view/qml/HyperCloudsPage.qml</file>
         <file>view/qml/HyperLinesPage.qml</file>

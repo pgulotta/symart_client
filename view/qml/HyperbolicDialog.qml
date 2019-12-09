@@ -44,7 +44,7 @@ Dialog {
                 id: projectionSelectorId
                 title: "Projection"
                 selectorModel: ImmutableList.projectionTypes()
-                  width: sizeSelectorId.width
+                width: sizeSelectorId.width
                 height: width * 0.8
                 onSelectorModelChanged: selectorIndex = 0
             }
