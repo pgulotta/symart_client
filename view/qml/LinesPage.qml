@@ -48,6 +48,7 @@ ImageGeneratorPage {
                 selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
+                onSelectorModelChanged: selectorIndex = 0
             }
             SliderSelector {
                 id: colorCountSelectorId
@@ -55,7 +56,7 @@ ImageGeneratorPage {
                 fromValue: 1
                 toValue: 99
                 stepValue: 1
-                initialValue: 25
+                initialValue: 20
                 isAlwaysEven: false
                 decimals: 0
             }
@@ -63,17 +64,20 @@ ImageGeneratorPage {
                 id: rule1Id
                 title: qsTr("Rule 1")
                 initialIndex: 1
+                weight: "2"
             }
             RuleTypeSelector {
                 id: rule2Id
                 title: qsTr("Rule 2")
                 initialIndex: 4
                 usePastelColors: true
+                weight: "4"
             }
             RuleTypeSelector {
                 id: rule3Id
                 title: qsTr("Rule 3")
                 initialIndex: 7
+                weight: "8"
             }
 
             ImageSelector {

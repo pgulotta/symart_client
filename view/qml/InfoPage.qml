@@ -9,9 +9,11 @@ Page {
     property string pageTitle
     title: pageTitle
 
-    readonly property string qtLink: "http://www.qt.io/"
-    readonly property string osmLink: "https://www.openstreetmap.org/copyright"
     readonly property string emailLink: "mailto:pgulotta@gmail.com"
+    readonly property string qtLink: "http://www.qt.io/"
+    readonly property string wallpaperGroupLink: "https://en.wikipedia.org/wiki/Wallpaper_group"
+    readonly property string symmetryLink: "https://www.mathsisfun.com/geometry/symmetry.html"
+    readonly property string probabiltyDistributionsLink: "https://en.wikipedia.org/wiki/Probability_distribution"
 
     Material.background: Constants.accentColor
 
@@ -22,9 +24,8 @@ Page {
         Label {
             id: aboutTitleId
             text: qsTr("About")
-          //  font.pointSize: mediumLargeFontPointSize
-            color: Constants.foreColor
-            width: parent.width * 0.80
+            color: Constants.linkTextColor
+            scale: 1.25
             anchors.left: parent.left
             anchors.leftMargin: largePadding
             anchors.top: parent.top
@@ -57,30 +58,37 @@ Page {
             HtmlText {
                 text: " "
             }
+
             HtmlText {
-                text: "Feedback"
+                text: qsTr("Extras")
                 isUpperCase: true
                 isTitle: true
             }
             HtmlText {
                 width: aboutGridId.width
                 endBlankLine: true
-                text: "Send " + "<a href=\"" + emailLink + "\">email</a>"
-                websiteLink: emailLink
-            }
-            HtmlText {
-                text: "Privacy"
-                isUpperCase: true
-                isTitle: true
+                text: "<a href=\"" + symmetryLink + "\">Symmetry</a>"
+                      + " is the quality of having parts that match each other, especially in a way that is attractive, or similarity of shape or contents"
+                websiteLink: symmetryLink
             }
             HtmlText {
                 width: aboutGridId.width
                 endBlankLine: true
-                text: Controller.applicationTitle(
-                          ) + " does not request or share any personal information with third parties. It does not request or know the user's physical location."
+                text: "<a href=\"" + wallpaperGroupLink + "\">A Wallpaper Group </a>"
+                      + " is a mathematical classification of a two-dimensional repetitive pattern, based on the symmetries in the pattern."
+                websiteLink: wallpaperGroupLink
+            }
+
+            HtmlText {
+                width: aboutGridId.width
+                endBlankLine: true
+                text: "<a href=\"" + probabiltyDistributionsLink
+                      + "\">A Probability Distribution </a>"
+                      + " is a statistical function that describes all the possible values and likelihoods that a random variable can take within a given range."
+                websiteLink: probabiltyDistributionsLink
             }
             HtmlText {
-                text: "Attribution"
+                text: qsTr("Attribution")
                 isUpperCase: true
                 isTitle: true
             }
@@ -92,9 +100,30 @@ Page {
                           ) + ". It is developed under the Qt Company GNU Lesser General Public License v3 (“LGPLv3”) open-source license."
                 websiteLink: qtLink
             }
-
             HtmlText {
-                text: "Disclaimer"
+                text: qsTr("Privacy")
+                isUpperCase: true
+                isTitle: true
+            }
+            HtmlText {
+                width: aboutGridId.width
+                endBlankLine: true
+                text: Controller.applicationTitle(
+                          ) + " does not request or share any personal information with third parties. It does not request or know the user's physical location."
+            }
+            HtmlText {
+                text: qsTr("Feedback")
+                isUpperCase: true
+                isTitle: true
+            }
+            HtmlText {
+                width: aboutGridId.width
+                endBlankLine: true
+                text: "Send " + "<a href=\"" + emailLink + "\">email</a>"
+                websiteLink: emailLink
+            }
+            HtmlText {
+                text: qsTr("Disclaimer")
                 isUpperCase: true
                 isTitle: true
             }
