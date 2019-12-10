@@ -1,8 +1,5 @@
 import QtQuick 2.13
 import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.3
-import QtQuick.Controls.Material 2.3
-import com.twentysixapps.constants 1.0
 
 SelectorGroupBox {
     id: selectorGroupBoxlId
@@ -13,7 +10,7 @@ SelectorGroupBox {
     property alias usePastelColors: usePastelColorsId.checked
 
     focus: true
-    title: "Rule Type"
+    title: qsTr("Rule Type")
 
     Column {
         id: columnId
@@ -22,7 +19,7 @@ SelectorGroupBox {
             focus: true
             TumblerSelector {
                 id: tumblerId
-                title: "Type"
+                title: qsTr("Type")
                 selectorModel: ImmutableList.ruleTypes()
                 height: 110
                 width: selectorGroupBoxlId.width * .5
@@ -31,7 +28,7 @@ SelectorGroupBox {
             Column {
                 leftPadding: exlargePadding
                 Label {
-                    text: "Weight"
+                    text: qsTr("Weight")
                 }
                 NumericInput {
                     id: weightId

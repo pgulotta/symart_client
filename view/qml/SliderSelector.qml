@@ -1,9 +1,7 @@
-import QtQuick 2.12
+import QtQuick 2.13
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
-import com.twentysixapps.constants 1.0
 
-// re:  https://www.labnol.org/home/hue-saturation-luminosity/20104/
 SelectorGroupBox {
     id: sliderSelectorId
 

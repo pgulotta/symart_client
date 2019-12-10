@@ -3,8 +3,8 @@ import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
 
 ImageGeneratorPage {
-    objectName: "QuasiOrbitTrapsPage"
     id: quasiOrbitTrapsPageId
+    objectName: "QuasiOrbitTrapsPage"
     shouldTileImage: false
     canAugmentImage: false
     isImageTileable: false
@@ -37,7 +37,7 @@ ImageGeneratorPage {
 
             SliderSelector {
                 id: widthSelectorId
-                title: "Width"
+                title: qsTr("Width")
                 fromValue: 2
                 toValue: 2048
                 stepValue: 1
@@ -46,7 +46,7 @@ ImageGeneratorPage {
             }
             SliderSelector {
                 id: heightSelectorId
-                title: "Height"
+                title: qsTr("Height")
                 fromValue: 2
                 toValue: 2048
                 stepValue: 1
@@ -59,7 +59,7 @@ ImageGeneratorPage {
             }
             SliderSelector {
                 id: quasiperiodSelectorId
-                title: "Quasiperiod"
+                title: qsTr("Quasiperiod")
                 fromValue: 1.00
                 toValue: maxImageDimension
                 stepValue: 1
@@ -69,7 +69,7 @@ ImageGeneratorPage {
             }
             TumblerSelector {
                 id: symmetrySelectorId
-                title: "Symmetry"
+                title: qsTr("Symmetry")
                 selectorModel: ImmutableList.quasiSymmetry()
                 width: quasiperiodSelectorId.width
                 height: quasiperiodSelectorId.height * 0.8
@@ -77,7 +77,7 @@ ImageGeneratorPage {
             }
             TumblerSelector {
                 id: functionSelectorId
-                title: "Function"
+                title: qsTr("Function")
                 selectorModel: ImmutableList.formTypes()
                 width: quasiperiodSelectorId.width
                 height: symmetrySelectorId.height

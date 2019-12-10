@@ -7,9 +7,9 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-         Controller.generateStripesImage(
-                    dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex, alphaSelectorId.dimension)
+        Controller.generateStripesImage(dimensionSelectorId.dimension,
+                                        symmetrySelectorId.selectorIndex,
+                                        alphaSelectorId.dimension)
     }
 
     function selectionDescription() {
@@ -38,7 +38,7 @@ ImageGeneratorPage {
 
             TumblerSelector {
                 id: symmetrySelectorId
-                title: "Symmetry"
+                title: qsTr("Symmetry")
                 selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
@@ -46,7 +46,7 @@ ImageGeneratorPage {
 
             SliderSelector {
                 id: alphaSelectorId
-                title: "Alpha Blending"
+                title: qsTr("Alpha Blending")
                 fromValue: 0.04
                 toValue: 2.0
                 stepValue: 0.1

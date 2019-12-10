@@ -1,11 +1,11 @@
 import QtQuick 2.13
+import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.13
 import Qt.labs.platform 1.1 as Labs
 
 ImageGeneratorPage {
-    objectName: "SquigglesPage"
     id: squigglesPageId
+    objectName: "SquigglesPage"
     shouldTileImage: true
 
     function drawImage() {
@@ -65,19 +65,19 @@ ImageGeneratorPage {
             }
             TumblerSelector {
                 id: symmetrySelectorId
-                title: "Symmetry"
+                title: qsTr("Symmetry")
                 selectorModel: ImmutableList.symmetryGroups()
                 width: dimensionSelectorId.width
                 height: dimensionSelectorId.height
             }
             ToolButton {
-                text: "Change Colors"
+                text: qsTr("Change Colors")
                 enabled: pageDescription !== ""
                 onClicked: updateImage()
             }
             SliderSelector {
                 id: alphaSelectorId
-                title: "Alpha Blending"
+                title: qsTr("Alpha Blending")
                 fromValue: 0.04
                 toValue: 2.0
                 stepValue: 0.1
@@ -87,7 +87,7 @@ ImageGeneratorPage {
             }
             SliderSelector {
                 id: exponentelectorId
-                title: "Exponent"
+                title: qsTr("Exponent")
                 fromValue: 0.0
                 toValue: 16.00
                 stepValue: 0.01
@@ -97,7 +97,7 @@ ImageGeneratorPage {
             }
             SliderSelector {
                 id: thicknessSelectorId
-                title: "Thickness"
+                title: qsTr("Thickness")
                 fromValue: 0.0
                 toValue: 20.00
                 stepValue: 0.01
@@ -107,7 +107,7 @@ ImageGeneratorPage {
             }
             SliderSelector {
                 id: sharpnessSelectorId
-                title: "Sharpness"
+                title: qsTr("Sharpness")
                 fromValue: 0.0
                 toValue: 1000
                 stepValue: 1
@@ -117,7 +117,7 @@ ImageGeneratorPage {
             }
             SliderSelector {
                 id: colorCountSelectorId
-                title: "Number of Colors"
+                title: qsTr("Number of Colors")
                 fromValue: 1
                 toValue: 99
                 stepValue: 1

@@ -8,7 +8,7 @@ ImageGeneratorPage {
     canAugmentImage: false
 
     function drawImage() {
-         Controller.generateQuasiperiodicStripesImage(
+        Controller.generateQuasiperiodicStripesImage(
                     dimensionSelectorId.dimension, quasiperiodId.dimension,
                     alphaSelectorId.dimension)
     }
@@ -38,7 +38,7 @@ ImageGeneratorPage {
 
             SliderSelector {
                 id: quasiperiodId
-                title: "Quasiperiod"
+                title: qsTr("Quasiperiod")
                 fromValue: 2
                 toValue: 64
                 stepValue: 1
@@ -49,7 +49,7 @@ ImageGeneratorPage {
 
             SliderSelector {
                 id: alphaSelectorId
-                title: "Alpha Blending"
+                title: qsTr("Alpha Blending")
                 fromValue: 0.04
                 toValue: 2.0
                 stepValue: 0.1

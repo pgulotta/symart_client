@@ -3,7 +3,7 @@ import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
 
 ImageGeneratorPage {
-    objectName: "CloudsPage"
+    objectName: "WalksPage"
     id: cloudsPageId
     shouldTileImage: true
     canAugmentImage: false
@@ -36,7 +36,7 @@ ImageGeneratorPage {
 
             SliderSelector {
                 id: widthSelectorId
-                title: "Width"
+                title: qsTr("Width")
                 fromValue: 2
                 toValue: maxImageDimension
                 stepValue: 1
@@ -45,7 +45,7 @@ ImageGeneratorPage {
             }
             SliderSelector {
                 id: heightSelectorId
-                title: "Height"
+                title: qsTr("Height")
                 fromValue: 2
                 toValue: maxImageDimension
                 stepValue: 1
@@ -54,7 +54,7 @@ ImageGeneratorPage {
             }
             TumblerSelector {
                 id: fillModeSelectorId
-                title: "Fill Mode"
+                title: qsTr("Fill Mode")
                 selectorModel: ImmutableList.walkFillModes()
                 width: widthSelectorId.width
                 height: heightSelectorId.height * 0.8
