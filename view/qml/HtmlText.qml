@@ -14,7 +14,7 @@ ColumnLayout {
   property bool isTitle: false
   property bool isBold: false
   property bool isUpperCase: false
-  property string textColor: Constants.textColor
+  property string textColor: Constants.foreColor
   property bool isCentered: false
 
   width: parent.width
