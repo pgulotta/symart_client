@@ -6,13 +6,9 @@ MovableDialog {
     id: imageFileExtensionDialogId
 
     title: qsTr("Save Image As")
-    height: 400
-    width: 300
+    height: 350
+    width: 250
 
-    enter: EnterTransition {
-        itemHeight: imageFileExtensionDialogId.height
-        itemWidth: imageFileExtensionDialogId.width
-    }
     Component.onCompleted: listViewId.forceActiveFocus()
 
     ListModel {
@@ -50,7 +46,6 @@ MovableDialog {
     Rectangle {
         anchors.fill: parent
         color: Constants.primaryColor
-
         ListView {
             id: listViewId
             keyNavigationWraps: true

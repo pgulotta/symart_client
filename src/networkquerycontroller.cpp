@@ -138,7 +138,7 @@ void NetworkQueryController::saveToFile( const QByteArray& source, const QString
   if ( writer.write( imageFromByteArray( source ) ) ) {
     message = ( "Saved image as " + filename );
   } else {
-    message = "Unable to save image as " + filename ;
+    message = "Unable to save image as " + filename + " - " + writer.errorString();
   }
 
   emit networkQueryMessage( message );

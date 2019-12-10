@@ -2,8 +2,8 @@
 import QtQuick.Layouts 1.3
 
 ImageGeneratorPage {
-    objectName: "OrbitTrapsPage"
     id: orbitTrapsPageId
+    objectName: "OrbitTrapsPage"
     shouldTileImage: true
 
     function drawImage() {
