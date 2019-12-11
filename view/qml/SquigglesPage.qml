@@ -88,7 +88,7 @@ ImageGeneratorPage {
             SliderSelector {
                 id: exponentelectorId
                 title: qsTr("Exponent")
-                fromValue: 0.0
+                fromValue: 0.1
                 toValue: 16.00
                 stepValue: 0.01
                 initialValue: 4
@@ -98,7 +98,7 @@ ImageGeneratorPage {
             SliderSelector {
                 id: thicknessSelectorId
                 title: qsTr("Thickness")
-                fromValue: 0.0
+                fromValue: 0.1
                 toValue: 20.00
                 stepValue: 0.01
                 initialValue: 1
@@ -108,7 +108,7 @@ ImageGeneratorPage {
             SliderSelector {
                 id: sharpnessSelectorId
                 title: qsTr("Sharpness")
-                fromValue: 0.0
+                fromValue: 0.1
                 toValue: 1000
                 stepValue: 1
                 initialValue: 2

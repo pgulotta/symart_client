@@ -9,7 +9,7 @@ int main( int argc, char* argv[] )
   QGuiApplication::setApplicationName( QStringLiteral( "SymArt" ) );
   QGuiApplication::setOrganizationDomain( "twentysixapps.com" );
   QGuiApplication::setOrganizationName( QLatin1String( "26Apps" ) );
-  QGuiApplication::setApplicationVersion( "1.00" );
+  QGuiApplication::setApplicationVersion( "2.01" );
   QQuickStyle::setStyle( "Material" );
   QApplication app( argc, argv );
   FrontController frontController{&app};
