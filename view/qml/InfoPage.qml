@@ -11,9 +11,12 @@ Page {
 
     readonly property string emailLink: "mailto:pgulotta@gmail.com"
     readonly property string qtLink: "http://www.qt.io/"
+    readonly property string alphaBlendingLink: "https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending"
+    readonly property string orbitTrapLink: "https://en.wikipedia.org/wiki/Orbit_trap"
     readonly property string wallpaperGroupLink: "https://en.wikipedia.org/wiki/Wallpaper_group"
     readonly property string symmetryLink: "https://www.mathsisfun.com/geometry/symmetry.html"
     readonly property string probabiltyDistributionsLink: "https://en.wikipedia.org/wiki/Probability_distribution"
+    readonly property string colorModelLink: "https://whatis.techtarget.com/definition/hue-saturation-and-brightness"
 
     Material.background: Constants.accentColor
 
@@ -74,7 +77,7 @@ Page {
             HtmlText {
                 width: aboutGridId.width
                 endBlankLine: true
-                text: "<a href=\"" + wallpaperGroupLink + "\">A Wallpaper Group </a>"
+                text: "<a href=\"" + wallpaperGroupLink + "\">Wallpaper Group </a>"
                       + " is a mathematical classification of a two-dimensional repetitive pattern, based on the symmetries in the pattern."
                 websiteLink: wallpaperGroupLink
             }
@@ -82,8 +85,31 @@ Page {
             HtmlText {
                 width: aboutGridId.width
                 endBlankLine: true
+                text: "<a href=\"" + alphaBlendingLink + "\">Alpha Blending</a>"
+                      + " is a convex combination of two colors allowing for transparency effects in computer graphics. "
+                websiteLink: alphaBlendingLink
+            }
+            HtmlText {
+                width: aboutGridId.width
+                endBlankLine: true
+                text: "<a href=\"" + orbitTrapLink + "\">Orbit Trap </a>"
+                      + " is a method of colouring fractal images based upon how close an iterative function."
+                websiteLink: orbitTrapLink
+            }
+
+            HtmlText {
+                width: aboutGridId.width
+                endBlankLine: true
+                text: "<a href=\"" + colorModelLink + "\">Color Model </a>"
+                      + "  is used to represent the color of each pixel."
+                websiteLink: colorModelLink
+            }
+
+            HtmlText {
+                width: aboutGridId.width
+                endBlankLine: true
                 text: "<a href=\"" + probabiltyDistributionsLink
-                      + "\">A Probability Distribution </a>"
+                      + "\">Probability Distribution </a>"
                       + " is a statistical function that describes all the possible values and likelihoods that a random variable can take within a given range."
                 websiteLink: probabiltyDistributionsLink
             }
