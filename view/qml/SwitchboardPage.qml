@@ -10,7 +10,7 @@ GridView {
     objectName: "SwitchboardPage"
 
     readonly property int animationDuration: 100
-    property int switchboardColumnCount: isWideWidth ? (isMobileDevice ? 4 : 4) : (isMobileDevice ? 3 : 4)
+    property int switchboardColumnCount: isWideWidth ? 4 : (isMobileDevice ? 3 : 4)
     property int switchboardCellWidth: windowWidth / switchboardColumnCount * 0.92
     property int switchboardCellHeight: switchboardCellWidth * 1.15
     property int imageCellHeight: switchboardCellWidth

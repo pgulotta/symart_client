@@ -1,4 +1,4 @@
-import QtQuick 2.13
+﻿import QtQuick 2.13
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.13
 
@@ -7,8 +7,7 @@ import com.twentysixapps.constants 1.0
 ApplicationWindow {
     id: rootId
 
-    readonly property bool isMobileDevice: Qt.platform.os === "android"
-                                           || Qt.platform.os === "ios"
+    readonly property bool isMobileDevice:Qt.platform.os === "android"|| Qt.platform.os === "ios"
     property int windowHeight: isMobileDevice ? Screen.desktopAvailableHeight : Screen.desktopAvailableHeight * 0.8
     property int windowWidth: isMobileDevice ? Screen.width : Screen.width * .5
     property bool isPortraitMode: windowHeight > windowWidth

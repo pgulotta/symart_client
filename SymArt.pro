@@ -6,19 +6,23 @@ QT += gui \
     widgets
 # using widgets for the QML Qt.labs.platform QolorDialog
 
-
-
 CONFIG +=  c++1z
-CONFIG += qtquickcompiler
+
+#CONFIG += qtquickcompiler  not supported
 
 DEFINES += QT_DEPRECATED_WARNINGS
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += $$files(*.hpp, true)
 
 SOURCES += $$files(*.cpp, true)
 
 RESOURCES += qml.qrc
+
+QML_IMPORT_PATH += $$PWD
+
+QML_DESIGNER_IMPORT_PATH =
+
 
 wasm {
 QMAKE_LFLAGS += -s SAFE_HEAP=1
@@ -27,6 +31,12 @@ QMAKE_LFLAGS += --emrun
 #QMAKE_WASM_TOTAL_MEMORY=65536000
 }
 
+android {
+    QT += androidextras
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+}
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 DISTFILES += \
     android/AndroidManifest.xml \
@@ -36,17 +46,6 @@ DISTFILES += \
     android/gradlew \
     android/gradlew.bat \
     android/res/values/libs.xml
-
-QML_IMPORT_PATH += $$PWD
-QML_DESIGNER_IMPORT_PATH =
-
-android {
-    QT += androidextras
-    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-}
-
-unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
 message(****  SymArt.Pro  ****)
 message(Qt version: $$[QT_VERSION])

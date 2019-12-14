@@ -17,10 +17,10 @@ public:
 
 private:
   //void initSettings();
-  void initQml();
+  void initQml( FrontController& frontController );
 
 private:
-  FrontController& mFrontController;
+
   TopicsMetaDataBuilder mTopicsMetaDataBuilder;
   ImmutableList mImmutableList;
   QQmlApplicationEngine mQmlApplicationEngine;

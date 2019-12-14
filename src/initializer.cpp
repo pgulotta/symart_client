@@ -12,16 +12,15 @@ const QString ApplicationCategoryTitle{"Application"  };
 
 Initializer::Initializer( FrontController& frontController, QObject* parent ):
   QObject{parent},
-  mFrontController{frontController},
   mTopicsMetaDataBuilder{parent},
   mImmutableList{parent},
   mQmlApplicationEngine{parent}
 {
 // initSettings();
-  initQml();
+  initQml( frontController );
 }
 
-void Initializer::initQml()
+void Initializer::initQml( FrontController& frontController )
 {
   qmlRegisterSingletonType( QUrl( QStringLiteral( "qrc:/view/qml/SharedConstants.qml" ) ),
                             "com.twentysixapps.constants", 1, 0, "Constants" );
@@ -30,9 +29,9 @@ void Initializer::initQml()
   qmlRegisterType<TopicMetaData>( "TopicMetaDataModel", 1, 0, "TopicMetaData" );
   QQmlContext* context = mQmlApplicationEngine.rootContext();
   context->setContextProperty( "ImmutableList", &mImmutableList );
-  context->setContextProperty( "Controller", &mFrontController );
+  context->setContextProperty( "Controller", &frontController );
   context->setContextProperty( "TopicsMetaData", QVariant::fromValue( mTopicsMetaDataBuilder.topicsMetaData() ) );
-  mQmlApplicationEngine.addImageProvider( "generatedImage", &mFrontController.imageProvider() );
+  mQmlApplicationEngine.addImageProvider( "generatedImage", &frontController.imageProvider() );
   mQmlApplicationEngine.load( QUrl( QStringLiteral( "qrc:/view/qml/MainPage.qml" ) ) );
 }
 

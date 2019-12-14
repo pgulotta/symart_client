@@ -2,6 +2,7 @@
 #include <QQuickStyle>
 #include "initializer.hpp"
 #include "frontcontroller.hpp"
+#include "permissions.hpp"
 
 int main( int argc, char* argv[] )
 {
@@ -15,5 +16,13 @@ int main( int argc, char* argv[] )
   FrontController frontController{&app};
   Initializer initializer{frontController, &app};
 
-  return app.exec();
+  Permissions permissions;
+  permissions.requestExternalStoragePermission();
+
+  if ( permissions.getPermissionResult() ) {
+    qWarning( "Successfully obtained required permissions, app starting" );
+    return app.exec();
+  } else {
+    qWarning( "Failed to obtain required permissions, app terminating" );
+  }
 }
