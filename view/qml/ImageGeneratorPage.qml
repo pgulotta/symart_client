@@ -172,7 +172,7 @@ Page {
                     }
                     ImageFileExtensionDialog {
                         id: extensionDialogId
-                        x: saveButtonId.width / 2
+                        x: Math.min (windowWidth - width,saveButtonId.width / 2)
                         y: saveButtonId.height / 2 - height
                         onAccepted: Controller.saveCurrentImage(
                                         pageTitle,
@@ -246,7 +246,7 @@ Page {
                     }
                     RandomizeDialog {
                         id: randomizeDialogId
-                        x: randomizeButtonId.width / 2
+                        x: Math.min (windowWidth - width,randomizeButtonId.width / 2)
                         y: randomizeButtonId.height / 2 - height
                         onAccepted: {
                             isImageModified = true
@@ -267,7 +267,7 @@ Page {
                     }
                     HyperbolicDialog {
                         id: hyperbolicDialogId
-                        x: hyperbolicButtonId.width / 2
+                        x: Math.min (windowWidth - width,  hyperbolicButtonId.width / 2)
                         y: hyperbolicButtonId.height / 2 - height
                         onAccepted: {
                             isImageModified = true
