@@ -1,5 +1,5 @@
-﻿import QtQuick 2.13
-import QtQuick.Controls 2.13
+﻿import QtQuick 2.14
+import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 import com.twentysixapps.constants 1.0
 
@@ -82,14 +82,14 @@ Page {
             Layout.fillWidth: true
             clip: true
             height: imageViewId.height
-            rightPadding: largePadding
+            rightPadding: mediumPadding
             Pane {
                 id: controlsViewId
             }
         }
         Pane {
             id: imageViewId
-            width: parent.width - controlsViewId.width - largePadding
+            width: parent.width - controlsViewId.width - mediumPadding
             height: parent.height
             z: -1
             contentData: Rectangle {
@@ -154,7 +154,7 @@ Page {
                 Layout.fillWidth: false
                 ToolButton {
                     id: drawButtonId
-                    text: qsTr("Draw")
+                    text: qsTr("Generate")
                     onClicked: {
                         imageSource = ""
                         pageDescription = qsTr("Working . . .")
@@ -172,7 +172,8 @@ Page {
                     }
                     ImageFileExtensionDialog {
                         id: extensionDialogId
-                        x: Math.min (windowWidth - width,saveButtonId.width / 2)
+
+                        //x: Math.min (windowWidth - width,saveButtonId.width / 2)
                         y: saveButtonId.height / 2 - height
                         onAccepted: Controller.saveCurrentImage(
                                         pageTitle,
@@ -246,7 +247,6 @@ Page {
                     }
                     RandomizeDialog {
                         id: randomizeDialogId
-                        x: Math.min (windowWidth - width,randomizeButtonId.width / 2)
                         y: randomizeButtonId.height / 2 - height
                         onAccepted: {
                             isImageModified = true
@@ -259,7 +259,7 @@ Page {
                 }
                 ToolButton {
                     id: hyperbolicButtonId
-                    text: qsTr("Hyperbolic")
+                    text: qsTr("Hyperbolic Image")
                     onClicked: {
                         if (imageSource == "")
                             return
@@ -267,7 +267,6 @@ Page {
                     }
                     HyperbolicDialog {
                         id: hyperbolicDialogId
-                        x: Math.min (windowWidth - width,  hyperbolicButtonId.width / 2)
                         y: hyperbolicButtonId.height / 2 - height
                         onAccepted: {
                             isImageModified = true

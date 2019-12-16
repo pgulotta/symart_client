@@ -1,13 +1,14 @@
-﻿import QtQuick 2.13
-import QtQuick.Controls 2.5
-import QtQuick.Window 2.13
+﻿import QtQuick 2.14
+import QtQuick.Controls 2.14
+import QtQuick.Window 2.14
 
 import com.twentysixapps.constants 1.0
 
 ApplicationWindow {
     id: rootId
 
-    readonly property bool isMobileDevice:Qt.platform.os === "android"|| Qt.platform.os === "ios"
+    readonly property bool isMobileDevice: Qt.platform.os === "android"
+                                           || Qt.platform.os === "ios"
     property int windowHeight: isMobileDevice ? Screen.desktopAvailableHeight : Screen.desktopAvailableHeight * 0.8
     property int windowWidth: isMobileDevice ? Screen.width : Screen.width * .5
     property bool isPortraitMode: windowHeight > windowWidth
@@ -16,10 +17,11 @@ ApplicationWindow {
     readonly property int maxImageDimension: 2048
     readonly property int imageControlsWidth: 180
     readonly property int smallFontPointSize: 12
-    readonly property int mediumFontPointSize: 18
+    readonly property int mediumFontPointSize: 14
+    readonly property int largeFontPointSize: 18
     readonly property int smallPadding: 4
     readonly property int mediumPadding: 8
-    readonly property int largePadding: 16
+    readonly property int largePadding: 12
     readonly property int exlargePadding: 32
     readonly property int rectRadius: 10
     readonly property int borderWidth: 1
@@ -66,7 +68,7 @@ ApplicationWindow {
         ToolButton {
             id: toolButtonId
             text: Constants.backChar
-            font.pointSize: mediumFontPointSize
+            font.pointSize: largeFontPointSize
             onClicked: popSource()
         }
 
@@ -82,7 +84,7 @@ ApplicationWindow {
         Rectangle {
             Keys.onBackPressed: {
                 event.accepted = true
-                Qt.quit()
+                popSource()
             }
         }
         pushEnter: Transition {
@@ -143,7 +145,7 @@ ApplicationWindow {
         focus: true
         implicitWidth: 300
         parent: ApplicationWindow.overlay
-        title: qsTr("Alert ...")
+        title: qsTr("Note ...")
         standardButtons: Dialog.Ok
         contentItem: Label {
             id: textId
@@ -160,7 +162,7 @@ ApplicationWindow {
     function popSource() {
         if (stackViewId.depth > 1) {
             stackViewId.pop()
-        } else
+        } else if (stackViewId.depth == 1)
             Qt.quit()
     }
 

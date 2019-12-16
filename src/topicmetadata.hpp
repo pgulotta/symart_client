@@ -12,7 +12,6 @@ class TopicMetaData  : public QObject
   Q_PROPERTY( QString title READ title CONSTANT )
   Q_PROPERTY( QString imageSource READ imageSource CONSTANT  )
   Q_PROPERTY( QString pageSource READ pageSource CONSTANT  )
-  Q_PROPERTY( QString helpText READ helpText CONSTANT  )
 
 
 signals:
@@ -49,14 +48,13 @@ public:
   explicit TopicMetaData( QObject* parent = nullptr ) : QObject( parent ) {}
 
   TopicMetaData( TopicMetaData::Topic typeId, const QString& title, const QString& imageSource,
-                 const QString& pageSource, const QString& helpText,  QObject* parent = nullptr ) :
+                 const QString& pageSource, QObject* parent = nullptr ) :
     QObject( parent ),
     m_typeId{static_cast<int>( typeId )},
     m_orderByIndex{m_typeId},
     m_title{title},
     m_imageSource{imageSource},
-    m_pageSource{pageSource},
-    m_helpText{helpText}
+    m_pageSource{pageSource}
   {}
 
   QString title() const
@@ -74,10 +72,6 @@ public:
     return m_pageSource;
   }
 
-  QString helpText() const
-  {
-    return m_helpText;
-  }
 
   int orderByIndex() const
   {
@@ -95,7 +89,7 @@ private:
   QString m_title;
   QString m_imageSource;
   QString m_pageSource;
-  QString m_helpText;
+
 
 
 };

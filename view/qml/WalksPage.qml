@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
+import QtQuick 2.14
+import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
 ImageGeneratorPage {
@@ -32,7 +32,7 @@ ImageGeneratorPage {
         height: parent.height
         Column {
             spacing: largePadding
-            leftPadding: largePadding
+            leftPadding: mediumPadding
 
             SliderSelector {
                 id: widthSelectorId

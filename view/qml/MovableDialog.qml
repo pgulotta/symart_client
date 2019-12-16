@@ -1,11 +1,13 @@
-﻿import QtQuick 2.12
-import QtQuick.Controls 2.5
+﻿import QtQuick 2.14
+import QtQuick.Controls 2.14
 
 Dialog {
     id: dialogId
+    x: 0
     modal: true
     focus: true
     clip: true
+
     standardButtons: Dialog.Cancel | Dialog.Ok
 
     enter: EnterTransition {}

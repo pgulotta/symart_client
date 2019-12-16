@@ -1,4 +1,4 @@
-import QtQuick.Controls 2.5
+import QtQuick.Controls 2.14
 
 GroupBox {
     id: groupBoxId

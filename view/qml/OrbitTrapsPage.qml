@@ -26,7 +26,7 @@ ImageGeneratorPage {
         Column {
             id: columnId
             spacing: exlargePadding
-            leftPadding: largePadding
+            leftPadding: mediumPadding
 
             SliderSelector {
                 id: dimensionSelectorId

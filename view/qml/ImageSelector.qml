@@ -1,6 +1,6 @@
 import QtQuick 2.13
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.13
+import QtQuick.Controls 2.14
 import Qt.labs.platform 1.1 as Labs
 
 Column {
@@ -48,19 +48,19 @@ Column {
     }
     Switch {
         id: useBrightnessSwitchId
-        text: qsTr("Use Color Brightness")
+        text: qsTr("Use Brightness")
         enabled: useImageColorsSwitchId.checked && imagePaletteUrl !== ""
         checked: false
     }
     Switch {
         id: useHueSwitchId
-        text: qsTr("Use Color Hue")
+        text: qsTr("Use Hue")
         enabled: useImageColorsSwitchId.checked && imagePaletteUrl !== ""
         checked: false
     }
     Switch {
         id: useSaturationSwitchId
-        text: qsTr("Use Color Saturation")
+        text: qsTr("Use Saturation")
         enabled: useImageColorsSwitchId.checked && imagePaletteUrl !== ""
         checked: false
     }

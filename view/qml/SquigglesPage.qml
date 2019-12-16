@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.5
+import QtQuick 2.14
+import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 import Qt.labs.platform 1.1 as Labs
 
@@ -53,7 +53,7 @@ ImageGeneratorPage {
         Column {
             id: columnId
             spacing: largePadding
-            leftPadding: largePadding
+            leftPadding: mediumPadding
 
             SliderSelector {
                 id: dimensionSelectorId

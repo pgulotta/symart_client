@@ -1,48 +1,13 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.4
+import QtQuick 2.14
+import QtQuick.Controls 2.14
 import com.twentysixapps.constants 1.0
 
 MovableDialog {
     id: imageFileExtensionDialogId
 
     title: qsTr("Save Image As")
-    height: 350
-    width: 250
 
     Component.onCompleted: listViewId.forceActiveFocus()
-
-    ListModel {
-        id: fileExtensionModelId
-        ListElement {
-            name: qsTr("BMP: Windows Bitmap")
-            extension: "bmp"
-        }
-        ListElement {
-            name: qsTr("JPG: Joint Photographic Experts Group")
-            extension: "jpg"
-        }
-        ListElement {
-            name: qsTr("JPEG: Joint Photographic Experts Group")
-            extension: "jpeg"
-        }
-        ListElement {
-            name: qsTr("PNG :Portable Network Graphics")
-            extension: "png"
-        }
-        ListElement {
-            name: qsTr("PPM: Portable Pixmap")
-            extension: "ppm"
-        }
-        ListElement {
-            name: qsTr("XBM: X11 Bitmap")
-            extension: "xbm"
-        }
-        ListElement {
-            name: qsTr("XPM: X11 Pixmap")
-            extension: "xpm"
-        }
-    }
-
     Rectangle {
         anchors.fill: parent
         color: Constants.primaryColor
@@ -51,33 +16,66 @@ MovableDialog {
             keyNavigationWraps: true
             anchors.fill: parent
             anchors.margins: smallPadding
-            anchors.topMargin: smallPadding
-            spacing: mediumPadding
+            spacing: smallPadding
             model: fileExtensionModelId
-            clip: true
+            clip: false
             focus: true
             currentIndex: 3
             delegate: Label {
                 id: delegateId
                 text: name
                 focus: true
-                anchors.margins: smallPadding
+                width: listViewId.width - smallPadding
+                height: 40
                 color: Constants.accentColor
-                padding: smallPadding
-                bottomPadding: smallPadding
+                wrapMode: Label.WordWrap
+                horizontalAlignment: Label.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.pointSize: isMobileDevice ? mediumFontPointSize : smallFontPointSize
                 TapHandler {
                     onTapped: listViewId.currentIndex = index
                 }
             }
+            interactive: true
+            snapMode: ListView.SnapOneItem
             ScrollBar.vertical: ScrollBar {}
             highlight: Rectangle {
                 color: Constants.accentColor
-                height: listViewId.height
                 width: listViewId.width
                 opacity: 0.25
             }
-            interactive: true
-            snapMode: ListView.SnapOneItem
+        }
+
+        ListModel {
+            id: fileExtensionModelId
+            ListElement {
+                name: qsTr("BMP")
+                extension: "bmp"
+            }
+            ListElement {
+                name: qsTr("JPG")
+                extension: "jpg"
+            }
+            ListElement {
+                name: qsTr("JPEG")
+                extension: "jpeg"
+            }
+            ListElement {
+                name: qsTr("PNG")
+                extension: "png"
+            }
+            ListElement {
+                name: qsTr("PPM")
+                extension: "ppm"
+            }
+            ListElement {
+                name: qsTr("XBM")
+                extension: "xbm"
+            }
+            ListElement {
+                name: qsTr("XPM")
+                extension: "xpm"
+            }
         }
     }
 

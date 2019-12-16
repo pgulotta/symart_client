@@ -8,6 +8,7 @@ MovableDialog {
     property alias projectionSelection: projectionSelectorId.selectorIndex
 
     title: qsTr("Hyperbolic Image")
+    x: 0
 
     RowLayout {
         id: controlsViewId

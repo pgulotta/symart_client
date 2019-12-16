@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.5
+import QtQuick 2.14
+import QtQuick.Controls 2.14
 
 SelectorGroupBox {
     id: selectorGroupBoxlId
@@ -11,7 +11,7 @@ SelectorGroupBox {
 
     focus: true
     title: qsTr("Rule Type")
-
+    width: 190
     Column {
         id: columnId
         Row {
@@ -22,11 +22,11 @@ SelectorGroupBox {
                 title: qsTr("Type")
                 selectorModel: ImmutableList.ruleTypes()
                 height: 110
-                width: selectorGroupBoxlId.width * .5
+                width: selectorGroupBoxlId.width * .55
                 onSelectorModelChanged: selectorIndex = initialIndex
             }
             Column {
-                leftPadding: exlargePadding
+                leftPadding: largePadding
                 Label {
                     text: qsTr("Weight")
                 }
@@ -41,8 +41,8 @@ SelectorGroupBox {
         }
         Switch {
             id: usePastelColorsId
-            width: 200
-            text: qsTr("Use Pastel Colors")
+            width: columnId.width
+            text: qsTr("Use Pastels")
             checked: false
         }
     }
