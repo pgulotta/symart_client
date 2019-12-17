@@ -17,7 +17,7 @@ ApplicationWindow {
     readonly property int maxImageDimension: 2048
     readonly property int imageControlsWidth: 180
     readonly property int smallFontPointSize: 12
-    readonly property int mediumFontPointSize: 14
+    readonly property int mediumFontPointSize: 16
     readonly property int largeFontPointSize: 18
     readonly property int smallPadding: 4
     readonly property int mediumPadding: 8
@@ -63,15 +63,28 @@ ApplicationWindow {
 
     header: ToolBar {
         id: headerToolBarId
-        contentHeight: toolButtonId.implicitHeight
-
+        contentHeight: toolBackButtonId.implicitHeight
         ToolButton {
-            id: toolButtonId
+            id: toolBackButtonId
             text: Constants.backChar
             font.pointSize: largeFontPointSize
             onClicked: popSource()
-        }
+            opacity: (stackViewId.depth > 1) ? 1 : 0
+            Behavior on opacity {
+                OpacityAnimator {
+                    duration: Constants.animationDuration
+                }
+            }
 
+            RotationAnimator {
+                target: toolBackButtonId
+                running: (stackViewId.depth > 1)
+                from: 0
+                to: 360
+                loops: 1
+                duration: Constants.animationDuration
+            }
+        }
         Label {
             text: Controller.applicationTitle()
             anchors.centerIn: parent
@@ -135,7 +148,6 @@ ApplicationWindow {
         replaceEnter: pushEnter
         replaceExit: pushExit
     }
-
     Dialog {
         id: messageDialogId
         property alias messageDescription: textId.text
@@ -162,8 +174,7 @@ ApplicationWindow {
     function popSource() {
         if (stackViewId.depth > 1) {
             stackViewId.pop()
-        } else if (stackViewId.depth == 1)
-            Qt.quit()
+        }
     }
 
     function reportMessage(messageDescription) {

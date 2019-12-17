@@ -35,4 +35,5 @@ QtObject {
 
     readonly property int shortAnimationDuration: 350
     readonly property int animationDuration: 1200
+
 }

@@ -40,9 +40,8 @@ MovableDialog {
             snapMode: ListView.SnapOneItem
             ScrollBar.vertical: ScrollBar {}
             highlight: Rectangle {
-                color: Constants.accentColor
+                color: Constants.linkTextColor
                 width: listViewId.width
-                opacity: 0.25
             }
         }
 
