@@ -7,6 +7,7 @@ ImageGeneratorPage {
     id: hyperLinesPageId
     shouldTileImage: false
     canAugmentImage: false
+    shouldRotateImage: true
 
     function drawImage() {
         var rotationsList = assignRotations()

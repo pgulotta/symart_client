@@ -1,4 +1,4 @@
-﻿import QtQuick 2.14
+import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 import com.twentysixapps.constants 1.0
@@ -20,6 +20,7 @@ Page {
     property bool isImageModified: false
     property bool isImageTileable: true
     property bool canAugmentImage: true
+    property bool shouldRotateImage: false
 
     Connections {
         target: Controller
@@ -126,6 +127,16 @@ Page {
                             duration: Constants.animationDuration
                             easing.type: Easing.OutCirc
                         }
+                    }
+                    RotationAnimator {
+                        id: imageRotatationId
+                        target: imageId
+                        from: 0
+                        to: 360
+                        loops: 1
+                        running: shouldRotateImage
+                                 && (imageId.status === Image.Ready)
+                        duration: Constants.animationDuration
                     }
                     onStatusChanged: {
                         if (imageId.status === Image.Error) {
