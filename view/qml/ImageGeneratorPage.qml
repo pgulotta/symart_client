@@ -92,61 +92,69 @@ Page {
             id: imageViewId
             width: parent.width - controlsViewId.width - mediumPadding
             height: parent.height
-            z: -1
+            z: -10
             contentData: Rectangle {
                 id: rectangleId
                 width: parent.width
                 height: parent.height
-                color: Constants.primaryColor
-                Image {
-                    id: imageId
-                    width: shouldTileImage ? rectangleId.width - smallPadding : sourceSize.width
-                    height: shouldTileImage ? rectangleId.height - smallPadding : sourceSize.height
-                    fillMode: shouldTileImage ? Image.Tile : Image.Pad
-                    anchors.centerIn: parent
-                    smooth: false
-                    cache: false
-                    asynchronous: true
-                    source: ""
-                    scale: 0
-                    opacity: 0
-                    states: State {
-                        when: imageStatus === Image.Ready
-                        PropertyChanges {
+                color: "transparent"
+                Flickable {
+                    id: flickableId
+                    anchors.fill: parent
+                    contentWidth: imageId.width
+                    contentHeight: imageId.height
+                    clip: false
+                    Image {
+                        id: imageId
+                        width: shouldTileImage ? rectangleId.width - smallPadding : sourceSize.width
+                        height: shouldTileImage ? rectangleId.height
+                                                  - smallPadding : sourceSize.height
+                        fillMode: shouldTileImage ? Image.Tile : Image.Pad
+                        anchors.centerIn: parent
+                        smooth: false
+                        cache: false
+                        asynchronous: true
+                        source: ""
+                        scale: 0
+                        opacity: 0
+                        states: State {
+                            when: imageStatus === Image.Ready
+                            PropertyChanges {
+                                target: imageId
+                                scale: 1
+                                opacity: 1
+                            }
+                        }
+                        transitions: Transition {
+                            PropertyAction {
+                                property: "imageStatus"
+                            }
+                            NumberAnimation {
+                                properties: "opacity,scale"
+                                duration: Constants.animationDuration
+                                easing.type: Easing.OutCirc
+                            }
+                        }
+                        RotationAnimator {
+                            id: imageRotatationId
                             target: imageId
-                            scale: 1
-                            opacity: 1
-                        }
-                    }
-                    transitions: Transition {
-                        PropertyAction {
-                            property: "imageStatus"
-                        }
-                        NumberAnimation {
-                            properties: "opacity,scale"
+                            from: 0
+                            to: 360
+                            loops: 1
+                            running: shouldRotateImage
+                                     && (imageId.status === Image.Ready)
                             duration: Constants.animationDuration
-                            easing.type: Easing.OutCirc
                         }
-                    }
-                    RotationAnimator {
-                        id: imageRotatationId
-                        target: imageId
-                        from: 0
-                        to: 360
-                        loops: 1
-                        running: shouldRotateImage
-                                 && (imageId.status === Image.Ready)
-                        duration: Constants.animationDuration
-                    }
-                    onStatusChanged: {
-                        if (imageId.status === Image.Error) {
-                            isImageGenerated = false
-                            isImageModified = false
-                            pageDescription = ""
-                        } else if (imageId.status === Image.Ready) {
-                            isImageGenerated = true
-                            pageDescription = selectionDescription()
-                            imageViewId.forceActiveFocus()
+                        onStatusChanged: {
+                            if (imageId.status === Image.Error) {
+                                isImageGenerated = false
+                                isImageModified = false
+                                pageDescription = ""
+                            } else if (imageId.status === Image.Ready) {
+                                isImageGenerated = true
+                                pageDescription = selectionDescription()
+                                imageViewId.forceActiveFocus()
+                            }
                         }
                     }
                 }
@@ -179,12 +187,12 @@ Page {
                     onClicked: {
                         if (imageSource == "")
                             return
+                        if (!isImageTileable)
+                            extensionDialogId.x -= 50
                         extensionDialogId.open()
                     }
                     ImageFileExtensionDialog {
                         id: extensionDialogId
-
-                        //x: Math.min (windowWidth - width,saveButtonId.width / 2)
                         y: saveButtonId.height / 2 - height
                         onAccepted: Controller.saveCurrentImage(
                                         pageTitle,
