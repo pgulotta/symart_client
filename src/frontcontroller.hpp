@@ -20,7 +20,7 @@ public slots:
 public:
   explicit FrontController( QObject* parent = nullptr );
   static void appMessageHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
-  ImageProvider& imageProvider() { return  mImageProvider;}
+  ImageProvider* imageProvider() { return  mImageProvider;}
 
 
   Q_INVOKABLE QString applicationTitle() const;
@@ -67,7 +67,7 @@ public:
 private:
 
   NetworkQueryController mNetworkQueryController;
-  ImageProvider mImageProvider;
+  ImageProvider* mImageProvider;  // qml releases this resource
   static FrontController* FrontControllerInstance;
 
 

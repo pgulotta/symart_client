@@ -73,7 +73,8 @@ void FrontController::appMessageHandler( QtMsgType type,
 }
 
 FrontController::FrontController( QObject* parent )
-  : QObject( parent ), mNetworkQueryController( parent )
+  : QObject( parent ), mNetworkQueryController( parent ),
+    mImageProvider{new ImageProvider}
 {
   FrontControllerInstance = this;
   qInstallMessageHandler( FrontController::appMessageHandler );
@@ -82,7 +83,7 @@ FrontController::FrontController( QObject* parent )
            &NetworkQueryController::newImageGenerated,
            this,
   [this]( const QImage * newImage  ) {
-    mImageProvider.setImage( newImage );
+    mImageProvider->setImage( newImage );
     emit imageGenerated();
   } );
 

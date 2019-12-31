@@ -16,7 +16,6 @@ public:
 
 
 private:
-  //void initSettings();
   void initQml( FrontController& frontController );
 
 private:
