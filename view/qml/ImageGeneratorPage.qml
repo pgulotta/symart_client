@@ -187,7 +187,7 @@ Page {
                     onClicked: {
                         if (imageSource == "")
                             return
-                        if (!isImageTileable)
+                        if (isPortraitMode && !isImageTileable)
                             extensionDialogId.x -= 50
                         extensionDialogId.open()
                     }
