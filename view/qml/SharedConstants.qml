@@ -4,8 +4,10 @@ import QtQuick 2.12
 
 QtObject {
     readonly property string accentColor: "#7E57C2"
+    //readonly property string primaryColor: "#141414"
     readonly property string primaryColor: "#000000"
     readonly property string foreColor: "a78dd5"
+    // readonly property string backColor: "#000000"
     readonly property string backColor: "#141414"
 
     readonly property string selectedColor: "#292929"
@@ -35,5 +37,4 @@ QtObject {
 
     readonly property int shortAnimationDuration: 350
     readonly property int animationDuration: 1200
-
 }
