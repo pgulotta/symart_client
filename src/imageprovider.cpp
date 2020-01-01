@@ -13,6 +13,9 @@ void ImageProvider::setImage( const QImage* newImage )
 
 QImage ImageProvider::requestImage( const QString& id, QSize* size, const QSize& requestedSize )
 {
+  Q_UNUSED( id )
+  Q_UNUSED( size )
+  Q_UNUSED( requestedSize )
   return *mImage.get();
 }
 
