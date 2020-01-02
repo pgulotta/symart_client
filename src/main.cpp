@@ -10,7 +10,7 @@ int main( int argc, char* argv[] )
   QGuiApplication::setApplicationName( QStringLiteral( "SymArt" ) );
   QGuiApplication::setOrganizationDomain( "twentysixapps.com" );
   QGuiApplication::setOrganizationName( QLatin1String( "26Apps" ) );
-  QGuiApplication::setApplicationVersion( "2.11" );
+  QGuiApplication::setApplicationVersion( "2.12" );
   QQuickStyle::setStyle( "Material" );
   QApplication app( argc, argv );
   FrontController frontController{&app};
@@ -20,7 +20,7 @@ int main( int argc, char* argv[] )
   permissions.requestExternalStoragePermission();
 
   if ( permissions.getPermissionResult() ) {
-    qWarning( "Successfully obtained required permissions, app starting" );
+    qInfo( "Successfully obtained required permissions, app starting" );
     return app.exec();
   } else {
     qWarning( "Failed to obtain required permissions, app terminating" );
