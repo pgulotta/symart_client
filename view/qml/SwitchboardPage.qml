@@ -98,7 +98,7 @@ GridView {
                     text: model.title
                     width: columnDelegateId.width
                     height: parent.height * 0.2
-                    font.pointSize: smallFontPointSize
+                    font.pixelSize: largeFontPointSize
                     wrapMode: Label.WordWrap
                     horizontalAlignment: Label.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
