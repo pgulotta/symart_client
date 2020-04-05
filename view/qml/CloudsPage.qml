@@ -15,6 +15,9 @@ ImageGeneratorPage {
                                        distributionSelectorId.selectorIndex)
     }
 
+    //    function drawImage() {
+    //        imageSource = "http://192.168.1.119:60564/test?quasiTrap"
+    //    }
     function selectionDescription() {
         return dimensionSelectorId.title + "=" + dimensionSelectorId.dimension + ", "
                 + symmetrySelectorId.title + "=" + ImmutableList.symmetryGroups(

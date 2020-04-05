@@ -18,8 +18,8 @@ QImage imageFromByteArray( const QByteArray& ba )
 
 NetworkQueryController::NetworkQueryController( QObject* parent )
   : QObject( parent ),
-    mQueryPrefix{"http://172.104.28.183:60564/get/?"},
-    mImageColorsPrefix{"http://172.104.28.183:60564/imageColors/?"},
+    mQueryPrefix{"http://192.168.1.119:60564/get/?"},
+    mImageColorsPrefix{"http://192.168.1.119:60564/imageColors/?"},
     mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )}
 {
   connect( &mNetworkAccessManager,
@@ -27,6 +27,8 @@ NetworkQueryController::NetworkQueryController( QObject* parent )
            this,
            &NetworkQueryController::onNetworkReply );
 }
+
+
 int NetworkQueryController::getNextResponseId()
 {
   return mResponseId++;
@@ -39,7 +41,7 @@ QueryType NetworkQueryController::extractQueryType( const QStringList& attribute
 
 void NetworkQueryController::runGetRequest( const QStringList& attributes, const QString& query )
 {
-// qDebug() << Q_FUNC_INFO << query;
+  qDebug() << Q_FUNC_INFO << query;
 
   try {
     auto request = QNetworkRequest( query );

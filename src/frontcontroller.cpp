@@ -4,6 +4,12 @@
 #include <QBuffer>
 #include <QTextCodec>
 
+#ifdef Q_OS_ANDROID
+#include <QAndroidJniObject>
+#include <QAndroidJniEnvironment>
+#include <QtAndroid>
+#endif
+
 
 FrontController* FrontController::FrontControllerInstance{nullptr};
 
@@ -366,6 +372,7 @@ void FrontController::generateLinessImage( int dimension, int symmetryGroup, int
                .arg( ruleName3 )
                .arg( ruleWeight3 )
                .arg( usePastelColors3 );
+  qDebug() << Q_FUNC_INFO << query;
   mNetworkQueryController.runGenerateImageRequest( query );
 }
 
@@ -422,4 +429,20 @@ void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, i
   mNetworkQueryController.runGenerateImageRequest( query );
 }
 
+#ifdef Q_OS_ANDROID
+void FrontController::scheduleGenerateWallpaper() const
+{
+  QAndroidJniObject::callStaticMethod<void>( "droid/service/example/WallpaperGeneratorJobService",
+                                             "scheduleGenerateWallpaper",
+                                             "(Landroid/content/Context;)V",
+                                             QtAndroid::androidActivity().object() );
+}
 
+void FrontController::cancelWallpaperSchedule() const
+{
+  QAndroidJniObject::callStaticMethod<void>( "droid/service/example/WallpaperGeneratorJobService",
+                                             "cancelWallpaperSchedule",
+                                             "(Landroid/content/Context;)V",
+                                             QtAndroid::androidActivity().object() );
+}
+#endif

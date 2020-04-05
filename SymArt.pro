@@ -23,9 +23,8 @@ QML_IMPORT_PATH += $$PWD
 
 QML_DESIGNER_IMPORT_PATH =
 
-
 wasm {
-QMAKE_LFLAGS += -s SAFE_HEAP=0
+QMAKE_LFLAGS += -s SAFE_HEAP=1
 QMAKE_LFLAGS += -s BINARYEN_TRAP_MODE='clamp'
 QMAKE_LFLAGS += --emrun
 #QMAKE_WASM_TOTAL_MEMORY=65536000
@@ -36,7 +35,32 @@ android {
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 }
 
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target
+
+contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+    ANDROID_EXTRA_LIBS += \
+        $$PWD/android/libs/openssl/arm/libcrypto.so \
+        $$PWD/android/libs/openssl/arm/libssl.so
+}
+
+contains(ANDROID_TARGET_ARCH,arm64-v8a) {
+    ANDROID_EXTRA_LIBS += \
+        $$PWD/android/libs/openssl/arm64/libcrypto.so \
+        $$PWD/android/libs/openssl/arm64/libssl.so
+}
+
+contains(ANDROID_TARGET_ARCH,x86) {
+    ANDROID_EXTRA_LIBS += \
+        $$PWD/android/libs/openssl/x86/libcrypto.so \
+        $$PWD/android/libs/openssl/x86/libssl.so
+}
+
+contains(ANDROID_TARGET_ARCH,x86_64) {
+    ANDROID_EXTRA_LIBS += \
+        $$PWD/android/libs/openssl/x86_64/libcrypto.so \
+        $$PWD/android/libs/openssl/x86_64/libssl.so
+}
 
 DISTFILES += \
     android/AndroidManifest.xml \
@@ -45,7 +69,10 @@ DISTFILES += \
     android/gradle/wrapper/gradle-wrapper.properties \
     android/gradlew \
     android/gradlew.bat \
-    android/res/values/libs.xml
+    android/res/values/libs.xml \
+    android/src/com/twentysixapps/symart/WallpaperGenerator.java \
+    android/src/com/twentysixapps/symart/WallpaperGeneratorJobScheduler.java \
+    android/src/com/twentysixapps/symart/WallpaperGeneratorJobService.java
 
 message(****  SymArt.Pro  ****)
 message(Qt version: $$[QT_VERSION])
