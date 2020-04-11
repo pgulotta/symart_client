@@ -81,8 +81,11 @@ Page {
         anchors.leftMargin: smallPadding
         spacing: 0
         ScrollView {
-            Layout.fillWidth: true
+            id: scrollControlsViewId
+            Layout.fillWidth: false
             clip: true
+            width: isWideWidth ? imageGeneratorPageId.width
+                                 * 0.25 : imageGeneratorPageId.width * 0.5
             height: imageViewId.height
             rightPadding: mediumPadding
             Pane {
@@ -91,8 +94,10 @@ Page {
         }
         Pane {
             id: imageViewId
-            width: parent.width - controlsViewId.width - mediumPadding
+            width: imageGeneratorPageId.width - scrollControlsViewId.width
             height: parent.height
+            clip: true
+            Layout.fillWidth: true
             z: -10
             contentData: Rectangle {
                 id: rectangleId

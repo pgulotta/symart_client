@@ -445,4 +445,26 @@ void FrontController::cancelWallpaperSchedule() const
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
 }
+void FrontController::setWallpaperSchedule() const
+{
+  QAndroidJniObject::callStaticMethod<void>( "droid/service/example/WallpaperGeneratorJobService",
+                                             "setWallpaperSchedule",
+                                             "(Landroid/content/Context;)V",
+                                             QtAndroid::androidActivity().object() );
+}
+#else
+void FrontController::scheduleGenerateWallpaper() const
+{
+  //no implmenation
+}
+
+void FrontController::cancelWallpaperSchedule() const
+{
+  //no implmenation
+}
+
+void FrontController::setWallpaperSchedule() const
+{
+  //no implmenation
+}
 #endif

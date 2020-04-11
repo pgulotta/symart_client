@@ -22,10 +22,9 @@ public:
   static void appMessageHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
   ImageProvider* imageProvider() { return  mImageProvider;}
 
-  #ifdef Q_OS_ANDROID
   Q_INVOKABLE void scheduleGenerateWallpaper() const;
   Q_INVOKABLE void cancelWallpaperSchedule() const;
-  #endif
+  Q_INVOKABLE void setWallpaperSchedule() const;
 
   Q_INVOKABLE QString applicationTitle() const;
   Q_INVOKABLE QString applicationVersion() const;
