@@ -10,8 +10,8 @@ import android.content.Context;
 public class WallpaperGeneratorJobScheduler
 {
   private static final String ID = WallpaperGeneratorJobService.ID;
-  private static final long Interval_MS =  300000L;   //  4 h = 14400000 ms ;  5 m = 60000 ms
-  private static final int JOB_ID =  60564; //  4 h = 14400000 ms ;  1 m = 60000 ms
+  private static final long INTERVAL_MS =  3600000L;   //  1 h = 3600000 ms, 15 m = 900000 ms
+  private static final int JOB_ID =  60564;
 
   private static void handleJob ( Context context, boolean shouldCancel )
   {
@@ -49,7 +49,7 @@ public class WallpaperGeneratorJobScheduler
         Log.i ( ID, "builder.scheduleJob builder = null " );
         return;
       }
-      builder.setPeriodic( Interval_MS );  // this job should recur with the provided interval, not more than once per period
+      builder.setPeriodic( INTERVAL_MS );  //  job should run within the provided interval
       builder.setPersisted( true ); // persist this job across device reboots
       builder.setRequiredNetworkType( JobInfo.NETWORK_TYPE_ANY );  // the kind of network your job requires
       int result = jobScheduler.schedule( builder.build() );
