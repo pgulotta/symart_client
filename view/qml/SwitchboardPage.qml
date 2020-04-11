@@ -13,7 +13,7 @@ GridView {
     property int switchboardColumnCount: isWideWidth ? 4 : (isMobileDevice ? 3 : 4)
     property int switchboardCellWidth: windowWidth / switchboardColumnCount * 0.92
     property int switchboardCellHeight: switchboardCellWidth * 1.15
-    property int imageCellHeight: switchboardCellWidth
+    property int imageCellHeight: switchboardCellWidth * .7
     readonly property int animationDeltaX: rectRadius
 
     cellWidth: switchboardCellWidth + mediumPadding
@@ -87,7 +87,7 @@ GridView {
                 Image {
                     id: selectableImageId
                     source: model.imageSource
-                    height: imageCellHeight * .7
+                    height: imageCellHeight
                     width: height
                     anchors.topMargin: mediumPadding
                     anchors.top: parent.top
