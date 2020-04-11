@@ -87,7 +87,7 @@ GridView {
                 Image {
                     id: selectableImageId
                     source: model.imageSource
-                    height: imageCellHeight * .8
+                    height: imageCellHeight * .7
                     width: height
                     anchors.topMargin: mediumPadding
                     anchors.top: parent.top
@@ -97,8 +97,8 @@ GridView {
                 Label {
                     text: model.title
                     width: columnDelegateId.width
-                    height: parent.height * 0.2
-                    font.pixelSize: largeFontPointSize
+                    height: parent.height * 0.25
+                    font.pixelSize: mediumFontPointSize
                     wrapMode: Label.WordWrap
                     horizontalAlignment: Label.AlignHCenter
                     verticalAlignment: Text.AlignVCenter

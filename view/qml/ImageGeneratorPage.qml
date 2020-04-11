@@ -14,7 +14,7 @@ Page {
     property alias shouldTileImage: tileSwitchId.checked
     property string pageTitle
     property string pageDescription
-    property int footer1Spacing: imageGeneratorPageId.width * 0.10
+    property int footer1Spacing: imageGeneratorPageId.width * 0.05
     property int footer2Spacing: imageGeneratorPageId.width * 0.01
     property bool isImageGenerated: false
     property bool isImageModified: false
@@ -252,7 +252,7 @@ Page {
                 Label {
                     text: qsTr("Apply to Generated Image:  ")
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: footer2Spacing > 5
+                    visible: isWideWidth
                     scale: 0.8
                 }
 
@@ -278,7 +278,7 @@ Page {
                 }
                 ToolButton {
                     id: hyperbolicButtonId
-                    text: qsTr("Hyperbolic Image")
+                    text: qsTr("Hyperbolic")
                     onClicked: {
                         if (imageSource == "")
                             return
@@ -298,7 +298,7 @@ Page {
                     }
                 }
                 ToolButton {
-                    text: qsTr("Hexagonal Stretch ")
+                    text: qsTr("Hexagon Stretch ")
                     onClicked: {
                         if (imageSource == "")
                             return
