@@ -54,6 +54,7 @@ Page {
             anchors.left: parent.left
             anchors.right: parent.right
             horizontalAlignment: Label.AlignHCenter
+            font.pointSize: smallFontPointSize
             wrapMode: Label.WordWrap
             opacity: 0.0
             OpacityAnimator on opacity {
@@ -298,7 +299,7 @@ Page {
                     }
                 }
                 ToolButton {
-                    text: qsTr("Hexagon Stretch ")
+                    text: qsTr("Hexagonal Stretch ")
                     onClicked: {
                         if (imageSource == "")
                             return

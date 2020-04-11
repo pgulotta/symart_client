@@ -10,24 +10,25 @@ MovableDialog {
 
     Component.onCompleted: listViewId.forceActiveFocus()
     ColumnLayout {
-         spacing: 0
-         anchors.fill: parent
-         Switch {
-             id: asWallpaper
-             text: qsTr("Wallpaper")
-             checked: false
-             visible:isAndroidDevice
-         }
-         Switch {
-             id: asImageId
-             text: qsTr("Image")
-             checked: true
-         }
+        spacing: 0
+        anchors.fill: parent
+        Switch {
+            id: asWallpaper
+            text: qsTr("Wallpaper")
+            checked: false
+            visible: isAndroidDevice
+        }
+        Switch {
+            id: asImageId
+            text: qsTr("Image")
+            checked: true
+            visible: isAndroidDevice
+        }
         Rectangle {
-            Layout.fillWidth:  true
+            Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-            color: asImageId.checked ?Constants.primaryColor:Constants.disabledTextColor
+            color: asImageId.checked ? Constants.primaryColor : Constants.disabledTextColor
             enabled: asImageId.checked
             ListView {
                 id: listViewId
@@ -63,39 +64,39 @@ MovableDialog {
                 }
             }
 
-        ListModel {
-            id: fileExtensionModelId
-            ListElement {
-                name: qsTr("BMP")
-                extension: "bmp"
-            }
-            ListElement {
-                name: qsTr("JPG")
-                extension: "jpg"
-            }
-            ListElement {
-                name: qsTr("JPEG")
-                extension: "jpeg"
-            }
-            ListElement {
-                name: qsTr("PNG")
-                extension: "png"
-            }
-            ListElement {
-                name: qsTr("PPM")
-                extension: "ppm"
-            }
-            ListElement {
-                name: qsTr("XBM")
-                extension: "xbm"
-            }
-            ListElement {
-                name: qsTr("XPM")
-                extension: "xpm"
+            ListModel {
+                id: fileExtensionModelId
+                ListElement {
+                    name: qsTr("BMP")
+                    extension: "bmp"
+                }
+                ListElement {
+                    name: qsTr("JPG")
+                    extension: "jpg"
+                }
+                ListElement {
+                    name: qsTr("JPEG")
+                    extension: "jpeg"
+                }
+                ListElement {
+                    name: qsTr("PNG")
+                    extension: "png"
+                }
+                ListElement {
+                    name: qsTr("PPM")
+                    extension: "ppm"
+                }
+                ListElement {
+                    name: qsTr("XBM")
+                    extension: "xbm"
+                }
+                ListElement {
+                    name: qsTr("XPM")
+                    extension: "xpm"
+                }
             }
         }
     }
-}
     function selectedExtension() {
         return fileExtensionModelId.get(listViewId.currentIndex).extension
     }
