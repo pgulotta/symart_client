@@ -2,6 +2,12 @@
 <manifest package="com.twentysixapps.symart" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="2.13" android:versionCode="213" android:installLocation="auto">
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29"/>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
     <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="SymArt" android:extractNativeLibs="true" android:icon="@drawable/icon">
@@ -36,13 +42,4 @@
 
     </application>
 
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
-
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<!-- %%INSERT_PERMISSIONS -->
-    <!-- %%INSERT_FEATURES -->
 </manifest>

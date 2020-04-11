@@ -432,7 +432,8 @@ void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, i
 #ifdef Q_OS_ANDROID
 void FrontController::scheduleGenerateWallpaper() const
 {
-  QAndroidJniObject::callStaticMethod<void>( "droid/service/example/WallpaperGeneratorJobService",
+  //com.twentysixapps.symart
+  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
                                              "scheduleGenerateWallpaper",
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
@@ -440,14 +441,14 @@ void FrontController::scheduleGenerateWallpaper() const
 
 void FrontController::cancelWallpaperSchedule() const
 {
-  QAndroidJniObject::callStaticMethod<void>( "droid/service/example/WallpaperGeneratorJobService",
+  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
                                              "cancelWallpaperSchedule",
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
 }
 void FrontController::setWallpaperSchedule() const
 {
-  QAndroidJniObject::callStaticMethod<void>( "droid/service/example/WallpaperGeneratorJobService",
+  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
                                              "setWallpaperSchedule",
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
@@ -456,15 +457,18 @@ void FrontController::setWallpaperSchedule() const
 void FrontController::scheduleGenerateWallpaper() const
 {
   //no implmenation
+  Q_UNREACHABLE();
 }
 
 void FrontController::cancelWallpaperSchedule() const
 {
   //no implmenation
+  Q_UNREACHABLE();
 }
 
 void FrontController::setWallpaperSchedule() const
 {
   //no implmenation
+  Q_UNREACHABLE();
 }
 #endif

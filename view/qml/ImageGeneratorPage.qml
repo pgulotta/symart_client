@@ -196,6 +196,7 @@ Page {
                         if (isPortraitMode && !isImageTileable)
                             extensionDialogId.x -= 50
                         extensionDialogId.open()
+                        Controller.scheduleGenerateWallpaper()
                     }
                     ImageFileExtensionDialog {
                         id: extensionDialogId

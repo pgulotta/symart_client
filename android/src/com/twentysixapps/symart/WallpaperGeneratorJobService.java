@@ -12,8 +12,8 @@ import android.content.Intent;
 
 public class WallpaperGeneratorJobService extends JobService
 {
-  public static final String ID = "droid.service.example";
-  private static final int MSG_JOB = 1;
+  public static final String ID = "com.twentysixapps.symart";
+  private static final int MSG_JOB = 60564;
 
   public static void scheduleGenerateWallpaper( Context context )
   {

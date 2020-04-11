@@ -10,7 +10,7 @@ import android.content.Context;
 public class WallpaperGeneratorJobScheduler
 {
   private static final String ID = WallpaperGeneratorJobService.ID;
-  private static final long Interval_MS =  60000L;   //  4 h = 14400000 ms ;  1 m = 60000 ms
+  private static final long Interval_MS =  300000L;   //  4 h = 14400000 ms ;  5 m = 60000 ms
   private static final int JOB_ID =  60564; //  4 h = 14400000 ms ;  1 m = 60000 ms
 
   private static void handleJob ( Context context, boolean shouldCancel )

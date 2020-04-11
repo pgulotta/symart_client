@@ -31,6 +31,7 @@ public class WallpaperGenerator implements Runnable
   public static final int READ_TIMEOUT = 15000;
   public static final int CONNECTION_TIMEOUT = 15000;
   private final String ID = WallpaperGeneratorJobService.ID;
+  private final String GET_REQUEST = "http://192.168.1.119:60564/wallpaper";
   private Context mContext;
 
   public WallpaperGenerator( Context context )
@@ -63,8 +64,7 @@ public class WallpaperGenerator implements Runnable
     InputStream stream = null;
 
     try {
-      URL url = new URL( "http://192.168.1.119:60564/test?quasiTrap" );
-      //URL url = new URL( "http://192.168.1.119:60564/test?squiggles" );
+      URL url = new URL( GET_REQUEST );
       Log.i( ID, "WallpaperGenerator.getWallpaper:  url = " + url );
       connection = ( HttpURLConnection ) url.openConnection();
 
@@ -114,7 +114,6 @@ public class WallpaperGenerator implements Runnable
       }
 
       Log.i( ID, "WallpaperGenerator.setWallpaper:  array length = " + array.length );
-
 
       Bitmap destinationBitmap =  BitmapFactory.decodeByteArray( array, 0, array.length );
 
