@@ -13,6 +13,7 @@
         <file>view/images/squiggles.png</file>
         <file>view/images/stripes.png</file>
         <file>view/images/walks.png</file>
+        <file>view/qml/AppMorePage.qml</file>
         <file>view/qml/CloudsPage.qml</file>
         <file>view/qml/ClustersPage.qml</file>
         <file>view/qml/ColorSelector.qml</file>

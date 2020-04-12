@@ -98,7 +98,7 @@ private:
       TopicMetaData::Topic::Info,
       "App ...",
       "qrc:/view/images/more.png",
-      "qrc:/view/qml/InfoPage.qml",
+      "qrc:/view/qml/AppMorePage.qml",
       parent()} );
   }
 
