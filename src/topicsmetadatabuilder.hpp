@@ -96,8 +96,8 @@ private:
       parent()} );
     mTopicsMetaData.append( new TopicMetaData{
       TopicMetaData::Topic::Info,
-      "App Info",
-      "qrc:/view/images/info.png",
+      "App ...",
+      "qrc:/view/images/more.png",
       "qrc:/view/qml/InfoPage.qml",
       parent()} );
   }
