@@ -39,6 +39,7 @@
         <file>view/qml/RandomizeDialog.qml</file>
         <file>view/qml/RuleTypeSelector.qml</file>
         <file>view/qml/SelectorGroupBox.qml</file>
+        <file>view/qml/SettingsPage.qml</file>
         <file>view/qml/SharedConstants.qml</file>
         <file>view/qml/SliderSelector.qml</file>
         <file>view/qml/SquigglesPage.qml</file>
@@ -46,5 +47,6 @@
         <file>view/qml/SwitchboardPage.qml</file>
         <file>view/qml/TumblerSelector.qml</file>
         <file>view/qml/WalksPage.qml</file>
+
     </qresource>
 </RCC>
