@@ -22,7 +22,8 @@ public:
   static void appMessageHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
   ImageProvider* imageProvider() { return  mImageProvider;}
 
-  Q_INVOKABLE void scheduleGenerateWallpaper() const;
+  Q_INVOKABLE void scheduleDailyGenerateWallpaper() const;
+  Q_INVOKABLE void scheduleHourlyGenerateWallpaper() const;
   Q_INVOKABLE void cancelWallpaperSchedule() const;
   Q_INVOKABLE void setWallpaperSchedule() const;
 

@@ -430,11 +430,20 @@ void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, i
 }
 
 #ifdef Q_OS_ANDROID
-void FrontController::scheduleGenerateWallpaper() const
+void FrontController::scheduleDailyGenerateWallpaper() const
 {
   //com.twentysixapps.symart
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
-                                             "scheduleGenerateWallpaper",
+                                             "scheduleDailyGenerateWallpaper",
+                                             "(Landroid/content/Context;)V",
+                                             QtAndroid::androidActivity().object() );
+}
+
+void FrontController::scheduleHourlyGenerateWallpaper() const
+{
+  //com.twentysixapps.symart
+  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
+                                             "scheduleHourlyGenerateWallpaper",
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
 }
@@ -454,7 +463,13 @@ void FrontController::setWallpaperSchedule() const
                                              QtAndroid::androidActivity().object() );
 }
 #else
-void FrontController::scheduleGenerateWallpaper() const
+void FrontController::scheduleDailyGenerateWallpaper() const
+{
+  //no implmenation
+  Q_UNREACHABLE();
+}
+
+void FrontController::scheduleHourlyGenerateWallpaper() const
 {
   //no implmenation
   Q_UNREACHABLE();

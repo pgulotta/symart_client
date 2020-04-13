@@ -15,17 +15,29 @@ public class WallpaperGeneratorJobService extends JobService
   public static final String ID = "com.twentysixapps.symart";
   private static final int MSG_JOB = 60564;
 
-  public static void scheduleGenerateWallpaper( Context context )
+  public static void scheduleDailyGenerateWallpaper( Context context )
   {
-    Log.i( ID, "WallpaperGeneratorJobService.scheduleGenerateWallpaper called" );
+    Log.i( ID, "WallpaperGeneratorJobService.scheduleDailyGenerateWallpaper called" );
     context.startService( new Intent( context, WallpaperGeneratorJobService.class ) );
 
     try {
-      WallpaperGeneratorJobScheduler.scheduleJob( context );
+      WallpaperGeneratorJobScheduler.scheduleDailyJob( context );
     } catch ( Exception e ) {
       e.printStackTrace();
     }
   }
+
+public static void scheduleHourlyGenerateWallpaper( Context context )
+{
+  Log.i( ID, "WallpaperGeneratorJobService.scheduleHourlyGenerateWallpaper called" );
+  context.startService( new Intent( context, WallpaperGeneratorJobService.class ) );
+
+  try {
+    WallpaperGeneratorJobScheduler.scheduleHourlyJob( context );
+  } catch ( Exception e ) {
+    e.printStackTrace();
+  }
+}
 
 public static void cancelWallpaperSchedule( Context context )
 {
