@@ -129,7 +129,7 @@ public class WallpaperGenerator implements Runnable
         return;
       }
 
-      WallpaperManager   wallpaperManager = WallpaperManager.getInstance ( mContext );
+      WallpaperManager wallpaperManager = WallpaperManager.getInstance ( mContext );
 
       if ( wallpaperManager == null ) {
         Log.e( ID, "WallpaperGenerator.setWallpaper: wallpaperManager = null" );

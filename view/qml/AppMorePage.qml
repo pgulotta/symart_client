@@ -16,9 +16,7 @@ Page {
         objectName: "AppMorePage"
         property string pageTitle
 
-        SettingsPage {
-            title: qsTr("Settings")
-        }
+        SettingsPage {}
         InfoPage {
             title: pageTitle
         }
