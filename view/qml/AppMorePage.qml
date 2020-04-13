@@ -1,6 +1,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
+import Qt.labs.settings 1.0
 import com.twentysixapps.constants 1.0
 
 Page {
@@ -9,6 +10,11 @@ Page {
     property string pageTitle
     title: pageTitle
 
+    Keys.onBackPressed: {
+        event.accepted = false
+        popSource()
+    }
+
     SwipeView {
         id: view
         currentIndex: pageIndicator.currentIndex
@@ -16,7 +22,36 @@ Page {
         objectName: "AppMorePage"
         property string pageTitle
 
-        SettingsPage {}
+        SettingsPage {
+            id: settingsPageId
+
+            onVisibleChanged: {
+
+                if (visible) {
+                    category: "Wallaper"
+                    manageWallpaperSelection = value(manageWallpaperSelection,
+                                                     0)
+                } else {
+                    settingsId.setValue("SelectionIndex",
+                                        manageWallpaperSelection)
+                    switch (manageWallpaperSelection) {
+                    case 0:
+                        Controller.cancelWallpaperSchedule()
+                        break
+                    case 1:
+                        Controller.scheduleHourlyGenerateWallpaper()
+                        break
+                    case 2:
+                        Controller.scheduleDailyGenerateWallpaper()
+                        break
+                    }
+                }
+            }
+            Settings {
+                id: settingsId
+                property alias manageWallpaperSelection: settingsPageId.manageWallpaperSelection
+            }
+        }
         InfoPage {
             title: pageTitle
         }
