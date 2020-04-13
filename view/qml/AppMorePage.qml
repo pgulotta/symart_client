@@ -29,12 +29,10 @@ Page {
 
                 if (visible) {
                     category: "Wallaper"
-                    manageWallpaperSelection = value(manageWallpaperSelection,
-                                                     0)
+                    settingsPageId.wallpaperSelection = value(settingsId.wallpaperSelection, 0)
                 } else {
-                    settingsId.setValue("SelectionIndex",
-                                        manageWallpaperSelection)
-                    switch (manageWallpaperSelection) {
+                    settingsId.setValue("SelectionIndex", settingsPageId.wallpaperSelection)
+                    switch (wallpaperSelection) {
                     case 0:
                         Controller.cancelWallpaperSchedule()
                         break
@@ -49,7 +47,7 @@ Page {
             }
             Settings {
                 id: settingsId
-                property alias manageWallpaperSelection: settingsPageId.manageWallpaperSelection
+                property alias wallpaperSelection: settingsPageId.wallpaperSelection
             }
         }
         InfoPage {

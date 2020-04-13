@@ -7,7 +7,7 @@ import com.twentysixapps.constants 1.0
 Page {
     id: infoPageId
     objectName: "SettingsPage"
-    property alias manageWallpaperSelection: scheduleSelectorId.selectorIndex
+    property alias wallpaperSelection: scheduleSelectorId.selectorIndex
 
     Material.background: Constants.accentColor
 
