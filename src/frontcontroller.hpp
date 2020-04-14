@@ -19,6 +19,7 @@ public slots:
 
 public:
   explicit FrontController( QObject* parent = nullptr );
+  virtual ~FrontController();
   static void appMessageHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
   ImageProvider* imageProvider() { return  mImageProvider;}
 

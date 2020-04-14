@@ -103,6 +103,11 @@ FrontController::FrontController( QObject* parent )
 
 }
 
+FrontController::~FrontController()
+{
+  qInstallMessageHandler( 0 );
+}
+
 QString FrontController::applicationTitle() const
 {
   return QGuiApplication::applicationName();
