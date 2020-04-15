@@ -200,9 +200,13 @@ Page {
                     ImageFileExtensionDialog {
                         id: extensionDialogId
                         y: saveButtonId.height / 2 - height
-                        onAccepted: Controller.saveCurrentImage(
-                                        pageTitle,
-                                        extensionDialogId.selectedExtension())
+                        onAccepted: {
+                            if (saveAsImage)
+                                Controller.saveCurrentImage(
+                                            pageTitle,
+                                            extensionDialogId.selectedExtension(
+                                                ))
+                        }
                     }
                 }
                 ToolButton {

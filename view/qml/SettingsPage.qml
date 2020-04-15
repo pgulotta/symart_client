@@ -44,6 +44,9 @@ Page {
                 name: qsTr("Never Auto-Generate")
             }
             ListElement {
+                name: qsTr("Generate Every 15 Minutes")
+            }
+            ListElement {
                 name: qsTr("Generate Hourly")
             }
             ListElement {

@@ -25,6 +25,7 @@ public:
 
   Q_INVOKABLE void scheduleDailyGenerateWallpaper() const;
   Q_INVOKABLE void scheduleHourlyGenerateWallpaper() const;
+  Q_INVOKABLE void scheduleFifteenMinutesGenerateWallpaper() const;
   Q_INVOKABLE void cancelWallpaperSchedule() const;
   Q_INVOKABLE void setWallpaperSchedule() const;
 
@@ -32,6 +33,7 @@ public:
   Q_INVOKABLE QString applicationVersion() const;
   Q_INVOKABLE QString toLocalFile( const QString& fileURL ) const;
 
+  Q_INVOKABLE void setCurrentImageAsWallpaper() ;
   Q_INVOKABLE void saveCurrentImage( const QString& filenamePrefix, const QString& imageFileExtension ) ;
   Q_INVOKABLE void loadColorsImage( const QString& colorImagePath );
   Q_INVOKABLE void getLastGenerateImage();

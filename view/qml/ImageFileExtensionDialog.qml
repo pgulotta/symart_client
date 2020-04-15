@@ -8,12 +8,15 @@ MovableDialog {
 
     title: qsTr("Save Image As")
 
+    property alias saveAsImage: asImageId.checked
+    property alias saveAsWallpaper: asWallpaperId.checked
+
     Component.onCompleted: listViewId.forceActiveFocus()
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
         Switch {
-            id: asWallpaper
+            id: asWallpaperId
             text: qsTr("Wallpaper")
             checked: false
             visible: isAndroidDevice

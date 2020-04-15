@@ -29,17 +29,22 @@ Page {
 
                 if (visible) {
                     category: "Wallaper"
-                    settingsPageId.wallpaperSelection = value(settingsId.wallpaperSelection, 0)
+                    settingsPageId.wallpaperSelection = value(
+                                settingsId.wallpaperSelection, 0)
                 } else {
-                    settingsId.setValue("SelectionIndex", settingsPageId.wallpaperSelection)
+                    settingsId.setValue("SelectionIndex",
+                                        settingsPageId.wallpaperSelection)
                     switch (wallpaperSelection) {
                     case 0:
                         Controller.cancelWallpaperSchedule()
                         break
                     case 1:
-                        Controller.scheduleHourlyGenerateWallpaper()
+                        Controller.scheduleFifteenMinutesGenerateWallpaper()
                         break
                     case 2:
+                        Controller.scheduleHourlyGenerateWallpaper()
+                        break
+                    case 3:
                         Controller.scheduleDailyGenerateWallpaper()
                         break
                     }

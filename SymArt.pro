@@ -64,11 +64,6 @@ contains(ANDROID_TARGET_ARCH,x86_64) {
 
 DISTFILES += \
     android/AndroidManifest.xml \
-    android/build.gradle \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew \
-    android/gradlew.bat \
     android/res/values/libs.xml \
     android/src/com/twentysixapps/symart/WallpaperGenerator.java \
     android/src/com/twentysixapps/symart/WallpaperGeneratorJobScheduler.java \

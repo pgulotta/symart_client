@@ -11,8 +11,9 @@ public class WallpaperGeneratorJobScheduler
 {
   private static final String ID = WallpaperGeneratorJobService.ID;
   private static final int JOB_ID =  60564;
-  private static final long HOURLY_INTERVAL_MS =  1800000L;   // 1800000L;
-  private static final long DAILY_INTERVAL_MS =  43200000L;   // 43200000L;
+  private static final long FIFTEEN_MINUTES_INTERVAL_MS = 300000l;   // 900000L;
+  private static final long HOURLY_INTERVAL_MS =  3600000L;   // 3600000L;
+  private static final long DAILY_INTERVAL_MS = 43200000L;   // 43200000L; (half day)
 
   private static void handleJob ( Context context, long interval, boolean shouldCancel )
   {
@@ -38,8 +39,9 @@ public class WallpaperGeneratorJobScheduler
         return;
       }
 
+      jobScheduler.cancel( JOB_ID );
+
       if ( shouldCancel ) {
-        jobScheduler.cancel( JOB_ID );
         Log.i ( ID, "WallpaperGeneratorJobScheduler.scheduleJob cancelled " );
         return;
       }
@@ -51,12 +53,9 @@ public class WallpaperGeneratorJobScheduler
         return;
       }
 
-
-      //builder.setPeriodic( 60000 );  // job should run within the provided interval
-      //builder.setPeriodic( interval );  // job should run within the provided interval
-      //builder.setOverrideDeadline(interval); // maximum scheduling latency
-      builder.setMinimumLatency( 5000 ); //  delay job by the provided amount of time
-      builder.setOverrideDeadline( 60000 ); // maximum scheduling latency
+      //  builder.setPeriodic( interval );  // job should run within the provided interval
+      builder.setOverrideDeadline( interval ); // maximum scheduling latency
+      builder.setMinimumLatency( interval ); //  delay job by the provided amount of time in ms
       builder.setPersisted( true ); // persist this job across device reboots
       builder.setRequiredNetworkType( JobInfo.NETWORK_TYPE_ANY );  // the kind of network your job requires
       int result = jobScheduler.schedule( builder.build() );
@@ -85,5 +84,12 @@ public class WallpaperGeneratorJobScheduler
     Log.i ( ID, "WallpaperGeneratorJobScheduler.scheduleDailyJob called" );
     handleJob( context, DAILY_INTERVAL_MS, false );
   }
+
+  public static void scheduleFifteenMinutesJob ( Context context )
+  {
+    Log.i ( ID, "WallpaperGeneratorJobScheduler.scheduleFifteenMinutesJob called" );
+    handleJob( context, FIFTEEN_MINUTES_INTERVAL_MS, false );
+  }
+
 
 }

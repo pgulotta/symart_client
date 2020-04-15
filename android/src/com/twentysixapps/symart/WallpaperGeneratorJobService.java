@@ -39,6 +39,18 @@ public static void scheduleHourlyGenerateWallpaper( Context context )
   }
 }
 
+public static void scheduleFifteenMinutesGenerateWallpaper( Context context )
+{
+  Log.i( ID, "WallpaperGeneratorJobService.scheduleFifteenMinutesGenerateWallpaper called" );
+  context.startService( new Intent( context, WallpaperGeneratorJobService.class ) );
+
+  try {
+    WallpaperGeneratorJobScheduler.scheduleFifteenMinutesJob( context );
+  } catch ( Exception e ) {
+    e.printStackTrace();
+  }
+}
+
 public static void cancelWallpaperSchedule( Context context )
 {
   Log.i( ID, "WallpaperGeneratorJobService.cancelWallpaperSchedule called" );

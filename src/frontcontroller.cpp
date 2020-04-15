@@ -151,6 +151,11 @@ QString FrontController::toLocalFile( const QString& fileURL ) const
   return  QUrl::fromUserInput( fileURL ).toLocalFile();
 }
 
+void FrontController::setCurrentImageAsWallpaper()
+{
+  mNetworkQueryController.runSaveImageAsWallpaperRequest();
+}
+
 void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QString& imageFileExtension )
 {
   mNetworkQueryController.runSaveImageRequest( filenamePrefix, imageFileExtension );
@@ -437,7 +442,6 @@ void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, i
 #ifdef Q_OS_ANDROID
 void FrontController::scheduleDailyGenerateWallpaper() const
 {
-  //com.twentysixapps.symart
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
                                              "scheduleDailyGenerateWallpaper",
                                              "(Landroid/content/Context;)V",
@@ -446,9 +450,16 @@ void FrontController::scheduleDailyGenerateWallpaper() const
 
 void FrontController::scheduleHourlyGenerateWallpaper() const
 {
-  //com.twentysixapps.symart
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
                                              "scheduleHourlyGenerateWallpaper",
+                                             "(Landroid/content/Context;)V",
+                                             QtAndroid::androidActivity().object() );
+}
+
+void FrontController::scheduleFifteenMinutesGenerateWallpaper() const
+{
+  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
+                                             "scheduleFifteenMinutesGenerateWallpaper",
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
 }

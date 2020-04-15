@@ -59,6 +59,11 @@ void NetworkQueryController::runGenerateImageRequest( const QString& query )
   runGetRequest( attributes, query );
 }
 
+void NetworkQueryController::runSaveImageAsWallpaperRequest()
+{
+
+}
+
 void NetworkQueryController::runSaveImageRequest( const QString& filenamePrefix, const QString& imageFileExtension )
 {
   auto formattedPrefix{filenamePrefix.simplified()};

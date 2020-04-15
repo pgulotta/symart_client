@@ -21,6 +21,7 @@ public:
   void runGenerateImageRequest(  const QString& query ) ;
   void runLoadImageColorsRequest(  const QString& query ) ;
   void runSaveImageRequest( const QString& filenamePrefix, const QString& imageFileExtension ) ;
+  void runSaveImageAsWallpaperRequest() ;
   const QString& queryPrefix() { return mQueryPrefix;}
   const QString& imageColorsPrefix() { return mImageColorsPrefix;}
   const QString& serviceId() { return mServiceId;}
