@@ -10,7 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 
 
-public class WallpaperGeneratorJobService extends JobService
+public final class WallpaperGeneratorJobService extends JobService
 {
   public static final String ID = "com.twentysixapps.symart";
   private static final int MSG_JOB = 60564;
@@ -76,21 +76,22 @@ public static void cancelWallpaperSchedule( Context context )
     } catch ( Exception e ) {
       e.printStackTrace();
     } finally {
-      jobFinished(jobParameters, true);
+     // jobFinished(jobParameters, true);
 
-      Log.i( ID, "WallpaperGeneratorJobService.onStartJob : jobFinished called " );
+     // Log.i( ID, "WallpaperGeneratorJobService.onStartJob : jobFinished called " );
     }
 
-    return true;  // Returns false from when job has finished
+    return false;  // Returns false from when job has finished. onStopJob will not be invoked
   }
 
-  @Override
-  public boolean onStopJob( JobParameters jobParameters )
-  {
-    Log.i( ID, "WallpaperGeneratorJobService.onStopJob : jobParameters.getJobId() = " + jobParameters.getJobId() );
-    // Return true to have the job rescheduled, false to drop it
-    return true;
-  }
+
+@Override
+public boolean onStopJob( JobParameters jobParameters )
+{
+  // This method is not invoked
+  Log.i( ID, "WallpaperGeneratorJobService.onStopJob : jobParameters.getJobId() = " + jobParameters.getJobId() );
+  return false;  // Returns false to end the job entirely
+}
 
 
 }

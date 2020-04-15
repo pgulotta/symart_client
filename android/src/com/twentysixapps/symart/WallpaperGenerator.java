@@ -25,7 +25,7 @@ import java.io.ByteArrayOutputStream;
 
 
 
-public class WallpaperGenerator implements Runnable
+public final class WallpaperGenerator implements Runnable
 {
   public static final String REQUEST_METHOD = "GET";
   public static final int READ_TIMEOUT = 15000;

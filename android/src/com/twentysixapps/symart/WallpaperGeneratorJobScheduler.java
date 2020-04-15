@@ -7,11 +7,11 @@ import android.content.ComponentName;
 import android.content.Context;
 
 
-public class WallpaperGeneratorJobScheduler
+public final class WallpaperGeneratorJobScheduler
 {
   private static final String ID = WallpaperGeneratorJobService.ID;
   private static final int JOB_ID =  60564;
-  private static final long FIFTEEN_MINUTES_INTERVAL_MS = 300000l;   // 900000L;
+  private static final long FIFTEEN_MINUTES_INTERVAL_MS = 900000L;
   private static final long HOURLY_INTERVAL_MS =  3600000L;   // 3600000L;
   private static final long DAILY_INTERVAL_MS = 43200000L;   // 43200000L; (half day)
 
@@ -53,9 +53,9 @@ public class WallpaperGeneratorJobScheduler
         return;
       }
 
-      //  builder.setPeriodic( interval );  // job should run within the provided interval
-      builder.setOverrideDeadline( interval ); // maximum scheduling latency
-      builder.setMinimumLatency( interval ); //  delay job by the provided amount of time in ms
+      builder.setPeriodic( interval );  // job should run within the provided interval
+      //builder.setOverrideDeadline( interval ); // maximum scheduling latency
+      //builder.setMinimumLatency( interval ); //  delay job by the provided amount of time in ms
       builder.setPersisted( true ); // persist this job across device reboots
       builder.setRequiredNetworkType( JobInfo.NETWORK_TYPE_ANY );  // the kind of network your job requires
       int result = jobScheduler.schedule( builder.build() );
