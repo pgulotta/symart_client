@@ -18,8 +18,8 @@ QImage imageFromByteArray( const QByteArray& ba )
 
 NetworkQueryController::NetworkQueryController( QObject* parent )
   : QObject( parent ),
-    mQueryPrefix{"http://192.168.1.119:60564/get/?"},
-    mImageColorsPrefix{"http://192.168.1.119:60564/imageColors/?"},
+    mQueryPrefix{"http://65.60.187.8:60564/get/?"},
+    mImageColorsPrefix{"http://65.60.187.8:60564/imageColors/?"},
     mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )}
 {
   connect( &mNetworkAccessManager,
