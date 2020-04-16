@@ -31,7 +31,7 @@ public final class WallpaperGenerator implements Runnable
   public static final int READ_TIMEOUT = 15000;
   public static final int CONNECTION_TIMEOUT = 15000;
   private final String ID = WallpaperGeneratorJobService.ID;
-  private final String GET_REQUEST = "http://192.168.1.119:60564/wallpaper";
+  private final String GET_REQUEST = "http://65.60.187.8:60564/wallpaper";
   private Context mContext;
 
   public WallpaperGenerator( Context context )
