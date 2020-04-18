@@ -30,8 +30,8 @@ Page {
         }
         ListView {
             id: scheduleSelectorId
-            width: 250
-            height: 150
+            implicitWidth: 200
+            implicitHeight: 200
             interactive: true
             model: wallpaperScheduleModelId
             header: HtmlText {
@@ -66,7 +66,7 @@ Page {
                 }
                 background: Rectangle {
                     implicitWidth: 100
-                    implicitHeight: 40
+                    implicitHeight: 38
                     visible: radioDelegateId.down || radioDelegateId.highlighted
                     color: radioDelegateId.down ? Constants.linkTextColor : Constants.disabledTextColor
                 }
