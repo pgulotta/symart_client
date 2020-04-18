@@ -482,30 +482,25 @@ void FrontController::setWallpaperSchedule() const
 void FrontController::scheduleDailyGenerateWallpaper() const
 {
   //no implmenation
-  Q_UNREACHABLE();
 }
 
 void FrontController::scheduleHourlyGenerateWallpaper() const
 {
   //no implmenation
-  Q_UNREACHABLE();
 }
 
 void FrontController::scheduleFifteenMinutesGenerateWallpaper() const
 {
   //no implmenation
-  Q_UNREACHABLE();
 }
 
 void FrontController::cancelWallpaperSchedule() const
 {
   //no implmenation
-  Q_UNREACHABLE();
 }
 
 void FrontController::setWallpaperSchedule() const
 {
   //no implmenation
-  Q_UNREACHABLE();
 }
 #endif
