@@ -10,6 +10,7 @@ Page {
     title: pageTitle
 
     readonly property string emailLink: "mailto:pgulotta@gmail.com"
+    readonly property string appLink: "https://sites.google.com/site/symartapp/"
     readonly property string qtLink: "http://www.qt.io/"
     readonly property string alphaBlendingLink: "https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending"
     readonly property string orbitTrapLink: "https://en.wikipedia.org/wiki/Orbit_trap"
@@ -77,6 +78,19 @@ Page {
                           ) + ". It is developed under the Qt Company GNU Lesser General Public License v3 (“LGPLv3”) open-source license."
                 websiteLink: qtLink
             }
+
+            HtmlText {
+                text: qsTr("Website")
+                isUpperCase: true
+                isTitle: true
+            }
+            HtmlText {
+                width: aboutGridId.width
+                endBlankLine: true
+                text: Controller.applicationTitle()+" companion "+"<a href=\"" + appLink + "\">site</a>"
+                websiteLink: appLink
+            }
+
             HtmlText {
                 text: qsTr("Privacy")
                 isUpperCase: true

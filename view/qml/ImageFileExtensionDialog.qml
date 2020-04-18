@@ -19,7 +19,7 @@ MovableDialog {
             id: asWallpaperId
             text: qsTr("Wallpaper")
             checked: false
-            visible: false //isAndroidDevice
+            visible: isAndroidDevice
         }
         Switch {
             id: asImageId
