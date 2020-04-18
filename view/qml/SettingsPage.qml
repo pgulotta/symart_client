@@ -34,9 +34,46 @@ Page {
             height: 150
             interactive: true
             model: wallpaperScheduleModelId
+            header: HtmlText {
+                text: qsTr("Manage Wallpaper")
+                isUpperCase: true
+                isTitle: true
+            }
             delegate: RadioDelegate {
+                id: radioDelegateId
+                indicator: Rectangle {
+                    implicitWidth: 26
+                    implicitHeight: 26
+                    x: radioDelegateId.width - width - radioDelegateId.rightPadding
+                    y: parent.height / 2 - height / 2
+                    radius: 13
+                    color: "transparent"
+                    border.color: radioDelegateId.down ? Qt.darker(
+                                                             Constants.accentColor) : Qt.lighter(
+                                                             Constants.accentColor)
+
+                    Rectangle {
+                        width: 14
+                        height: 14
+                        x: 6
+                        y: 6
+                        radius: 7
+                        visible: radioDelegateId.checked
+                        color: radioDelegateId.down ? Qt.darker(
+                                                          Constants.accentColor) : Qt.lighter(
+                                                          Constants.accentColor)
+                    }
+                }
+                background: Rectangle {
+                    implicitWidth: 100
+                    implicitHeight: 40
+                    visible: radioDelegateId.down || radioDelegateId.highlighted
+                    color: radioDelegateId.down ? Constants.linkTextColor : Constants.disabledTextColor
+                }
+
                 text: model.name
                 checked: model.itemIndex === wallpaperSelection
+                focusPolicy: Qt.StrongFocus
                 ButtonGroup.group: buttonGroupId
                 onClicked: if (checked) {
                                wallpaperSelection = model.itemIndex

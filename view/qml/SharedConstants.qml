@@ -3,14 +3,13 @@ pragma Singleton
 import QtQuick 2.12
 
 QtObject {
-    readonly property string accentColor: "#7E57C2"
-    readonly property string primaryColor: "#000000"
-    readonly property string foreColor: "a78dd5"
-    readonly property string backColor: "#111111"
-
-    readonly property string selectedColor: "#292929"
-    readonly property string disabledTextColor: "#808080"
-    readonly property string linkTextColor: "#FFFFFF"
+    readonly property string accentColor: "#7E57C2"  // medium purple
+    readonly property string primaryColor: "#000000" // black
+    readonly property string backColor: "#111111" // near black
+    readonly property string disabledTextColor: "#808080" // medium gray
+    readonly property string foreColor: "a78dd5"  // light purple
+    readonly property string selectedColor: "#292929" // almost near black
+    readonly property string linkTextColor: "#FFFFFF" //white
 
     readonly property string leftTriangleChar: "\u25C0"
     readonly property string menuChar: "\u2630"
