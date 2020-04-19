@@ -206,6 +206,8 @@ Page {
                                             pageTitle,
                                             extensionDialogId.selectedExtension(
                                                 ))
+                            if (saveAsWallpaper)
+                                Controller.setCurrentImageAsWallpaper()
                         }
                     }
                 }

@@ -6,6 +6,7 @@
 enum class QueryType {
   GenerateImage,
   SaveImage,
+  GetWallpaperImage,
   ImageColors
 };
 

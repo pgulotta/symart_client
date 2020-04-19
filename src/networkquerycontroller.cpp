@@ -61,7 +61,16 @@ void NetworkQueryController::runGenerateImageRequest( const QString& query )
 
 void NetworkQueryController::runSaveImageAsWallpaperRequest()
 {
+  const QDir dir = QStandardPaths::writableLocation( QStandardPaths::DownloadLocation );
 
+  auto saveFilename =  QString( "%1%2wallpaper.png" )
+                       .arg( dir.path() )
+                       .arg( QDir::separator() ) ;
+
+  QStringList attributes{QString::number( static_cast<int>( QueryType::GetWallpaperImage ) ),
+                         saveFilename};
+  QString query = QString( "%1lastImage/%2" ).arg( mQueryPrefix ).arg( mServiceId );
+  runGetRequest( attributes, query );
 }
 
 void NetworkQueryController::runSaveImageRequest( const QString& filenamePrefix, const QString& imageFileExtension )
