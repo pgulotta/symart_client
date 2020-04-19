@@ -70,8 +70,8 @@ Page {
                     visible: radioDelegateId.down || radioDelegateId.highlighted
                     color: radioDelegateId.down ? Constants.linkTextColor : Constants.disabledTextColor
                 }
-
                 text: model.name
+
                 checked: model.itemIndex === wallpaperSelection
                 focusPolicy: Qt.StrongFocus
                 ButtonGroup.group: buttonGroupId

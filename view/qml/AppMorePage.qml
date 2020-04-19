@@ -10,17 +10,53 @@ Page {
     property string pageTitle
     title: pageTitle
 
+    Component.onCompleted: {
+        var insertIndex = 0
+        if (isAndroidDevice) {
+            settingsLoaderId.sourceComponent = settingsComponentId
+            swipeViewId.insertItem(insertIndex++, settingsLoaderId.item)
+        }
+        infoPageLoaderId.sourceComponent = infoPageComponentId
+        swipeViewId.insertItem(insertIndex, infoPageLoaderId.item)
+        pageIndicator.currentIndex = 0
+    }
     Keys.onBackPressed: {
         event.accepted = false
         popSource()
     }
 
     SwipeView {
-        id: view
-        currentIndex: pageIndicator.currentIndex
+        id: swipeViewId
         anchors.fill: parent
         objectName: "AppMorePage"
         property string pageTitle
+    }
+    PageIndicator {
+        id: pageIndicator
+        interactive: true
+        count: swipeViewId.count
+        currentIndex: swipeViewId.currentIndex
+        anchors.bottomMargin: mediumPadding
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
+    Loader {
+        id: infoPageLoaderId
+    }
+
+    Component {
+        id: infoPageComponentId
+        InfoPage {
+            title: pageTitle
+        }
+    }
+
+    Loader {
+        id: settingsLoaderId
+    }
+    Component {
+        id: settingsComponentId
 
         SettingsPage {
             id: settingsPageId
@@ -55,17 +91,5 @@ Page {
                 property alias wallpaperSelection: settingsPageId.wallpaperSelection
             }
         }
-        InfoPage {
-            title: pageTitle
-        }
-    }
-    PageIndicator {
-        id: pageIndicator
-        interactive: true
-        count: view.count
-        currentIndex: view.currentIndex
-        anchors.bottomMargin: mediumPadding
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
     }
 }
