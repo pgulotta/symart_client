@@ -153,6 +153,7 @@ QString FrontController::toLocalFile( const QString& fileURL ) const
 
 void FrontController::setCurrentImageAsWallpaper()
 {
+  qInfo() << Q_FUNC_INFO;
   mNetworkQueryController.runSaveImageAsWallpaperRequest();
 }
 

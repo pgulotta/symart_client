@@ -15,6 +15,17 @@ public final class WallpaperGeneratorJobService extends JobService
   public static final String ID = "com.twentysixapps.symart";
   private static final int MSG_JOB = 60564;
 
+  public static void setWallpaperUsingFile( Context context )
+  {
+    Log.i( ID, "WallpaperGeneratorJobService.setWallpaperUsingFile called" );
+    context.startService( new Intent( context, WallpaperGeneratorJobService.class ) );
+
+    try {
+
+    } catch ( Exception e ) {
+      e.printStackTrace();
+    }
+  }
   public static void scheduleDailyGenerateWallpaper( Context context )
   {
     Log.i( ID, "WallpaperGeneratorJobService.scheduleDailyGenerateWallpaper called" );
@@ -75,10 +86,6 @@ public static void cancelWallpaperSchedule( Context context )
       Log.i( ID, "WallpaperGeneratorJobService.onStartJob : thread has been joined " );
     } catch ( Exception e ) {
       e.printStackTrace();
-    } finally {
-     // jobFinished(jobParameters, true);
-
-     // Log.i( ID, "WallpaperGeneratorJobService.onStartJob : jobFinished called " );
     }
 
     return false;  // Returns false from when job has finished. onStopJob will not be invoked

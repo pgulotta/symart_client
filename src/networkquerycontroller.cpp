@@ -7,7 +7,11 @@
 #include <QDir>
 #include <QBuffer>
 #include <QUuid>
-
+#ifdef Q_OS_ANDROID
+#include <QAndroidJniObject>
+#include <QAndroidJniEnvironment>
+#include <QtAndroid>
+#endif
 
 QImage imageFromByteArray( const QByteArray& ba )
 {
@@ -61,13 +65,16 @@ void NetworkQueryController::runGenerateImageRequest( const QString& query )
 
 void NetworkQueryController::runSaveImageAsWallpaperRequest()
 {
+  qInfo() << Q_FUNC_INFO;
   const QDir dir = QStandardPaths::writableLocation( QStandardPaths::DownloadLocation );
 
   auto saveFilename =  QString( "%1%2wallpaper.png" )
                        .arg( dir.path() )
                        .arg( QDir::separator() ) ;
 
-  QStringList attributes{QString::number( static_cast<int>( QueryType::GetWallpaperImage ) ),
+  qInfo() << Q_FUNC_INFO << saveFilename;
+
+  QStringList attributes{QString::number( static_cast<int>( QueryType::ImageAsWallpaper ) ),
                          saveFilename};
   QString query = QString( "%1lastImage/%2" ).arg( mQueryPrefix ).arg( mServiceId );
   runGetRequest( attributes, query );
@@ -114,7 +121,12 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
       break;
 
     case QueryType::SaveImage:
-      saveToFile( networkReply->readAll(), attributes[1] );
+      saveToFile( networkReply->readAll(), attributes[1], true );
+      break;
+
+    case QueryType::ImageAsWallpaper:
+      saveToFile( networkReply->readAll(), attributes[1], true );
+      //setWallpaperUsingFile( attributes[1] );
       break;
 
     case QueryType::ImageColors:
@@ -123,26 +135,45 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
     }
 
   } catch ( std::exception const& e ) {
-    //qWarning() << Q_FUNC_INFO << e.what();
+    qWarning() << Q_FUNC_INFO << e.what();
     emit networkQueryMessage( e.what() );
   }
 
   networkReply->deleteLater();
 }
 
-void NetworkQueryController::saveToFile( const QByteArray& source, const QString& destination ) const
+#ifdef Q_OS_ANDROID
+void NetworkQueryController::setWallpaperUsingFile( const QString& wallpaperFilename ) const
+{
+  qDebug() << Q_FUNC_INFO << " wallpaperFilename = " << wallpaperFilename;
+  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
+                                             "setWallpaperUsingFile",
+                                             "(Landroid/content/Context;)V",
+                                             QtAndroid::androidActivity().object() );
+}
+#else
+void NetworkQueryController::setWallpaperUsingFile( const QString&  ) const
+{
+
+}
+#endif
+
+void NetworkQueryController::saveToFile( const QByteArray& source, const QString& destination,
+                                         bool shouldSendMessage ) const
 {
   auto filename = QUrl::fromUserInput( destination ).toLocalFile();
-  //qInfo() << Q_FUNC_INFO <<  "Local filename = " << filename;
+  qInfo() << Q_FUNC_INFO <<  "Local filename = " << filename;
   QImageWriter writer( filename );
 
-  QString message;
+  if ( shouldSendMessage ) {
+    QString message;
 
-  if ( writer.write( imageFromByteArray( source ) ) ) {
-    message = ( "Saved image as " + filename );
-  } else {
-    message = "Unable to save image as " + filename + " - " + writer.errorString();
+    if ( writer.write( imageFromByteArray( source ) ) ) {
+      message = ( "Saved image as " + filename );
+    } else {
+      message = "Unable to save image as " + filename + " - " + writer.errorString();
+    }
+
+    emit networkQueryMessage( message );
   }
-
-  emit networkQueryMessage( message );
 }

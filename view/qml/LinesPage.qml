@@ -63,7 +63,7 @@ ImageGeneratorPage {
             RuleTypeSelector {
                 id: rule1Id
                 title: qsTr("Rule 1")
-                initialIndex: 1
+                initialIndex: 7
                 weight: "2"
             }
             RuleTypeSelector {
@@ -76,7 +76,7 @@ ImageGeneratorPage {
             RuleTypeSelector {
                 id: rule3Id
                 title: qsTr("Rule 3")
-                initialIndex: 7
+                initialIndex: 1
                 weight: "8"
             }
 

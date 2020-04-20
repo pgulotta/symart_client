@@ -201,12 +201,12 @@ Page {
                         id: extensionDialogId
                         y: saveButtonId.height / 2 - height
                         onAccepted: {
-                            if (saveAsImage)
+                            if (extensionDialogId.saveAsImage)
                                 Controller.saveCurrentImage(
                                             pageTitle,
                                             extensionDialogId.selectedExtension(
                                                 ))
-                            if (saveAsWallpaper)
+                            if (extensionDialogId.saveAsWallpaper)
                                 Controller.setCurrentImageAsWallpaper()
                         }
                     }
