@@ -11,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.BitmapFactory;
 import android.app.WallpaperManager;
 import android.util.Base64;
+import java.io.FileInputStream;
 import java.lang.StringBuilder;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -23,16 +24,15 @@ import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
-
+//  java.lang.IllegalArgumentException: File /storage/emulated/0/Download/wallpaper.png contains a path separator
+//               setWallpaperUsingFile path =/storage/emulated/0/Download/wallpaper.png
+//   final String PackageName = mActivityInstance.getApplicationContext().getPackageName();
+//  QtAndroid::androidContext()   QAndroidJniObject QtAndroid::androidContext()
 
 public final class WallpaperGenerator implements Runnable
 {
-  public static final String REQUEST_METHOD = "GET";
-  public static final int READ_TIMEOUT = 15000;
-  public static final int CONNECTION_TIMEOUT = 15000;
-  private final String ID = WallpaperGeneratorJobService.ID;
-  private final String GET_REQUEST = "http://65.60.187.8:60564/wallpaper";
-  private Context mContext;
+  public static final String ID = WallpaperGeneratorJobService.ID;
+  public static Context mContext;
 
   public WallpaperGenerator( Context context )
   {
@@ -56,14 +56,21 @@ public final class WallpaperGenerator implements Runnable
     }
   }
 
-  private byte[] getWallpaper(  )
+  public static byte[] getWallpaper()
   {
     Log.i( ID, "WallpaperGenerator.getWallpaper called" );
+
+    final String REQUEST_METHOD = "GET";
+    final int READ_TIMEOUT = 15000;
+    final int CONNECTION_TIMEOUT = 15000;
+    final String GET_REQUEST = "http://65.60.187.8:60564/wallpaper";
+
     ByteArrayOutputStream responseBody = new ByteArrayOutputStream();
     HttpURLConnection connection = null;
     InputStream stream = null;
 
     try {
+
       URL url = new URL( GET_REQUEST );
       Log.i( ID, "WallpaperGenerator.getWallpaper:  url = " + url );
       connection = ( HttpURLConnection ) url.openConnection();
@@ -102,7 +109,27 @@ public final class WallpaperGenerator implements Runnable
     return responseBody.toByteArray();
   }
 
-  private void setWallpaper( byte[] array )
+  public static void setWallpaperUsingFile( Context context )
+  {
+    Log.i( ID, "WallpaperGenerator.setWallpaperUsingFile called" );
+    File path = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_DOWNLOADS );
+    String filename =  path.getAbsolutePath() + File.separatorChar + "wallpaper.png";
+    Log.i( ID, "WallpaperGenerator.setWallpaperUsingFile path =" + filename );
+    mContext = context;
+
+
+    try {
+      FileInputStream is = new FileInputStream (new File(filename));
+      byte[] byteArray = new byte[is.available()];
+      is.read( byteArray );
+      setWallpaper( byteArray );
+      is.close();
+    } catch ( Exception e ) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void setWallpaper( byte[] array )
   {
     Log.i( ID, "WallpaperGenerator.setWallpaper called" );
 
@@ -129,7 +156,8 @@ public final class WallpaperGenerator implements Runnable
         return;
       }
 
-      WallpaperManager wallpaperManager = WallpaperManager.getInstance ( mContext );
+      // final WallpaperManager wallpaperManager = WallpaperManager.getInstance ( mContext );
+      final WallpaperManager wallpaperManager = WallpaperManager.getInstance( mContext );
 
       if ( wallpaperManager == null ) {
         Log.e( ID, "WallpaperGenerator.setWallpaper: wallpaperManager = null" );

@@ -15,17 +15,6 @@ public final class WallpaperGeneratorJobService extends JobService
   public static final String ID = "com.twentysixapps.symart";
   private static final int MSG_JOB = 60564;
 
-  public static void setWallpaperUsingFile( Context context )
-  {
-    Log.i( ID, "WallpaperGeneratorJobService.setWallpaperUsingFile called" );
-    context.startService( new Intent( context, WallpaperGeneratorJobService.class ) );
-
-    try {
-
-    } catch ( Exception e ) {
-      e.printStackTrace();
-    }
-  }
   public static void scheduleDailyGenerateWallpaper( Context context )
   {
     Log.i( ID, "WallpaperGeneratorJobService.scheduleDailyGenerateWallpaper called" );

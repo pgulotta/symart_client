@@ -65,7 +65,6 @@ void NetworkQueryController::runGenerateImageRequest( const QString& query )
 
 void NetworkQueryController::runSaveImageAsWallpaperRequest()
 {
-  qInfo() << Q_FUNC_INFO;
   const QDir dir = QStandardPaths::writableLocation( QStandardPaths::DownloadLocation );
 
   auto saveFilename =  QString( "%1%2wallpaper.png" )
@@ -92,7 +91,7 @@ void NetworkQueryController::runSaveImageRequest( const QString& filenamePrefix,
                        .arg( formattedPrefix )
                        .arg( QUuid::createUuid().toString( QUuid::WithoutBraces ) )
                        .arg( imageFileExtension ) ;
-
+  qInfo() << Q_FUNC_INFO << saveFilename;
   QStringList attributes{QString::number( static_cast<int>( QueryType::SaveImage ) ),
                          saveFilename};
   QString query = QString( "%1lastImage/%2" ).arg( mQueryPrefix ).arg( mServiceId );
@@ -126,7 +125,7 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 
     case QueryType::ImageAsWallpaper:
       saveToFile( networkReply->readAll(), attributes[1], true );
-      //setWallpaperUsingFile( attributes[1] );
+      setWallpaperUsingFile( attributes[1] );
       break;
 
     case QueryType::ImageColors:
@@ -146,7 +145,7 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 void NetworkQueryController::setWallpaperUsingFile( const QString& wallpaperFilename ) const
 {
   qDebug() << Q_FUNC_INFO << " wallpaperFilename = " << wallpaperFilename;
-  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
+  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGenerator",
                                              "setWallpaperUsingFile",
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
