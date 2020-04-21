@@ -45,7 +45,7 @@ QueryType NetworkQueryController::extractQueryType( const QStringList& attribute
 
 void NetworkQueryController::runGetRequest( const QStringList& attributes, const QString& query )
 {
-  qDebug() << Q_FUNC_INFO << query;
+  //qDebug() << Q_FUNC_INFO << query;
 
   try {
     auto request = QNetworkRequest( query );
@@ -144,7 +144,6 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 #ifdef Q_OS_ANDROID
 void NetworkQueryController::setWallpaperUsingFile( const QString& wallpaperFilename ) const
 {
-  qDebug() << Q_FUNC_INFO << " wallpaperFilename = " << wallpaperFilename;
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGenerator",
                                              "setWallpaperUsingFile",
                                              "(Landroid/content/Context;)V",

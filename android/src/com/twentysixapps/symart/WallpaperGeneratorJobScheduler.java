@@ -17,8 +17,6 @@ public final class WallpaperGeneratorJobScheduler
 
   private static void handleJob ( Context context, long interval, boolean shouldCancel )
   {
-    Log.i ( ID, "WallpaperGeneratorJobScheduler.handleJob called" );
-
     if ( context == null ) {
       Log.i ( ID, "WallpaperGeneratorJobScheduler.handleJob context is null" );
       return;
@@ -69,25 +67,21 @@ public final class WallpaperGeneratorJobScheduler
 
   public static void cancelJob ( Context context )
   {
-    Log.i ( ID, "WallpaperGeneratorJobScheduler.cancelJob called" );
     handleJob( context, 0, true );
   }
 
   public static void scheduleHourlyJob ( Context context )
   {
-    Log.i ( ID, "WallpaperGeneratorJobScheduler.scheduleHourlyJob called" );
     handleJob( context, HOURLY_INTERVAL_MS, false );
   }
 
   public static void scheduleDailyJob ( Context context )
   {
-    Log.i ( ID, "WallpaperGeneratorJobScheduler.scheduleDailyJob called" );
     handleJob( context, DAILY_INTERVAL_MS, false );
   }
 
   public static void scheduleFifteenMinutesJob ( Context context )
   {
-    Log.i ( ID, "WallpaperGeneratorJobScheduler.scheduleFifteenMinutesJob called" );
     handleJob( context, FIFTEEN_MINUTES_INTERVAL_MS, false );
   }
 

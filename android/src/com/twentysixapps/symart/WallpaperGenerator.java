@@ -58,8 +58,6 @@ public final class WallpaperGenerator implements Runnable
 
   public static byte[] getWallpaper()
   {
-    Log.i( ID, "WallpaperGenerator.getWallpaper called" );
-
     final String REQUEST_METHOD = "GET";
     final int READ_TIMEOUT = 15000;
     final int CONNECTION_TIMEOUT = 15000;
@@ -111,7 +109,6 @@ public final class WallpaperGenerator implements Runnable
 
   public static void setWallpaperUsingFile( Context context )
   {
-    Log.i( ID, "WallpaperGenerator.setWallpaperUsingFile called" );
     File path = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_DOWNLOADS );
     String filename =  path.getAbsolutePath() + File.separatorChar + "wallpaper.png";
     Log.i( ID, "WallpaperGenerator.setWallpaperUsingFile path =" + filename );
@@ -131,8 +128,6 @@ public final class WallpaperGenerator implements Runnable
 
   public static void setWallpaper( byte[] array )
   {
-    Log.i( ID, "WallpaperGenerator.setWallpaper called" );
-
     try {
 
       if ( array.length == 0 ) {

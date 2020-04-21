@@ -141,9 +141,7 @@ void FrontController::loadColorsImage( const QString& colorImagePath )
   mNetworkQueryController.runLoadImageColorsRequest( query );
 
   //QString payload =  QTextCodec::codecForMib( 2259 )->toUnicode( byteArray );
-  //qDebug() << "&&&&&&&&&&&&&&&  payload=" << payload;
-// QImage image{fromByteArray( QTextCodec::codecForMib( 2259 )->fromUnicode( payload ) )};
-  //qDebug() << "************** image.isNull()=" << image.isNull();
+  // QImage image{fromByteArray( QTextCodec::codecForMib( 2259 )->fromUnicode( payload ) )};
 }
 
 QString FrontController::toLocalFile( const QString& fileURL ) const
@@ -382,7 +380,6 @@ void FrontController::generateLinessImage( int dimension, int symmetryGroup, int
                .arg( ruleName3 )
                .arg( ruleWeight3 )
                .arg( usePastelColors3 );
-  qDebug() << Q_FUNC_INFO << query;
   mNetworkQueryController.runGenerateImageRequest( query );
 }
 
