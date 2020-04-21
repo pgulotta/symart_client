@@ -7,6 +7,7 @@
 #include <QDir>
 #include <QBuffer>
 #include <QUuid>
+#include <QtConcurrent/QtConcurrentRun>
 #ifdef Q_OS_ANDROID
 #include <QAndroidJniObject>
 #include <QAndroidJniEnvironment>
@@ -67,7 +68,7 @@ void NetworkQueryController::runSaveImageAsWallpaperRequest()
 {
   const QDir dir = QStandardPaths::writableLocation( QStandardPaths::DownloadLocation );
 
-  auto saveFilename =  QString( "%1%2wallpaper.png" )
+  auto saveFilename =  QString( "%1%2symart_wallpaper.png" )
                        .arg( dir.path() )
                        .arg( QDir::separator() ) ;
 
@@ -120,12 +121,11 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
       break;
 
     case QueryType::SaveImage:
-      saveToFile( networkReply->readAll(), attributes[1], true );
+      QtConcurrent::run( this, &NetworkQueryController::saveToFile, networkReply->readAll(), attributes[1], true );
       break;
 
     case QueryType::ImageAsWallpaper:
-      saveToFile( networkReply->readAll(), attributes[1], false );
-      setWallpaperUsingFile( attributes[1] );
+      QtConcurrent::run( this, &NetworkQueryController::saveImageAsWallpaper, networkReply->readAll(), attributes[1] );
       break;
 
     case QueryType::ImageColors:
@@ -140,9 +140,14 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 
   networkReply->deleteLater();
 }
-
 #ifdef Q_OS_ANDROID
-void NetworkQueryController::setWallpaperUsingFile( const QString& wallpaperFilename ) const
+void NetworkQueryController::saveImageAsWallpaper( const QByteArray& source, const QString& wallpaperFilename ) const
+{
+  saveToFile( source, wallpaperFilename, false );
+  setWallpaperUsingFile();
+}
+
+void NetworkQueryController::setWallpaperUsingFile() const
 {
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGenerator",
                                              "setWallpaperUsingFile",
@@ -150,10 +155,10 @@ void NetworkQueryController::setWallpaperUsingFile( const QString& wallpaperFile
                                              QtAndroid::androidActivity().object() );
 }
 #else
-void NetworkQueryController::setWallpaperUsingFile( const QString&  ) const
+void NetworkQueryController::setWallpaperUsingFile() const
 {
-
 }
+void NetworkQueryController::saveImageAsWallpaper( const QByteArray&, const QString& ) const {}
 #endif
 
 void NetworkQueryController::saveToFile( const QByteArray& source, const QString& destination,

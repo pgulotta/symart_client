@@ -31,11 +31,12 @@ private slots:
   void onNetworkReply( QNetworkReply* networkReply );
 
 private:
-  void setWallpaperUsingFile( const QString& wallpaperFilename ) const;
   void runGetRequest( const QStringList& attributes, const QString& query ) ;
   int getNextResponseId();
   QueryType extractQueryType( const QStringList& attributes );
   void saveToFile( const QByteArray& source,  const QString& destination, bool shouldSendMessage ) const;
+  void saveImageAsWallpaper( const QByteArray& source, const QString& wallpaperFilename ) const;
+  void setWallpaperUsingFile(  ) const;
   QNetworkAccessManager mNetworkAccessManager;
   int mResponseId{0};
   const QString mQueryPrefix;
