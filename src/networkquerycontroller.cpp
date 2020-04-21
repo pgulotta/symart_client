@@ -52,7 +52,7 @@ void NetworkQueryController::runGetRequest( const QStringList& attributes, const
     request.setAttribute( QNetworkRequest::Attribute::User, QVariant( attributes ) );
     mNetworkAccessManager.get( request );
   } catch ( std::exception const& e ) {
-    //qWarning() << Q_FUNC_INFO << e.what();
+    qWarning() << Q_FUNC_INFO << e.what();
     emit networkQueryMessage( QString{e.what()} );
   }
 }
@@ -124,7 +124,7 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
       break;
 
     case QueryType::ImageAsWallpaper:
-      saveToFile( networkReply->readAll(), attributes[1], true );
+      saveToFile( networkReply->readAll(), attributes[1], false );
       setWallpaperUsingFile( attributes[1] );
       break;
 
@@ -161,18 +161,20 @@ void NetworkQueryController::saveToFile( const QByteArray& source, const QString
                                          bool shouldSendMessage ) const
 {
   auto filename = QUrl::fromUserInput( destination ).toLocalFile();
-  qInfo() << Q_FUNC_INFO <<  "Local filename = " << filename;
+
   QImageWriter writer( filename );
+  QString message;
+
+  if ( writer.write( imageFromByteArray( source ) ) ) {
+    message = ( "Saved image as " + filename );
+  } else {
+    message = "Unable to save image as " + filename + " - " + writer.errorString();
+  }
+
+  qInfo() << Q_FUNC_INFO <<  message;
 
   if ( shouldSendMessage ) {
-    QString message;
-
-    if ( writer.write( imageFromByteArray( source ) ) ) {
-      message = ( "Saved image as " + filename );
-    } else {
-      message = "Unable to save image as " + filename + " - " + writer.errorString();
-    }
-
     emit networkQueryMessage( message );
   }
 }
+

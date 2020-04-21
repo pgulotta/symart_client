@@ -33,8 +33,8 @@ Page {
             anchors.left: parent.left
             anchors.leftMargin: largePadding
             anchors.top: parent.top
-            anchors.topMargin: largePadding
-            anchors.bottomMargin: exlargePadding
+            anchors.topMargin: mediumPadding
+            bottomPadding: mediumPadding
         }
         HtmlText {
             id: aboutDescriptionId
@@ -87,7 +87,8 @@ Page {
             HtmlText {
                 width: aboutGridId.width
                 endBlankLine: true
-                text: Controller.applicationTitle()+" companion "+"<a href=\"" + appLink + "\">site</a>"
+                text: Controller.applicationTitle(
+                          ) + " companion " + "<a href=\"" + appLink + "\">site</a>"
                 websiteLink: appLink
             }
 

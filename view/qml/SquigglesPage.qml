@@ -60,7 +60,7 @@ ImageGeneratorPage {
                 fromValue: 2
                 toValue: maxImageDimension
                 stepValue: 2
-                initialValue: 256
+                initialValue: defaultImageDimension
                 isAlwaysEven: true
             }
             TumblerSelector {

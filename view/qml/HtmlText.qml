@@ -7,7 +7,6 @@ import com.twentysixapps.constants 1.0
 ColumnLayout {
     property alias text: textId.text
     property alias pointSize: textId.font.pointSize
-    property real fontPointSize: smallFontPointSize
 
     property string websiteLink
     property bool endBlankLine: false
@@ -22,7 +21,6 @@ ColumnLayout {
     Text {
         id: textId
         width: parent.width
-        font.pointSize: fontPointSize
         Layout.leftMargin: isTitle ? smallPadding : largePadding
         Layout.rightMargin: isTitle ? smallPadding : largePadding
         Layout.fillWidth: isCentered ? false : true

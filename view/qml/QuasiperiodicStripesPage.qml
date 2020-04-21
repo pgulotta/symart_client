@@ -33,7 +33,7 @@ ImageGeneratorPage {
                 fromValue: 2
                 toValue: maxImageDimension
                 stepValue: 1
-                initialValue: 256
+                initialValue: defaultImageDimension
             }
 
             SliderSelector {

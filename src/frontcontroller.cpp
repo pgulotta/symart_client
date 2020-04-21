@@ -83,7 +83,7 @@ FrontController::FrontController( QObject* parent )
     mImageProvider{new ImageProvider}
 {
   FrontControllerInstance = this;
-  qInstallMessageHandler( FrontController::appMessageHandler );
+// qInstallMessageHandler( FrontController::appMessageHandler );
 
   connect( &mNetworkQueryController,
            &NetworkQueryController::newImageGenerated,
@@ -105,7 +105,7 @@ FrontController::FrontController( QObject* parent )
 
 FrontController::~FrontController()
 {
-  qInstallMessageHandler( 0 );
+  //qInstallMessageHandler( 0 );
 }
 
 QString FrontController::applicationTitle() const

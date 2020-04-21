@@ -22,7 +22,7 @@ Page {
             text: qsTr("Settings")
             color: Constants.linkTextColor
             scale: 1.25
-            leftPadding: largePadding
+            leftPadding: smallPadding
         }
 
         ButtonGroup {
@@ -33,11 +33,12 @@ Page {
             implicitWidth: 200
             implicitHeight: 200
             interactive: true
+            leftMargin: largePadding
             model: wallpaperScheduleModelId
-            header: HtmlText {
-                text: qsTr("Manage Wallpaper")
-                isUpperCase: true
-                isTitle: true
+            header: Label {
+                text: qsTr("MANAGE WALLPAPER")
+                font.italic: true
+                color: Qt.lighter(Constants.accentColor, 1.75)
             }
             delegate: RadioDelegate {
                 id: radioDelegateId

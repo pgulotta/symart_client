@@ -16,6 +16,7 @@ ApplicationWindow {
     property bool isWideWidth: windowHeight < windowWidth
 
     readonly property int maxImageDimension: 2048
+    readonly property int defaultImageDimension: 512
     readonly property int imageControlsWidth: 180
     readonly property int smallFontPointSize: 12
     readonly property int mediumFontPointSize: 16
@@ -181,6 +182,7 @@ ApplicationWindow {
     function reportMessage(messageDescription) {
         if (messageDescription === undefined || messageDescription === "")
             return
+        console.log("reportMessage: " + messageDescription)
         messageDialogId.messageDescription = messageDescription
         messageDialogId.open()
     }

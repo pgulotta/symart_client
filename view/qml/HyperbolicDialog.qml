@@ -23,7 +23,7 @@ MovableDialog {
                 title: qsTr("Size")
                 fromValue: 2
                 toValue: maxImageDimension
-                initialValue: 256
+                initialValue: defaultImageDimension
                 isAlwaysEven: true
             }
             TumblerSelector {

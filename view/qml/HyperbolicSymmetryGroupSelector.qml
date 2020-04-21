@@ -34,7 +34,6 @@ SelectorGroupBox {
             delegate: Text {
                 id: delegateId
                 text: groupName
-                font.pointSize: smallFontPointSize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: Material.foreground

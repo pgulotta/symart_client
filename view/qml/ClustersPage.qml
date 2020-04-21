@@ -7,9 +7,9 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-        Controller.generateClustersImage(
-                    dimensionSelectorId.dimension,
-                    symmetrySelectorId.selectorIndex, alphaSelectorId.dimension)
+        Controller.generateClustersImage(dimensionSelectorId.dimension,
+                                         symmetrySelectorId.selectorIndex,
+                                         alphaSelectorId.dimension)
     }
 
     function selectionDescription() {
@@ -33,7 +33,7 @@ ImageGeneratorPage {
                 fromValue: 2
                 toValue: maxImageDimension
                 stepValue: 1
-                initialValue: 256
+                initialValue: defaultImageDimension
             }
 
             TumblerSelector {
