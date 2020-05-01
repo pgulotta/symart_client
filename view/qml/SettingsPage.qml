@@ -94,11 +94,11 @@ Page {
             }
             ListElement {
                 name: qsTr("Generate Hourly")
-                itemIndex: 3
+                itemIndex: 2
             }
             ListElement {
                 name: qsTr("Generate Daily")
-                itemIndex: 4
+                itemIndex: 3
             }
         }
     }

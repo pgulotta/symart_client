@@ -12,7 +12,7 @@ public final class WallpaperGeneratorJobScheduler
   private static final String ID = WallpaperGeneratorJobService.ID;
   private static final int JOB_ID =  60564;
   private static final long FIFTEEN_MINUTES_INTERVAL_MS =  900000L;
-  private static final long HOURLY_INTERVAL_MS =  3600000L;   // 3600000L;
+  private static final long HOURLY_INTERVAL_MS = 3600000L  ;  // 3600000l = 1 hour
   private static final long DAILY_INTERVAL_MS = 43200000L;   // 43200000L; (half day)
 
   private static void handleJob ( Context context, long interval, boolean shouldCancel )
