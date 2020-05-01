@@ -439,6 +439,7 @@ void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, i
 #ifdef Q_OS_ANDROID
 void FrontController::scheduleDailyGenerateWallpaper() const
 {
+  generateNewWallpaper();
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
                                              "scheduleDailyGenerateWallpaper",
                                              "(Landroid/content/Context;)V",
@@ -447,6 +448,7 @@ void FrontController::scheduleDailyGenerateWallpaper() const
 
 void FrontController::scheduleHourlyGenerateWallpaper() const
 {
+  generateNewWallpaper();
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
                                              "scheduleHourlyGenerateWallpaper",
                                              "(Landroid/content/Context;)V",
@@ -455,6 +457,7 @@ void FrontController::scheduleHourlyGenerateWallpaper() const
 
 void FrontController::scheduleFifteenMinutesGenerateWallpaper() const
 {
+  generateNewWallpaper();
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
                                              "scheduleFifteenMinutesGenerateWallpaper",
                                              "(Landroid/content/Context;)V",
@@ -468,10 +471,10 @@ void FrontController::cancelWallpaperSchedule() const
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
 }
-void FrontController::setWallpaperSchedule() const
+void FrontController::generateNewWallpaper() const
 {
-  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGeneratorJobService",
-                                             "setWallpaperSchedule",
+  QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGenerator",
+                                             "generate",
                                              "(Landroid/content/Context;)V",
                                              QtAndroid::androidActivity().object() );
 }
@@ -496,7 +499,7 @@ void FrontController::cancelWallpaperSchedule() const
   //no implmenation
 }
 
-void FrontController::setWallpaperSchedule() const
+void FrontController::generateNewWallpaper() const
 {
   //no implmenation
 }

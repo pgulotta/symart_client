@@ -29,16 +29,43 @@ public final class WallpaperGenerator implements Runnable
   public void run()
   {
     try {
-      byte[] array = getWallpaper();
-
-      if ( array.length == 0 ) {
-        Log.e( ID, "WallpaperGenerator.doWork failed. Wallpaper array is empty" );
+      if ( mContext == null  ) {
+        Log.e( ID, "WallpaperGenerator.run failed.  in null" );
         return;
       }
 
-      setWallpaper( array );
+      generate( mContext );
     } catch ( Exception e ) {
       e.printStackTrace();
+    }
+  }
+
+  public static void generate( Context context )
+  {
+    final String REQUEST = "http://65.60.187.8:60564/wallpaper";
+
+    Log.i( ID, "WallpaperGenerator.generate: Generating new wallpaper" );
+
+    try {
+      final WallpaperManager wallpaperManager =  WallpaperManager
+                                                 .getInstance( context.getApplicationContext() );
+
+      if ( wallpaperManager == null ) {
+        Log.e( ID, "WallpaperGenerator.generate: wallpaperManager = null" );
+        return;
+      }
+
+      InputStream stream = new URL( REQUEST ).openStream();
+
+      if ( stream == null ) {
+        Log.e( ID, "WallpaperGenerator.generate:  stream= null" );
+        return;
+      }
+
+      wallpaperManager.setStream( stream );
+      Log.i( ID, "WallpaperGenerator.generate:  new wallpaper generated" );
+    } catch ( Exception ex ) {
+      ex.printStackTrace();
     }
   }
 

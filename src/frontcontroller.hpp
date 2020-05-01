@@ -27,8 +27,6 @@ public:
   Q_INVOKABLE void scheduleHourlyGenerateWallpaper() const;
   Q_INVOKABLE void scheduleFifteenMinutesGenerateWallpaper() const;
   Q_INVOKABLE void cancelWallpaperSchedule() const;
-  Q_INVOKABLE void setWallpaperSchedule() const;
-
   Q_INVOKABLE QString applicationTitle() const;
   Q_INVOKABLE QString applicationVersion() const;
   Q_INVOKABLE QString toLocalFile( const QString& fileURL ) const;
@@ -72,7 +70,7 @@ public:
                                            int symmetryValueIndex, double quasiperiod );
 
 private:
-
+  void generateNewWallpaper() const;
   NetworkQueryController mNetworkQueryController;
   ImageProvider* mImageProvider;  // qml releases this resource
   static FrontController* FrontControllerInstance;

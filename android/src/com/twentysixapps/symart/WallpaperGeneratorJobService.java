@@ -69,7 +69,6 @@ public static void cancelWallpaperSchedule( Context context )
       Thread thread = new Thread( new WallpaperGenerator( this ) );
       thread.start();
       thread.join();
-      Log.i( ID, "WallpaperGeneratorJobService.onStartJob : thread has been joined " );
     } catch ( Exception e ) {
       e.printStackTrace();
     }

@@ -11,14 +11,14 @@ public final class WallpaperGeneratorJobScheduler
 {
   private static final String ID = WallpaperGeneratorJobService.ID;
   private static final int JOB_ID =  60564;
-  private static final long FIFTEEN_MINUTES_INTERVAL_MS = 900000L;
+  private static final long FIFTEEN_MINUTES_INTERVAL_MS =  900000L;
   private static final long HOURLY_INTERVAL_MS =  3600000L;   // 3600000L;
   private static final long DAILY_INTERVAL_MS = 43200000L;   // 43200000L; (half day)
 
   private static void handleJob ( Context context, long interval, boolean shouldCancel )
   {
     if ( context == null ) {
-      Log.i ( ID, "WallpaperGeneratorJobScheduler.handleJob context is null" );
+      Log.e ( ID, "WallpaperGeneratorJobScheduler.handleJob context is null" );
       return;
     }
 
@@ -26,14 +26,14 @@ public final class WallpaperGeneratorJobScheduler
       ComponentName serviceComponent = new ComponentName( context, WallpaperGeneratorJobService.class );
 
       if ( serviceComponent == null ) {
-        Log.i ( ID, "WallpaperGeneratorJobScheduler.handleJob serviceComponent = null " );
+        Log.e ( ID, "WallpaperGeneratorJobScheduler.handleJob serviceComponent = null " );
         return;
       }
 
       JobScheduler jobScheduler = context.getSystemService( JobScheduler.class );
 
       if ( jobScheduler == null ) {
-        Log.i ( ID, "WallpaperGeneratorJobScheduler.scheduleJob jobScheduler = null " );
+        Log.e ( ID, "WallpaperGeneratorJobScheduler.scheduleJob jobScheduler = null " );
         return;
       }
 
@@ -47,15 +47,16 @@ public final class WallpaperGeneratorJobScheduler
       JobInfo.Builder builder = new JobInfo.Builder( JOB_ID, serviceComponent );
 
       if ( builder == null ) {
-        Log.i ( ID, "builder.scheduleJob builder = null " );
+        Log.e ( ID, "builder.scheduleJob builder = null " );
         return;
       }
 
-      builder.setPeriodic( interval );  // job should run within the provided interval
-      //builder.setOverrideDeadline( interval ); // maximum scheduling latency
-      //builder.setMinimumLatency( interval ); //  delay job by the provided amount of time in ms
-      builder.setPersisted( true ); // persist this job across device reboots
-      builder.setRequiredNetworkType( JobInfo.NETWORK_TYPE_ANY );  // the kind of network your job requires
+      //builder.setOverrideDeadline( interval + 120000); // maximum scheduling latency; API 21
+      //builder.setMinimumLatency( interval ); //  delay job by the provided amount of time in ms; API 21
+      builder.setPeriodic( interval );  // job should run within the provided interval; API 21
+      builder.setPersisted( true ); // persist this job across device reboots; API 21
+      builder.setRequiredNetworkType( JobInfo.NETWORK_TYPE_ANY ); // requires network connectivity; API 21
+      builder.setRequiresDeviceIdle(false); // the job is runnable even when someone is interacting with the device; API 21
       int result = jobScheduler.schedule( builder.build() );
       String resultText = ( JobScheduler.RESULT_SUCCESS == result ) ? "successfully" : "failed";
       Log.i ( ID, "WallpaperGeneratorJobScheduler.scheduleJob scheduled for interval of " + interval + " is "  + resultText );

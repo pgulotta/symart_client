@@ -19,7 +19,6 @@ private:
   void initQml( FrontController& frontController );
 
 private:
-
   TopicsMetaDataBuilder mTopicsMetaDataBuilder;
   ImmutableList mImmutableList;
   QQmlApplicationEngine mQmlApplicationEngine;

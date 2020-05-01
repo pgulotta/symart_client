@@ -38,29 +38,29 @@ android {
 unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
-    ANDROID_EXTRA_LIBS += \
-        $$PWD/android/libs/openssl/arm/libcrypto.so \
-        $$PWD/android/libs/openssl/arm/libssl.so
-}
+#contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+#    ANDROID_EXTRA_LIBS += \
+#        $$PWD/android/libs/openssl/arm/libcrypto.so \
+#        $$PWD/android/libs/openssl/arm/libssl.so
+#}
 
-contains(ANDROID_TARGET_ARCH,arm64-v8a) {
-    ANDROID_EXTRA_LIBS += \
-        $$PWD/android/libs/openssl/arm64/libcrypto.so \
-        $$PWD/android/libs/openssl/arm64/libssl.so
-}
+#contains(ANDROID_TARGET_ARCH,arm64-v8a) {
+#    ANDROID_EXTRA_LIBS += \
+#        $$PWD/android/libs/openssl/arm64/libcrypto.so \
+#        $$PWD/android/libs/openssl/arm64/libssl.so
+#}
 
-contains(ANDROID_TARGET_ARCH,x86) {
-    ANDROID_EXTRA_LIBS += \
-        $$PWD/android/libs/openssl/x86/libcrypto.so \
-        $$PWD/android/libs/openssl/x86/libssl.so
-}
+#contains(ANDROID_TARGET_ARCH,x86) {
+#    ANDROID_EXTRA_LIBS += \
+#        $$PWD/android/libs/openssl/x86/libcrypto.so \
+#        $$PWD/android/libs/openssl/x86/libssl.so
+#}
 
-contains(ANDROID_TARGET_ARCH,x86_64) {
-    ANDROID_EXTRA_LIBS += \
-        $$PWD/android/libs/openssl/x86_64/libcrypto.so \
-        $$PWD/android/libs/openssl/x86_64/libssl.so
-}
+#contains(ANDROID_TARGET_ARCH,x86_64) {
+#    ANDROID_EXTRA_LIBS += \
+#        $$PWD/android/libs/openssl/x86_64/libcrypto.so \
+#        $$PWD/android/libs/openssl/x86_64/libssl.so
+#}
 
 DISTFILES += \
     android/AndroidManifest.xml \
