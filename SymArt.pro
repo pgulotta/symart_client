@@ -42,6 +42,11 @@ unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     android/AndroidManifest.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
+    android/gradlew.bat \
     android/res/values/libs.xml \
     android/src/com/twentysixapps/symart/WallpaperGenerator.java \
     android/src/com/twentysixapps/symart/WallpaperGeneratorJobScheduler.java \
