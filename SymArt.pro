@@ -32,34 +32,13 @@ QMAKE_LFLAGS += --emrun
 android {
     QT += androidextras
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+include(<../../../../android_openssl/openssl.pri)
 }
 
 unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-#contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
-#    ANDROID_EXTRA_LIBS += \
-#        $$PWD/android/libs/openssl/arm/libcrypto.so \
-#        $$PWD/android/libs/openssl/arm/libssl.so
-#}
-
-#contains(ANDROID_TARGET_ARCH,arm64-v8a) {
-#    ANDROID_EXTRA_LIBS += \
-#        $$PWD/android/libs/openssl/arm64/libcrypto.so \
-#        $$PWD/android/libs/openssl/arm64/libssl.so
-#}
-
-#contains(ANDROID_TARGET_ARCH,x86) {
-#    ANDROID_EXTRA_LIBS += \
-#        $$PWD/android/libs/openssl/x86/libcrypto.so \
-#        $$PWD/android/libs/openssl/x86/libssl.so
-#}
-
-#contains(ANDROID_TARGET_ARCH,x86_64) {
-#    ANDROID_EXTRA_LIBS += \
-#        $$PWD/android/libs/openssl/x86_64/libcrypto.so \
-#        $$PWD/android/libs/openssl/x86_64/libssl.so
-#}
 
 DISTFILES += \
     android/AndroidManifest.xml \

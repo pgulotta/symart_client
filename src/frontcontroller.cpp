@@ -21,7 +21,7 @@ void FrontController::appMessageHandler( QtMsgType type,
   QByteArray localMsg = msg.toLocal8Bit();
   const char* file = context.file ? context.file : "";
   const char* function = context.function ? context.function : "";
-  auto displayMsg = msg.split( ':', QString::SkipEmptyParts );
+  auto displayMsg = msg.split( ':', Qt::SkipEmptyParts );
 
   switch ( type ) {
   case QtDebugMsg:

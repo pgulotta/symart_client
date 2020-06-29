@@ -18,7 +18,7 @@ Page {
         }
         infoPageLoaderId.sourceComponent = infoPageComponentId
         swipeViewId.insertItem(insertIndex, infoPageLoaderId.item)
-        pageIndicator.currentIndex = 0
+        pageIndicatorId.currentIndex = 0
     }
     Keys.onBackPressed: {
         event.accepted = false
@@ -32,13 +32,38 @@ Page {
         property string pageTitle
     }
     PageIndicator {
-        id: pageIndicator
+        id: pageIndicatorId
+        spacing: exlargePadding
         interactive: true
         count: swipeViewId.count
         currentIndex: swipeViewId.currentIndex
         anchors.bottomMargin: mediumPadding
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
+
+        delegate: Rectangle {
+            id: pageIndicatorRectId
+            visible: pageIndicatorId.count > 1
+            implicitWidth: exlargePadding
+            implicitHeight: largePadding
+            radius: rectRadius
+            color: Constants.linkTextColor
+            opacity: index === swipeViewId.currentIndex ? 0.95 : pressed ? 0.7 : 0.45
+            TapHandler {
+                onTapped: {
+                    console.log("pageIndicatorId.currentIndex" + pageIndicatorId.currentIndex)
+                    pageIndicatorId.currentIndex = (pageIndicatorId.currentIndex === 0) ? 1 : 0
+                    swipeViewId.currentIndex = pageIndicatorId.currentIndex
+                    console.log("pageIndicator.currentIndex" + pageIndicatorId.currentIndex)
+                    console.log("swipeViewId.currentIndex" + swipeViewId.currentIndex)
+                }
+            }
+            Behavior on opacity {
+                OpacityAnimator {
+                    duration: Constants.shortAnimationDuration
+                }
+            }
+        }
     }
 
     Loader {

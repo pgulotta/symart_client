@@ -24,11 +24,13 @@ Page {
 
     Connections {
         target: Controller
-        onMessageGenerated: {
+        function onMessageGenerated() {
             pageDescription = ""
             reportMessage(messageDescription)
         }
-        onImageGenerated: imageSource = "image://generatedImage"
+        function onImageGenerated() {
+            imageSource = "image://generatedImage"
+        }
     }
 
     Component.onCompleted: headerToolBarId.forceActiveFocus()
