@@ -20,7 +20,7 @@ void Permissions::requestExternalStoragePermission()
       this->mPermissionResult = false;
 
       if ( QtAndroid::shouldShowRequestPermissionRationale( "android.permission.READ_EXTERNAL_STORAGE" ) ) {
-        mShowPermissionRationale = QAndroidJniObject ( "com/twentysixapps/playitsafe/ShowPermissionRationale",
+        mShowPermissionRationale = QAndroidJniObject ( "com/twentysixapps/symart/ShowPermissionRationale",
                                                        "(Landroid/app/Activity;)V",
                                                        QtAndroid::androidActivity().object<jobject>()
                                                      );
