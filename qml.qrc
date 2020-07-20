@@ -17,7 +17,7 @@
         <file>view/qml/CloudsPage.qml</file>
         <file>view/qml/ClustersPage.qml</file>
         <file>view/qml/ColorSelector.qml</file>
-        <file>view/qml/ColorsSelector.qml</file>		
+        <file>view/qml/ColorsSelector.qml</file>
         <file>view/qml/EnterTransition.qml</file>
         <file>view/qml/ExitTransition.qml</file>
         <file>view/qml/HtmlText.qml</file>
@@ -27,7 +27,6 @@
         <file>view/qml/HyperbolicSymmetryGroupSelector.qml</file>
         <file>view/qml/ImageFileExtensionDialog.qml</file>
         <file>view/qml/ImageGeneratorPage.qml</file>
-        <file>view/qml/ImageSelector.qml</file>
         <file>view/qml/InfoPage.qml</file>
         <file>view/qml/LinesPage.qml</file>
         <file>view/qml/MainPage.qml</file>
@@ -47,6 +46,5 @@
         <file>view/qml/SwitchboardPage.qml</file>
         <file>view/qml/TumblerSelector.qml</file>
         <file>view/qml/WalksPage.qml</file>
-
     </qresource>
 </RCC>

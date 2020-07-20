@@ -33,7 +33,6 @@ public:
 
   Q_INVOKABLE void setCurrentImageAsWallpaper() ;
   Q_INVOKABLE void saveCurrentImage( const QString& filenamePrefix, const QString& imageFileExtension ) ;
-  Q_INVOKABLE void loadColorsImage( const QString& colorImagePath );
   Q_INVOKABLE void getLastGenerateImage();
   Q_INVOKABLE void generateHexagonalStretchImage();
   Q_INVOKABLE void generateCloudsImage( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,

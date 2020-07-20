@@ -14,6 +14,13 @@
 #include <QtAndroid>
 #endif
 
+
+#ifdef QT_DEBUG
+const QString WALLPAPER_SERVER="http://0.0.0.0:60564/";
+#else
+const QString WALLPAPER_SERVER="http://65.60.187.8:60564/";
+#endif
+
 QImage imageFromByteArray( const QByteArray& ba )
 {
   QImage image;
@@ -23,8 +30,8 @@ QImage imageFromByteArray( const QByteArray& ba )
 
 NetworkQueryController::NetworkQueryController( QObject* parent )
   : QObject( parent ),
-    mQueryPrefix{"http://65.60.187.8:60564/get/?"},
-    mImageColorsPrefix{"http://65.60.187.8:60564/imageColors/?"},
+    mQueryPrefix{WALLPAPER_SERVER +"get/?"},
+    mImageColorsPrefix{WALLPAPER_SERVER +"imageColors/?"},
     mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )}
 {
   connect( &mNetworkAccessManager,

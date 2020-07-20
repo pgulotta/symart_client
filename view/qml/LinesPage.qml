@@ -79,10 +79,6 @@ ImageGeneratorPage {
                 initialIndex: 1
                 weight: "8"
             }
-
-            ImageSelector {
-                id: imageSelectorId
-            }
         }
     }
     Labs.FileDialog {

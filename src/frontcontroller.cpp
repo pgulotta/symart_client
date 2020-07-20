@@ -132,18 +132,6 @@ QByteArray toByteArray( const QString& colorImagePath )
   return ba;
 }
 
-void FrontController::loadColorsImage( const QString& colorImagePath )
-{
-  QByteArray byteArray = toByteArray( colorImagePath  );
-  QString query = QString( "%1%2" )
-                  .arg( mNetworkQueryController.imageColorsPrefix() )
-                  .arg( QTextCodec::codecForMib( 2259 )->toUnicode( byteArray ) );
-  mNetworkQueryController.runLoadImageColorsRequest( query );
-
-  //QString payload =  QTextCodec::codecForMib( 2259 )->toUnicode( byteArray );
-  // QImage image{fromByteArray( QTextCodec::codecForMib( 2259 )->fromUnicode( payload ) )};
-}
-
 QString FrontController::toLocalFile( const QString& fileURL ) const
 {
   return  QUrl::fromUserInput( fileURL ).toLocalFile();

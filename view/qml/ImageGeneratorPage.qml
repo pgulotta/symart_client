@@ -24,7 +24,7 @@ Page {
 
     Connections {
         target: Controller
-        function onMessageGenerated() {
+        function onMessageGenerated(messageDescription) {
             pageDescription = ""
             reportMessage(messageDescription)
         }

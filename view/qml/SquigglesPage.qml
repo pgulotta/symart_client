@@ -9,7 +9,6 @@ ImageGeneratorPage {
     shouldTileImage: true
 
     function drawImage() {
-        if (imageSelectorId.imagePaletteUrl === "") {
             Controller.generateSquigglesImage(colorCountSelectorId.dimension,
                                               dimensionSelectorId.dimension,
                                               symmetrySelectorId.selectorIndex,
@@ -17,20 +16,6 @@ ImageGeneratorPage {
                                               exponentelectorId.dimension,
                                               thicknessSelectorId.dimension,
                                               sharpnessSelectorId.dimension)
-        } else {
-            Controller.loadColorsImage(imageSelectorId.imagePaletteName)
-            Controller.generateSquigglesImage(colorCountSelectorId.dimension,
-                                              imageSelectorId.saturationBoost,
-                                              imageSelectorId.useHue,
-                                              imageSelectorId.useSaturation,
-                                              imageSelectorId.useBrightness,
-                                              dimensionSelectorId.dimension,
-                                              symmetrySelectorId.selectorIndex,
-                                              alphaSelectorId.dimension,
-                                              exponentelectorId.dimension,
-                                              thicknessSelectorId.dimension,
-                                              sharpnessSelectorId.dimension)
-        }
     }
 
     function selectionDescription() {
@@ -126,9 +111,6 @@ ImageGeneratorPage {
                 decimals: 0
             }
 
-            ImageSelector {
-                id: imageSelectorId
-            }
         }
     }
     Labs.FileDialog {
