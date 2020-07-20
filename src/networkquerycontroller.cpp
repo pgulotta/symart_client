@@ -16,9 +16,9 @@
 
 
 #ifdef QT_DEBUG
-const QString WALLPAPER_SERVER="http://0.0.0.0:60564/";
+const QString WALLPAPER_SERVER = "http://0.0.0.0:60564/";
 #else
-const QString WALLPAPER_SERVER="http://65.60.187.8:60564/";
+const QString WALLPAPER_SERVER = "http://65.60.187.8:60564/";
 #endif
 
 QImage imageFromByteArray( const QByteArray& ba )
@@ -30,8 +30,8 @@ QImage imageFromByteArray( const QByteArray& ba )
 
 NetworkQueryController::NetworkQueryController( QObject* parent )
   : QObject( parent ),
-    mQueryPrefix{WALLPAPER_SERVER +"get/?"},
-    mImageColorsPrefix{WALLPAPER_SERVER +"imageColors/?"},
+    mQueryPrefix{WALLPAPER_SERVER + "get/?"},
+    mImageColorsPrefix{WALLPAPER_SERVER + "imageColors/?"},
     mServiceId{QUuid::createUuid().toString( QUuid::WithoutBraces )}
 {
   connect( &mNetworkAccessManager,
@@ -106,12 +106,6 @@ void NetworkQueryController::runSaveImageRequest( const QString& filenamePrefix,
   runGetRequest( attributes, query );
 }
 
-void NetworkQueryController::runLoadImageColorsRequest( const QString& query )
-{
-  QStringList attributes{QString::number( static_cast<int>( QueryType::ImageColors ) )};
-  runGetRequest( attributes, query );
-}
-
 void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 {
   try {
@@ -134,12 +128,7 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
     case QueryType::ImageAsWallpaper:
       QtConcurrent::run( this, &NetworkQueryController::saveImageAsWallpaper, networkReply->readAll(), attributes[1] );
       break;
-
-    case QueryType::ImageColors:
-      //  qDebug() << Q_FUNC_INFO << networkReply->readAll();
-      break;
     }
-
   } catch ( std::exception const& e ) {
     qWarning() << Q_FUNC_INFO << e.what();
     emit networkQueryMessage( e.what() );
@@ -147,8 +136,10 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 
   networkReply->deleteLater();
 }
+
 #ifdef Q_OS_ANDROID
-void NetworkQueryController::saveImageAsWallpaper( const QByteArray& source, const QString& wallpaperFilename ) const
+void NetworkQueryController::saveImageAsWallpaper( const QByteArray& source,
+                                                   const QString& wallpaperFilename ) const
 {
   saveToFile( source, wallpaperFilename, false );
   setWallpaperUsingFile();

@@ -2,7 +2,7 @@
 
 ImageProvider::ImageProvider():
   QQuickImageProvider( QQuickImageProvider::Image ),
-  mImage{new QImage}
+  mImage{new QImage}, mOriginalImage{new QImage}, mModifiedImage{new QImage}
 {
 }
 
@@ -19,3 +19,12 @@ QImage ImageProvider::requestImage( const QString& id, QSize* size, const QSize&
   return *mImage.get();
 }
 
+void ImageProvider::setOriginalImage( const QImage* newImage )
+{
+  mOriginalImage = std::make_unique<QImage>( *newImage  ) ;
+}
+
+void ImageProvider::setModifiedImage( const QImage* newImage )
+{
+  mModifiedImage = std::make_unique<QImage>( *newImage  ) ;
+}

@@ -37,8 +37,7 @@ public:
   Q_INVOKABLE void generateHexagonalStretchImage();
   Q_INVOKABLE void generateCloudsImage( int dimension, int symmetryGroup, QColor color1, QColor color2, QColor color3,
                                         int distributionIndex );
-  Q_INVOKABLE void generateHyperbolicCloudsImage( int dimension, int symmetryGroup, int projType,
-                                                  int distributionIndex,
+  Q_INVOKABLE void generateHyperbolicCloudsImage( int dimension, int symmetryGroup, int projType, int distributionIndex,
                                                   int rotation0, int rotation1, int rotation2, int rotation3,
                                                   QColor color1, QColor color2, QColor color3 );
   Q_INVOKABLE void generateOrbitTrapImage( QColor color, int dimension, int symmetryGroup );
