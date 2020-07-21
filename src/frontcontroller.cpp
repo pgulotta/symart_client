@@ -94,6 +94,14 @@ FrontController::FrontController( QObject* parent )
   } );
 
   connect( &mNetworkQueryController,
+           &NetworkQueryController::modifiedImageGenerated,
+           this,
+  [this]( const QImage * newImage  ) {
+    mImageProvider->setOriginalImage( newImage );
+    emit imageGenerated();
+  } );
+
+  connect( &mNetworkQueryController,
            &NetworkQueryController::networkQueryMessage,
            this,
   []( const QString & messageDescription ) {

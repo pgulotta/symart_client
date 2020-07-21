@@ -65,6 +65,12 @@ void NetworkQueryController::runGetRequest( const QStringList& attributes, const
   }
 }
 
+void NetworkQueryController::runModifyImageRequest( const QString& query )
+{
+  QStringList attributes{QString::number( static_cast<int>( QueryType::ModifyImage ) )};
+  runGetRequest( attributes, query );
+}
+
 void NetworkQueryController::runGenerateImageRequest( const QString& query )
 {
   QStringList attributes{QString::number( static_cast<int>( QueryType::GenerateImage ) )};
@@ -119,6 +125,10 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
     switch ( extractQueryType( attributes ) ) {
     case QueryType::GenerateImage:
       emit newImageGenerated( new QImage( imageFromByteArray( networkReply->readAll() ) ) ) ;
+      break;
+
+    case QueryType::ModifyImage:
+      emit modifiedImageGenerated( new QImage( imageFromByteArray( networkReply->readAll() ) ) ) ;
       break;
 
     case QueryType::SaveImage:
