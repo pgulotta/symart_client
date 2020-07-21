@@ -2,13 +2,13 @@
 
 ImageProvider::ImageProvider():
   QQuickImageProvider( QQuickImageProvider::Image ),
-  mImage{new QImage}, mOriginalImage{new QImage}, mModifiedImage{new QImage}
+  mDisplayImage{new QImage}, mOriginalImage{new QImage}, mModifiedImage{new QImage}
 {
 }
 
-void ImageProvider::setImage( const QImage* newImage )
+void ImageProvider::setDisplayImage( const QImage* newImage )
 {
-  mImage = std::make_unique<QImage>( *newImage  ) ;
+  mDisplayImage = std::make_unique<QImage>( *newImage  ) ;
 }
 
 QImage ImageProvider::requestImage( const QString& id, QSize* size, const QSize& requestedSize )
@@ -16,17 +16,17 @@ QImage ImageProvider::requestImage( const QString& id, QSize* size, const QSize&
   Q_UNUSED( id )
   Q_UNUSED( size )
   Q_UNUSED( requestedSize )
-  return *mImage.get();
+  return *mDisplayImage.get();
 }
 
 void ImageProvider::setOriginalImage( const QImage* newImage )
 {
   mOriginalImage = std::make_unique<QImage>( *newImage  ) ;
-  setImage( newImage );
+  setDisplayImage( newImage );
 }
 
 void ImageProvider::setModifiedImage( const QImage* newImage )
 {
   mModifiedImage = std::make_unique<QImage>( *newImage  ) ;
-  setImage( newImage );
+  setDisplayImage( newImage );
 }

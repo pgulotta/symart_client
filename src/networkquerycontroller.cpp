@@ -16,7 +16,7 @@
 
 
 #ifdef QT_DEBUG
-const QString WALLPAPER_SERVER = "http://0.0.0.0:60564/";
+const QString WALLPAPER_SERVER = "http://192.168.1.121:60564/";
 #else
 const QString WALLPAPER_SERVER = "http://65.60.187.8:60564/";
 #endif
