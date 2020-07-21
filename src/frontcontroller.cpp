@@ -207,7 +207,7 @@ void FrontController::generateRandomizeImage( int x, int y )
                .arg( mNetworkQueryController.queryPrefix() )
                .arg( mNetworkQueryController.serviceId() )
                .arg( x ).arg( y );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mNetworkQueryController.runModifyImageRequest( query );
 }
 
 void FrontController::generateHyperbolicImage( int size, int projectionType )
@@ -217,7 +217,7 @@ void FrontController::generateHyperbolicImage( int size, int projectionType )
                .arg( mNetworkQueryController.serviceId() )
                .arg( size )
                .arg( projectionType );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mNetworkQueryController.runModifyImageRequest( query );
 }
 
 void FrontController::generateWalkImage( int width, int height, int mode, bool isBalanced, bool isTileable )
@@ -293,6 +293,7 @@ void FrontController::updateSquigglesImage( int dimension, int symmetryGroup )
 
 void FrontController::getLastGenerateImage()
 {
+  //pat todo
   auto query = QString( "%1lastImage/%2" )
                .arg( mNetworkQueryController.queryPrefix() )
                .arg( mNetworkQueryController.serviceId() );
@@ -304,7 +305,7 @@ void FrontController::generateHexagonalStretchImage()
   auto query = QString( "%1hexagonalStretch/%2" )
                .arg( mNetworkQueryController.queryPrefix() )
                .arg( mNetworkQueryController.serviceId() );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mNetworkQueryController.runModifyImageRequest( query );
 }
 
 void FrontController::generateCloudsImage( int dimension, int symmetryGroup, QColor color1, QColor color2,
