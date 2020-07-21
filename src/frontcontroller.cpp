@@ -89,7 +89,7 @@ FrontController::FrontController( QObject* parent )
            &NetworkQueryController::newImageGenerated,
            this,
   [this]( const QImage * newImage  ) {
-    mImageProvider->setImage( newImage );
+    mImageProvider->setOriginalImage( newImage );
     emit imageGenerated();
   } );
 

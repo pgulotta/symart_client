@@ -22,9 +22,11 @@ QImage ImageProvider::requestImage( const QString& id, QSize* size, const QSize&
 void ImageProvider::setOriginalImage( const QImage* newImage )
 {
   mOriginalImage = std::make_unique<QImage>( *newImage  ) ;
+  setImage( newImage );
 }
 
 void ImageProvider::setModifiedImage( const QImage* newImage )
 {
   mModifiedImage = std::make_unique<QImage>( *newImage  ) ;
+  setImage( newImage );
 }
