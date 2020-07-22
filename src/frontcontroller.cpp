@@ -147,7 +147,7 @@ QString FrontController::toLocalFile( const QString& fileURL ) const
 
 void FrontController::setCurrentImageAsWallpaper()
 {
-  mQueryController.runSaveImageAsWallpaperRequest();
+  mQueryController.setCurrentImageAsWallpaper( mImageProvider );
 }
 
 void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QString& imageFileExtension )

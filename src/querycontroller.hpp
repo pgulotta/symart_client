@@ -7,8 +7,7 @@ class ImageProvider;
 
 enum class QueryType {
   GenerateImage,
-  ModifyImage,
-  ImageAsWallpaper
+  ModifyImage
 };
 
 class QueryController final : public QObject
@@ -26,7 +25,7 @@ public:
   void runModifyImageRequest(  const QString& query ) ;
   void saveCurrentImage( const ImageProvider* imageProvider, const QString& filenamePrefix,
                          const QString& imageFileExtension ) ;
-  void runSaveImageAsWallpaperRequest() ;
+  void setCurrentImageAsWallpaper( const ImageProvider* imageProvider ) ;
   const QString& queryPrefix() { return mQueryPrefix;}
   const QString& imageColorsPrefix() { return mImageColorsPrefix;}
   const QString& serviceId() { return mServiceId;}
@@ -39,7 +38,7 @@ private:
   int getNextResponseId();
   QueryType extractQueryType( const QStringList& attributes );
   void saveToFile( const QByteArray& source,  const QString& destination, bool shouldSendMessage ) const;
-  void saveImageAsWallpaper( const QByteArray& source, const QString& wallpaperFilename ) const;
+  void setWallpaper( const QByteArray& source, const QString& wallpaperFilename ) const;
   void setWallpaperUsingFile(  ) const;
   QNetworkAccessManager mNetworkAccessManager;
   int mResponseId{0};

@@ -78,7 +78,7 @@ void QueryController::runGenerateImageRequest( const QString& query )
   runGetRequest( attributes, query );
 }
 
-void QueryController::runSaveImageAsWallpaperRequest()
+void QueryController::setCurrentImageAsWallpaper( const ImageProvider* imageProvider )
 {
   const QDir dir = QStandardPaths::writableLocation( QStandardPaths::DownloadLocation );
 
@@ -88,10 +88,8 @@ void QueryController::runSaveImageAsWallpaperRequest()
 
   qInfo() << Q_FUNC_INFO << saveFilename;
 
-  QStringList attributes{QString::number( static_cast<int>( QueryType::ImageAsWallpaper ) ),
-                         saveFilename};
-  QString query = QString( "%1lastImage/%2" ).arg( mQueryPrefix ).arg( mServiceId );
-  runGetRequest( attributes, query );
+  QtConcurrent::run( this, &QueryController::setWallpaper, imageProvider->displayImageToByteArray(),
+                     saveFilename );
 }
 
 void QueryController::saveCurrentImage( const ImageProvider* imageProvider, const QString& filenamePrefix,
@@ -130,10 +128,6 @@ void QueryController::onNetworkReply( QNetworkReply* networkReply )
     case QueryType::ModifyImage:
       emit modifiedImageGenerated( new QImage( imageFromByteArray( networkReply->readAll() ) ) ) ;
       break;
-
-    case QueryType::ImageAsWallpaper:
-      QtConcurrent::run( this, &QueryController::saveImageAsWallpaper, networkReply->readAll(), attributes[1] );
-      break;
     }
   } catch ( std::exception const& e ) {
     qWarning() << Q_FUNC_INFO << e.what();
@@ -144,8 +138,8 @@ void QueryController::onNetworkReply( QNetworkReply* networkReply )
 }
 
 #ifdef Q_OS_ANDROID
-void QueryController::saveImageAsWallpaper( const QByteArray& source,
-                                            const QString& wallpaperFilename ) const
+void QueryController::setWallpaper( const QByteArray& source,
+                                    const QString& wallpaperFilename ) const
 {
   saveToFile( source, wallpaperFilename, false );
   setWallpaperUsingFile();
@@ -162,7 +156,7 @@ void QueryController::setWallpaperUsingFile() const
 void QueryController::setWallpaperUsingFile() const
 {
 }
-void QueryController::saveImageAsWallpaper( const QByteArray&, const QString& ) const {}
+void QueryController::setWallpaper( const QByteArray&, const QString& ) const {}
 #endif
 
 void QueryController::saveToFile( const QByteArray& source, const QString& destination,
