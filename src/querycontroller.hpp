@@ -3,10 +3,11 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 
+class ImageProvider;
+
 enum class QueryType {
   GenerateImage,
   ModifyImage,
-  SaveImage,
   ImageAsWallpaper
 };
 
@@ -23,7 +24,8 @@ public:
   explicit QueryController( QObject* parent = nullptr );
   void runGenerateImageRequest(  const QString& query ) ;
   void runModifyImageRequest(  const QString& query ) ;
-  void runSaveImageRequest( const QString& filenamePrefix, const QString& imageFileExtension ) ;
+  void saveCurrentImage( const ImageProvider* imageProvider, const QString& filenamePrefix,
+                         const QString& imageFileExtension ) ;
   void runSaveImageAsWallpaperRequest() ;
   const QString& queryPrefix() { return mQueryPrefix;}
   const QString& imageColorsPrefix() { return mImageColorsPrefix;}

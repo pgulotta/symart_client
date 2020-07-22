@@ -1,4 +1,5 @@
 #include "querycontroller.hpp"
+#include "imageprovider.hpp"
 #include <stdexcept>
 #include <QNetworkReply>
 #include <QImageWriter>
@@ -93,7 +94,8 @@ void QueryController::runSaveImageAsWallpaperRequest()
   runGetRequest( attributes, query );
 }
 
-void QueryController::runSaveImageRequest( const QString& filenamePrefix, const QString& imageFileExtension )
+void QueryController::saveCurrentImage( const ImageProvider* imageProvider, const QString& filenamePrefix,
+                                        const QString& imageFileExtension )
 {
   auto formattedPrefix{filenamePrefix.simplified()};
   formattedPrefix.replace( " ", "" );
@@ -106,10 +108,8 @@ void QueryController::runSaveImageRequest( const QString& filenamePrefix, const 
                        .arg( QUuid::createUuid().toString( QUuid::WithoutBraces ) )
                        .arg( imageFileExtension ) ;
   qInfo() << Q_FUNC_INFO << saveFilename;
-  QStringList attributes{QString::number( static_cast<int>( QueryType::SaveImage ) ),
-                         saveFilename};
-  QString query = QString( "%1lastImage/%2" ).arg( mQueryPrefix ).arg( mServiceId );
-  runGetRequest( attributes, query );
+
+  QtConcurrent::run( this, &QueryController::saveToFile, imageProvider->displayImageToByteArray(), saveFilename, true );
 }
 
 void QueryController::onNetworkReply( QNetworkReply* networkReply )
@@ -129,10 +129,6 @@ void QueryController::onNetworkReply( QNetworkReply* networkReply )
 
     case QueryType::ModifyImage:
       emit modifiedImageGenerated( new QImage( imageFromByteArray( networkReply->readAll() ) ) ) ;
-      break;
-
-    case QueryType::SaveImage:
-      QtConcurrent::run( this, &QueryController::saveToFile, networkReply->readAll(), attributes[1], true );
       break;
 
     case QueryType::ImageAsWallpaper:

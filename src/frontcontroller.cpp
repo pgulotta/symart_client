@@ -152,7 +152,7 @@ void FrontController::setCurrentImageAsWallpaper()
 
 void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QString& imageFileExtension )
 {
-  mQueryController.runSaveImageRequest( filenamePrefix, imageFileExtension );
+  mQueryController.saveCurrentImage( mImageProvider, filenamePrefix, imageFileExtension );
 }
 
 void FrontController::generateOrbitTrapImage( QColor color, int dimension, int symmetryGroup )
