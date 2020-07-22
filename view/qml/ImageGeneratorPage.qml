@@ -29,6 +29,7 @@ Page {
             reportMessage(messageDescription)
         }
         function onImageGenerated() {
+            shouldRotateImage = true
             imageSource = "image://generatedImage"
         }
     }
@@ -151,7 +152,7 @@ Page {
                             loops: 1
                             running: shouldRotateImage
                                      && (imageId.status === Image.Ready)
-                            duration: Constants.animationDuration
+                            duration: Constants.animationDuration / 2
                         }
                         onStatusChanged: {
                             if (imageId.status === Image.Error) {

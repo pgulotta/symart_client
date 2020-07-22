@@ -10,13 +10,14 @@ public:
   ImageProvider();
   QImage requestImage( const QString& id, QSize* size, const QSize& requestedSize ) override;
 
-  const QImage* getDisplayImage() {return mDisplayImage.get();}
+  const QImage* getDisplayImage() const {return mDisplayImage.get();}
+  QByteArray displayImageToByteArray() const;
 
   void setOriginalImage( const QImage* newImage );
-  const QImage* getOriginalImage() {return mOriginalImage.get();}
+  const QImage* getOriginalImage() const {return mOriginalImage.get();}
 
   void setModifiedImage( const QImage* newImage );
-  const QImage* getModifiedImage() {return mModifiedImage.get();}
+  const QImage* getModifiedImage() const {return mModifiedImage.get();}
 
 private:
   void setDisplayImage( const QImage* newImage );

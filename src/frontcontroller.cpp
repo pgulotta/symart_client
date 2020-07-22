@@ -97,7 +97,7 @@ FrontController::FrontController( QObject* parent )
            &NetworkQueryController::modifiedImageGenerated,
            this,
   [this]( const QImage * newImage  ) {
-    mImageProvider->setOriginalImage( newImage );
+    mImageProvider->setModifiedImage( newImage );
     emit imageGenerated();
   } );
 
@@ -293,11 +293,8 @@ void FrontController::updateSquigglesImage( int dimension, int symmetryGroup )
 
 void FrontController::getLastGenerateImage()
 {
-  //pat todo
-  auto query = QString( "%1lastImage/%2" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mImageProvider->setModifiedImage(  mImageProvider->getOriginalImage() );
+  emit imageGenerated();
 }
 
 void FrontController::generateHexagonalStretchImage()

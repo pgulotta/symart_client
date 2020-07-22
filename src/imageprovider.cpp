@@ -1,4 +1,18 @@
 #include "imageprovider.hpp"
+#include <QBuffer>
+
+QByteArray toByteArray( const QImage& image )
+{
+  QByteArray ba  ;
+
+  if ( image.sizeInBytes() > 0 ) {
+    QBuffer buffer( &ba );
+    buffer.open( QIODevice::WriteOnly );
+    image.save( &buffer, "PNG" );
+  }
+
+  return ba ;
+}
 
 ImageProvider::ImageProvider():
   QQuickImageProvider( QQuickImageProvider::Image ),
@@ -17,6 +31,17 @@ QImage ImageProvider::requestImage( const QString& id, QSize* size, const QSize&
   Q_UNUSED( size )
   Q_UNUSED( requestedSize )
   return *mDisplayImage.get();
+}
+
+QByteArray ImageProvider::displayImageToByteArray() const
+{
+  const QImage* image = getDisplayImage();
+
+  if ( image == nullptr )
+    return QByteArray{};
+  else {
+    return toByteArray( *image );
+  }
 }
 
 void ImageProvider::setOriginalImage( const QImage* newImage )
