@@ -79,30 +79,30 @@ void FrontController::appMessageHandler( QtMsgType type,
 }
 
 FrontController::FrontController( QObject* parent )
-  : QObject( parent ), mNetworkQueryController( parent ),
+  : QObject( parent ), mQueryController( parent ),
     mImageProvider{new ImageProvider}
 {
   FrontControllerInstance = this;
 // qInstallMessageHandler( FrontController::appMessageHandler );
 
-  connect( &mNetworkQueryController,
-           &NetworkQueryController::newImageGenerated,
+  connect( &mQueryController,
+           &QueryController::newImageGenerated,
            this,
   [this]( const QImage * newImage  ) {
     mImageProvider->setOriginalImage( newImage );
     emit imageGenerated();
   } );
 
-  connect( &mNetworkQueryController,
-           &NetworkQueryController::modifiedImageGenerated,
+  connect( &mQueryController,
+           &QueryController::modifiedImageGenerated,
            this,
   [this]( const QImage * newImage  ) {
     mImageProvider->setModifiedImage( newImage );
     emit imageGenerated();
   } );
 
-  connect( &mNetworkQueryController,
-           &NetworkQueryController::networkQueryMessage,
+  connect( &mQueryController,
+           &QueryController::networkQueryMessage,
            this,
   []( const QString & messageDescription ) {
     emit FrontControllerInstance->messageGenerated( messageDescription );
@@ -147,77 +147,77 @@ QString FrontController::toLocalFile( const QString& fileURL ) const
 
 void FrontController::setCurrentImageAsWallpaper()
 {
-  mNetworkQueryController.runSaveImageAsWallpaperRequest();
+  mQueryController.runSaveImageAsWallpaperRequest();
 }
 
 void FrontController::saveCurrentImage(  const QString& filenamePrefix, const QString& imageFileExtension )
 {
-  mNetworkQueryController.runSaveImageRequest( filenamePrefix, imageFileExtension );
+  mQueryController.runSaveImageRequest( filenamePrefix, imageFileExtension );
 }
 
 void FrontController::generateOrbitTrapImage( QColor color, int dimension, int symmetryGroup )
 {
   auto query = QString( "%1trap/%2/%3/%4/%5/%6/%7" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( color.red() )
                .arg( color.green() )
                .arg( color.blue() )
                .arg( dimension )
                .arg( symmetryGroup );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateClustersImage( int dimension, int symmetryGroup, double alpha )
 {
   auto query = QString( "%1clusters/%2/%3/%4/%5" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( dimension )
                .arg( symmetryGroup )
                .arg( alpha );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateStripesImage( int dimension, int symmetryGroup, double alpha )
 {
   auto query = QString( "%1stripes/%2/%3/%4/%5" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( dimension )
                .arg( symmetryGroup )
                .arg( alpha );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateQuasiperiodicStripesImage( int dimension, int quasiperiod, double alpha )
 {
   auto query = QString( "%1quasiPeriodicStripes/%2/%3/%4/%5" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( dimension )
                .arg( quasiperiod )
                .arg( alpha );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateRandomizeImage( int x, int y )
 {
   auto query = QString( "%1randomizeTiles/%2/%3/%4" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( x ).arg( y );
-  mNetworkQueryController.runModifyImageRequest( query );
+  mQueryController.runModifyImageRequest( query );
 }
 
 void FrontController::generateHyperbolicImage( int size, int projectionType )
 {
   auto query = QString( "%1hyperbolicImage/%2/%3/%4" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( size )
                .arg( projectionType );
-  mNetworkQueryController.runModifyImageRequest( query );
+  mQueryController.runModifyImageRequest( query );
 }
 
 void FrontController::generateWalkImage( int width, int height, int mode, bool isBalanced, bool isTileable )
@@ -226,22 +226,22 @@ void FrontController::generateWalkImage( int width, int height, int mode, bool i
 
   if ( isTileable )
     query = QString( "%1walk/%2/%3/%4/%5/%6" )
-            .arg( mNetworkQueryController.queryPrefix() )
-            .arg( mNetworkQueryController.serviceId() )
+            .arg( mQueryController.queryPrefix() )
+            .arg( mQueryController.serviceId() )
             .arg( width )
             .arg( height )
             .arg( isBalanced )
             .arg( mode );
   else
     query = QString( "%1walk2/%2/%3/%4/%5/%6" )
-            .arg( mNetworkQueryController.queryPrefix() )
-            .arg( mNetworkQueryController.serviceId() )
+            .arg( mQueryController.queryPrefix() )
+            .arg( mQueryController.serviceId() )
             .arg( width )
             .arg( height )
             .arg( isBalanced )
             .arg( mode );
 
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateSquigglesImage( int colorCount, double saturationBoost,
@@ -249,8 +249,8 @@ void FrontController::generateSquigglesImage( int colorCount, double saturationB
                                               double alpha, double exponent, double thickness, double sharpness )
 {
   auto query = QString(  "%1squigglesImageColors/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( saturationBoost )
                .arg( useHue )
                .arg( useSaturation )
@@ -262,15 +262,15 @@ void FrontController::generateSquigglesImage( int colorCount, double saturationB
                .arg( exponent )
                .arg( thickness )
                .arg( sharpness );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateSquigglesImage( int colorCount, int dimension,   int symmetryGroup, double alpha,
                                               double exponent, double thickness, double sharpness )
 {
   auto query = QString( "%1squiggles/%2/%3/%4/%5/%6/%7/%8/%9" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( colorCount )
                .arg( dimension )
                .arg( symmetryGroup )
@@ -278,17 +278,17 @@ void FrontController::generateSquigglesImage( int colorCount, int dimension,   i
                .arg( exponent )
                .arg( thickness )
                .arg( sharpness );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::updateSquigglesImage( int dimension, int symmetryGroup )
 {
   auto query = QString( "%1updateSquiggles/%2/%3/%4" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( dimension )
                .arg( symmetryGroup );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::getLastGenerateImage()
@@ -300,9 +300,9 @@ void FrontController::getLastGenerateImage()
 void FrontController::generateHexagonalStretchImage()
 {
   auto query = QString( "%1hexagonalStretch/%2" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() );
-  mNetworkQueryController.runModifyImageRequest( query );
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() );
+  mQueryController.runModifyImageRequest( query );
 }
 
 void FrontController::generateCloudsImage( int dimension, int symmetryGroup, QColor color1, QColor color2,
@@ -310,8 +310,8 @@ void FrontController::generateCloudsImage( int dimension, int symmetryGroup, QCo
                                            int distributionIndex )
 {
   QString query = QString( "%1clouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
-                  .arg( mNetworkQueryController.queryPrefix() )
-                  .arg( mNetworkQueryController.serviceId() )
+                  .arg( mQueryController.queryPrefix() )
+                  .arg( mQueryController.serviceId() )
                   .arg( dimension )
                   .arg( symmetryGroup )
                   .arg( color1.red() )
@@ -324,7 +324,7 @@ void FrontController::generateCloudsImage( int dimension, int symmetryGroup, QCo
                   .arg( color3.green() )
                   .arg( color3.blue() )
                   .arg( distributionIndex );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateHyperbolicCloudsImage( int dimension, int symmetryGroup, int projType,
@@ -332,8 +332,8 @@ void FrontController::generateHyperbolicCloudsImage( int dimension, int symmetry
                                                      QColor color1, QColor color2, QColor color3 )
 {
   QString query =  QString( "%1hyperbolicClouds/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14/%15/%16/%17/%18/%19" )
-                   .arg( mNetworkQueryController.queryPrefix() )
-                   .arg( mNetworkQueryController.serviceId() )
+                   .arg( mQueryController.queryPrefix() )
+                   .arg( mQueryController.serviceId() )
                    .arg( dimension )
                    .arg( symmetryGroup )
                    .arg( rotation0 )
@@ -351,7 +351,7 @@ void FrontController::generateHyperbolicCloudsImage( int dimension, int symmetry
                    .arg( color3.green() )
                    .arg( color3.blue() )
                    .arg( distributionIndex );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateLinessImage( int dimension, int symmetryGroup, int colorCount,
@@ -360,8 +360,8 @@ void FrontController::generateLinessImage( int dimension, int symmetryGroup, int
                                            const QString& ruleName3, int ruleWeight3, bool usePastelColors3 )
 {
   auto query = QString( "%1lines/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13/%14" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( dimension )
                .arg( symmetryGroup )
                .arg( colorCount )
@@ -374,7 +374,7 @@ void FrontController::generateLinessImage( int dimension, int symmetryGroup, int
                .arg( ruleName3 )
                .arg( ruleWeight3 )
                .arg( usePastelColors3 );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateHyperbolicLinesImage( int dimension, int fdfIndex, int rotation0, int rotation1,
@@ -382,8 +382,8 @@ void FrontController::generateHyperbolicLinesImage( int dimension, int fdfIndex,
                                                     int rotation3, int projType, int flipType, double thickness, double sharpness, int colorCount )
 {
   auto query = QString( "%1hyperbolicLines/%2/%3/%4/%5/%6/%7/%8/%9/%10/%11/%12/%13" )
-               .arg( mNetworkQueryController.queryPrefix() )
-               .arg( mNetworkQueryController.serviceId() )
+               .arg( mQueryController.queryPrefix() )
+               .arg( mQueryController.serviceId() )
                .arg( dimension )
                .arg( fdfIndex )
                .arg( rotation0 )
@@ -395,7 +395,7 @@ void FrontController::generateHyperbolicLinesImage( int dimension, int fdfIndex,
                .arg( thickness )
                .arg( sharpness )
                .arg( colorCount );
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, int width, int height,
@@ -405,8 +405,8 @@ void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, i
 
   if (  ImmutableList::isPolynomialFunction( functionIndex ) ) {
     query = QString( "%1quasiTrapPoly/%2/%3/%4/%5/%6/%7/%8/%9" )
-            .arg( mNetworkQueryController.queryPrefix() )
-            .arg( mNetworkQueryController.serviceId() )
+            .arg( mQueryController.queryPrefix() )
+            .arg( mQueryController.serviceId() )
             .arg( color.red() )
             .arg( color.green() )
             .arg( color.blue() )
@@ -416,8 +416,8 @@ void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, i
             .arg( quasiperiod );
   } else {
     query = QString( "%1quasiTrap/%2/%3/%4/%5/%6/%7/%8/%9" )
-            .arg( mNetworkQueryController.queryPrefix() )
-            .arg( mNetworkQueryController.serviceId() )
+            .arg( mQueryController.queryPrefix() )
+            .arg( mQueryController.serviceId() )
             .arg( color.red() )
             .arg( color.green() )
             .arg( color.blue() )
@@ -427,7 +427,7 @@ void FrontController::generateQuasiTrapImage( QColor color, int functionIndex, i
             .arg( quasiperiod );
   }
 
-  mNetworkQueryController.runGenerateImageRequest( query );
+  mQueryController.runGenerateImageRequest( query );
 }
 
 #ifdef Q_OS_ANDROID

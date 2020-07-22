@@ -1,6 +1,6 @@
 #pragma once
 #include "imageprovider.hpp"
-#include "networkquerycontroller.hpp"
+#include "querycontroller.hpp"
 #include <QObject>
 #include <QImage>
 
@@ -69,7 +69,7 @@ public:
 
 private:
   void generateNewWallpaper() const;
-  NetworkQueryController mNetworkQueryController;
+  QueryController mQueryController;
   ImageProvider* mImageProvider;  // qml releases this resource
   static FrontController* FrontControllerInstance;
 

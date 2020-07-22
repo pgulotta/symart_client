@@ -10,7 +10,7 @@ enum class QueryType {
   ImageAsWallpaper
 };
 
-class NetworkQueryController final : public QObject
+class QueryController final : public QObject
 {
   Q_OBJECT
 signals:
@@ -20,7 +20,7 @@ signals:
 
 
 public:
-  explicit NetworkQueryController( QObject* parent = nullptr );
+  explicit QueryController( QObject* parent = nullptr );
   void runGenerateImageRequest(  const QString& query ) ;
   void runModifyImageRequest(  const QString& query ) ;
   void runSaveImageRequest( const QString& filenamePrefix, const QString& imageFileExtension ) ;

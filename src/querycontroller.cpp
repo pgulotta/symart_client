@@ -1,4 +1,4 @@
-#include "networkquerycontroller.hpp"
+#include "querycontroller.hpp"
 #include <stdexcept>
 #include <QNetworkReply>
 #include <QImageWriter>
@@ -28,7 +28,7 @@ QImage imageFromByteArray( const QByteArray& ba )
   return image;
 }
 
-NetworkQueryController::NetworkQueryController( QObject* parent )
+QueryController::QueryController( QObject* parent )
   : QObject( parent ),
     mQueryPrefix{WALLPAPER_SERVER + "get/?"},
     mImageColorsPrefix{WALLPAPER_SERVER + "imageColors/?"},
@@ -37,21 +37,21 @@ NetworkQueryController::NetworkQueryController( QObject* parent )
   connect( &mNetworkAccessManager,
            &QNetworkAccessManager::finished,
            this,
-           &NetworkQueryController::onNetworkReply );
+           &QueryController::onNetworkReply );
 }
 
 
-int NetworkQueryController::getNextResponseId()
+int QueryController::getNextResponseId()
 {
   return mResponseId++;
 }
 
-QueryType NetworkQueryController::extractQueryType( const QStringList& attributes )
+QueryType QueryController::extractQueryType( const QStringList& attributes )
 {
   return static_cast<QueryType>( attributes[0].toInt() );
 }
 
-void NetworkQueryController::runGetRequest( const QStringList& attributes, const QString& query )
+void QueryController::runGetRequest( const QStringList& attributes, const QString& query )
 {
   //qDebug() << Q_FUNC_INFO << query;
 
@@ -65,19 +65,19 @@ void NetworkQueryController::runGetRequest( const QStringList& attributes, const
   }
 }
 
-void NetworkQueryController::runModifyImageRequest( const QString& query )
+void QueryController::runModifyImageRequest( const QString& query )
 {
   QStringList attributes{QString::number( static_cast<int>( QueryType::ModifyImage ) )};
   runGetRequest( attributes, query );
 }
 
-void NetworkQueryController::runGenerateImageRequest( const QString& query )
+void QueryController::runGenerateImageRequest( const QString& query )
 {
   QStringList attributes{QString::number( static_cast<int>( QueryType::GenerateImage ) )};
   runGetRequest( attributes, query );
 }
 
-void NetworkQueryController::runSaveImageAsWallpaperRequest()
+void QueryController::runSaveImageAsWallpaperRequest()
 {
   const QDir dir = QStandardPaths::writableLocation( QStandardPaths::DownloadLocation );
 
@@ -93,7 +93,7 @@ void NetworkQueryController::runSaveImageAsWallpaperRequest()
   runGetRequest( attributes, query );
 }
 
-void NetworkQueryController::runSaveImageRequest( const QString& filenamePrefix, const QString& imageFileExtension )
+void QueryController::runSaveImageRequest( const QString& filenamePrefix, const QString& imageFileExtension )
 {
   auto formattedPrefix{filenamePrefix.simplified()};
   formattedPrefix.replace( " ", "" );
@@ -112,7 +112,7 @@ void NetworkQueryController::runSaveImageRequest( const QString& filenamePrefix,
   runGetRequest( attributes, query );
 }
 
-void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
+void QueryController::onNetworkReply( QNetworkReply* networkReply )
 {
   try {
     if ( networkReply->error() ) {
@@ -132,11 +132,11 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
       break;
 
     case QueryType::SaveImage:
-      QtConcurrent::run( this, &NetworkQueryController::saveToFile, networkReply->readAll(), attributes[1], true );
+      QtConcurrent::run( this, &QueryController::saveToFile, networkReply->readAll(), attributes[1], true );
       break;
 
     case QueryType::ImageAsWallpaper:
-      QtConcurrent::run( this, &NetworkQueryController::saveImageAsWallpaper, networkReply->readAll(), attributes[1] );
+      QtConcurrent::run( this, &QueryController::saveImageAsWallpaper, networkReply->readAll(), attributes[1] );
       break;
     }
   } catch ( std::exception const& e ) {
@@ -148,14 +148,14 @@ void NetworkQueryController::onNetworkReply( QNetworkReply* networkReply )
 }
 
 #ifdef Q_OS_ANDROID
-void NetworkQueryController::saveImageAsWallpaper( const QByteArray& source,
-                                                   const QString& wallpaperFilename ) const
+void QueryController::saveImageAsWallpaper( const QByteArray& source,
+                                            const QString& wallpaperFilename ) const
 {
   saveToFile( source, wallpaperFilename, false );
   setWallpaperUsingFile();
 }
 
-void NetworkQueryController::setWallpaperUsingFile() const
+void QueryController::setWallpaperUsingFile() const
 {
   QAndroidJniObject::callStaticMethod<void>( "com/twentysixapps/symart/WallpaperGenerator",
                                              "setWallpaperUsingFile",
@@ -163,14 +163,14 @@ void NetworkQueryController::setWallpaperUsingFile() const
                                              QtAndroid::androidActivity().object() );
 }
 #else
-void NetworkQueryController::setWallpaperUsingFile() const
+void QueryController::setWallpaperUsingFile() const
 {
 }
-void NetworkQueryController::saveImageAsWallpaper( const QByteArray&, const QString& ) const {}
+void QueryController::saveImageAsWallpaper( const QByteArray&, const QString& ) const {}
 #endif
 
-void NetworkQueryController::saveToFile( const QByteArray& source, const QString& destination,
-                                         bool shouldSendMessage ) const
+void QueryController::saveToFile( const QByteArray& source, const QString& destination,
+                                  bool shouldSendMessage ) const
 {
   auto filename = QUrl::fromUserInput( destination ).toLocalFile();
 
